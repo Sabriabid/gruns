@@ -19,7 +19,7 @@ export default function Accordion({ items }: { items: AccordionItem[] }) {
             onClick={() => setOpenIndex(openIndex === i ? null : i)}
             className="w-full flex items-center justify-between py-5 text-left cursor-pointer"
           >
-            <span className="text-lg font-bold text-brand-dark pr-4">
+            <span className="text-base sm:text-lg font-bold text-brand-dark pr-2 sm:pr-4">
               {item.question}
             </span>
             {openIndex === i ? (

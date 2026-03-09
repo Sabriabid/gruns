@@ -30,15 +30,15 @@ export default function Comparison() {
           </p>
         </div>
 
-        <div className="overflow-x-auto">
-          <table className="w-full border-collapse">
+        <div className="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
+          <table className="w-full border-collapse min-w-[500px]">
             <thead>
               <tr>
-                <th className="text-left p-4"></th>
+                <th className="text-left p-3 sm:p-4"></th>
                 {content.comparison.headers.map((h, i) => (
                   <th
                     key={i}
-                    className={`p-4 text-center text-sm font-bold whitespace-pre-line ${
+                    className={`p-3 sm:p-4 text-center text-xs sm:text-sm font-bold whitespace-pre-line ${
                       i === 0
                         ? "bg-brand-green text-brand-yellow rounded-t-2xl text-lg"
                         : "text-brand-dark/60"
@@ -55,13 +55,13 @@ export default function Comparison() {
                   key={i}
                   className="border-b border-gray-100 last:border-b-0"
                 >
-                  <td className="p-4 text-sm font-medium text-brand-dark">
+                  <td className="p-3 sm:p-4 text-xs sm:text-sm font-medium text-brand-dark">
                     {row.label}
                   </td>
                   {row.values.map((val, j) => (
                     <td
                       key={j}
-                      className={`p-4 text-center text-sm font-bold ${
+                      className={`p-3 sm:p-4 text-center text-xs sm:text-sm font-bold ${
                         j === 0
                           ? "bg-brand-green/5 text-brand-green"
                           : row.highlight[j]

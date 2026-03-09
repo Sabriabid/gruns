@@ -5,7 +5,7 @@ export default function FAQ() {
   return (
     <section className="py-20 bg-brand-cream">
       <div className="max-w-5xl mx-auto px-4">
-        <div className="flex flex-col lg:flex-row gap-12 items-start">
+        <div className="flex flex-col lg:flex-row gap-6 lg:gap-12 items-start">
           <h2 className="text-3xl lg:text-4xl font-bold text-brand-dark lg:w-1/3 shrink-0">
             {content.faq.title}
           </h2>

@@ -49,14 +49,14 @@ export default function BuyBox() {
           </div>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-10 items-start">
+        <div className="flex flex-col lg:flex-row gap-6 lg:gap-10 items-start">
           {/* Left - Product visual */}
           <div className="flex-1">
             <div className="bg-brand-green rounded-2xl overflow-hidden shadow-lg">
               <div className="bg-brand-yellow text-brand-dark text-center py-2 font-bold text-sm">
                 🔥 OFFRE DE LANCEMENT — PLACES LIMITÉES 🔥
               </div>
-              <div className="p-8 flex flex-col items-center">
+              <div className="p-6 sm:p-8 flex flex-col items-center">
                 <div className="w-20 h-20 bg-brand-yellow rounded-full flex items-center justify-center mb-6">
                   <span className="text-5xl">🐻</span>
                 </div>
@@ -85,7 +85,7 @@ export default function BuyBox() {
             </div>
 
             {/* Shipping info */}
-            <div className="flex items-center justify-center gap-8 mt-6 text-sm text-brand-dark/60">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-8 mt-6 text-xs sm:text-sm text-brand-dark/60">
               <div className="flex items-center gap-2">
                 <Truck size={16} /> Livraison Gratuite
               </div>
@@ -135,7 +135,7 @@ export default function BuyBox() {
               <h3 className="font-bold text-brand-dark mb-3">
                 {content.buybox.tastesLike.title}
               </h3>
-              <div className="flex gap-6">
+              <div className="flex gap-4 sm:gap-6">
                 {content.buybox.tastesLike.items.map((item, i) => (
                   <div key={i} className="flex flex-col items-center gap-2">
                     <div className="w-14 h-14 rounded-full bg-brand-cream flex items-center justify-center text-2xl">

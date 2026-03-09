@@ -4,7 +4,7 @@ export default function Results() {
   return (
     <section className="py-20 bg-brand-cream">
       <div className="max-w-6xl mx-auto px-4">
-        <div className="bg-brand-light-yellow rounded-3xl p-8 lg:p-12">
+        <div className="bg-brand-light-yellow rounded-3xl p-5 sm:p-8 lg:p-12">
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold text-brand-green mb-4">
               {content.results.title}
@@ -17,7 +17,7 @@ export default function Results() {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
             {content.results.stats.map((stat, i) => (
               <div key={i} className="text-center">
-                <span className="text-5xl lg:text-6xl font-bold text-brand-green">
+                <span className="text-3xl sm:text-5xl lg:text-6xl font-bold text-brand-green">
                   {stat.value}
                 </span>
                 <p className="text-sm text-brand-dark/60 mt-2 leading-relaxed">

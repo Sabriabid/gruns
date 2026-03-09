@@ -58,7 +58,7 @@ export default function EmailCapture({
       />
       <button
         type="submit"
-        className="bg-brand-green text-white font-bold px-8 py-3.5 rounded-[10px] shadow-[5px_5px_0px_0px_#000000] hover:shadow-[1px_1px_0px_0px_#000000] hover:translate-x-[4px] hover:translate-y-[4px] transition-all duration-300 cursor-pointer whitespace-nowrap"
+        className="bg-brand-green text-white font-bold px-6 sm:px-8 py-3 sm:py-3.5 text-sm sm:text-base rounded-[10px] shadow-[5px_5px_0px_0px_#000000] hover:shadow-[1px_1px_0px_0px_#000000] hover:translate-x-[4px] hover:translate-y-[4px] transition-all duration-300 cursor-pointer whitespace-normal sm:whitespace-nowrap"
       >
         {buttonText}
       </button>

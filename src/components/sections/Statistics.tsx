@@ -8,7 +8,7 @@ export default function Statistics() {
       <div className="max-w-6xl mx-auto px-4">
         <div className="bg-white rounded-3xl shadow-sm overflow-hidden flex flex-col lg:flex-row">
           {/* Text side */}
-          <div className="flex-1 p-8 lg:p-12">
+          <div className="flex-1 p-5 sm:p-8 lg:p-12">
             <h2 className="text-2xl lg:text-3xl font-bold text-brand-green mb-3">
               {content.statistics.title}
             </h2>
@@ -19,7 +19,7 @@ export default function Statistics() {
             <div className="flex flex-col sm:flex-row gap-8 mb-10">
               {content.statistics.stats.map((stat, i) => (
                 <div key={i} className="flex-1">
-                  <span className="text-6xl lg:text-7xl font-bold text-brand-green">
+                  <span className="text-4xl sm:text-6xl lg:text-7xl font-bold text-brand-green">
                     {stat.value}
                   </span>
                   <p className="text-sm text-brand-dark/60 mt-2 leading-relaxed">
@@ -38,7 +38,7 @@ export default function Statistics() {
           </div>
 
           {/* Image side */}
-          <div className="flex-1 bg-brand-green min-h-[300px] flex items-center justify-center relative overflow-hidden">
+          <div className="flex-1 bg-brand-green min-h-[200px] sm:min-h-[300px] flex items-center justify-center relative overflow-hidden">
             <div className="text-center text-white p-8">
               <div className="text-7xl mb-4">🫴</div>
               <span className="text-3xl font-bold text-brand-yellow">

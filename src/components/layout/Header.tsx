@@ -35,10 +35,10 @@ export default function Header() {
         </a>
 
         <div className="flex items-center gap-4">
-          <button className="text-brand-dark hover:text-brand-green transition-colors cursor-pointer" aria-label="Compte">
+          <button className="w-10 h-10 flex items-center justify-center text-brand-dark hover:text-brand-green transition-colors cursor-pointer rounded-lg" aria-label="Compte">
             <User size={20} />
           </button>
-          <button className="text-brand-dark hover:text-brand-green transition-colors cursor-pointer" aria-label="Panier">
+          <button className="w-10 h-10 flex items-center justify-center text-brand-dark hover:text-brand-green transition-colors cursor-pointer rounded-lg" aria-label="Panier">
             <ShoppingBag size={20} />
           </button>
         </div>

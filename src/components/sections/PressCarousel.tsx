@@ -23,14 +23,14 @@ export default function PressCarousel() {
             onClick={() =>
               setCurrent((prev) => (prev - 1 + items.length) % items.length)
             }
-            className="shrink-0 w-10 h-10 rounded-full border-2 border-brand-dark flex items-center justify-center hover:bg-brand-dark hover:text-white transition-colors cursor-pointer"
+            className="shrink-0 w-11 h-11 sm:w-10 sm:h-10 rounded-full border-2 border-brand-dark flex items-center justify-center hover:bg-brand-dark hover:text-white transition-colors cursor-pointer"
             aria-label="Précédent"
           >
             <ChevronLeft size={18} />
           </button>
 
-          <div className="flex-1 text-center px-8">
-            <p className="text-lg italic text-brand-dark/70 mb-3">
+          <div className="flex-1 text-center px-4 sm:px-8">
+            <p className="text-base sm:text-lg italic text-brand-dark/70 mb-3">
               &ldquo;{items[current].quote}&rdquo;
             </p>
             <p className="text-2xl font-bold text-brand-dark tracking-tight">
@@ -40,7 +40,7 @@ export default function PressCarousel() {
 
           <button
             onClick={() => setCurrent((prev) => (prev + 1) % items.length)}
-            className="shrink-0 w-10 h-10 rounded-full border-2 border-brand-dark flex items-center justify-center hover:bg-brand-dark hover:text-white transition-colors cursor-pointer"
+            className="shrink-0 w-11 h-11 sm:w-10 sm:h-10 rounded-full border-2 border-brand-dark flex items-center justify-center hover:bg-brand-dark hover:text-white transition-colors cursor-pointer"
             aria-label="Suivant"
           >
             <ChevronRight size={18} />

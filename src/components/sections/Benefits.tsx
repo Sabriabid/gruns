@@ -21,7 +21,7 @@ export default function Benefits() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 relative">
           {/* Center gummy bear illustration */}
           <div className="hidden md:flex absolute inset-0 items-center justify-center pointer-events-none">
             <div className="w-48 h-56 lg:w-56 lg:h-64 flex items-center justify-center">

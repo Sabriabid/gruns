@@ -7,7 +7,7 @@ import { ShieldCheck } from "lucide-react";
 export default function Hero() {
   return (
     <section className="bg-brand-cream overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 py-12 lg:py-20 flex flex-col lg:flex-row items-center gap-12">
+      <div className="max-w-7xl mx-auto px-4 py-10 sm:py-12 lg:py-20 flex flex-col lg:flex-row items-center gap-8 sm:gap-12">
         {/* Left column */}
         <div className="flex-1 max-w-xl">
           <div className="flex items-center gap-2 mb-4">
@@ -17,20 +17,20 @@ export default function Hero() {
             </span>
           </div>
 
-          <h1 className="text-4xl lg:text-5xl font-bold leading-tight mb-4">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-4">
             {content.hero.headline}{" "}
             <span className="text-brand-green">
               {content.hero.headlineAccent}
             </span>
           </h1>
 
-          <p className="text-lg text-brand-dark/70 mb-8 leading-relaxed">
+          <p className="text-base sm:text-lg text-brand-dark/70 mb-6 sm:mb-8 leading-relaxed">
             {content.hero.subtitle}
           </p>
 
           <a
             href="#produit"
-            className="inline-block bg-brand-green text-white font-bold text-lg px-11 py-4 rounded-[10px] shadow-[5px_5px_0px_0px_#000000] hover:shadow-[1px_1px_0px_0px_#000000] hover:translate-x-[4px] hover:translate-y-[4px] transition-all duration-300 mb-4"
+            className="inline-block bg-brand-green text-white font-bold text-base sm:text-lg px-8 sm:px-11 py-3.5 sm:py-4 rounded-[10px] shadow-[5px_5px_0px_0px_#000000] hover:shadow-[1px_1px_0px_0px_#000000] hover:translate-x-[4px] hover:translate-y-[4px] transition-all duration-300 mb-4"
           >
             {content.hero.cta}
           </a>
@@ -47,7 +47,7 @@ export default function Hero() {
 
         {/* Right column - Product visual placeholder */}
         <div className="flex-1 flex items-center justify-center relative">
-          <div className="relative w-80 h-96 lg:w-[420px] lg:h-[500px]">
+          <div className="relative w-full max-w-[280px] sm:max-w-[320px] h-96 lg:w-[420px] lg:h-[500px]">
             {/* Main pouch */}
             <div className="absolute inset-0 bg-brand-green rounded-3xl shadow-2xl flex flex-col items-center justify-center p-8 transform rotate-[-3deg]">
               <div className="w-16 h-16 bg-brand-yellow rounded-full flex items-center justify-center mb-4">
@@ -68,7 +68,7 @@ export default function Hero() {
             </div>
 
             {/* Secondary pouch */}
-            <div className="absolute -right-4 -bottom-4 w-48 h-60 bg-brand-green/80 rounded-2xl shadow-xl flex flex-col items-center justify-center p-4 transform rotate-[8deg]">
+            <div className="hidden sm:flex absolute -right-4 -bottom-4 w-48 h-60 bg-brand-green/80 rounded-2xl shadow-xl flex-col items-center justify-center p-4 transform rotate-[8deg]">
               <span className="text-2xl font-bold text-brand-yellow">
                 {content.brand}
               </span>
@@ -78,10 +78,10 @@ export default function Hero() {
             </div>
 
             {/* Floating gummy bears */}
-            <div className="absolute -top-4 -left-4 text-4xl animate-bounce">
+            <div className="hidden sm:block absolute -top-4 -left-4 text-4xl animate-bounce">
               🍬
             </div>
-            <div className="absolute top-12 -right-8 text-3xl animate-bounce delay-300">
+            <div className="hidden sm:block absolute top-12 -right-8 text-3xl animate-bounce delay-300">
               🍬
             </div>
           </div>

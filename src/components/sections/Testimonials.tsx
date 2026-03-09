@@ -46,7 +46,7 @@ export default function Testimonials() {
           ).map((review, i) => (
             <div
               key={i}
-              className="bg-white rounded-2xl p-6 shadow-sm border border-brand-green/5"
+              className="bg-white rounded-2xl p-4 sm:p-6 shadow-sm border border-brand-green/5"
             >
               <StarRating rating={review.stars} size={14} />
               <p className="text-brand-dark font-bold mt-3 mb-2 text-sm leading-relaxed">

@@ -8,7 +8,7 @@ export default function Footer() {
   return (
     <footer className="bg-brand-dark text-white">
       <div className="max-w-7xl mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Signup */}
           <div className="lg:col-span-1">
             <h3 className="text-brand-yellow font-bold text-lg mb-4">
@@ -65,7 +65,7 @@ export default function Footer() {
 
         {/* Bottom */}
         <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <span className="text-3xl font-bold text-brand-yellow">
+          <span className="text-2xl sm:text-3xl font-bold text-brand-yellow">
             {content.brand}
           </span>
           <p className="text-white/40 text-sm">

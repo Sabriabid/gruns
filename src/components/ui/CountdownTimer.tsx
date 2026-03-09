@@ -42,15 +42,15 @@ export default function CountdownTimer({ targetDate }: CountdownTimerProps) {
   }, [targetDate]);
 
   return (
-    <div className="flex items-center gap-2 text-xs font-medium text-brand-dark">
+    <div className="flex items-center gap-1.5 sm:gap-2 text-xs font-medium text-brand-dark">
       <Digit value={time.days} />
-      <span>Jours</span>
+      <span><span className="hidden sm:inline">Jours</span><span className="sm:hidden">J</span></span>
       <Digit value={time.hours} />
-      <span>Heures</span>
+      <span><span className="hidden sm:inline">Heures</span><span className="sm:hidden">H</span></span>
       <Digit value={time.minutes} />
-      <span>Min</span>
+      <span><span className="hidden sm:inline">Min</span><span className="sm:hidden">M</span></span>
       <Digit value={time.seconds} />
-      <span>Sec</span>
+      <span><span className="hidden sm:inline">Sec</span><span className="sm:hidden">S</span></span>
     </div>
   );
 }

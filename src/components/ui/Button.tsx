@@ -28,7 +28,7 @@ export default function Button({
             variant === "outline",
         },
         {
-          "px-5 py-2 text-sm": size === "sm",
+          "px-5 py-2.5 text-sm": size === "sm",
           "px-8 py-3.5 text-base": size === "md",
           "px-11 py-4 text-lg": size === "lg",
         },
