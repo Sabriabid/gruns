@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { content } from "@/lib/content";
 
 export default function Results() {
@@ -33,7 +34,29 @@ export default function Results() {
             </p>
           </div>
 
-          <div className="border-t border-brand-green/10 mt-6 pt-8">
+          {/* Clinical stats image */}
+          <div className="mt-8 flex justify-center">
+            <Image
+              src="/images/clinical-stats.jpeg"
+              alt="Étude clinique Groms — résultats"
+              width={700}
+              height={700}
+              className="rounded-2xl shadow-sm w-full max-w-2xl h-auto"
+            />
+          </div>
+
+          {/* Timeline expectations */}
+          <div className="mt-8 flex justify-center">
+            <Image
+              src="/images/timeline-expectations.jpeg"
+              alt="À quoi s'attendre après avoir pris Groms"
+              width={700}
+              height={700}
+              className="rounded-2xl shadow-sm w-full max-w-2xl h-auto"
+            />
+          </div>
+
+          <div className="border-t border-brand-green/10 mt-8 pt-8">
             <h3 className="text-2xl lg:text-3xl font-bold text-brand-green text-center mb-4">
               {content.quality.title}
             </h3>

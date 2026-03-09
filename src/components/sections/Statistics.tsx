@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { content } from "@/lib/content";
 
 export default function Statistics() {
@@ -38,16 +39,13 @@ export default function Statistics() {
           </div>
 
           {/* Image side */}
-          <div className="flex-1 bg-brand-green min-h-[200px] sm:min-h-[300px] flex items-center justify-center relative overflow-hidden">
-            <div className="text-center text-white p-8">
-              <div className="text-7xl mb-4">🫴</div>
-              <span className="text-3xl font-bold text-brand-yellow">
-                {content.brand}
-              </span>
-              <p className="text-white/60 text-sm mt-2">
-                Superfoods Greens Gummies
-              </p>
-            </div>
+          <div className="flex-1 relative min-h-[300px] sm:min-h-[400px]">
+            <Image
+              src="/images/lifestyle-sachet.jpeg"
+              alt="Personne ouvrant un sachet Groms"
+              fill
+              className="object-cover"
+            />
           </div>
         </div>
       </div>

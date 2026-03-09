@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { content } from "@/lib/content";
 import { Heart, Shield, Zap, Brain } from "lucide-react";
 
@@ -22,17 +23,21 @@ export default function Benefits() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 relative">
-          {/* Center gummy bear illustration */}
-          <div className="hidden md:flex absolute inset-0 items-center justify-center pointer-events-none">
-            <div className="w-48 h-56 lg:w-56 lg:h-64 flex items-center justify-center">
-              <div className="text-8xl lg:text-9xl opacity-90">🐻</div>
-            </div>
+          {/* Center lifestyle image */}
+          <div className="hidden md:flex absolute inset-0 items-center justify-center pointer-events-none z-0">
+            <Image
+              src="/images/benefits-lifestyle.jpeg"
+              alt="Bienfaits Groms"
+              width={280}
+              height={280}
+              className="rounded-2xl opacity-90 shadow-lg"
+            />
           </div>
 
           {content.benefits.items.map((item, i) => (
             <div
               key={i}
-              className={`text-center p-8 ${
+              className={`text-center p-8 relative z-10 ${
                 i % 2 === 0 ? "md:pr-32" : "md:pl-32"
               }`}
             >
@@ -47,6 +52,17 @@ export default function Benefits() {
               </p>
             </div>
           ))}
+
+          {/* Mobile image */}
+          <div className="md:hidden flex justify-center -mt-4 mb-4">
+            <Image
+              src="/images/benefits-lifestyle.jpeg"
+              alt="Bienfaits Groms"
+              width={300}
+              height={300}
+              className="rounded-2xl shadow-lg"
+            />
+          </div>
         </div>
       </div>
     </section>

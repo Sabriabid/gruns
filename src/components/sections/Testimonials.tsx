@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { content } from "@/lib/content";
 import StarRating from "@/components/ui/StarRating";
 
@@ -14,6 +15,17 @@ export default function Testimonials() {
   return (
     <section className="py-20 bg-brand-cream">
       <div className="max-w-6xl mx-auto px-4">
+        {/* Social proof image */}
+        <div className="flex justify-center mb-10">
+          <Image
+            src="/images/social-proof.jpeg"
+            alt="Approuvé par 1,000,000+ de clients"
+            width={500}
+            height={500}
+            className="rounded-2xl shadow-sm w-full max-w-md h-auto"
+          />
+        </div>
+
         <div className="text-center mb-10">
           <StarRating rating={5} size={20} />
           <h2 className="text-3xl lg:text-4xl font-bold text-brand-dark mt-3">

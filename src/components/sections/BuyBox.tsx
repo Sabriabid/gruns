@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { content } from "@/lib/content";
 import StarRating from "@/components/ui/StarRating";
 import EmailCapture from "@/components/ui/EmailCapture";
@@ -50,39 +51,15 @@ export default function BuyBox() {
         </div>
 
         <div className="flex flex-col lg:flex-row gap-6 lg:gap-10 items-start">
-          {/* Left - Product visual */}
+          {/* Left - Product image */}
           <div className="flex-1">
-            <div className="bg-brand-green rounded-2xl overflow-hidden shadow-lg">
-              <div className="bg-brand-yellow text-brand-dark text-center py-2 font-bold text-sm">
-                🔥 OFFRE DE LANCEMENT — PLACES LIMITÉES 🔥
-              </div>
-              <div className="p-6 sm:p-8 flex flex-col items-center">
-                <div className="w-20 h-20 bg-brand-yellow rounded-full flex items-center justify-center mb-6">
-                  <span className="text-5xl">🐻</span>
-                </div>
-                <span className="text-5xl font-bold text-brand-yellow mb-2">
-                  {content.brand}
-                </span>
-                <span className="text-white/80 text-sm uppercase tracking-widest mb-6">
-                  Nutrition Complète
-                </span>
-
-                <div className="w-full space-y-3 text-white text-sm">
-                  <div className="flex items-center gap-3 bg-white/10 rounded-xl p-3">
-                    <Clock size={18} /> Full-body health benefits
-                  </div>
-                  <div className="flex items-center gap-3 bg-white/10 rounded-xl p-3">
-                    <ShieldCheck size={18} /> Soutient la santé intestinale
-                  </div>
-                  <div className="flex items-center gap-3 bg-white/10 rounded-xl p-3">
-                    <Leaf size={18} /> Énergie sans crash
-                  </div>
-                  <div className="flex items-center gap-3 bg-white/10 rounded-xl p-3">
-                    <Truck size={18} /> Bon goût, sans compromis
-                  </div>
-                </div>
-              </div>
-            </div>
+            <Image
+              src="/images/product-buybox.jpeg"
+              alt="Groms — Offre de lancement"
+              width={600}
+              height={600}
+              className="rounded-2xl shadow-lg w-full h-auto"
+            />
 
             {/* Shipping info */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-8 mt-6 text-xs sm:text-sm text-brand-dark/60">

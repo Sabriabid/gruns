@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { content } from "@/lib/content";
 import StarRating from "@/components/ui/StarRating";
 import { ShieldCheck } from "lucide-react";
@@ -45,46 +46,16 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Right column - Product visual placeholder */}
-        <div className="flex-1 flex items-center justify-center relative">
-          <div className="relative w-full max-w-[280px] sm:max-w-[320px] h-96 lg:w-[420px] lg:h-[500px]">
-            {/* Main pouch */}
-            <div className="absolute inset-0 bg-brand-green rounded-3xl shadow-2xl flex flex-col items-center justify-center p-8 transform rotate-[-3deg]">
-              <div className="w-16 h-16 bg-brand-yellow rounded-full flex items-center justify-center mb-4">
-                <span className="text-3xl">🐻</span>
-              </div>
-              <span className="text-4xl font-bold text-brand-yellow mb-2">
-                {content.brand}
-              </span>
-              <span className="text-white/80 text-xs uppercase tracking-widest mb-4">
-                Nutrition Complète
-              </span>
-              <div className="bg-white/15 rounded-xl px-4 py-2 text-white text-sm font-medium">
-                Superfoods Greens Gummies
-              </div>
-              <div className="mt-4 text-white/60 text-xs">
-                28 sachets quotidiens
-              </div>
-            </div>
-
-            {/* Secondary pouch */}
-            <div className="hidden sm:flex absolute -right-4 -bottom-4 w-48 h-60 bg-brand-green/80 rounded-2xl shadow-xl flex-col items-center justify-center p-4 transform rotate-[8deg]">
-              <span className="text-2xl font-bold text-brand-yellow">
-                {content.brand}
-              </span>
-              <span className="text-white/60 text-[10px] uppercase tracking-wider mt-1">
-                Superfoods
-              </span>
-            </div>
-
-            {/* Floating gummy bears */}
-            <div className="hidden sm:block absolute -top-4 -left-4 text-4xl animate-bounce">
-              🍬
-            </div>
-            <div className="hidden sm:block absolute top-12 -right-8 text-3xl animate-bounce delay-300">
-              🍬
-            </div>
-          </div>
+        {/* Right column - Product photo */}
+        <div className="flex-1 flex items-center justify-center">
+          <Image
+            src="/images/product-hero.jpeg"
+            alt="Groms - Gommes aux Superaliments Verts"
+            width={500}
+            height={500}
+            className="rounded-3xl shadow-2xl w-full max-w-[320px] sm:max-w-[400px] lg:max-w-[500px] h-auto"
+            priority
+          />
         </div>
       </div>
     </section>
