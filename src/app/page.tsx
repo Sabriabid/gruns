@@ -8,7 +8,9 @@ import Statistics from "@/components/sections/Statistics";
 import Results from "@/components/sections/Results";
 import BuyBox from "@/components/sections/BuyBox";
 import Testimonials from "@/components/sections/Testimonials";
+import FeaturedTestimonial from "@/components/sections/FeaturedTestimonial";
 import Comparison from "@/components/sections/Comparison";
+import PromoBanner from "@/components/sections/PromoBanner";
 import FinalCTA from "@/components/sections/FinalCTA";
 import FAQ from "@/components/sections/FAQ";
 
@@ -25,9 +27,11 @@ export default function Home() {
         <Results />
         <BuyBox />
         <Testimonials />
+        <FeaturedTestimonial />
         <Comparison />
-        <FinalCTA />
+        <PromoBanner />
         <FAQ />
+        <FinalCTA />
       </main>
       <Footer />
     </>

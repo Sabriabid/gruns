@@ -237,6 +237,19 @@ export const content = {
       },
     ],
   },
+  featuredTestimonial: {
+    quote:
+      "J'adore que ça rende une meilleure santé accessible à tous",
+    text: "En tant qu'ancienne athlète professionnelle, j'ai toujours cherché des moyens de rester en forme. Groms est devenu mon incontournable quotidien — c'est simple, efficace, et vraiment délicieux.",
+    author: "Léa Martin",
+    role: "Coach bien-être & ancienne athlète pro",
+  },
+  promoBanner: {
+    headline: "Édition Limitée — Ne Manquez Pas",
+    subtitle:
+      "Découvrez notre saveur exclusive avant qu'elle ne disparaisse. Quantités limitées disponibles.",
+    cta: "Réserver ma place",
+  },
   finalCta: {
     title: "Vous Voulez Rejoindre les 10% de Personnes",
     titleAccent: "Suffisamment Nourries ?",
