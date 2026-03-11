@@ -1,8 +1,9 @@
 "use client";
 
+import { motion, type HTMLMotionProps } from "framer-motion";
 import clsx from "clsx";
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends HTMLMotionProps<"button"> {
   variant?: "primary" | "secondary" | "outline";
   size?: "sm" | "md" | "lg";
   children: React.ReactNode;
@@ -16,7 +17,9 @@ export default function Button({
   ...props
 }: ButtonProps) {
   return (
-    <button
+    <motion.button
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
       className={clsx(
         "inline-flex items-center justify-center font-bold rounded-[10px] transition-all duration-300 ease-in-out cursor-pointer",
         {
@@ -37,6 +40,6 @@ export default function Button({
       {...props}
     >
       {children}
-    </button>
+    </motion.button>
   );
 }

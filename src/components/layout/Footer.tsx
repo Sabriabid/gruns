@@ -1,16 +1,24 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { Instagram } from "lucide-react";
 import { content } from "@/lib/content";
 import EmailCapture from "@/components/ui/EmailCapture";
+import { fadeInUp, staggerContainer, defaultViewport } from "@/lib/animations";
 
 export default function Footer() {
   return (
     <footer className="bg-brand-dark text-white">
       <div className="max-w-7xl mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12"
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={defaultViewport}
+        >
           {/* Signup */}
-          <div className="lg:col-span-1">
+          <motion.div className="lg:col-span-1" variants={fadeInUp}>
             <h3 className="text-brand-yellow font-bold text-lg mb-4">
               {content.footer.signup.title}
             </h3>
@@ -20,11 +28,11 @@ export default function Footer() {
               successMessage="Inscrit !"
               variant="dark"
             />
-          </div>
+          </motion.div>
 
           {/* Link columns */}
           {content.footer.columns.map((col) => (
-            <div key={col.title}>
+            <motion.div key={col.title} variants={fadeInUp}>
               <h3 className="text-brand-yellow font-bold text-lg mb-4">
                 {col.title}
               </h3>
@@ -33,18 +41,18 @@ export default function Footer() {
                   <li key={link}>
                     <a
                       href="#"
-                      className="text-white/70 hover:text-white transition-colors text-sm"
+                      className="text-white/70 hover:text-white hover:translate-x-1 transition-transform inline-block text-sm"
                     >
                       {link}
                     </a>
                   </li>
                 ))}
               </ul>
-            </div>
+            </motion.div>
           ))}
 
           {/* Social */}
-          <div>
+          <motion.div variants={fadeInUp}>
             <h3 className="text-brand-yellow font-bold text-lg mb-4">
               Suivez-nous
             </h3>
@@ -53,15 +61,15 @@ export default function Footer() {
                 <a
                   key={s}
                   href="#"
-                  className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors"
+                  className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 hover:scale-110 transition-transform"
                   aria-label={s}
                 >
                   <Instagram size={18} />
                 </a>
               ))}
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* Bottom */}
         <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">

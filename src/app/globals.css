@@ -21,3 +21,9 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+/* Smooth transitions on interactive elements */
+a,
+button {
+  transition: all 0.3s ease;
+}

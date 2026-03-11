@@ -1,9 +1,18 @@
 "use client";
 
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { content } from "@/lib/content";
 import StarRating from "@/components/ui/StarRating";
 import EmailCapture from "@/components/ui/EmailCapture";
+import {
+  fadeInUp,
+  slideInLeft,
+  slideInRight,
+  staggerContainer,
+  defaultTransition,
+  defaultViewport,
+} from "@/lib/animations";
 import {
   Check,
   Truck,
@@ -28,10 +37,17 @@ const packedIcons = [
 
 export default function BuyBox() {
   return (
-    <section id="produit" className="py-20 bg-white">
+    <section id="produit" className="py-24 lg:py-28 bg-white">
       <div className="max-w-7xl mx-auto px-4">
         {/* Section header */}
-        <div className="text-center mb-12">
+        <motion.div
+          className="text-center mb-12"
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={defaultViewport}
+          transition={defaultTransition}
+        >
           <span className="inline-block bg-brand-orange text-white font-bold text-sm px-5 py-1.5 rounded-full mb-4">
             {content.buybox.badge}
           </span>
@@ -48,11 +64,18 @@ export default function BuyBox() {
               <strong>1M+</strong> membres
             </span>
           </div>
-        </div>
+        </motion.div>
 
         <div className="flex flex-col lg:flex-row gap-6 lg:gap-10 items-start">
           {/* Left - Product image */}
-          <div className="flex-1">
+          <motion.div
+            className="flex-1"
+            variants={slideInLeft}
+            initial="hidden"
+            whileInView="visible"
+            viewport={defaultViewport}
+            transition={defaultTransition}
+          >
             <Image
               src="/images/product-buybox.jpeg"
               alt="Groms — Offre de lancement"
@@ -73,12 +96,19 @@ export default function BuyBox() {
                 <ShieldCheck size={16} /> Garantie 30j
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right - Signup / Price */}
-          <div className="flex-1 w-full">
+          <motion.div
+            className="flex-1 w-full"
+            variants={slideInRight}
+            initial="hidden"
+            whileInView="visible"
+            viewport={defaultViewport}
+            transition={defaultTransition}
+          >
             {/* Price indicator */}
-            <div className="bg-brand-cream rounded-2xl border-2 border-brand-green p-6 mb-6">
+            <div className="bg-brand-cream rounded-2xl border-2 border-brand-green shadow-[0_0_20px_rgba(0,126,64,0.08)] p-6 mb-6">
               <div className="flex items-baseline gap-3 mb-2">
                 <span className="text-3xl font-bold text-brand-green">
                   {content.buybox.price}
@@ -88,17 +118,25 @@ export default function BuyBox() {
                 </span>
               </div>
 
-              <div className="space-y-2.5 mb-6">
+              <motion.div
+                className="space-y-2.5 mb-6"
+                variants={staggerContainer}
+                initial="hidden"
+                whileInView="visible"
+                viewport={defaultViewport}
+              >
                 {content.buybox.features.map((f, i) => (
-                  <div
+                  <motion.div
                     key={i}
                     className="flex items-center gap-2 text-sm text-brand-dark/70"
+                    variants={fadeInUp}
+                    transition={defaultTransition}
                   >
                     <Check size={16} className="text-brand-green shrink-0" />
                     {f}
-                  </div>
+                  </motion.div>
                 ))}
-              </div>
+              </motion.div>
 
               <EmailCapture
                 placeholder={content.buybox.emailPlaceholder}
@@ -141,7 +179,7 @@ export default function BuyBox() {
                 ))}
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

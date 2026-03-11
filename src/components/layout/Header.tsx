@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { ShoppingBag, User } from "lucide-react";
 import { content } from "@/lib/content";
 
@@ -16,8 +17,8 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 bg-brand-cream/95 backdrop-blur-sm border-b border-brand-green/10">
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-3">
+    <header className="sticky top-0 z-50 bg-brand-cream/95 backdrop-blur-md shadow-sm">
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-4">
         <nav className="flex items-center gap-2">
           <a
             href="#produit"
@@ -45,20 +46,24 @@ export default function Header() {
       </div>
 
       {/* Sticky CTA */}
-      <div
-        className={`fixed top-4 right-4 z-50 transition-all duration-300 ${
-          showStickyCta
-            ? "opacity-100 translate-y-0"
-            : "opacity-0 -translate-y-4 pointer-events-none"
-        }`}
-      >
-        <a
-          href="#produit"
-          className="bg-brand-green text-white font-bold text-sm px-5 py-2.5 rounded-full shadow-lg hover:bg-brand-dark transition-colors flex items-center gap-1"
-        >
-          {content.nav.cta} →
-        </a>
-      </div>
+      <AnimatePresence>
+        {showStickyCta && (
+          <motion.div
+            className="fixed top-4 right-4 z-50"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3 }}
+          >
+            <a
+              href="#produit"
+              className="bg-brand-green text-white font-bold text-sm px-5 py-2.5 rounded-full shadow-lg hover:bg-brand-dark transition-colors flex items-center gap-1"
+            >
+              {content.nav.cta} →
+            </a>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }
