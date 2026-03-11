@@ -24,7 +24,7 @@ export default function Results() {
             viewport={defaultViewport}
             transition={defaultTransition}
           >
-            <h2 className="text-3xl lg:text-4xl font-bold text-brand-green mb-4">
+            <h2 className="text-3xl lg:text-4xl font-bold text-brand-purple mb-4">
               {content.results.title}
             </h2>
             <p className="text-brand-dark/60 max-w-3xl mx-auto">
@@ -46,7 +46,7 @@ export default function Results() {
                 variants={fadeInUp}
                 transition={defaultTransition}
               >
-                <span className="text-3xl sm:text-5xl lg:text-6xl font-bold text-brand-green">
+                <span className="text-3xl sm:text-5xl lg:text-6xl font-bold text-brand-purple">
                   {stat.value}
                 </span>
                 <p className="text-sm text-brand-dark/60 mt-2 leading-relaxed">
@@ -56,7 +56,7 @@ export default function Results() {
             ))}
           </motion.div>
 
-          <div className="border-t border-brand-green/10 pt-4">
+          <div className="border-t border-brand-purple/10 pt-4">
             <p className="text-center text-xs text-brand-dark/40 italic">
               {content.results.footnote}
             </p>
@@ -73,7 +73,7 @@ export default function Results() {
           >
             <Image
               src="/images/clinical-stats.jpeg"
-              alt="Étude clinique Groms — résultats"
+              alt="Étude clinique Gomu — résultats"
               width={700}
               height={700}
               className="rounded-2xl shadow-sm w-full max-w-2xl h-auto"
@@ -91,15 +91,15 @@ export default function Results() {
           >
             <Image
               src="/images/timeline-expectations.jpeg"
-              alt="À quoi s'attendre après avoir pris Groms"
+              alt="À quoi s'attendre après avoir pris Gomu"
               width={700}
               height={700}
               className="rounded-2xl shadow-sm w-full max-w-2xl h-auto"
             />
           </motion.div>
 
-          <div className="border-t border-brand-green/10 mt-8 pt-8">
-            <h3 className="text-2xl lg:text-3xl font-bold text-brand-green text-center mb-4">
+          <div className="border-t border-brand-purple/10 mt-8 pt-8">
+            <h3 className="text-2xl lg:text-3xl font-bold text-brand-purple text-center mb-4">
               {content.quality.title}
             </h3>
             <p className="text-brand-dark/60 text-center max-w-2xl mx-auto mb-8">
@@ -119,7 +119,7 @@ export default function Results() {
                   variants={fadeIn}
                   transition={defaultTransition}
                 >
-                  <span className="w-6 h-6 rounded-full bg-brand-green/10 flex items-center justify-center text-brand-green text-xs font-bold">
+                  <span className="w-6 h-6 rounded-full bg-brand-purple/10 flex items-center justify-center text-brand-purple text-xs font-bold">
                     ✕
                   </span>
                   <span className="text-sm text-brand-dark/70">

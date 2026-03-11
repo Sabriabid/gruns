@@ -1,5 +1,5 @@
 export const content = {
-  brand: "Groms",
+  brand: "Gomu",
   announcement: {
     text: "Lancement imminent : Places Limitées",
     countdownEnd: "2026-04-15T23:59:59",
@@ -9,11 +9,11 @@ export const content = {
   },
   hero: {
     headline: "Vous avez des carences nutritionnelles,",
-    headlineAccent: "Groms les comble",
+    headlineAccent: "Gomu les comble",
     subtitle:
       "Une nutrition complète avec plus de 60 ingrédients pour vous sentir au mieux. Délicieux, pratique, et facile à intégrer dans votre routine.",
     cta: "Rejoindre la liste d'attente",
-    subCta: "Soyez parmi les premiers à découvrir Groms",
+    subCta: "Soyez parmi les premiers à découvrir Gomu",
     guarantee: "Garantie 30 jours",
   },
   press: {
@@ -39,7 +39,7 @@ export const content = {
   benefits: {
     title: "Transformez Votre Santé",
     subtitle:
-      "Plus de 35 000 publications scientifiques soutiennent les ingrédients de Groms.",
+      "Plus de 35 000 publications scientifiques soutiennent les ingrédients de Gomu.",
     items: [
       {
         title: "Santé Intestinale",
@@ -69,12 +69,12 @@ export const content = {
   },
   statistics: {
     title: "La Vie Moderne Laisse Notre Corps en Carence",
-    subtitle: "Groms est la première gomme intelligente qui comble les lacunes.",
+    subtitle: "Gomu est la première gomme intelligente qui comble les lacunes.",
     stats: [
       {
         value: "90%",
         description:
-          "des adultes français ne consomment pas suffisamment de nutriments essentiels — y compris les vitamines et minéraux présents dans Groms.",
+          "des adultes français ne consomment pas suffisamment de nutriments essentiels — y compris les vitamines et minéraux présents dans Gomu.",
       },
       {
         value: "61%",
@@ -87,12 +87,12 @@ export const content = {
   results: {
     title: "Pratique, Transportable, Testé",
     subtitle:
-      "Nous savons que Groms est délicieux et pratique, mais nous voulions comprendre ce qui se passe après 3 mois d'utilisation.",
+      "Nous savons que Gomu est délicieux et pratique, mais nous voulions comprendre ce qui se passe après 3 mois d'utilisation.",
     stats: [
       {
         value: "95%",
         description:
-          "des utilisateurs prennent Groms au moins 4 à 6 fois par semaine, dont 80% quotidiennement.",
+          "des utilisateurs prennent Gomu au moins 4 à 6 fois par semaine, dont 80% quotidiennement.",
       },
       {
         value: "67%",
@@ -134,7 +134,7 @@ export const content = {
     cta: "Être notifié du lancement",
     emailPlaceholder: "Votre adresse email",
     successMessage:
-      "Merci ! Vous serez notifié dès le lancement de Groms.",
+      "Merci ! Vous serez notifié dès le lancement de Gomu.",
     features: [
       "28 sachets quotidiens par pochette (224 gommes)",
       "Livraison RAPIDE et GRATUITE",
@@ -158,7 +158,7 @@ export const content = {
     },
   },
   testimonials: {
-    title: "Ils ont adopté Groms",
+    title: "Ils ont adopté Gomu",
     tabs: ["Goût", "Rapport Qualité-Prix", "vs Poudres", "Bienfaits"],
     reviews: [
       {
@@ -186,7 +186,7 @@ export const content = {
         tab: "Rapport Qualité-Prix",
       },
       {
-        text: "J'ai arrêté mon abonnement à AG1 depuis que j'ai découvert Groms. Moins cher, meilleur goût, et plus complet.",
+        text: "J'ai arrêté mon abonnement à AG1 depuis que j'ai découvert Gomu. Moins cher, meilleur goût, et plus complet.",
         author: "Julie P.",
         stars: 5,
         tab: "vs Poudres",
@@ -203,7 +203,7 @@ export const content = {
     title: "Nous vs. Eux",
     subtitle:
       "Pas de marketing exagéré ni de prix gonflés. Juste une nutrition complète, agréable et accessible à tous.",
-    headers: ["Groms", "Multivitamine\nClassique", "Poudre Verte\nHors de Prix"],
+    headers: ["Gomu", "Multivitamine\nClassique", "Poudre Verte\nHors de Prix"],
     rows: [
       {
         label: "Prix par jour",
@@ -240,7 +240,7 @@ export const content = {
   featuredTestimonial: {
     quote:
       "J'adore que ça rende une meilleure santé accessible à tous",
-    text: "En tant qu'ancienne athlète professionnelle, j'ai toujours cherché des moyens de rester en forme. Groms est devenu mon incontournable quotidien — c'est simple, efficace, et vraiment délicieux.",
+    text: "En tant qu'ancienne athlète professionnelle, j'ai toujours cherché des moyens de rester en forme. Gomu est devenu mon incontournable quotidien — c'est simple, efficace, et vraiment délicieux.",
     author: "Léa Martin",
     role: "Coach bien-être & ancienne athlète pro",
   },
@@ -260,9 +260,9 @@ export const content = {
     title: "Des Questions ?",
     items: [
       {
-        question: "Qu'est-ce que Groms ?",
+        question: "Qu'est-ce que Gomu ?",
         answer:
-          "Groms est un complément alimentaire sous forme de gommes contenant plus de 60 ingrédients naturels : vitamines, minéraux, superaliments, prébiotiques, adaptogènes et antioxydants. Chaque sachet quotidien contient 8 gommes délicieuses qui remplacent votre multivitamine, vos probiotiques et vos poudres vertes.",
+          "Gomu est un complément alimentaire sous forme de gommes contenant plus de 60 ingrédients naturels : vitamines, minéraux, superaliments, prébiotiques, adaptogènes et antioxydants. Chaque sachet quotidien contient 8 gommes délicieuses qui remplacent votre multivitamine, vos probiotiques et vos poudres vertes.",
       },
       {
         question: "Comment fonctionne la pré-commande ?",
@@ -272,12 +272,12 @@ export const content = {
       {
         question: "Quels sont les ingrédients ?",
         answer:
-          "Groms contient 21 vitamines et minéraux essentiels (A, B2, B6, B12, C, D3, E, K2, biotine, folate...), des légumes bio (chou frisé, épinards, brocoli), des fruits (myrtille, fraise, framboise), des prébiotiques, des adaptogènes et des extraits de champignons.",
+          "Gomu contient 21 vitamines et minéraux essentiels (A, B2, B6, B12, C, D3, E, K2, biotine, folate...), des légumes bio (chou frisé, épinards, brocoli), des fruits (myrtille, fraise, framboise), des prébiotiques, des adaptogènes et des extraits de champignons.",
       },
       {
         question: "Y a-t-il une garantie ?",
         answer:
-          "Oui ! Groms offre une garantie satisfait ou remboursé de 30 jours. Si vous n'êtes pas convaincu, nous vous remboursons intégralement, sans questions.",
+          "Oui ! Gomu offre une garantie satisfait ou remboursé de 30 jours. Si vous n'êtes pas convaincu, nous vous remboursons intégralement, sans questions.",
       },
       {
         question: "Quand serai-je livré(e) ?",
@@ -298,10 +298,10 @@ export const content = {
       },
       {
         title: "Contact",
-        links: ["Service Client", "contact@groms.fr", "Mentions Légales", "CGV"],
+        links: ["Service Client", "contact@gomu.fr", "Mentions Légales", "CGV"],
       },
     ],
     social: ["Instagram", "TikTok", "YouTube"],
-    copyright: "2026 Groms. Tous droits réservés.",
+    copyright: "2026 Gomu. Tous droits réservés.",
   },
 };

@@ -23,9 +23,9 @@ export default function EmailCapture({
     e.preventDefault();
     if (!email) return;
     // Store locally for MVP
-    const existing = JSON.parse(localStorage.getItem("groms_emails") || "[]");
+    const existing = JSON.parse(localStorage.getItem("gomu_emails") || "[]");
     existing.push({ email, date: new Date().toISOString() });
-    localStorage.setItem("groms_emails", JSON.stringify(existing));
+    localStorage.setItem("gomu_emails", JSON.stringify(existing));
     setSubmitted(true);
   };
 
@@ -39,8 +39,8 @@ export default function EmailCapture({
           transition={{ duration: 0.3 }}
           className={`text-center py-4 px-6 rounded-xl ${
             variant === "dark"
-              ? "bg-brand-green/20 text-white"
-              : "bg-brand-green/10 text-brand-green"
+              ? "bg-brand-purple/20 text-white"
+              : "bg-brand-purple/10 text-brand-purple"
           }`}
         >
           <p className="font-bold text-lg">✓ {successMessage}</p>
@@ -60,12 +60,12 @@ export default function EmailCapture({
             className={`flex-1 px-5 py-3.5 rounded-[10px] text-base outline-none transition-all ${
               variant === "dark"
                 ? "bg-white/10 text-white placeholder:text-white/50 border border-white/20 focus:border-white/50"
-                : "bg-white text-brand-dark placeholder:text-brand-dark/40 border border-brand-green/20 focus:border-brand-green"
+                : "bg-white text-brand-dark placeholder:text-brand-dark/40 border border-brand-purple/20 focus:border-brand-purple"
             }`}
           />
           <button
             type="submit"
-            className="bg-brand-green text-white font-bold px-6 sm:px-8 py-3 sm:py-3.5 text-sm sm:text-base rounded-[10px] shadow-[5px_5px_0px_0px_#000000] hover:shadow-[1px_1px_0px_0px_#000000] hover:translate-x-[4px] hover:translate-y-[4px] transition-all duration-300 cursor-pointer whitespace-normal sm:whitespace-nowrap"
+            className="bg-brand-purple text-white font-bold px-6 sm:px-8 py-3 sm:py-3.5 text-sm sm:text-base rounded-[10px] shadow-[5px_5px_0px_0px_#000000] hover:shadow-[1px_1px_0px_0px_#000000] hover:translate-x-[4px] hover:translate-y-[4px] transition-all duration-300 cursor-pointer whitespace-normal sm:whitespace-nowrap"
           >
             {buttonText}
           </button>

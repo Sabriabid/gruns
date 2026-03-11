@@ -14,7 +14,7 @@ import {
 function CellValue({ value }: { value: string }) {
   if (value === "check") {
     return (
-      <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-brand-green text-white">
+      <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-brand-purple text-white">
         <Check size={18} />
       </span>
     );
@@ -43,7 +43,7 @@ export default function Comparison() {
           viewport={defaultViewport}
           transition={defaultTransition}
         >
-          <h2 className="text-3xl lg:text-4xl font-bold text-brand-green mb-3">
+          <h2 className="text-3xl lg:text-4xl font-bold text-brand-purple mb-3">
             {title}
           </h2>
           <p className="text-brand-dark/60 max-w-xl">{subtitle}</p>
@@ -73,7 +73,7 @@ export default function Comparison() {
                     key={i}
                     className={`p-4 text-center font-bold text-sm whitespace-pre-line ${
                       i === 0
-                        ? "bg-brand-green text-white rounded-t-2xl text-base"
+                        ? "bg-brand-purple text-white rounded-t-2xl text-base"
                         : "text-brand-dark/60"
                     }`}
                   >
@@ -101,7 +101,7 @@ export default function Comparison() {
                       key={colIdx}
                       className={`p-4 text-center text-sm font-semibold ${
                         colIdx === 0
-                          ? "bg-brand-green/5 text-brand-green"
+                          ? "bg-brand-purple/5 text-brand-purple"
                           : "text-brand-dark/70"
                       }`}
                     >

@@ -26,7 +26,7 @@ export default function FeaturedTestimonial() {
           >
             <Image
               src="/images/lifestyle-sachet.jpeg"
-              alt="Témoignage lifestyle Groms"
+              alt="Témoignage lifestyle Gomu"
               width={600}
               height={500}
               className="rounded-2xl shadow-lg w-full h-auto object-cover"

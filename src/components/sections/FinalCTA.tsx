@@ -7,7 +7,7 @@ import { fadeInUp, defaultTransition, defaultViewport } from "@/lib/animations";
 
 export default function FinalCTA() {
   return (
-    <section className="py-24 lg:py-32 bg-gradient-to-br from-brand-green to-[#005c2e]">
+    <section className="py-24 lg:py-32 bg-gradient-to-br from-brand-purple to-[#4C1D95]">
       <motion.div
         className="max-w-3xl mx-auto px-4 text-center"
         variants={fadeInUp}

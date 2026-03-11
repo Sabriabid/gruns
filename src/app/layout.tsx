@@ -9,11 +9,11 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Groms - Nutrition Complète en Gommes",
+  title: "Gomu - Nutrition Complète en Gommes",
   description:
-    "Plus de 60 ingrédients essentiels dans une gomme délicieuse. Rejoignez la liste d'attente et soyez parmi les premiers à découvrir Groms.",
+    "Plus de 60 ingrédients essentiels dans une gomme délicieuse. Rejoignez la liste d'attente et soyez parmi les premiers à découvrir Gomu.",
   openGraph: {
-    title: "Groms - Nutrition Complète en Gommes",
+    title: "Gomu - Nutrition Complète en Gommes",
     description:
       "Plus de 60 ingrédients essentiels dans une gomme délicieuse.",
     locale: "fr_FR",

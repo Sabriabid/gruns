@@ -12,7 +12,7 @@ import {
 
 export default function PromoBanner() {
   return (
-    <section className="bg-gradient-to-r from-brand-green to-[#005c2e] overflow-hidden">
+    <section className="bg-gradient-to-r from-brand-purple to-[#4C1D95] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 py-16 sm:py-20 lg:py-24 flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
         {/* Text */}
         <motion.div
@@ -31,7 +31,7 @@ export default function PromoBanner() {
           </p>
           <a
             href="#produit"
-            className="inline-block bg-white text-brand-green font-bold text-lg px-10 py-4 rounded-[10px] shadow-[5px_5px_0px_0px_rgba(0,0,0,0.3)] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,0.3)] hover:translate-x-[4px] hover:translate-y-[4px] transition-all duration-300"
+            className="inline-block bg-white text-brand-purple font-bold text-lg px-10 py-4 rounded-[10px] shadow-[5px_5px_0px_0px_rgba(0,0,0,0.3)] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,0.3)] hover:translate-x-[4px] hover:translate-y-[4px] transition-all duration-300"
           >
             {content.promoBanner.cta}
           </a>
@@ -48,7 +48,7 @@ export default function PromoBanner() {
         >
           <Image
             src="/images/product-hero.jpeg"
-            alt="Groms — Édition limitée"
+            alt="Gomu — Édition limitée"
             width={450}
             height={450}
             className="rounded-2xl w-full max-w-[350px] lg:max-w-[450px] h-auto"

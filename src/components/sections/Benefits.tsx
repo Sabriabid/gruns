@@ -13,10 +13,10 @@ import {
 } from "@/lib/animations";
 
 const iconMap: Record<string, React.ReactNode> = {
-  gut: <Heart className="text-brand-green" size={32} />,
-  shield: <Shield className="text-brand-green" size={32} />,
-  energy: <Zap className="text-brand-green" size={32} />,
-  brain: <Brain className="text-brand-green" size={32} />,
+  gut: <Heart className="text-brand-purple" size={32} />,
+  shield: <Shield className="text-brand-purple" size={32} />,
+  energy: <Zap className="text-brand-purple" size={32} />,
+  brain: <Brain className="text-brand-purple" size={32} />,
 };
 
 export default function Benefits() {
@@ -31,7 +31,7 @@ export default function Benefits() {
           viewport={defaultViewport}
           transition={defaultTransition}
         >
-          <h2 className="text-3xl lg:text-4xl font-bold text-brand-green mb-4">
+          <h2 className="text-3xl lg:text-4xl font-bold text-brand-purple mb-4">
             {content.benefits.title}
           </h2>
           <p className="text-brand-dark/60 max-w-2xl mx-auto">
@@ -57,7 +57,7 @@ export default function Benefits() {
           >
             <Image
               src="/images/benefits-lifestyle.jpeg"
-              alt="Bienfaits Groms"
+              alt="Bienfaits Gomu"
               width={280}
               height={280}
               className="rounded-2xl opacity-90 shadow-lg"
@@ -72,10 +72,10 @@ export default function Benefits() {
               }`}
               variants={fadeInUp}
             >
-              <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-brand-green/10 mb-4">
+              <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-brand-purple/10 mb-4">
                 {iconMap[item.icon]}
               </div>
-              <h3 className="text-xl font-bold text-brand-green mb-2">
+              <h3 className="text-xl font-bold text-brand-purple mb-2">
                 {item.title}
               </h3>
               <p className="text-brand-dark/60 text-sm leading-relaxed">
@@ -95,7 +95,7 @@ export default function Benefits() {
           >
             <Image
               src="/images/benefits-lifestyle.jpeg"
-              alt="Bienfaits Groms"
+              alt="Bienfaits Gomu"
               width={300}
               height={300}
               className="rounded-2xl shadow-lg"

@@ -33,7 +33,7 @@ export default function PressCarousel() {
           </motion.button>
 
           <div className="flex-1 text-center px-4 sm:px-8 relative">
-            <span className="absolute -top-4 -left-2 text-7xl text-brand-green/10 font-serif select-none pointer-events-none">&ldquo;</span>
+            <span className="absolute -top-4 -left-2 text-7xl text-brand-purple/10 font-serif select-none pointer-events-none">&ldquo;</span>
             <AnimatePresence mode="wait">
               <motion.div
                 key={current}

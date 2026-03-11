@@ -65,8 +65,8 @@ export default function Testimonials() {
               whileTap={{ scale: 0.95 }}
               className={`px-5 py-2.5 rounded-full text-sm font-medium transition-colors cursor-pointer ${
                 activeTab === tab
-                  ? "bg-brand-green text-white"
-                  : "bg-white text-brand-dark border border-brand-green/20 hover:border-brand-green"
+                  ? "bg-brand-purple text-white"
+                  : "bg-white text-brand-dark border border-brand-purple/20 hover:border-brand-purple"
               }`}
             >
               {tab}
@@ -92,14 +92,14 @@ export default function Testimonials() {
                 key={i}
                 variants={fadeInUp}
                 transition={defaultTransition}
-                className="bg-white rounded-2xl p-4 sm:p-6 shadow-sm border border-brand-green/5 hover:shadow-md hover:-translate-y-1 transition-all duration-300"
+                className="bg-white rounded-2xl p-4 sm:p-6 shadow-sm border border-brand-purple/5 hover:shadow-md hover:-translate-y-1 transition-all duration-300"
               >
                 <StarRating rating={review.stars} size={14} />
                 <p className="text-brand-dark font-bold mt-3 mb-2 text-sm leading-relaxed">
                   {review.text}
                 </p>
                 <div className="flex items-center gap-3 mt-4">
-                  <div className="w-8 h-8 rounded-full bg-brand-green/10 flex items-center justify-center text-brand-green text-xs font-bold">
+                  <div className="w-8 h-8 rounded-full bg-brand-purple/10 flex items-center justify-center text-brand-purple text-xs font-bold">
                     {review.author
                       .split(" ")
                       .map((n) => n[0])

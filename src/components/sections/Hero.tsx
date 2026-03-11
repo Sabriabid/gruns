@@ -42,7 +42,7 @@ export default function Hero() {
             transition={defaultTransition}
           >
             {content.hero.headline}{" "}
-            <span className="text-brand-green">
+            <span className="text-brand-purple">
               {content.hero.headlineAccent}
             </span>
           </motion.h1>
@@ -58,7 +58,7 @@ export default function Hero() {
           <motion.div variants={fadeInUp} transition={defaultTransition}>
             <a
               href="#produit"
-              className="inline-block bg-brand-green text-white font-bold text-base sm:text-lg px-8 sm:px-11 py-3.5 sm:py-4 rounded-[10px] shadow-[5px_5px_0px_0px_#000000] hover:shadow-[1px_1px_0px_0px_#000000] hover:translate-x-[4px] hover:translate-y-[4px] transition-all duration-300 mb-4"
+              className="inline-block bg-brand-purple text-white font-bold text-base sm:text-lg px-8 sm:px-11 py-3.5 sm:py-4 rounded-[10px] shadow-[5px_5px_0px_0px_#000000] hover:shadow-[1px_1px_0px_0px_#000000] hover:translate-x-[4px] hover:translate-y-[4px] transition-all duration-300 mb-4"
             >
               {content.hero.cta}
             </a>
@@ -69,7 +69,7 @@ export default function Hero() {
               {content.hero.subCta}
             </p>
 
-            <div className="flex items-center gap-2 text-sm text-brand-green">
+            <div className="flex items-center gap-2 text-sm text-brand-purple">
               <ShieldCheck size={18} />
               <span className="font-medium">{content.hero.guarantee}</span>
             </div>
@@ -91,10 +91,10 @@ export default function Hero() {
           >
             <Image
               src="/images/product-hero.jpeg"
-              alt="Groms - Gommes aux Superaliments Verts"
+              alt="Gomu - Gommes aux Superaliments"
               width={500}
               height={500}
-              className="rounded-3xl shadow-[0_20px_60px_-12px_rgba(0,126,64,0.25)] w-full max-w-[320px] sm:max-w-[400px] lg:max-w-[500px] h-auto"
+              className="rounded-3xl shadow-[0_20px_60px_-12px_rgba(124,58,237,0.25)] w-full max-w-[320px] sm:max-w-[400px] lg:max-w-[500px] h-auto"
               priority
             />
           </motion.div>

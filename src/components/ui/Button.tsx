@@ -23,11 +23,11 @@ export default function Button({
       className={clsx(
         "inline-flex items-center justify-center font-bold rounded-[10px] transition-all duration-300 ease-in-out cursor-pointer",
         {
-          "bg-brand-green text-white shadow-[5px_5px_0px_0px_#000000] hover:shadow-[1px_1px_0px_0px_#000000] hover:translate-x-[4px] hover:translate-y-[4px]":
+          "bg-brand-purple text-white shadow-[5px_5px_0px_0px_#000000] hover:shadow-[1px_1px_0px_0px_#000000] hover:translate-x-[4px] hover:translate-y-[4px]":
             variant === "primary",
           "bg-brand-yellow text-brand-dark shadow-[5px_5px_0px_0px_#000000] hover:shadow-[1px_1px_0px_0px_#000000] hover:translate-x-[4px] hover:translate-y-[4px]":
             variant === "secondary",
-          "bg-transparent text-brand-green border-2 border-brand-green hover:bg-brand-green hover:text-white":
+          "bg-transparent text-brand-purple border-2 border-brand-purple hover:bg-brand-purple hover:text-white":
             variant === "outline",
         },
         {

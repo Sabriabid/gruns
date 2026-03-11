@@ -27,11 +27,11 @@ import {
 } from "lucide-react";
 
 const packedIcons = [
-  <Sprout key="v" size={18} className="text-brand-green" />,
+  <Sprout key="v" size={18} className="text-brand-purple" />,
   <Cherry key="f" size={18} className="text-red-500" />,
   <Pill key="vm" size={18} className="text-brand-yellow" />,
   <Flower2 key="a" size={18} className="text-purple-500" />,
-  <Leaf key="h" size={18} className="text-green-600" />,
+  <Leaf key="h" size={18} className="text-purple-600" />,
   <Apple key="ax" size={18} className="text-red-400" />,
 ];
 
@@ -51,7 +51,7 @@ export default function BuyBox() {
           <span className="inline-block bg-brand-orange text-white font-bold text-sm px-5 py-1.5 rounded-full mb-4">
             {content.buybox.badge}
           </span>
-          <h2 className="text-3xl lg:text-4xl font-bold text-brand-green mb-3">
+          <h2 className="text-3xl lg:text-4xl font-bold text-brand-purple mb-3">
             {content.buybox.title}
           </h2>
           <p className="text-brand-dark/60 max-w-2xl mx-auto mb-4">
@@ -78,7 +78,7 @@ export default function BuyBox() {
           >
             <Image
               src="/images/product-buybox.jpeg"
-              alt="Groms — Offre de lancement"
+              alt="Gomu — Offre de lancement"
               width={600}
               height={600}
               className="rounded-2xl shadow-lg w-full h-auto"
@@ -108,9 +108,9 @@ export default function BuyBox() {
             transition={defaultTransition}
           >
             {/* Price indicator */}
-            <div className="bg-brand-cream rounded-2xl border-2 border-brand-green shadow-[0_0_20px_rgba(0,126,64,0.08)] p-6 mb-6">
+            <div className="bg-brand-cream rounded-2xl border-2 border-brand-purple shadow-[0_0_20px_rgba(124,58,237,0.08)] p-6 mb-6">
               <div className="flex items-baseline gap-3 mb-2">
-                <span className="text-3xl font-bold text-brand-green">
+                <span className="text-3xl font-bold text-brand-purple">
                   {content.buybox.price}
                 </span>
                 <span className="text-brand-dark/50 text-sm">
@@ -132,7 +132,7 @@ export default function BuyBox() {
                     variants={fadeInUp}
                     transition={defaultTransition}
                   >
-                    <Check size={16} className="text-brand-green shrink-0" />
+                    <Check size={16} className="text-brand-purple shrink-0" />
                     {f}
                   </motion.div>
                 ))}
