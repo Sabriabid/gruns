@@ -1,0 +1,187 @@
+"use client";
+
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { content } from "@/lib/content";
+import StarRating from "@/components/ui/StarRating";
+import EmailCapture from "@/components/ui/EmailCapture";
+import {
+  fadeInUp,
+  slideInLeft,
+  slideInRight,
+  staggerContainer,
+  defaultTransition,
+  defaultViewport,
+} from "@/lib/animations";
+import {
+  Check,
+  Truck,
+  Clock,
+  ShieldCheck,
+  Leaf,
+  Apple,
+  Pill,
+  Flower2,
+  Sprout,
+  Cherry,
+} from "lucide-react";
+
+const packedIcons = [
+  <Sprout key="v" size={18} className="text-brand-purple" />,
+  <Cherry key="f" size={18} className="text-red-500" />,
+  <Pill key="vm" size={18} className="text-brand-yellow" />,
+  <Flower2 key="a" size={18} className="text-purple-500" />,
+  <Leaf key="h" size={18} className="text-purple-600" />,
+  <Apple key="ax" size={18} className="text-red-400" />,
+];
+
+export default function BuyBox() {
+  return (
+    <section id="produit" className="py-24 lg:py-28 bg-white">
+      <div className="max-w-7xl mx-auto px-4">
+        {/* Section header */}
+        <motion.div
+          className="text-center mb-12"
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={defaultViewport}
+          transition={defaultTransition}
+        >
+          <span className="inline-block bg-brand-orange text-white font-bold text-sm px-5 py-1.5 rounded-full mb-4">
+            {content.buybox.badge}
+          </span>
+          <h2 className="text-3xl lg:text-4xl font-bold text-brand-purple mb-3">
+            {content.buybox.title}
+          </h2>
+          <p className="text-brand-dark/60 max-w-2xl mx-auto mb-4">
+            {content.buybox.subtitle}
+          </p>
+          <div className="flex items-center justify-center gap-2">
+            <StarRating rating={5} size={18} />
+            <span className="text-sm text-brand-dark/60">
+              <strong>4.8</strong> étoiles | <strong>85K</strong> avis |{" "}
+              <strong>1M+</strong> membres
+            </span>
+          </div>
+        </motion.div>
+
+        <div className="flex flex-col lg:flex-row gap-6 lg:gap-10 items-start">
+          {/* Left - Product image */}
+          <motion.div
+            className="flex-1"
+            variants={slideInLeft}
+            initial="hidden"
+            whileInView="visible"
+            viewport={defaultViewport}
+            transition={defaultTransition}
+          >
+            <Image
+              src="/images/product-buybox.jpeg"
+              alt="Gomu — Offre de lancement"
+              width={600}
+              height={600}
+              className="rounded-2xl shadow-lg w-full h-auto"
+            />
+
+            {/* Shipping info */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-8 mt-6 text-xs sm:text-sm text-brand-dark/60">
+              <div className="flex items-center gap-2">
+                <Truck size={16} /> Livraison Gratuite
+              </div>
+              <div className="flex items-center gap-2">
+                <Clock size={16} /> Expédition 24h
+              </div>
+              <div className="flex items-center gap-2">
+                <ShieldCheck size={16} /> Garantie 30j
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Right - Signup / Price */}
+          <motion.div
+            className="flex-1 w-full"
+            variants={slideInRight}
+            initial="hidden"
+            whileInView="visible"
+            viewport={defaultViewport}
+            transition={defaultTransition}
+          >
+            {/* Price indicator */}
+            <div className="bg-brand-cream rounded-2xl border-2 border-brand-purple shadow-[0_0_20px_rgba(124,58,237,0.08)] p-6 mb-6">
+              <div className="flex items-baseline gap-3 mb-2">
+                <span className="text-3xl font-bold text-brand-purple">
+                  {content.buybox.price}
+                </span>
+                <span className="text-brand-dark/50 text-sm">
+                  {content.buybox.priceNote}
+                </span>
+              </div>
+
+              <motion.div
+                className="space-y-2.5 mb-6"
+                variants={staggerContainer}
+                initial="hidden"
+                whileInView="visible"
+                viewport={defaultViewport}
+              >
+                {content.buybox.features.map((f, i) => (
+                  <motion.div
+                    key={i}
+                    className="flex items-center gap-2 text-sm text-brand-dark/70"
+                    variants={fadeInUp}
+                    transition={defaultTransition}
+                  >
+                    <Check size={16} className="text-brand-purple shrink-0" />
+                    {f}
+                  </motion.div>
+                ))}
+              </motion.div>
+
+              <EmailCapture
+                placeholder={content.buybox.emailPlaceholder}
+                buttonText={content.buybox.cta}
+                successMessage={content.buybox.successMessage}
+              />
+            </div>
+
+            {/* Tastes Like */}
+            <div className="mb-6">
+              <h3 className="font-bold text-brand-dark mb-3">
+                {content.buybox.tastesLike.title}
+              </h3>
+              <div className="flex gap-4 sm:gap-6">
+                {content.buybox.tastesLike.items.map((item, i) => (
+                  <div key={i} className="flex flex-col items-center gap-2">
+                    <div className="w-14 h-14 rounded-full bg-brand-cream flex items-center justify-center text-2xl">
+                      {i === 0 ? "🍃" : i === 1 ? "🍓" : "🥬"}
+                    </div>
+                    <span className="text-xs text-brand-dark/60">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Packed With */}
+            <div>
+              <h3 className="font-bold text-brand-dark mb-3">
+                {content.buybox.packedWith.title}
+              </h3>
+              <div className="space-y-2">
+                {content.buybox.packedWith.items.map((item, i) => (
+                  <div
+                    key={i}
+                    className="flex items-center gap-3 text-sm text-brand-dark/70"
+                  >
+                    {packedIcons[i]}
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}
