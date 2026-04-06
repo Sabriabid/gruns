@@ -80,6 +80,7 @@ export interface LPFooterData {
   tagline: string;
   links: { label: string; href: string }[];
   socials: { label: string; href: string }[];
+  lpLinks: { label: string; href: string }[];
 }
 
 export interface LPData {
@@ -291,6 +292,18 @@ export const lpShared = {
     socials: [
       { label: "Instagram", href: "#" },
       { label: "TikTok", href: "#" },
+    ],
+    lpLinks: [
+      { label: "Digestion", href: "/lp/digestion" },
+      { label: "Stress & Sommeil", href: "/lp/stress-sommeil" },
+      { label: "Halal", href: "/lp/halal" },
+      { label: "Pilules", href: "/lp/pilules" },
+      { label: "\u00c9nergie", href: "/lp/energie" },
+      { label: "Made in France", href: "/lp/made-in-france" },
+      { label: "Multi-pots", href: "/lp/multi-pots" },
+      { label: "Immunit\u00e9", href: "/lp/immunite" },
+      { label: "Arnaque\u00a0?", href: "/lp/arnaque" },
+      { label: "Parents", href: "/lp/parents" },
     ],
   } as LPFooterData,
 };
