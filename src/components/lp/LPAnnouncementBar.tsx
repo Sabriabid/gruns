@@ -19,14 +19,14 @@ export default function LPAnnouncementBar({ text, emoji }: Props) {
           initial={{ height: "auto", opacity: 1 }}
           exit={{ height: 0, opacity: 0 }}
           transition={{ duration: 0.3 }}
-          className="bg-lp-green-700 text-white text-center text-sm font-medium relative overflow-hidden"
+          className="bg-gradient-to-r from-brand-orange to-[#ffa04d] text-brand-dark text-center text-sm font-bold relative overflow-hidden"
         >
-          <div className="py-3 px-10">
+          <div className="py-2.5 px-10">
             <span>{emoji} {text}</span>
           </div>
           <button
             onClick={() => setVisible(false)}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-white/70 hover:text-white cursor-pointer"
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-brand-dark/50 hover:text-brand-dark cursor-pointer"
             aria-label="Fermer"
           >
             <X size={16} />

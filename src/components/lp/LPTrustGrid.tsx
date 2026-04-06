@@ -11,10 +11,10 @@ import {
 } from "@/lib/animations";
 
 const iconMap: Record<string, React.ReactNode> = {
-  flask: <FlaskConical size={28} className="text-lp-green-500" />,
-  flag: <Flag size={28} className="text-lp-green-500" />,
-  leaf: <Leaf size={28} className="text-lp-green-500" />,
-  "check-circle": <CircleCheckBig size={28} className="text-lp-green-500" />,
+  flask: <FlaskConical size={28} className="text-brand-purple" />,
+  flag: <Flag size={28} className="text-brand-purple" />,
+  leaf: <Leaf size={28} className="text-brand-purple" />,
+  "check-circle": <CircleCheckBig size={28} className="text-brand-purple" />,
 };
 
 interface Props {
@@ -23,10 +23,10 @@ interface Props {
 
 export default function LPTrustGrid({ data }: Props) {
   return (
-    <section className="py-16 lg:py-20 bg-lp-white">
-      <div className="max-w-4xl mx-auto px-4">
+    <section className="py-24 lg:py-28 bg-brand-cream">
+      <div className="max-w-7xl mx-auto px-4">
         <motion.h2
-          className="text-2xl lg:text-3xl font-bold text-lp-green-900 text-center mb-10"
+          className="text-3xl lg:text-4xl font-bold text-brand-purple text-center mb-10"
           variants={fadeInUp}
           initial="hidden"
           whileInView="visible"
@@ -37,7 +37,7 @@ export default function LPTrustGrid({ data }: Props) {
         </motion.h2>
 
         <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8"
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
@@ -46,18 +46,20 @@ export default function LPTrustGrid({ data }: Props) {
           {data.map((item, i) => (
             <motion.div
               key={i}
-              className="bg-lp-green-100/50 border border-lp-green-300/30 rounded-xl p-6 flex gap-4"
+              className="bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow p-8 flex gap-4"
               variants={fadeInUp}
               transition={defaultTransition}
             >
-              <div className="shrink-0 mt-1">
+              <div className="w-14 h-14 rounded-full bg-brand-purple/10 flex items-center justify-center shrink-0">
                 {iconMap[item.icon] || iconMap.flask}
               </div>
               <div>
-                <h3 className="font-bold text-lp-green-900 mb-1">
+                <h3 className="text-xl font-bold text-brand-purple mb-1">
                   {item.title}
                 </h3>
-                <p className="text-sm text-lp-text-muted">{item.description}</p>
+                <p className="text-sm text-brand-dark/60 leading-relaxed">
+                  {item.description}
+                </p>
               </div>
             </motion.div>
           ))}
