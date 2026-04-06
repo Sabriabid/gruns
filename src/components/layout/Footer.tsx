@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { Instagram } from "lucide-react";
 import { content } from "@/lib/content";
@@ -71,8 +72,27 @@ export default function Footer() {
           </motion.div>
         </motion.div>
 
+        {/* LP Pages */}
+        <div className="mt-12 pt-8 border-t border-white/10">
+          <p className="text-xs font-bold text-white/40 uppercase tracking-wider mb-3 text-center">
+            Landing Pages
+          </p>
+          <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-sm">
+            <Link href="/lp/digestion" className="text-white/60 hover:text-white transition-colors">Digestion</Link>
+            <Link href="/lp/stress-sommeil" className="text-white/60 hover:text-white transition-colors">Stress & Sommeil</Link>
+            <Link href="/lp/halal" className="text-white/60 hover:text-white transition-colors">Halal</Link>
+            <Link href="/lp/pilules" className="text-white/60 hover:text-white transition-colors">Pilules</Link>
+            <Link href="/lp/energie" className="text-white/60 hover:text-white transition-colors">&Eacute;nergie</Link>
+            <Link href="/lp/made-in-france" className="text-white/60 hover:text-white transition-colors">Made in France</Link>
+            <Link href="/lp/multi-pots" className="text-white/60 hover:text-white transition-colors">Multi-pots</Link>
+            <Link href="/lp/immunite" className="text-white/60 hover:text-white transition-colors">Immunit&eacute;</Link>
+            <Link href="/lp/arnaque" className="text-white/60 hover:text-white transition-colors">Arnaque&nbsp;?</Link>
+            <Link href="/lp/parents" className="text-white/60 hover:text-white transition-colors">Parents</Link>
+          </div>
+        </div>
+
         {/* Bottom */}
-        <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="mt-8 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
           <span className="text-2xl sm:text-3xl font-bold text-brand-yellow">
             {content.brand}
           </span>
