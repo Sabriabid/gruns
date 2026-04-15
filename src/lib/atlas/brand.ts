@@ -2,16 +2,16 @@ import type { BrandCore } from "./types";
 
 export const brandCore: BrandCore = {
   mission:
-    "Rendre la nutrition quotidienne complète accessible à tous, en un seul geste — des gummies all-in-one dosés scientifiquement, fabriqués en France, avec une transparence totale sur ce qu'il y a dedans.",
+    "Rendre la nutrition quotidienne complète accessible à tous, en un seul geste — des gummies all-in-one dosés scientifiquement, testés lot par lot par Eurofins, avec une transparence totale sur ce qu'il y a dedans.",
   positioning:
-    "Le premier all-in-one français à dosages cliniques, testé lot par lot par Eurofins, vegan & halal natif. Le Grüns français, mais en mieux : 2-3× moins cher, Made in France, inclusif dès la conception.",
+    "Le premier all-in-one à dosages cliniques pensé pour le consommateur français — halal & vegan natif, testé lot par lot par Eurofins, 2-3× moins cher que Grüns. Un produit, un geste, zéro bullshit.",
   oneBelief:
     "Simplifier ta nutrition en un seul sachet quotidien, dosé par la science et vérifiable par toi-même, est la clé de la tranquillité d'esprit nutritionnelle — et c'est possible uniquement grâce au Protocole Tout-en-Un, le premier all-in-one français à dosages cliniques avec tests labo publiés lot par lot.",
   oneBeliefCompact: "Un sachet. Toute ta nutrition. Vérifie toi-même.",
   ums: {
     name: "Le Protocole Tout-en-Un",
     narrative:
-      "15-20 actifs à dosages cliniques, dans des formes biodisponibles (zinc bisglycinate pas oxyde, L-5-MTHF pas acide folique, sélénométhionine pas sélénite), testés lot par lot par Eurofins, fabriqués en France, à 29€/mois. Un seul sachet remplace 3-5 pots. C'est un mécanisme, pas un claim.",
+      "15-20 actifs à dosages cliniques, dans des formes biodisponibles (zinc bisglycinate pas oxyde, L-5-MTHF pas acide folique, sélénométhionine pas sélénite), testés lot par lot par Eurofins, à 24,90€/mois en lancement (29€ prix de croisière). Un seul sachet remplace 3-5 pots. C'est un mécanisme, pas un claim.",
   },
   ump: {
     name: "Le Piège de la Fragmentation",
@@ -50,9 +50,9 @@ export const brandCore: BrandCore = {
       body: "Analyses Eurofins lot par lot, publiées en ligne. Vitamines, minéraux, pesticides, métaux lourds. Tu vérifies toi-même.",
     },
     {
-      icon: "🇫🇷",
-      title: "Fabriqué en France",
-      body: "Façonnier français, matières premières tracées, labo de contrôle en France. Pas juste un drapeau.",
+      icon: "🔍",
+      title: "Transparence radicale",
+      body: "Résultats Eurofins publiés lot par lot, formule ouverte, dosages individuels déclarés. Zéro proprietary blend. « On ne te demande pas de nous croire — on te demande de vérifier. »",
     },
     {
       icon: "🌱",

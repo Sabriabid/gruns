@@ -19,6 +19,7 @@ import {
   Type,
   ShieldAlert,
   Award,
+  Calculator,
 } from "lucide-react";
 
 export interface NavItem {
@@ -65,6 +66,11 @@ export const atlasNavigation: NavItem[] = [
     icon: Activity,
   },
   {
+    label: "Économie unitaire",
+    href: "/atlas/economics",
+    icon: Calculator,
+  },
+  {
     label: "Roadmap 100M€",
     href: "/atlas/roadmap",
     icon: Rocket,
@@ -104,4 +110,5 @@ export const iconMap = {
   Type,
   ShieldAlert,
   Award,
+  Calculator,
 };

@@ -98,7 +98,7 @@ export const grunsSections: GrunsSectionMeta[] = [
     key: "weaknesses",
     title: "Faiblesses exploitables",
     oneLiner:
-      "Dark pattern cancellation, garantie fine print, pas Made in France, pas halal, US-only, prix ×2 Gomu.",
+      "Dark pattern cancellation, garantie fine print, pas halal, US-only, prix ×2 Gomu.",
     icon: "ShieldAlert",
     confidence: "high",
   },
@@ -230,7 +230,7 @@ export const grunsProduct: GrunsProduct = {
     "Clinically tested absorption (RCT 2025)",
   ],
   gomuVsGrunsSummary:
-    "Grüns a deux vrais avantages : (1) fibre prébiotique 6g (très dosée), (2) superaliments entiers (mushrooms, fruits). Gomu gagne sur : formes biodisponibles nommées (zinc bisglycinate, L-5-MTHF, sélénométhionine), adaptogènes nommés (KSM-66), halal + vegan natif, Made in France, prix 2× moins cher, garantie plus honnête.",
+    "Grüns a deux vrais avantages : (1) fibre prébiotique 6g (très dosée), (2) superaliments entiers (mushrooms, fruits). Gomu gagne sur : formes biodisponibles nommées (zinc bisglycinate, L-5-MTHF, sélénométhionine), adaptogènes nommés (KSM-66), halal + vegan natif, transparence Eurofins lot par lot, prix 2× moins cher, garantie plus honnête (aucune retenue vs $5 + shipping côté Grüns).",
   sources: [
     { label: "gruns.co homepage", url: "https://gruns.co" },
     { label: "gruns.co/pages/our-story", url: "https://gruns.co/pages/our-story" },
@@ -695,25 +695,13 @@ export const grunsWeaknesses: ExploitableWeakness[] = [
     priority: 5,
   },
   {
-    id: "w-not-made-in-france",
-    category: "made-in-france",
-    weakness:
-      "Fabriqué aux US/Canada. Zéro pertinence émotionnelle pour le consommateur FR qui valorise Made in France à 67%.",
-    evidence: [{ type: "data", ref: "gruns.co/pages/our-story : manufacturing US/Canada" }],
-    gomuAdvantage:
-      "Façonnier français, matières premières tracées, labo de contrôle FR. Made in France vérifiable, pas juste un drapeau.",
-    exploitAngleIds: ["a-made-in-france"],
-    exploitLPSlugs: ["made-in-france"],
-    priority: 4,
-  },
-  {
     id: "w-pricing-high",
     category: "price",
     weakness:
       "$59.99-$87.99/mo = 55-80€/mois. 2× plus cher que Gomu. Cible premium US, pas accessible au marché FR moyen.",
     evidence: [{ type: "data", ref: "gruns.co pricing + taux change" }],
     gomuAdvantage:
-      "24,90€/mois en lancement (-30%), 29€/mois prix de croisière. 2× moins cher pour concept équivalent + Made in France + halal natif.",
+      "24,90€/mois en lancement (-30%), 29€/mois prix de croisière. 2× moins cher pour concept équivalent + halal natif + transparence Eurofins lot par lot.",
     exploitAngleIds: ["a-multi-pots", "a-placard"],
     exploitLPSlugs: ["multi-pots"],
     priority: 4,

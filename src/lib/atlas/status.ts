@@ -66,12 +66,13 @@ export const lpStatus: LPStatus[] = [
   {
     slug: "made-in-france",
     title: "Made in France — Le Grüns français",
-    angle: "a-made-in-france",
-    status: "live",
+    angle: "—",
+    status: "paused",
     owner: "Sabri",
-    trafficSources: ["meta", "email"],
+    trafficSources: [],
     url: "/lp/made-in-france",
     liveSince: "2026-04-13",
+    blocker: "Angle invalidé — produit sourcé en Chine. Reformuler le copy (retirer MIF, pivoter sur dosages / halal / prix) ou retirer la LP de prod.",
   },
   {
     slug: "immunite",

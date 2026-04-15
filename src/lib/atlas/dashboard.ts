@@ -26,18 +26,18 @@ export const dashboardSnapshot: DashboardSnapshot = {
     {
       key: "cac",
       label: "CAC cible",
-      value: "< 45",
+      value: "< 55",
       unit: "€",
       status: "orange",
-      hint: "À valider au premier test pub. LTV/CAC min 3:1.",
+      hint: "Scénario 34,99€ × churn 12% → LTV 165€ → CAC max (÷3) 55€.",
     },
     {
-      key: "roas",
-      label: "ROAS min",
-      value: "2.5",
-      unit: "x",
-      status: "orange",
-      hint: "Objectif Meta/TikTok J+0. Payback 6 mois.",
+      key: "ltv",
+      label: "LTV réaliste",
+      value: "165",
+      unit: "€",
+      status: "green",
+      hint: "Prix 34,99€ × churn 12% × marge 57%. Benchmark scénarios Excel.",
     },
     {
       key: "lps-live",
@@ -73,6 +73,13 @@ export const dashboardSnapshot: DashboardSnapshot = {
   alerts: [
     {
       severity: "crit",
+      title: "Pivot Made in China — LP /lp/made-in-france en prod avec copy invalidé",
+      body:
+        "Produit sourcé en Chine (façonnier chinois, fret maritime, code TARIC confirmé). Le positionnement Made in France est retiré de l'Atlas. Action : réécrire le copy de /lp/made-in-france (pivoter sur dosages / halal / transparence) ou dépublier.",
+      link: { href: "/atlas/status", label: "Voir LP status" },
+    },
+    {
+      severity: "crit",
       title: "Formule finale non validée",
       body:
         "Dosages cibles OK sur le papier — mais validation façonnier + consultant formulateur en attente. Bloque packaging, tests Eurofins, et toute claim produit définitive.",
@@ -93,9 +100,10 @@ export const dashboardSnapshot: DashboardSnapshot = {
     },
     {
       severity: "info",
-      title: "Offre de lancement cadrée",
+      title: "Économie unitaire cadrée",
       body:
-        "20€ premier mois (vs 24,90€ prix de croisière). Garantie Sachet Vide 30j. Sans engagement.",
+        "3 scénarios prix × 3 churns dispo. Recommandé : 34,99€ × 12% churn → LTV 165€, CAC max 55€, marge brute 57%.",
+      link: { href: "/atlas/economics", label: "Voir économie unitaire" },
     },
   ],
   recentActivity: [

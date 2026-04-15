@@ -10,7 +10,7 @@ export const angles: Angle[] = [
     headline: "4 pots dans ton placard. Zéro dans ton corps.",
     subhead: "Le problème, c'est pas toi. C'est qu'on t'a vendu 4 produits au lieu d'un.",
     bodyOutline:
-      "Scène quotidienne douloureuse (pots entamés, culpabilité silencieuse) → reframe structurel (le modèle multi-SKU a échoué) → Protocole Tout-en-Un comme sortie → preuve (Eurofins, Made in France) → CTA.",
+      "Scène quotidienne douloureuse (pots entamés, culpabilité silencieuse) → reframe structurel (le modèle multi-SKU a échoué) → Protocole Tout-en-Un comme sortie → preuve (Eurofins lot par lot, formes biodisponibles nommées) → CTA.",
     verbatimAnchors: [
       {
         text: "J'ai 4 pots qui traînent, j'en prends aucun.",
@@ -146,22 +146,6 @@ export const angles: Angle[] = [
     recommendedLPSlug: "digestion",
     status: "validated",
     platforms: ["meta", "tiktok"],
-  },
-  {
-    id: "a-made-in-france",
-    number: 8,
-    name: "Le Complément Qui Manquait À La France",
-    type: "product",
-    hook: "Les Américains ont Grüns. Les Français avaient… rien.",
-    headline: "Le complément all-in-one qui manquait à la France.",
-    subhead: "Le modèle existe aux US depuis 3 ans. On l'a refait en mieux. Ici.",
-    bodyOutline:
-      "Situer l'angle mort du marché FR → Gomu comble le trou (façonnier français, Eurofins, Made in France sérieux) → 67% des Français l'exigent pour leurs compléments → CTA.",
-    verbatimAnchors: [],
-    targetAvatarId: "sarah",
-    recommendedLPSlug: "made-in-france",
-    status: "validated",
-    platforms: ["meta", "email"],
   },
   {
     id: "a-pilules",
