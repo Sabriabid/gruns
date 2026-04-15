@@ -1,0 +1,9 @@
+AuthType Basic
+AuthName "Atlas - Gomu HQ"
+AuthUserFile ".htpasswd"
+Require valid-user
+
+# Bloquer l'accès HTTP direct au fichier .htpasswd
+<Files ".htpasswd">
+    Require all denied
+</Files>
