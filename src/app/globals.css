@@ -21,6 +21,21 @@
   --color-lp-text: #1A1A1A;
   --color-lp-text-muted: #6B7280;
 
+  /* Atlas HQ palette (internal command center, dark mode) */
+  --color-atlas-bg: #0B0F17;
+  --color-atlas-surface: #131A24;
+  --color-atlas-surface-2: #1A2332;
+  --color-atlas-border: #263040;
+  --color-atlas-text: #E5E7EB;
+  --color-atlas-text-strong: #F9FAFB;
+  --color-atlas-muted: #9CA3AF;
+  --color-atlas-accent: #A78BFA;
+  --color-atlas-accent-strong: #7C3AED;
+  --color-atlas-success: #10B981;
+  --color-atlas-warning: #F59E0B;
+  --color-atlas-danger: #EF4444;
+  --color-atlas-info: #38BDF8;
+
   --font-sans: var(--font-dm-sans);
 }
 
