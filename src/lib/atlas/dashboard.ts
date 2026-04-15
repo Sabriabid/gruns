@@ -110,6 +110,23 @@ export const dashboardSnapshot: DashboardSnapshot = {
     {
       date: "2026-04-15",
       type: "content",
+      label: "Atlas /creatives — 17 créas Grüns décortiquées + 15 prompts Gomu production-ready",
+      link: { href: "/atlas/creatives", label: "Voir" },
+    },
+    {
+      date: "2026-04-15",
+      type: "content",
+      label: "Atlas /economics — LTV × CAC × prix × churn + COGS breakdown",
+      link: { href: "/atlas/economics", label: "Voir" },
+    },
+    {
+      date: "2026-04-15",
+      type: "content",
+      label: "Pivot Made in China — retrait MIF du positionnement Atlas",
+    },
+    {
+      date: "2026-04-15",
+      type: "content",
       label: "Atlas v0.1 — hub brand + scaffold Grüns + roadmap en ligne",
     },
     {
@@ -121,11 +138,6 @@ export const dashboardSnapshot: DashboardSnapshot = {
       date: "2026-04-13",
       type: "lp",
       label: "10 landing pages LP en prod (digestion, halal, stress-sommeil, ...)",
-    },
-    {
-      date: "2026-04-10",
-      type: "content",
-      label: "BIBLE_FONDAMENTALE + 16 docs stratégie / copy / verbatims finalisés",
     },
   ],
 };

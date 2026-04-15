@@ -20,6 +20,7 @@ import {
   ShieldAlert,
   Award,
   Calculator,
+  Palette,
 } from "lucide-react";
 
 export interface NavItem {
@@ -59,6 +60,12 @@ export const atlasNavigation: NavItem[] = [
       { label: "Customer XP", href: "/atlas/gruns/cx", icon: Users },
       { label: "Faiblesses", href: "/atlas/gruns/weaknesses", icon: ShieldAlert, badge: "KILL" },
     ],
+  },
+  {
+    label: "Créatives",
+    href: "/atlas/creatives",
+    icon: Palette,
+    badge: "17 + 15",
   },
   {
     label: "Status projet",
@@ -111,4 +118,5 @@ export const iconMap = {
   ShieldAlert,
   Award,
   Calculator,
+  Palette,
 };

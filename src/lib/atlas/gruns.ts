@@ -447,10 +447,11 @@ export const grunsAds: GrunsAds = {
     "Clinically tested / third-party tested (trust)",
   ],
   takeaways: [
-    "3 publishers advertorial identifiés — Gomu peut viser équivalents FR (Madmoizelle, Glamour FR, ELLE, etc.) ou audiences similaires en FR.",
-    "1 seul celebrity majeur (Shaun White) — stratégie micro-celebrity plutôt que mega. Imitable côté Gomu avec athlète/créateur FR.",
-    "À collecter via Meta Ad Library : https://www.facebook.com/ads/library/?q=gruns",
-    "À collecter via TikTok : #gruns sur la Creative Center.",
+    "17 créas analysées chirurgicalement dans /atlas/creatives (angle, concept, personnage, awareness level, mécanique persuasive, force, faiblesse).",
+    "6 patterns créatifs identifiés : Gummy Bear 3D (53% des créas), Vulgaire Contrôlé, Trend-jacking GLP-1, Format Éducatif, Comparaison Structurelle, Storytelling Persona-Specific.",
+    "3 publishers advertorial : theSkimm, Glamour, Bon Appétit — équivalents FR à viser (Madmoizelle, Glamour FR, ELLE).",
+    "1 seul celebrity majeur (Shaun White) — stratégie micro-celebrity. Imitable côté Gomu avec athlète/créateur FR.",
+    "15 prompts Gomu production-ready dispo dans /atlas/creatives (copy + prompt image IA + format + angle + funnel stage).",
   ],
   sources: [
     { label: "Meta Ad Library — gruns", url: "https://www.facebook.com/ads/library/?q=gruns" },
