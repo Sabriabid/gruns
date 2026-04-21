@@ -1,10 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import { ArrowRight, ArrowDown, Check } from "lucide-react";
 import Btn from "./Btn";
 import Sticker from "./Sticker";
 import Squiggle from "./Squiggle";
-import SachetPlaceholder from "./SachetPlaceholder";
 import { scrollToOffer } from "./scrollToOffer";
 
 export default function Hero() {
@@ -54,7 +54,16 @@ export default function Hero() {
             </Sticker>
           </div>
 
-          <SachetPlaceholder dark />
+          <div className="relative w-full aspect-square max-w-[560px] mx-auto rounded-[32px] overflow-hidden border-2 border-gomu-yellow/70 bg-gomu-cream">
+            <Image
+              src="/images/lifestyle-sachet.jpeg"
+              alt="Un sachet Gomu tenu au-dessus d'une tasse de café"
+              fill
+              sizes="(min-width: 1024px) 560px, (min-width: 640px) 480px, 100vw"
+              priority
+              className="object-cover"
+            />
+          </div>
 
           <div className="hidden lg:block absolute -right-[120px] top-[40%] w-[110px] text-gomu-yellow">
             <div className="handwritten text-[20px] leading-tight">
