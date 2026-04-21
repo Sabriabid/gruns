@@ -1,6 +1,19 @@
 @import "tailwindcss";
 
 @theme inline {
+  /* Gomu v2 palette */
+  --color-gomu-purple-deep: #3B0A5E;
+  --color-gomu-purple-1: #6528D7;
+  --color-gomu-purple-2: #7D26CD;
+  --color-gomu-purple-3: #912CEE;
+  --color-gomu-purple-4: #9B30FF;
+  --color-gomu-cream: #FFF9D6;
+  --color-gomu-yellow: #F2E85C;
+  --color-gomu-chartreuse: #C4E538;
+  --color-gomu-ink: #1A0A2E;
+  --color-gomu-paper: #FDFBEF;
+
+  /* Legacy tokens (kept for /lp/[slug] + /atlas) */
   --color-brand-purple: #7C3AED;
   --color-brand-dark: #1a0a2e;
   --color-brand-cream: #f8f5ff;
@@ -9,7 +22,6 @@
   --color-brand-light-yellow: #fdf6e3;
   --color-brand-charcoal: #0f0520;
 
-  /* LP green palette */
   --color-lp-green-900: #0A2E1A;
   --color-lp-green-700: #1A5C35;
   --color-lp-green-500: #2D8B4E;
@@ -21,7 +33,6 @@
   --color-lp-text: #1A1A1A;
   --color-lp-text-muted: #6B7280;
 
-  /* Atlas HQ palette (internal command center, dark mode) */
   --color-atlas-bg: #0B0F17;
   --color-atlas-surface: #131A24;
   --color-atlas-surface-2: #1A2332;
@@ -36,20 +47,210 @@
   --color-atlas-danger: #EF4444;
   --color-atlas-info: #38BDF8;
 
-  --font-sans: var(--font-dm-sans);
+  --font-display: var(--font-display);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --font-handwritten: var(--font-handwritten);
+}
+
+html,
+body {
+  background: var(--color-gomu-cream);
+  color: var(--color-gomu-ink);
 }
 
 body {
-  background: var(--color-brand-cream);
-  color: var(--color-brand-dark);
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 html {
   scroll-behavior: smooth;
 }
 
-/* Smooth transitions on interactive elements */
+.font-display {
+  font-family: var(--font-display), ui-serif, Georgia, serif;
+  font-optical-sizing: auto;
+}
+
+.font-handwritten,
+.handwritten {
+  font-family: var(--font-handwritten), var(--font-display), cursive;
+  font-weight: 600;
+}
+
+.tracking-display {
+  letter-spacing: -0.025em;
+}
+
+.tracking-cap {
+  letter-spacing: 0.18em;
+}
+
+/* IntersectionObserver fade-in */
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity 600ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 600ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Highlighter — feutre fluo */
+.hl {
+  background: linear-gradient(
+    180deg,
+    transparent 55%,
+    var(--color-gomu-yellow) 55%,
+    var(--color-gomu-yellow) 92%,
+    transparent 92%
+  );
+  padding: 0 0.08em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.hl-on-dark {
+  background: linear-gradient(
+    180deg,
+    transparent 78%,
+    var(--color-gomu-yellow) 78%,
+    var(--color-gomu-yellow) 96%,
+    transparent 96%
+  );
+  color: inherit;
+  padding: 0 0.02em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.hl-on-dark-fill {
+  background: linear-gradient(
+    180deg,
+    transparent 55%,
+    var(--color-gomu-yellow) 55%,
+    var(--color-gomu-yellow) 92%,
+    transparent 92%
+  );
+  color: var(--color-gomu-purple-deep);
+  padding: 0 0.08em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+/* Placeholder stripe patterns */
+.ph-stripes {
+  background-image: repeating-linear-gradient(
+    135deg,
+    rgba(59, 10, 94, 0.06) 0 1px,
+    transparent 1px 14px
+  );
+}
+
+.ph-stripes-cream {
+  background-image: repeating-linear-gradient(
+    135deg,
+    rgba(255, 249, 214, 0.12) 0 1px,
+    transparent 1px 14px
+  );
+}
+
+/* Marquee */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  display: inline-flex;
+  animation: marquee 38s linear infinite;
+}
+
+.marquee-track > * {
+  flex-shrink: 0;
+}
+
+/* Accordion transition */
+.acc-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 320ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.acc-body.open {
+  grid-template-rows: 1fr;
+}
+
+.acc-body > div {
+  overflow: hidden;
+}
+
+/* Pulsing dot */
+@keyframes pulseDot {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.85);
+  }
+}
+
+.pulse-dot {
+  animation: pulseDot 1.6s ease-in-out infinite;
+}
+
+/* Progress bar grow */
+@keyframes growBar {
+  from {
+    width: 0;
+  }
+  to {
+    width: var(--w, 50%);
+  }
+}
+
+.grow-bar {
+  animation: growBar 1400ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+/* Big wordmark */
+.wordmark-huge {
+  font-size: clamp(120px, 28vw, 420px);
+  line-height: 0.8;
+  letter-spacing: -0.04em;
+}
+
+/* Hide scrollbar on horizontal scroll */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Focus ring */
+:focus-visible {
+  outline: 2px solid var(--color-gomu-purple-4);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Smooth interactive transitions */
 a,
 button {
   transition: all 0.3s ease;
