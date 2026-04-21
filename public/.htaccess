@@ -1,0 +1,23 @@
+DirectoryIndex index.html
+
+# Disable SPA-style fallback — serve actual static files
+RewriteEngine On
+RewriteBase /
+
+# If the request maps to an existing file, serve it
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ - [L]
+
+# If the request maps to an existing directory, serve it
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Add trailing slash if a matching directory exists
+RewriteCond %{REQUEST_FILENAME}/ -d
+RewriteRule ^(.+[^/])$ $1/ [R=301,L]
+
+# Only fallback to index.html for truly unknown routes
+RewriteRule ^index\.html$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.html [L]

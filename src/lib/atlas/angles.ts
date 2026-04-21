@@ -1,0 +1,187 @@
+import type { Angle } from "./types";
+
+export const angles: Angle[] = [
+  {
+    id: "a-placard",
+    number: 1,
+    name: "Le Placard Qui Te Juge",
+    type: "problem",
+    hook: "Tu ouvres ton placard de salle de bain et tu les vois — les 3 pots que tu prends plus depuis novembre.",
+    headline: "4 pots dans ton placard. Zéro dans ton corps.",
+    subhead: "Le problème, c'est pas toi. C'est qu'on t'a vendu 4 produits au lieu d'un.",
+    bodyOutline:
+      "Scène quotidienne douloureuse (pots entamés, culpabilité silencieuse) → reframe structurel (le modèle multi-SKU a échoué) → Protocole Tout-en-Un comme sortie → preuve (Eurofins lot par lot, formes biodisponibles nommées) → CTA.",
+    verbatimAnchors: [
+      {
+        text: "J'ai 4 pots qui traînent, j'en prends aucun.",
+        source: "Dialogue Bible — Sarah",
+      },
+    ],
+    targetAvatarId: "sarah",
+    targetSufferingId: "s-identity-failing",
+    recommendedLPSlug: "multi-pots",
+    status: "validated",
+    platforms: ["meta", "tiktok"],
+  },
+  {
+    id: "a-halal",
+    number: 2,
+    name: "Le Parcours du Combattant Halal",
+    type: "solution",
+    hook: "Trouver des compléments halal ne devrait pas être un parcours du combattant.",
+    headline: "Enfin des gummies halal qui ne sont pas un sous-produit.",
+    subhead: "Base pectine de fruit. Conçu halal dès le départ. Pas adapté après coup.",
+    bodyOutline:
+      "Reconnaître le poids du décodage perpétuel (gélatine, E441, sources opaques) → Gomu halal natif dès la conception → preuve labo Eurofins publiée lot par lot → CTA.",
+    verbatimAnchors: [
+      {
+        text: "J'ai arrêté la whey quand j'ai vu qu'ils avaient ajouté de la gélatine.",
+        source: "Forum halal FR",
+      },
+    ],
+    targetAvatarId: "karim",
+    targetSufferingId: "s-identity-compromised",
+    recommendedLPSlug: "halal",
+    status: "validated",
+    platforms: ["meta", "snapchat", "tiktok"],
+  },
+  {
+    id: "a-arnaque",
+    number: 3,
+    name: "L'Arnaque Qu'On Te Laisse Vérifier",
+    type: "solution",
+    hook: "Les compléments alimentaires sont-ils une arnaque ? On te laisse vérifier.",
+    headline: "L'ANSES a raison : la plupart des compléments sont du vent. Voici pourquoi Gomu est différent.",
+    subhead: "Résultats de tests labo publiés. Dosages déclarés. Zéro bullshit.",
+    bodyOutline:
+      "Valider le scepticisme (ANSES, UFC-Que Choisir, France Info) → différenciation radicale via transparence (Eurofins lot par lot, résultats en ligne) → « on ne te demande pas de nous croire, on te demande de vérifier » → CTA.",
+    verbatimAnchors: [
+      {
+        text: "Quand on vend, parfois cher, un produit dont l'efficacité n'a pas été démontrée, j'estime que c'est une arnaque.",
+        source: "France Info — nov. 2025",
+      },
+    ],
+    targetAvatarId: "karim",
+    targetSufferingId: "s-trust-betrayed",
+    recommendedLPSlug: "arnaque",
+    status: "validated",
+    platforms: ["meta", "email", "youtube"],
+  },
+  {
+    id: "a-multi-pots",
+    number: 4,
+    name: "Le Piège du Multi-SKU",
+    type: "problem",
+    hook: "Tu as 5 pots dans ton placard. Tu en as besoin d'un seul.",
+    headline: "Le Piège du Multi-SKU : comment l'industrie te fait acheter 5 pots au lieu d'un.",
+    subhead: "Sommeil + énergie + immunité + digestion = un sachet.",
+    bodyOutline:
+      "Nommer le mécanisme problématique (Mium Lab 22 réfs, Lashilé 15+, pharmaciens 3 produits) → montrer l'effet secondaire pixie dusting → Protocole Tout-en-Un comme mécanisme de sortie → dosages cliniques réels → CTA.",
+    verbatimAnchors: [
+      {
+        text: "J'ai déjà vu des produits avec 10 mg de maca ou de prêle… Cela ne sert à rien.",
+        source: "NutraStream (VERBATIM3 #039)",
+      },
+    ],
+    targetAvatarId: "sarah",
+    recommendedLPSlug: "multi-pots",
+    status: "validated",
+    platforms: ["meta", "tiktok", "email"],
+  },
+  {
+    id: "a-energie",
+    number: 5,
+    name: "Le Crash de 15h",
+    type: "problem",
+    hook: "(sans caféine, sans crash)",
+    headline: "6 raisons pour lesquelles ceux qui sont crevés à 15h passent à Gomu.",
+    subhead: "La fatigue chronique, c'est rarement un manque de café.",
+    bodyOutline:
+      "Nommer le pattern (coup de barre 14h, 3e café) → cause réelle (déficit B12/fer/magnésium) → mécanisme (B méthylées + adaptogènes + fibres) → « énergie constante, pas un rollercoaster » → CTA.",
+    verbatimAnchors: [
+      {
+        text: "Cela faisait quelques mois que je ressentais un gros manque d'énergie et de motivation.",
+        source: "Amazon.fr Nutrimea (VERBATIM2 #063)",
+      },
+    ],
+    targetAvatarId: "sarah",
+    targetSufferingId: "s-energy-crash",
+    recommendedLPSlug: "energie",
+    status: "validated",
+    platforms: ["meta", "tiktok"],
+  },
+  {
+    id: "a-parents",
+    number: 6,
+    name: "Ta Nutrition Passe En Dernier",
+    type: "problem",
+    hook: "(parce que t'as autre chose à faire que compter des gélules)",
+    headline: "La routine nutrition qui prend 30 secondes et que tu ne lâcheras pas.",
+    subhead: "Entre le boulot, les gosses et la charge mentale — ta nutrition passe en dernier.",
+    bodyOutline:
+      "Reconnaître la charge mentale parentale → « Gomu prend 30 secondes, un sachet le matin avec ton café » → tes bases couvertes sans ajouter une ligne à ta to-do list → CTA.",
+    verbatimAnchors: [
+      {
+        text: "Je donne ses vitamines à Léo tous les matins. Moi je pense jamais à prendre les miennes.",
+        source: "Dialogue reconstitué Bible",
+      },
+    ],
+    targetAvatarId: "sarah",
+    recommendedLPSlug: "parents",
+    status: "validated",
+    platforms: ["meta", "tiktok", "snapchat"],
+  },
+  {
+    id: "a-digestion",
+    number: 7,
+    name: "Le Ventre Qui Te Laisse Tranquille",
+    type: "solution",
+    hook: "(et oui, on parle de transit)",
+    headline: "6 raisons pour lesquelles ceux qui en ont marre de ballonner adoptent Gomu.",
+    subhead: "Inuline de chicorée + clean label. Un prébiotique qui aide ton microbiote.",
+    bodyOutline:
+      "Nommer la douleur quotidienne (ballonnements, transit imprévisible) → inuline de chicorée comme prébiotique (pas un laxatif) → résultats attendus → preuves labo → CTA.",
+    verbatimAnchors: [],
+    targetAvatarId: "sarah",
+    recommendedLPSlug: "digestion",
+    status: "validated",
+    platforms: ["meta", "tiktok"],
+  },
+  {
+    id: "a-pilules",
+    number: 9,
+    name: "Quitte Tes Comprimés",
+    type: "solution",
+    hook: "(spoiler : ça a le goût de fruits rouges)",
+    headline: "5 raisons de quitter tes comprimés pour quelque chose que tu as envie de prendre.",
+    subhead: "Un format que tu n'oublies pas.",
+    bodyOutline:
+      "Scène : les gélules qui s'entassent, la cure 3 mois finie en 3 semaines → Gomu comme format désirable → compliance 95% chez utilisateurs gummies all-in-one → CTA.",
+    verbatimAnchors: [],
+    targetAvatarId: "sarah",
+    recommendedLPSlug: "pilules",
+    status: "validated",
+    platforms: ["meta", "email"],
+  },
+  {
+    id: "a-stress-sommeil",
+    number: 10,
+    name: "-30% Cortisol En 60 Jours",
+    type: "product",
+    hook: "(sans mélatonine, sans dépendance)",
+    headline: "7 raisons pour lesquelles ceux qui dorment mal passent à Gomu.",
+    subhead: "Ashwagandha KSM-66 : -30% de cortisol en 60 jours.",
+    bodyOutline:
+      "Nommer le stress chronique + insomnie → KSM-66 + rhodiola + B-complexe comme réponse documentée (24 RCT) → pas d'accoutumance → CTA.",
+    verbatimAnchors: [
+      {
+        text: "J'avais vraiment des difficultés de sommeil depuis plusieurs mois : réveils nocturnes fréquents",
+        source: "Trustpilot Mium Lab (VERBATIM3 #022)",
+      },
+    ],
+    targetAvatarId: "sarah",
+    recommendedLPSlug: "stress-sommeil",
+    status: "validated",
+    platforms: ["meta", "tiktok", "snapchat"],
+  },
+];

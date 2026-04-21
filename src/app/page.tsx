@@ -1,39 +1,40 @@
-import AnnouncementBar from "@/components/layout/AnnouncementBar";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
-import Hero from "@/components/sections/Hero";
-import PressCarousel from "@/components/sections/PressCarousel";
-import Benefits from "@/components/sections/Benefits";
-import Statistics from "@/components/sections/Statistics";
-import Results from "@/components/sections/Results";
-import BuyBox from "@/components/sections/BuyBox";
-import Testimonials from "@/components/sections/Testimonials";
-import FeaturedTestimonial from "@/components/sections/FeaturedTestimonial";
-import Comparison from "@/components/sections/Comparison";
-import PromoBanner from "@/components/sections/PromoBanner";
-import FinalCTA from "@/components/sections/FinalCTA";
-import FAQ from "@/components/sections/FAQ";
+import RevealBoundary from "@/components/v2/RevealBoundary";
+import Header from "@/components/v2/Header";
+import Hero from "@/components/v2/Hero";
+import Marquee from "@/components/v2/Marquee";
+import Problem from "@/components/v2/Problem";
+import Solution from "@/components/v2/Solution";
+import Ingredients from "@/components/v2/Ingredients";
+import Science from "@/components/v2/Science";
+import Rituel from "@/components/v2/Rituel";
+import Transparence from "@/components/v2/Transparence";
+import Comparatif from "@/components/v2/Comparatif";
+import Waitlist from "@/components/v2/Waitlist";
+import Offre from "@/components/v2/Offre";
+import FAQ from "@/components/v2/FAQ";
+import Footer from "@/components/v2/Footer";
+import BigWordmark from "@/components/v2/BigWordmark";
 
 export default function Home() {
   return (
-    <>
-      <AnnouncementBar />
+    <RevealBoundary>
       <Header />
       <main>
         <Hero />
-        <PressCarousel />
-        <Benefits />
-        <Statistics />
-        <Results />
-        <BuyBox />
-        <Testimonials />
-        <FeaturedTestimonial />
-        <Comparison />
-        <PromoBanner />
+        <Marquee />
+        <Problem />
+        <Solution />
+        <Ingredients />
+        <Science />
+        <Rituel />
+        <Transparence />
+        <Comparatif />
+        <Waitlist count={247} />
+        <Offre />
         <FAQ />
-        <FinalCTA />
       </main>
       <Footer />
-    </>
+      <BigWordmark />
+    </RevealBoundary>
   );
 }

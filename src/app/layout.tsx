@@ -1,21 +1,40 @@
 import type { Metadata } from "next";
-import { DM_Sans } from "next/font/google";
+import { Fraunces, Inter, JetBrains_Mono, Caveat } from "next/font/google";
 import "./globals.css";
 
-const dmSans = DM_Sans({
-  variable: "--font-dm-sans",
+const fraunces = Fraunces({
+  variable: "--font-display",
   subsets: ["latin"],
-  weight: ["400", "500", "700"],
+  style: ["normal", "italic"],
+  axes: ["opsz"],
+});
+
+const inter = Inter({
+  variable: "--font-sans",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-mono",
+  subsets: ["latin"],
+  weight: ["400", "500"],
+});
+
+const caveat = Caveat({
+  variable: "--font-handwritten",
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
 });
 
 export const metadata: Metadata = {
-  title: "Gomu - Nutrition Complète en Gommes",
+  title: "Gomu — Un sachet chaque matin. Toute ta nutrition couverte.",
   description:
-    "Plus de 60 ingrédients essentiels dans une gomme délicieuse. Rejoignez la liste d'attente et soyez parmi les premiers à découvrir Gomu.",
+    "15 à 20 vitamines et minéraux à dosages cliniques, en formes biodisponibles. Base pectine halal et vegan. Tests Eurofins publiés pour chaque lot. 29€/mois, annulable en 2 clics.",
   openGraph: {
-    title: "Gomu - Nutrition Complète en Gommes",
+    title: "Gomu — Un sachet chaque matin. Toute ta nutrition couverte.",
     description:
-      "Plus de 60 ingrédients essentiels dans une gomme délicieuse.",
+      "15 à 20 vitamines et minéraux à dosages cliniques. Formes biodisponibles. Fabriqué en France. Tests Eurofins publiés.",
     locale: "fr_FR",
     type: "website",
   },
@@ -27,8 +46,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr">
-      <body className={`${dmSans.variable} antialiased`}>{children}</body>
+    <html
+      lang="fr"
+      className={`${fraunces.variable} ${inter.variable} ${jetbrainsMono.variable} ${caveat.variable}`}
+      suppressHydrationWarning
+    >
+      <body className="antialiased" suppressHydrationWarning>
+        {children}
+      </body>
     </html>
   );
 }

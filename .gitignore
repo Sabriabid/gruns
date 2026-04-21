@@ -33,6 +33,10 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
+# Apache htpasswd (hash du password Atlas — jamais en git, uniquement sur serveur)
+.htpasswd
+.htpasswd-*
+
 # vercel
 .vercel
 
