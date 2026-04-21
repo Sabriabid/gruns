@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Zap, Shield, Droplet, Moon } from "lucide-react";
 import Eyebrow from "./Eyebrow";
 
@@ -50,7 +51,18 @@ export default function Solution() {
           </p>
         </div>
 
-        <div className="mt-14 md:mt-20 grid md:grid-cols-2 gap-5 md:gap-6">
+        <div className="reveal mt-12 md:mt-16 relative rounded-[32px] overflow-hidden border border-gomu-purple-3/40 aspect-[16/9] md:aspect-[21/9] max-w-[1100px]">
+          <Image
+            src="/images/product-hero.jpeg"
+            alt="Pochette Gomu et sachets individuels"
+            fill
+            sizes="(min-width: 1280px) 1100px, (min-width: 768px) 90vw, 100vw"
+            className="object-cover"
+            style={{ objectPosition: "center 18%" }}
+          />
+        </div>
+
+        <div className="mt-10 md:mt-14 grid md:grid-cols-2 gap-5 md:gap-6">
           {BENEFITS.map((b, i) => (
             <div
               key={i}
