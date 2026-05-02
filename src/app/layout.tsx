@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Gomu — Un sachet chaque matin. Toute ta nutrition couverte.",
     description:
-      "15 à 20 vitamines et minéraux à dosages cliniques. Formes biodisponibles. Fabriqué en France. Tests Eurofins publiés.",
+      "15 à 20 vitamines et minéraux à dosages cliniques. Formes biodisponibles. Base pectine halal et vegan. Tests Eurofins publiés lot par lot.",
     locale: "fr_FR",
     type: "website",
   },
