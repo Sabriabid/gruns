@@ -4,7 +4,7 @@ import Eyebrow from "./Eyebrow";
 const LINES = [
   { k: "Vitamine D3", v: "25 µg" },
   { k: "Vitamine C (acérola)", v: "80 mg" },
-  { k: "Zinc bisglycinate", v: "5 mg" },
+  { k: "Zinc bisglycinate", v: "2.5 mg" },
   { k: "L-5-MTHF (folate actif)", v: "400 µg" },
   { k: "KSM-66 Ashwagandha", v: "300 mg" },
   { k: "Plomb", v: "<0.01 ppm" },
@@ -41,7 +41,12 @@ export default function Transparence() {
         </div>
 
         <div className="mt-14 md:mt-20 grid md:grid-cols-[1.05fr_0.95fr] gap-10 md:gap-16 items-center">
-          <div className="reveal rounded-3xl bg-gomu-paper text-gomu-ink overflow-hidden border border-gomu-purple-deep/10 shadow-[0_30px_60px_-30px_rgba(59,10,94,0.25)]">
+          <div className="reveal">
+            <div className="mb-3 inline-flex items-center gap-2 text-[11px] uppercase tracking-cap text-gomu-purple-deep/55 font-medium">
+              <span className="w-1.5 h-1.5 rounded-full bg-gomu-purple-deep/40"></span>
+              Exemple illustratif
+            </div>
+            <div className="rounded-3xl bg-gomu-paper text-gomu-ink overflow-hidden border border-gomu-purple-deep/10 shadow-[0_30px_60px_-30px_rgba(59,10,94,0.25)]">
             <div className="flex items-center justify-between px-6 py-4 border-b border-gomu-purple-deep/15 bg-gomu-cream">
               <div className="flex items-center gap-3">
                 <div className="w-9 h-9 rounded-full bg-gomu-purple-deep text-gomu-cream flex items-center justify-center font-display italic text-[14px]">
@@ -72,6 +77,7 @@ export default function Transparence() {
                   </div>
                 ))}
               </div>
+            </div>
             </div>
           </div>
 

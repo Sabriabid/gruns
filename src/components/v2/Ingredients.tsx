@@ -26,6 +26,77 @@ const LIST: Row[] = [
     ajr: "100%",
     note: "Forme naturelle, pas synthétique.",
   },
+  // TODO: dosage final à confirmer fiche produit
+  {
+    name: "Vitamine A",
+    form: "Bêta-carotène",
+    role: "Vision · peau",
+    dose: "—",
+    ajr: "—",
+    note: "Dosage à confirmer (fiche produit).",
+  },
+  // TODO: dosage final à confirmer fiche produit
+  {
+    name: "Vitamine E",
+    form: "D-alpha-tocophérol",
+    role: "Antioxydant",
+    dose: "—",
+    ajr: "—",
+    note: "Dosage à confirmer (fiche produit).",
+  },
+  // TODO: dosage final à confirmer fiche produit
+  {
+    name: "Vitamine K2",
+    form: "MK-7 (ménaquinone)",
+    role: "Os · calcification",
+    dose: "—",
+    ajr: "—",
+    note: "Dosage à confirmer (fiche produit).",
+  },
+  // TODO: dosage final à confirmer fiche produit
+  {
+    name: "Vitamine B1",
+    form: "Thiamine",
+    role: "Énergie cellulaire",
+    dose: "—",
+    ajr: "—",
+    note: "Dosage à confirmer (fiche produit).",
+  },
+  // TODO: dosage final à confirmer fiche produit
+  {
+    name: "Vitamine B2",
+    form: "Riboflavine",
+    role: "Métabolisme",
+    dose: "—",
+    ajr: "—",
+    note: "Dosage à confirmer (fiche produit).",
+  },
+  // TODO: dosage final à confirmer fiche produit
+  {
+    name: "Vitamine B3",
+    form: "Niacinamide",
+    role: "Énergie · peau",
+    dose: "—",
+    ajr: "—",
+    note: "Dosage à confirmer (fiche produit).",
+  },
+  // TODO: dosage final à confirmer fiche produit
+  {
+    name: "Vitamine B5",
+    form: "Acide pantothénique",
+    role: "Métabolisme",
+    dose: "—",
+    ajr: "—",
+    note: "Dosage à confirmer (fiche produit).",
+  },
+  {
+    name: "Vitamine B6",
+    form: "Pyridoxal-5-phosphate (P5P)",
+    role: "Neurotransmetteurs",
+    dose: "1.4 mg",
+    ajr: "100%",
+    note: "Forme coenzyme directe.",
+  },
   {
     name: "Folate (B9)",
     form: "L-5-MTHF (Quatrefolic®)",
@@ -43,20 +114,12 @@ const LIST: Row[] = [
     note: "Bioactive, pas de cyanocobalamine.",
   },
   {
-    name: "Vitamine B6",
-    form: "Pyridoxal-5-phosphate (P5P)",
-    role: "Neurotransmetteurs",
-    dose: "1.4 mg",
-    ajr: "100%",
-    note: "Forme coenzyme directe.",
-  },
-  {
     name: "Zinc",
     form: "Bisglycinate chélaté",
     role: "Immunité · peau",
     dose: "2.5 mg",
     ajr: "25%",
-    note: "Jusqu'à 3× mieux absorbé que l'oxyde.",
+    note: "Jusqu'à 3× mieux absorbé que l'oxyde (vs zinc oxyde, études comparatives).",
   },
   {
     name: "Sélénium",
@@ -73,6 +136,15 @@ const LIST: Row[] = [
     dose: "37.5 µg",
     ajr: "25%",
     note: "Dosage français (pas US).",
+  },
+  // TODO: dosage final à confirmer fiche produit
+  {
+    name: "Chrome",
+    form: "Picolinate de chrome",
+    role: "Glycémie",
+    dose: "—",
+    ajr: "—",
+    note: "Dosage à confirmer (fiche produit).",
   },
   {
     name: "Magnésium",

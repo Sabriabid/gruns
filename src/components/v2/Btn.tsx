@@ -1,9 +1,23 @@
-import type { ButtonHTMLAttributes } from "react";
+import type { AnchorHTMLAttributes, ButtonHTMLAttributes } from "react";
 
-type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
+type Common = {
   variant?: "primary" | "secondary";
   onDark?: boolean;
+  className?: string;
+  children?: React.ReactNode;
 };
+
+type ButtonProps = Common &
+  Omit<ButtonHTMLAttributes<HTMLButtonElement>, keyof Common> & {
+    href?: undefined;
+  };
+
+type AnchorProps = Common &
+  Omit<AnchorHTMLAttributes<HTMLAnchorElement>, keyof Common> & {
+    href: string;
+  };
+
+type Props = ButtonProps | AnchorProps;
 
 export default function Btn({
   children,
@@ -24,8 +38,18 @@ export default function Btn({
         ? "border-[1.5px] border-gomu-cream/70 text-gomu-cream hover:bg-gomu-cream/10"
         : "border-[1.5px] border-gomu-purple-deep text-gomu-purple-deep hover:bg-gomu-purple-deep hover:text-gomu-cream";
 
+  const cls = `${base} ${styles} ${className}`;
+
+  if ("href" in rest && rest.href !== undefined) {
+    return (
+      <a className={cls} {...(rest as AnchorHTMLAttributes<HTMLAnchorElement>)}>
+        {children}
+      </a>
+    );
+  }
+
   return (
-    <button className={`${base} ${styles} ${className}`} {...rest}>
+    <button className={cls} {...(rest as ButtonHTMLAttributes<HTMLButtonElement>)}>
       {children}
     </button>
   );

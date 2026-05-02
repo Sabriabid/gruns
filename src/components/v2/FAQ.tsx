@@ -27,7 +27,7 @@ const ITEMS = [
   },
   {
     q: "Où puis-je consulter les rapports de tests Eurofins ?",
-    a: "Dès l'arrivée du premier lot en stock, chaque rapport sera publié sur /tests-laboratoire. Tu entres le numéro de lot imprimé sur ton sachet, tu accèdes au rapport PDF complet (dosages vérifiés, pesticides, métaux lourds, contaminants microbiens).",
+    a: "Dès l'arrivée du premier lot en stock, chaque rapport sera publié dans notre page transparence. Tu entres le numéro de lot imprimé sur ton sachet, tu accèdes au rapport PDF complet (dosages vérifiés, pesticides, métaux lourds, contaminants microbiens).",
   },
   {
     q: "Ashwagandha : quelles précautions ?",

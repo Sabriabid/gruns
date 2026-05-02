@@ -12,8 +12,8 @@ const CARDS: Card[] = [
     body: (
       <>
         Ce qu&apos;il y a dans Gomu : <b>zinc bisglycinate</b>. Ce qu&apos;il y
-        a ailleurs : souvent du zinc oxyde, moins cher à produire. Absorption
-        jusqu&apos;à <span className="hl">3× supérieure</span>.
+        a ailleurs : souvent du zinc oxyde, moins cher à produire.{" "}
+        <span className="hl">Biodisponibilité supérieure</span>.
       </>
     ),
     stat: "3×",
@@ -22,9 +22,9 @@ const CARDS: Card[] = [
     kicker: "L-5-MTHF vs acide folique",
     body: (
       <>
-        <span className="hl">40% de la population européenne</span> porte la
-        mutation du gène MTHFR — convertit mal l&apos;acide folique
-        synthétique. On utilise directement la forme active.
+        <span className="hl">Jusqu&apos;à 40% des Européens selon les études</span>{" "}
+        portent la mutation du gène MTHFR — convertissent mal l&apos;acide
+        folique synthétique. On utilise directement la forme active.
       </>
     ),
     stat: "40%",

@@ -4,16 +4,18 @@ import { Fragment, useState } from "react";
 import { ArrowRight } from "lucide-react";
 
 const LP_LINKS: Array<[string, string]> = [
-  ["Digestion", "/lp/digestion"],
-  ["Stress & sommeil", "/lp/stress-sommeil"],
-  ["Halal", "/lp/halal"],
-  ["Alternative pilules", "/lp/pilules"],
-  ["Énergie", "/lp/energie"],
-  ["Made in France", "/lp/made-in-france"],
-  ["Multi-pots", "/lp/multi-pots"],
-  ["Immunité", "/lp/immunite"],
-  ["Est-ce une arnaque ?", "/lp/arnaque"],
-  ["Parents", "/lp/parents"],
+  ["Le sachet quotidien", "/lp/un-sachet"],
+  ["Halal natif", "/lp/halal"],
+  ["Digestion & ventre", "/lp/digestion"],
+  ["Pas de piège abonnement", "/lp/sans-arnaque-abonnement"],
+  // PHASE 1+: ["Stress & sommeil", "/lp/stress-sommeil"],
+  // PHASE 1+: ["Alternative pilules", "/lp/pilules"],
+  // PHASE 1+: ["Énergie", "/lp/energie"],
+  // PHASE 1+: ["Made in France", "/lp/made-in-france"],
+  // PHASE 1+: ["Multi-pots", "/lp/multi-pots"],
+  // PHASE 1+: ["Immunité", "/lp/immunite"],
+  // PHASE 1+: ["Est-ce une arnaque ?", "/lp/arnaque"],
+  // PHASE 1+: ["Parents", "/lp/parents"],
 ];
 
 export default function Footer() {
@@ -27,8 +29,7 @@ export default function Footer() {
             Gomu<span className="text-gomu-chartreuse">.</span>
           </div>
           <p className="mt-5 text-[14px] leading-[1.6] text-gomu-cream/60 max-w-[260px]">
-            Nutrition quotidienne, fabriquée en France. Testée par Eurofins.
-            Pensée pour toi.
+            Nutrition quotidienne. Testée par Eurofins. Pensée pour toi.
           </p>
         </div>
         <div>
@@ -137,8 +138,6 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 md:px-8 mt-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-[13px] text-gomu-cream/60">
         <div>© 2026 Gomu. Tous droits réservés.</div>
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-          <span>Made in France</span>
-          <span className="text-gomu-cream/25">·</span>
           <span>Halal &amp; Vegan</span>
           <span className="text-gomu-cream/25">·</span>
           <span>Tests Eurofins</span>

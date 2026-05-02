@@ -5,7 +5,6 @@ import { ArrowRight, ArrowDown, Check } from "lucide-react";
 import Btn from "./Btn";
 import Sticker from "./Sticker";
 import Squiggle from "./Squiggle";
-import { scrollToOffer } from "./scrollToOffer";
 
 export default function Hero() {
   return (
@@ -26,8 +25,6 @@ export default function Hero() {
       <div className="max-w-7xl mx-auto px-4 md:px-8 relative">
         <div className="text-center reveal">
           <div className="inline-flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[12px] md:text-[13px] uppercase tracking-cap font-medium text-gomu-yellow">
-            <span>Fabriqué en France</span>
-            <span className="text-gomu-yellow/50">·</span>
             <span>Testé par Eurofins</span>
             <span className="text-gomu-yellow/50">·</span>
             <span>Halal &amp; Vegan</span>
@@ -86,13 +83,17 @@ export default function Hero() {
             </span>
           </p>
 
-          <div className="mt-9 md:mt-10 flex flex-wrap items-center justify-center gap-4">
-            <Btn onClick={scrollToOffer} onDark>
-              Bloquer ma place à 20€ <ArrowRight size={18} />
+          <div className="mt-9 md:mt-10 flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center justify-center gap-4 px-6 sm:px-0">
+            <Btn
+              href="/lp/un-sachet?source=homepage"
+              onDark
+              className="w-full sm:w-auto"
+            >
+              Rejoindre la liste d&apos;attente <ArrowRight size={18} />
             </Btn>
             <a
               href="#ingredients"
-              className="inline-flex items-center gap-1.5 text-[15px] text-gomu-cream/90 underline underline-offset-4 decoration-gomu-cream/40 hover:decoration-gomu-yellow hover:text-gomu-yellow transition-colors"
+              className="inline-flex items-center justify-center gap-1.5 text-[15px] text-gomu-cream/90 underline underline-offset-4 decoration-gomu-cream/40 hover:decoration-gomu-yellow hover:text-gomu-yellow transition-colors"
             >
               Voir la formule <ArrowDown size={16} />
             </a>
