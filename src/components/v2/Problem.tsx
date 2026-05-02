@@ -13,7 +13,7 @@ const STATS = [
   {
     num: "60–100€",
     label: "dépensés chaque mois en multi-pots",
-    src: "Estim. pharmacie",
+    src: "Sur la base d'un panier moyen 4-5 compléments",
   },
 ];
 

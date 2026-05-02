@@ -3,14 +3,14 @@
 import { useState } from "react";
 import { ArrowRight, Check } from "lucide-react";
 import Eyebrow from "./Eyebrow";
+import { resolveSource, submitToBrevo } from "@/lib/brevo";
 
 const BENEFITS = [
   "15-20 actifs à dosages cliniques",
   "Formes biodisponibles nommées",
-  "Fabriqué en France",
   "Tests Eurofins publiés lot par lot",
   "Halal & vegan natif",
-  "Livré en 48h après lancement",
+  "Expédié sous 48h ouvrées",
   "Garantie satisfait ou remboursé 30 jours",
 ];
 
@@ -19,14 +19,22 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 export default function Offre() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
 
-  const submit = () => {
+  const submit = async () => {
     if (!EMAIL_RE.test(email)) {
       setError("Adresse email invalide.");
       return;
     }
     setError("");
+    setSubmitting(true);
+    const result = await submitToBrevo(email, resolveSource());
+    setSubmitting(false);
+    if (!result.ok) {
+      setError("Une erreur est survenue. Réessaie dans un instant.");
+      return;
+    }
     setSubmitted(true);
   };
 
@@ -117,9 +125,11 @@ export default function Offre() {
                   />
                   <button
                     onClick={submit}
-                    className="rounded-full bg-gomu-purple-deep text-gomu-cream hover:bg-gomu-purple-1 transition-colors px-6 py-3.5 text-[14.5px] font-medium inline-flex items-center justify-center gap-2"
+                    disabled={submitting}
+                    className="rounded-full bg-gomu-purple-deep text-gomu-cream hover:bg-gomu-purple-1 transition-colors px-6 py-3.5 text-[14.5px] font-medium inline-flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
                   >
-                    Bloquer ma place à 20€ <ArrowRight size={16} />
+                    {submitting ? "Envoi…" : "Bloquer ma place à 20€"}
+                    {!submitting && <ArrowRight size={16} />}
                   </button>
                 </div>
                 {error && (

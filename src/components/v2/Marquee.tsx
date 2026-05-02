@@ -1,6 +1,5 @@
 const ITEMS = [
   "Halal & Vegan",
-  "Made in France",
   "Tests Eurofins publiés",
   "Pectine de fruit",
   "Zéro proprietary blend",

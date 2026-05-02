@@ -313,6 +313,65 @@ export const lpShared = {
 // =============================================================================
 
 export const lpPages: Record<string, LPData> = {
+  "un-sachet": {
+    slug: "un-sachet",
+    meta: {
+      title: "Gomu — Un sachet. Toute ta nutrition.",
+      description:
+        "22 pots dans ton placard, tu en prends 0. Un sachet par jour, 17 actifs dosés, 29€/mois. Sans engagement.",
+    },
+    hero: {
+      headline: "22 pots dans ton placard. Tu en prends 0.",
+      subtitle:
+        "Un sachet par jour. 17 actifs dosés. 29€/mois.",
+      imagePlaceholder: "Photo : pile de 22 pots vs un sachet Gomu",
+      badge: "Offre de lancement — Jusqu’à -30%",
+      cta: "Rejoindre la liste d’attente",
+      trustBar:
+        "✓ Sans engagement · ✓ Halal natif · ✓ Tests Eurofins par lot",
+    },
+    reasonOne: {
+      number: "01",
+      category: "LE SACHET QUOTIDIEN",
+      title:
+        "Tout ce que tu prends en 5 pots — dans un sachet par jour",
+      content:
+        "✔️ 17 actifs aux dosages déclarés (pas de proprietary blend) · ✔️ Prébiotiques pour ton ventre · ✔️ Halal natif, sans gélatine · ✔️ Tests Eurofins par lot, publiés · ✔️ Sans engagement, annulable en 2 clics. Tu ouvres, tu mâches, tu passes à autre chose.",
+      imagePlaceholder: "Illustration : checklist 5 ✔️",
+    },
+    poolReasonKeys: ["simplicite", "dosages", "transparence", "format", "prix"],
+  },
+
+  "sans-arnaque-abonnement": {
+    slug: "sans-arnaque-abonnement",
+    meta: {
+      title: "Gomu — Pas un piège abonnement. Annulation en 2 clics.",
+      description:
+        "Tu as déjà galéré 45 minutes pour résilier un abonnement compléments. Pas chez nous. 2 clics, pas de mail, pas de rétention.",
+    },
+    hero: {
+      headline:
+        "Tu as déjà galéré 45 minutes pour résilier un abonnement compléments.",
+      subtitle:
+        "Pas chez nous. 2 clics. Pas de mail. Pas de rétention.",
+      imagePlaceholder: "Photo : capture d’écran annulation 2 clics",
+      badge: "Offre de lancement — Jusqu’à -30%",
+      cta: "Rejoindre la liste d’attente",
+      trustBar:
+        "✓ 2 clics · ✓ Pas de mail · ✓ Garantie 30 jours",
+    },
+    reasonOne: {
+      number: "01",
+      category: "ANTI-PIÈGE",
+      title:
+        "Annulation en 2 clics depuis ton compte. Sans email. Sans rétention.",
+      content:
+        "✔️ Annulation en 2 clics depuis ton compte (pas d’email, pas de service client) · ✔️ Pause à la demande sans pénalité · ✔️ Pas de prélèvement caché, pas de réabonnement automatique masqué · ✔️ Premier mois sans engagement · ✔️ Si tu n’aimes pas, on rembourse — sans question.",
+      imagePlaceholder: "Illustration : bouton annuler en 2 clics",
+    },
+    poolReasonKeys: ["transparence", "dosages", "simplicite", "format", "prix"],
+  },
+
   digestion: {
     slug: "digestion",
     meta: {

@@ -46,8 +46,8 @@ export default function Solution() {
           </h2>
           <p className="mt-8 text-[17px] md:text-[19px] leading-[1.6] text-gomu-cream/85 max-w-[720px]">
             Tout ce que tu achètes aujourd&apos;hui en 5 pots — dans un seul
-            sachet. Dosages cliniques. Formes biodisponibles. Fabriqué en
-            France.
+            sachet. Dosages cliniques. Formes biodisponibles. Tests Eurofins
+            par lot.
           </p>
         </div>
 
