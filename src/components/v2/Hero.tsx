@@ -5,8 +5,32 @@ import { ArrowRight, ArrowDown, Check } from "lucide-react";
 import Btn from "./Btn";
 import Sticker from "./Sticker";
 import Squiggle from "./Squiggle";
+import { renderRich, type RichText } from "@/components/lp-v2/richText";
 
-export default function Hero() {
+// Homepage defaults — kept here so src/app/page.tsx renders with zero props.
+const DEFAULT_EYEBROW = ["Testé par Eurofins", "Halal & Vegan"];
+const DEFAULT_H1: RichText = [
+  ["Un sachet."],
+  [{ t: "Toute", hl: true, italic: true }, { t: " ta nutrition.", italic: true }],
+];
+
+interface HeroProps {
+  /** Trust chips joined by "·". */
+  eyebrow?: string[];
+  h1?: RichText;
+  /** When provided, renders a single clean paragraph (LP pages). When omitted,
+   *  the homepage's two-part subtitle (with its italic sub-line) is used. */
+  subtitle?: RichText;
+  /** Primary CTA target. Homepage → the control LP; LP pages → "#offre". */
+  ctaHref?: string;
+}
+
+export default function Hero({
+  eyebrow = DEFAULT_EYEBROW,
+  h1 = DEFAULT_H1,
+  subtitle,
+  ctaHref = "/lp/un-sachet?source=homepage",
+}: HeroProps = {}) {
   return (
     <section className="relative bg-gomu-purple-deep text-gomu-cream pt-[120px] md:pt-[140px] pb-14 md:pb-20 overflow-hidden">
       <div className="absolute inset-0 opacity-[0.08] ph-stripes-cream pointer-events-none"></div>
@@ -25,18 +49,17 @@ export default function Hero() {
       <div className="max-w-7xl mx-auto px-4 md:px-8 relative">
         <div className="text-center reveal">
           <div className="inline-flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[12px] md:text-[13px] uppercase tracking-cap font-medium text-gomu-yellow">
-            <span>Testé par Eurofins</span>
-            <span className="text-gomu-yellow/50">·</span>
-            <span>Halal &amp; Vegan</span>
+            {eyebrow.map((item, i) => (
+              <span key={i} className="inline-flex items-center gap-x-3">
+                {i > 0 && <span className="text-gomu-yellow/50">·</span>}
+                <span>{item}</span>
+              </span>
+            ))}
           </div>
         </div>
 
         <h1 className="font-display font-normal tracking-display mt-6 md:mt-8 text-center text-[48px] sm:text-[68px] md:text-[104px] lg:text-[128px] leading-[0.9]">
-          Un sachet.
-          <br />
-          <span className="italic">
-            <span className="hl-on-dark">Toute</span> ta nutrition.
-          </span>
+          {renderRich(h1, { onDark: true })}
         </h1>
 
         <div className="relative mt-10 md:mt-14 max-w-[720px] mx-auto">
@@ -72,23 +95,23 @@ export default function Hero() {
         </div>
 
         <div className="mt-12 md:mt-16 text-center reveal">
-          <p className="text-[17px] md:text-[20px] leading-[1.55] text-gomu-cream/85 max-w-[640px] mx-auto">
-            15 à 20 vitamines et minéraux à{" "}
-            <span className="text-gomu-cream font-medium">
-              dosages cliniques
-            </span>
-            . En formes biodisponibles. Base pectine de fruit, halal et vegan.
-            <span className="block mt-2 italic font-display text-gomu-cream/75 text-[15px] md:text-[17px]">
-              Parce que 5 pots de vitamines dans le placard, on a déjà essayé.
-            </span>
-          </p>
+          {subtitle ? (
+            <p className="text-[17px] md:text-[20px] leading-[1.55] text-gomu-cream/85 max-w-[640px] mx-auto">
+              {renderRich(subtitle, { onDark: true })}
+            </p>
+          ) : (
+            <p className="text-[17px] md:text-[20px] leading-[1.55] text-gomu-cream/85 max-w-[640px] mx-auto">
+              15 à 20 vitamines et minéraux à{" "}
+              <span className="text-gomu-cream font-medium">dosages cliniques</span>. En formes
+              biodisponibles. Base pectine de fruit, halal et vegan.
+              <span className="block mt-2 italic font-display text-gomu-cream/75 text-[15px] md:text-[17px]">
+                Parce que 5 pots de vitamines dans le placard, on a déjà essayé.
+              </span>
+            </p>
+          )}
 
           <div className="mt-9 md:mt-10 flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center justify-center gap-4 px-6 sm:px-0">
-            <Btn
-              href="/lp/un-sachet?source=homepage"
-              onDark
-              className="w-full sm:w-auto"
-            >
+            <Btn href={ctaHref} onDark className="w-full sm:w-auto">
               Rejoindre la liste d&apos;attente <ArrowRight size={18} />
             </Btn>
             <a
@@ -103,8 +126,7 @@ export default function Hero() {
             <div className="flex items-center gap-2">
               <Check size={16} className="text-gomu-yellow shrink-0" />
               <span>
-                Premier mois à <b className="text-gomu-cream">20€</b> · 500
-                premiers
+                Premier mois à <b className="text-gomu-cream">20€</b> · 500 premiers
               </span>
             </div>
             <div className="flex items-center gap-2">

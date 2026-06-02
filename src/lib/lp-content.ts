@@ -1,5 +1,11 @@
 // =============================================================================
 // LP Content Data — All modular landing page content + types
+//
+// DEPRECATED: superseded by src/lib/lp-angles.ts (v2 design, waitlist model).
+// No longer routed (app/lp/[slug]/page.tsx now uses lp-angles + LandingPage).
+// This listicle system carried placeholder social proof + e-commerce framing
+// unsuited to the pre-launch waitlist. Kept un-imported for reference; safe to
+// delete in a follow-up.
 // =============================================================================
 
 export interface LPHero {

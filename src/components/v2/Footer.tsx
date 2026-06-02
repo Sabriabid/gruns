@@ -3,19 +3,13 @@
 import { Fragment, useState } from "react";
 import { ArrowRight } from "lucide-react";
 
+// Live landing pages (config: src/lib/lp-angles.ts). Keep in sync with the
+// slugs served by app/lp/[slug]/page.tsx — any other slug 404s under export.
 const LP_LINKS: Array<[string, string]> = [
   ["Le sachet quotidien", "/lp/un-sachet"],
   ["Halal natif", "/lp/halal"],
-  ["Digestion & ventre", "/lp/digestion"],
-  ["Pas de piège abonnement", "/lp/sans-arnaque-abonnement"],
-  // PHASE 1+: ["Stress & sommeil", "/lp/stress-sommeil"],
-  // PHASE 1+: ["Alternative pilules", "/lp/pilules"],
-  // PHASE 1+: ["Énergie", "/lp/energie"],
-  // PHASE 1+: ["Made in France", "/lp/made-in-france"],
-  // PHASE 1+: ["Multi-pots", "/lp/multi-pots"],
-  // PHASE 1+: ["Immunité", "/lp/immunite"],
-  // PHASE 1+: ["Est-ce une arnaque ?", "/lp/arnaque"],
-  // PHASE 1+: ["Parents", "/lp/parents"],
+  ["Tout-en-un", "/lp/tout-en-un"],
+  ["Le rituel", "/lp/le-rituel"],
 ];
 
 export default function Footer() {
