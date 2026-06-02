@@ -9,16 +9,17 @@ export type BrevoSource =
   | "homepage"
   | "un-sachet"
   | "halal"
-  | "digestion"
-  | "sans-arnaque-abonnement"
+  | "tout-en-un"
+  | "le-rituel"
   | "direct"
   | string;
 
+// Slugs served by app/lp/[slug]/page.tsx (config: src/lib/lp-angles.ts).
 const VALID_LP_SLUGS = new Set([
   "un-sachet",
   "halal",
-  "digestion",
-  "sans-arnaque-abonnement",
+  "tout-en-un",
+  "le-rituel",
 ]);
 
 // Resolve `source` from the current URL: ?source= wins, else pathname → slug,

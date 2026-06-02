@@ -1,5 +1,12 @@
 import { Check } from "lucide-react";
 import Eyebrow from "./Eyebrow";
+import { renderRich, type RichText } from "@/components/lp-v2/richText";
+
+const DEFAULT_FRAMING: RichText = [
+  [
+    "Chaque lot analysé par Eurofins. Résultats publiés en ligne, accessibles par numéro de lot. Aucune marque française de gummies ne fait ça aujourd'hui.",
+  ],
+];
 
 const LINES = [
   { k: "Vitamine D3", v: "25 µg" },
@@ -19,7 +26,11 @@ const CHECKLIST = [
   "Publication systématique, sans filtre ni tri",
 ];
 
-export default function Transparence() {
+export default function Transparence({
+  framingLine = DEFAULT_FRAMING,
+}: {
+  framingLine?: RichText;
+} = {}) {
   return (
     <section className="bg-gomu-cream py-20 md:py-32">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
@@ -34,9 +45,7 @@ export default function Transparence() {
             le produit.
           </h2>
           <p className="mt-7 text-[17px] md:text-[18px] leading-[1.6] text-gomu-ink/80 max-w-[680px]">
-            Chaque lot analysé par Eurofins. Résultats publiés en ligne,
-            accessibles par numéro de lot. Aucune marque française de gummies
-            ne fait ça aujourd&apos;hui.
+            {renderRich(framingLine, { onDark: false })}
           </p>
         </div>
 

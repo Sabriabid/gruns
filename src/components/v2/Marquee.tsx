@@ -1,4 +1,4 @@
-const ITEMS = [
+const DEFAULT_ITEMS = [
   "Halal & Vegan",
   "Tests Eurofins publiés",
   "Pectine de fruit",
@@ -15,14 +15,11 @@ const ITEMS = [
   "Sans gélatine",
 ];
 
-function Row() {
+function Row({ items }: { items: string[] }) {
   return (
     <>
-      {ITEMS.map((t, i) => (
-        <span
-          key={i}
-          className="inline-flex items-center gap-6 px-6"
-        >
+      {items.map((t, i) => (
+        <span key={i} className="inline-flex items-center gap-6 px-6">
           <span className="font-display italic text-[28px] md:text-[36px] leading-none tracking-display">
             {t}
           </span>
@@ -33,7 +30,7 @@ function Row() {
   );
 }
 
-export default function Marquee() {
+export default function Marquee({ items = DEFAULT_ITEMS }: { items?: string[] } = {}) {
   return (
     <section
       aria-hidden
@@ -41,10 +38,10 @@ export default function Marquee() {
     >
       <div className="marquee-track whitespace-nowrap">
         <div className="inline-flex items-center">
-          <Row />
+          <Row items={items} />
         </div>
         <div className="inline-flex items-center">
-          <Row />
+          <Row items={items} />
         </div>
       </div>
     </section>
