@@ -5,6 +5,11 @@
    whole landing by overriding these variables, without touching components. */
 @theme {
   --color-gomu-purple-deep: #3B0A5E;
+  /* Background for the big full-bleed dark sections. Defaults to purple-deep so
+     the purple theme is unchanged; the bordeaux theme makes it a deeper, more
+     recessive burgundy so large blocks read subtle while #6B0010 stays the pop
+     accent on CTAs/headings. */
+  --color-gomu-surface-dark: #3B0A5E;
   --color-gomu-purple-1: #6528D7;
   --color-gomu-purple-2: #7D26CD;
   --color-gomu-purple-3: #912CEE;
@@ -82,16 +87,20 @@ html {
    Same components/DA, re-themed via CSS-var override: deep burgundy primary,
    beige backgrounds, warm-gold accent. Applied on a wrapper element. */
 .theme-bordeaux {
-  --color-gomu-purple-deep: #6b0010; /* primary — hero, CTA, dark blocks, titres */
-  --color-gomu-purple-1: #8a1527; /* gradient bas, hover, bordeaux médian */
-  --color-gomu-purple-2: #9e1b2e;
-  --color-gomu-purple-3: #b83c4f; /* bordures, bordeaux clair */
-  --color-gomu-purple-4: #c8475b; /* liens, focus ring */
-  --color-gomu-cream: #f6efe3; /* beige — fonds clairs, texte sur fond foncé */
-  --color-gomu-yellow: #d8b25a; /* or chaud — surlignages, CTA sur foncé, stickers */
-  --color-gomu-chartreuse: #c49a4a; /* or profond — bandes pleines, marquee, morph */
-  --color-gomu-ink: #2a0509; /* presque-noir bordeaux — texte, footer */
-  --color-gomu-paper: #fffcf6; /* blanc chaud — cards */
+  /* Big full-bleed blocks: deep, muted oxblood — recessive/premium, not loud. */
+  --color-gomu-surface-dark: #4a0810;
+  /* The #6B0010 "principal" is reserved for pop accents: CTA, titres, badges,
+     petits éléments — il claque sur l'ivoire sans saturer la page. */
+  --color-gomu-purple-deep: #6b0010;
+  --color-gomu-purple-1: #7e1322; /* gradient bas, tints de cards */
+  --color-gomu-purple-2: #8e1827;
+  --color-gomu-purple-3: #a6394b; /* bordures, bordeaux clair */
+  --color-gomu-purple-4: #bc4255; /* liens, focus ring */
+  --color-gomu-cream: #f7f1e6; /* ivoire clair — canvas aéré dominant */
+  --color-gomu-yellow: #cba85f; /* or doux mat — surlignages, CTA sur foncé */
+  --color-gomu-chartreuse: #be9e4c; /* or sourd — bandes, marquee, morph */
+  --color-gomu-ink: #280608; /* presque-noir bordeaux — texte, footer */
+  --color-gomu-paper: #fffdf8; /* blanc cassé — cards */
   background: var(--color-gomu-cream);
 }
 

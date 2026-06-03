@@ -27,7 +27,7 @@ export default function Waitlist() {
       </div>
 
       <div className="max-w-[720px] mx-auto px-4 md:px-8 mt-14 reveal">
-        <div className="relative rounded-[28px] bg-gomu-purple-deep text-gomu-cream border-2 border-gomu-yellow p-8 md:p-12 overflow-hidden">
+        <div className="relative rounded-[28px] bg-gomu-surface-dark text-gomu-cream border-2 border-gomu-yellow p-8 md:p-12 overflow-hidden">
           <div className="absolute inset-0 opacity-[0.08] ph-stripes-cream pointer-events-none"></div>
           <div className="relative">
             <div className="text-center">
