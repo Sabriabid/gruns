@@ -47,8 +47,8 @@ export default function FAQ() {
       <div className="max-w-4xl mx-auto px-4 md:px-8">
         <div className="reveal text-center">
           <Eyebrow className="justify-center">Questions fréquentes</Eyebrow>
-          <h2 className="font-display tracking-display mt-4 text-[36px] md:text-[56px] lg:text-[64px] leading-[1] text-gomu-purple-deep">
-            Tout ce que tu <span className="italic">dois</span> savoir.
+          <h2 className="font-display font-bold tracking-display mt-4 text-[36px] md:text-[56px] lg:text-[64px] leading-[1] text-gomu-purple-deep">
+            Tout ce que tu <span className="hl">dois</span> savoir.
           </h2>
         </div>
 

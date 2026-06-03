@@ -1,14 +1,20 @@
 import RevealBoundary from "@/components/v2/RevealBoundary";
+import AnnouncementBar from "@/components/v2/AnnouncementBar";
 import Header from "@/components/v2/Header";
 import Hero from "@/components/v2/Hero";
 import Marquee from "@/components/v2/Marquee";
+import PressLogos from "@/components/v2/PressLogos";
+import FindYourFlavor from "@/components/v2/FindYourFlavor";
 import Problem from "@/components/v2/Problem";
 import Solution from "@/components/v2/Solution";
+import ScrollMorph from "@/components/v2/ScrollMorph";
 import Ingredients from "@/components/v2/Ingredients";
 import Science from "@/components/v2/Science";
+import TastesLike from "@/components/v2/TastesLike";
 import Rituel from "@/components/v2/Rituel";
 import Transparence from "@/components/v2/Transparence";
 import Comparatif from "@/components/v2/Comparatif";
+import SocialProofBand from "@/components/v2/SocialProofBand";
 import Waitlist from "@/components/v2/Waitlist";
 import Offre from "@/components/v2/Offre";
 import FAQ from "@/components/v2/FAQ";
@@ -31,6 +37,7 @@ import type { LpAngle } from "@/lib/lp-angles";
 export default function LandingPage({ angle }: { angle: LpAngle }) {
   return (
     <RevealBoundary>
+      <AnnouncementBar />
       <Header />
       <main>
         <Hero
@@ -40,6 +47,8 @@ export default function LandingPage({ angle }: { angle: LpAngle }) {
           ctaHref="#offre"
         />
         <Marquee items={angle.proof.marqueeOrder} />
+        <PressLogos />
+        <FindYourFlavor />
         <Problem
           eyebrow={angle.problem.eyebrow}
           headline={angle.problem.headline}
@@ -53,11 +62,14 @@ export default function LandingPage({ angle }: { angle: LpAngle }) {
           intro={angle.benefits.intro}
           order={angle.benefits.order}
         />
+        <ScrollMorph />
         <Ingredients />
         <Science />
+        <TastesLike />
         <Rituel />
         <Transparence framingLine={angle.proof.transparenceLine} />
         <Comparatif />
+        <SocialProofBand />
         <Waitlist />
         <Offre />
         <FAQ />

@@ -51,9 +51,9 @@ export default function Comparatif() {
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="reveal max-w-[1100px]">
           <Eyebrow>Le tour d&apos;horizon</Eyebrow>
-          <h2 className="font-display tracking-display mt-4 text-[40px] md:text-[64px] lg:text-[80px] leading-[0.98] text-gomu-purple-deep">
-            Pourquoi Gomu est <span className="italic">différent</span> — et
-            pas juste un de plus.
+          <h2 className="font-display font-bold tracking-display mt-4 text-[40px] md:text-[64px] lg:text-[80px] leading-[0.98] text-gomu-purple-deep">
+            Pourquoi Gomu est <span className="hl">différent</span> — et pas
+            juste un de plus.
           </h2>
         </div>
 
@@ -61,7 +61,7 @@ export default function Comparatif() {
           {ROWS.map((r, i) => (
             <div
               key={i}
-              className={`reveal relative rounded-3xl border overflow-hidden ${
+              className={`reveal relative card-pop border overflow-hidden ${
                 r.good
                   ? "bg-gomu-purple-deep text-gomu-cream border-gomu-purple-deep"
                   : "bg-gomu-paper text-gomu-ink border-black/5"

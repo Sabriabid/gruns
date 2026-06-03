@@ -20,7 +20,7 @@ function Row({ items }: { items: string[] }) {
     <>
       {items.map((t, i) => (
         <span key={i} className="inline-flex items-center gap-6 px-6">
-          <span className="font-display italic text-[28px] md:text-[36px] leading-none tracking-display">
+          <span className="font-display font-semibold text-[26px] md:text-[34px] leading-none tracking-display">
             {t}
           </span>
           <span className="text-gomu-purple-deep/60">✦</span>

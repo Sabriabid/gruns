@@ -18,46 +18,55 @@ export default function Header() {
   return (
     <>
       <header
-        className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
+        className={`fixed top-10 inset-x-0 z-50 transition-all duration-300 ${
           scrolled
             ? "bg-gomu-cream/95 backdrop-blur-sm shadow-[0_2px_20px_-8px_rgba(59,10,94,0.15)]"
             : "bg-transparent"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 md:px-8 h-[72px] flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 h-[72px] grid grid-cols-[1fr_auto_1fr] items-center">
+          <nav
+            className={`hidden md:flex items-center gap-2 text-[14px] font-medium transition-colors ${
+              scrolled ? "text-gomu-purple-deep" : "text-gomu-cream"
+            }`}
+          >
+            {[
+              ["#produit", "Le sachet"],
+              ["#ingredients", "Ingrédients"],
+              ["#rituel", "Le rituel"],
+              ["#faq", "FAQ"],
+            ].map(([href, label]) => (
+              <a
+                key={href}
+                href={href}
+                className={`rounded-full px-3.5 py-1.5 transition-colors ${
+                  scrolled
+                    ? "hover:bg-gomu-purple-deep/8"
+                    : "hover:bg-gomu-cream/15"
+                }`}
+              >
+                {label}
+              </a>
+            ))}
+          </nav>
+          <span className="md:hidden" aria-hidden />
+
           <a
             href="#"
-            className={`font-display italic font-semibold text-[30px] leading-none tracking-tight transition-colors ${
+            className={`justify-self-center font-display font-bold text-[30px] leading-none tracking-tight transition-colors ${
               scrolled ? "text-gomu-purple-deep" : "text-gomu-cream"
             }`}
           >
             Gomu<span className="text-gomu-chartreuse">.</span>
           </a>
-          <nav
-            className={`hidden md:flex items-center gap-9 text-[15px] transition-colors ${
-              scrolled ? "text-gomu-purple-deep/85" : "text-gomu-cream/85"
-            }`}
-          >
-            <a href="#produit" className="hover:opacity-100 opacity-90">
-              Le sachet
-            </a>
-            <a href="#ingredients" className="hover:opacity-100 opacity-90">
-              Ingrédients
-            </a>
-            <a href="#rituel" className="hover:opacity-100 opacity-90">
-              Le rituel
-            </a>
-            <a href="#faq" className="hover:opacity-100 opacity-90">
-              FAQ
-            </a>
-          </nav>
-          <div className="flex items-center gap-3">
+
+          <div className="justify-self-end flex items-center gap-3">
             <button
               onClick={scrollToOffer}
-              className={`hidden md:inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[14px] font-medium transition-colors ${
+              className={`hidden md:inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[14px] font-semibold transition-all duration-200 ${
                 scrolled
-                  ? "bg-gomu-purple-deep text-gomu-cream hover:bg-gomu-purple-1"
-                  : "bg-gomu-yellow text-gomu-purple-deep hover:bg-gomu-chartreuse"
+                  ? "bg-gomu-purple-deep text-gomu-cream shadow-[0_4px_0_rgba(59,10,94,0.25)] hover:-translate-y-0.5 hover:bg-gomu-purple-1"
+                  : "bg-gomu-yellow text-gomu-purple-deep shadow-[0_4px_0_rgba(59,10,94,0.3)] hover:-translate-y-0.5 hover:bg-gomu-chartreuse"
               }`}
             >
               Rejoindre la liste <ArrowRight size={16} />
@@ -92,7 +101,7 @@ export default function Header() {
           }`}
         >
           <div className="flex items-center justify-between">
-            <span className="font-display italic font-semibold text-[26px] text-gomu-purple-deep">
+            <span className="font-display font-bold text-[26px] text-gomu-purple-deep">
               Gomu<span className="text-gomu-chartreuse">.</span>
             </span>
             <button aria-label="Fermer" onClick={() => setOpen(false)}>

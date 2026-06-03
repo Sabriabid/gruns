@@ -58,16 +58,14 @@ export default function Solution({
       <div className="max-w-7xl mx-auto px-4 md:px-8 relative">
         <div className="reveal max-w-[1100px]">
           <Eyebrow tone="light">{eyebrow}</Eyebrow>
-          <h2 className="font-display tracking-display mt-4 text-[40px] md:text-[72px] lg:text-[88px] leading-[0.98]">
+          <h2 className="font-display font-bold tracking-display mt-4 text-[40px] md:text-[72px] lg:text-[88px] leading-[0.98]">
             {headline ? (
               renderRich(headline, { onDark: true })
             ) : (
               <>
                 Un sachet. Chaque matin. 30 secondes.
                 <br />
-                <span className="italic">
-                  <span className="hl-on-dark">C&apos;est tout.</span>
-                </span>
+                <span className="hl-on-dark">C&apos;est tout.</span>
               </>
             )}
           </h2>
@@ -98,15 +96,22 @@ export default function Solution({
           {cards.map((b, i) => (
             <div
               key={i}
-              className="reveal rounded-3xl bg-gomu-purple-1/20 border border-gomu-purple-3/40 p-7 md:p-9 hover:bg-gomu-purple-1/25 transition-colors"
+              className="reveal rounded-[28px] bg-gomu-purple-1/20 border border-gomu-purple-3/40 p-3 md:p-3.5 hover:bg-gomu-purple-1/25 transition-colors"
             >
-              <div className="flex items-center gap-4">
-                <span className="shrink-0 rounded-full bg-gomu-yellow text-gomu-purple-deep w-12 h-12 flex items-center justify-center">
+              <div className="relative rounded-[20px] overflow-hidden aspect-[16/9] bg-gomu-purple-deep ph-stripes-cream flex items-center justify-center">
+                <span className="shrink-0 rounded-full bg-gomu-yellow text-gomu-purple-deep w-14 h-14 flex items-center justify-center">
                   {b.icon}
                 </span>
-                <h3 className="font-display text-[24px] md:text-[28px] leading-tight">{b.title}</h3>
+                <span className="absolute bottom-2.5 right-3 text-[10px] uppercase tracking-cap text-gomu-cream/45">
+                  [PHOTO : {b.title.toLowerCase()}]
+                </span>
               </div>
-              <p className="mt-5 text-[15px] leading-[1.6] text-gomu-cream/85">{b.body}</p>
+              <div className="px-4 md:px-5 pt-5 pb-4">
+                <h3 className="font-display font-bold text-[24px] md:text-[28px] leading-tight">
+                  {b.title}
+                </h3>
+                <p className="mt-3 text-[15px] leading-[1.6] text-gomu-cream/85">{b.body}</p>
+              </div>
             </div>
           ))}
         </div>

@@ -27,13 +27,13 @@ export default function Btn({
   ...rest
 }: Props) {
   const base =
-    "inline-flex items-center justify-center gap-2 rounded-full px-7 md:px-8 py-3.5 md:py-4 text-[15px] font-medium transition-all duration-200 active:scale-[0.98]";
+    "inline-flex items-center justify-center gap-2 rounded-full px-7 md:px-8 py-3.5 md:py-4 text-[15px] font-semibold transition-all duration-200 active:scale-[0.98]";
 
   const styles =
     variant === "primary"
       ? onDark
-        ? "bg-gomu-yellow text-gomu-purple-deep hover:scale-[1.02] hover:bg-gomu-chartreuse"
-        : "bg-gomu-purple-deep text-gomu-cream hover:scale-[1.02] hover:bg-gomu-purple-1"
+        ? "bg-gomu-yellow text-gomu-purple-deep shadow-[0_5px_0_rgba(59,10,94,0.35)] hover:-translate-y-0.5 hover:bg-gomu-chartreuse hover:shadow-[0_7px_0_rgba(59,10,94,0.35)]"
+        : "bg-gomu-purple-deep text-gomu-cream shadow-[0_5px_0_rgba(59,10,94,0.25)] hover:-translate-y-0.5 hover:bg-gomu-purple-1 hover:shadow-[0_7px_0_rgba(59,10,94,0.25)]"
       : onDark
         ? "border-[1.5px] border-gomu-cream/70 text-gomu-cream hover:bg-gomu-cream/10"
         : "border-[1.5px] border-gomu-purple-deep text-gomu-purple-deep hover:bg-gomu-purple-deep hover:text-gomu-cream";

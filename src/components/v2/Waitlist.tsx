@@ -17,8 +17,8 @@ export default function Waitlist() {
     <section className="bg-gomu-cream py-20 md:py-32">
       <div className="max-w-4xl mx-auto px-4 md:px-8 text-center reveal">
         <Eyebrow className="justify-center">Pré-lancement · Q2 2026</Eyebrow>
-        <h2 className="font-display tracking-display mt-4 text-[36px] md:text-[56px] lg:text-[64px] leading-[1] text-gomu-purple-deep">
-          Rejoins les <span className="italic">premiers</span> à tester Gomu.
+        <h2 className="font-display font-bold tracking-display mt-4 text-[36px] md:text-[56px] lg:text-[64px] leading-[1] text-gomu-purple-deep">
+          Rejoins les <span className="hl">premiers</span> à tester Gomu.
         </h2>
         <p className="mt-6 text-[17px] md:text-[18px] leading-[1.6] text-gomu-ink/80 max-w-[640px] mx-auto">
           On lance au Q2 2026. Les 500 premiers inscrits bénéficient du tarif

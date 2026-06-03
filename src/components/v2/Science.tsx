@@ -44,12 +44,15 @@ const CARDS: Card[] = [
 
 export default function Science() {
   return (
-    <section className="bg-gomu-cream py-20 md:py-32 border-t border-gomu-purple-deep/10">
+    <section
+      id="science"
+      className="bg-gomu-cream py-20 md:py-32 border-t border-gomu-purple-deep/10"
+    >
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="reveal max-w-[1000px]">
           <Eyebrow>La forme &gt; le dosage brut</Eyebrow>
-          <h2 className="font-display tracking-display mt-4 text-[40px] md:text-[64px] lg:text-[76px] leading-[0.98] text-gomu-purple-deep">
-            La <span className="italic">forme</span> compte plus
+          <h2 className="font-display font-bold tracking-display mt-4 text-[40px] md:text-[64px] lg:text-[76px] leading-[0.98] text-gomu-purple-deep">
+            La <span className="hl">forme</span> compte plus
             <br />
             que le dosage brut.
           </h2>
@@ -58,7 +61,7 @@ export default function Science() {
           {CARDS.map((c, i) => (
             <article
               key={i}
-              className="reveal rounded-3xl bg-gomu-paper border border-black/5 p-8 md:p-9 flex flex-col"
+              className="reveal card-pop bg-gomu-paper border border-black/5 p-8 md:p-9 flex flex-col"
             >
               <div className="flex items-baseline justify-between gap-4">
                 <div className="text-[12px] uppercase tracking-cap text-gomu-purple-deep/70 font-medium">
