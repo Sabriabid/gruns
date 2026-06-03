@@ -14,7 +14,7 @@ const WORDS = ["15–20 ACTIFS", "8 GUMMIES", "1 SACHET", "30 SECONDES"];
 // Static fallback (mobile + prefers-reduced-motion): no scroll-jacking.
 function StaticStat() {
   return (
-    <section className="relative bg-gomu-purple-deep text-gomu-cream py-20 md:py-28 overflow-hidden">
+    <section className="relative bg-gomu-surface-dark text-gomu-cream py-20 md:py-28 overflow-hidden">
       <div className="absolute inset-0 opacity-[0.08] ph-stripes-cream pointer-events-none" />
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         {WORDS.map((w, i) => (
@@ -66,7 +66,7 @@ export default function ScrollMorph() {
 
       {/* Desktop: pinned scroll scene */}
       <section ref={ref} className="relative hidden md:block h-[280vh]">
-        <div className="sticky top-0 h-screen overflow-hidden bg-gomu-purple-deep">
+        <div className="sticky top-0 h-screen overflow-hidden bg-gomu-surface-dark">
           <motion.div
             aria-hidden
             style={{ opacity: morphOpacity }}

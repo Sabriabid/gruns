@@ -34,7 +34,7 @@ export default function Hero({
   ctaHref = "/lp/un-sachet?source=homepage",
 }: HeroProps = {}) {
   return (
-    <section className="relative bg-gradient-to-b from-gomu-purple-deep to-gomu-purple-1 text-gomu-cream pt-[148px] md:pt-[168px] pb-16 md:pb-24 overflow-hidden">
+    <section className="relative bg-gradient-to-b from-gomu-surface-dark to-gomu-purple-1 text-gomu-cream pt-[148px] md:pt-[168px] pb-16 md:pb-24 overflow-hidden">
       <div className="absolute inset-0 opacity-[0.08] ph-stripes-cream pointer-events-none"></div>
 
       <div className="absolute top-[140px] left-[3%] hidden lg:block pointer-events-none sticker-float">

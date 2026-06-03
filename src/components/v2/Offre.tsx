@@ -41,7 +41,7 @@ export default function Offre() {
   return (
     <section
       id="offre"
-      className="relative bg-gomu-purple-deep text-gomu-cream py-20 md:py-32 overflow-hidden"
+      className="relative bg-gomu-surface-dark text-gomu-cream py-20 md:py-32 overflow-hidden"
     >
       <div className="absolute inset-0 opacity-[0.08] ph-stripes-cream pointer-events-none"></div>
       <div className="max-w-5xl mx-auto px-4 md:px-8 relative">

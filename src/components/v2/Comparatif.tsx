@@ -63,7 +63,7 @@ export default function Comparatif() {
               key={i}
               className={`reveal relative card-pop border overflow-hidden ${
                 r.good
-                  ? "bg-gomu-purple-deep text-gomu-cream border-gomu-purple-deep"
+                  ? "bg-gomu-surface-dark text-gomu-cream border-gomu-surface-dark"
                   : "bg-gomu-paper text-gomu-ink border-black/5"
               }`}
             >

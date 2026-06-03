@@ -52,7 +52,7 @@ export default function Solution({
   return (
     <section
       id="produit"
-      className="relative bg-gomu-purple-deep text-gomu-cream py-20 md:py-32 overflow-hidden"
+      className="relative bg-gomu-surface-dark text-gomu-cream py-20 md:py-32 overflow-hidden"
     >
       <div className="absolute inset-0 opacity-[0.08] ph-stripes-cream pointer-events-none"></div>
       <div className="max-w-7xl mx-auto px-4 md:px-8 relative">
