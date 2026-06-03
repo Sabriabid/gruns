@@ -291,9 +291,10 @@ html {
   box-shadow: 0 8px 0 rgba(242, 232, 92, 0.5);
 }
 
-/* Giant stacked stat typography */
+/* Giant stacked stat typography. Min kept low (44px) so the longest words
+   ("30 SECONDES" ≈ 264px @44px) fit a 320px phone without being clipped. */
 .stat-giant {
-  font-size: clamp(56px, 12vw, 200px);
+  font-size: clamp(44px, 12vw, 200px);
   line-height: 0.82;
   letter-spacing: -0.03em;
 }
