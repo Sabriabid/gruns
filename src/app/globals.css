@@ -1,7 +1,9 @@
 @import "tailwindcss";
 
-@theme inline {
-  /* Gomu v2 palette */
+/* Gomu v2 palette — regular (non-inline) @theme so utilities resolve via
+   var(--color-gomu-*). This lets a wrapper class (.theme-bordeaux) re-theme the
+   whole landing by overriding these variables, without touching components. */
+@theme {
   --color-gomu-purple-deep: #3B0A5E;
   --color-gomu-purple-1: #6528D7;
   --color-gomu-purple-2: #7D26CD;
@@ -12,7 +14,9 @@
   --color-gomu-chartreuse: #C4E538;
   --color-gomu-ink: #1A0A2E;
   --color-gomu-paper: #FDFBEF;
+}
 
+@theme inline {
   /* Legacy tokens (kept for /lp/[slug] + /atlas) */
   --color-brand-purple: #7C3AED;
   --color-brand-dark: #1a0a2e;
@@ -72,6 +76,23 @@ html {
 /* Clear the fixed announcement bar (40px) + header (72px) when jumping to anchors */
 :where(#produit, #ingredients, #science, #rituel, #offre, #faq) {
   scroll-margin-top: 120px;
+}
+
+/* ---- Bordeaux / im8-inspired theme (test variant — route /bordeaux) ----
+   Same components/DA, re-themed via CSS-var override: deep burgundy primary,
+   beige backgrounds, warm-gold accent. Applied on a wrapper element. */
+.theme-bordeaux {
+  --color-gomu-purple-deep: #6b0010; /* primary — hero, CTA, dark blocks, titres */
+  --color-gomu-purple-1: #8a1527; /* gradient bas, hover, bordeaux médian */
+  --color-gomu-purple-2: #9e1b2e;
+  --color-gomu-purple-3: #b83c4f; /* bordures, bordeaux clair */
+  --color-gomu-purple-4: #c8475b; /* liens, focus ring */
+  --color-gomu-cream: #f6efe3; /* beige — fonds clairs, texte sur fond foncé */
+  --color-gomu-yellow: #d8b25a; /* or chaud — surlignages, CTA sur foncé, stickers */
+  --color-gomu-chartreuse: #c49a4a; /* or profond — bandes pleines, marquee, morph */
+  --color-gomu-ink: #2a0509; /* presque-noir bordeaux — texte, footer */
+  --color-gomu-paper: #fffcf6; /* blanc chaud — cards */
+  background: var(--color-gomu-cream);
 }
 
 .font-display {
