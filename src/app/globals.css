@@ -69,9 +69,24 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Clear the fixed announcement bar (40px) + header (72px) when jumping to anchors */
+:where(#produit, #ingredients, #science, #rituel, #offre, #faq) {
+  scroll-margin-top: 120px;
+}
+
 .font-display {
-  font-family: var(--font-display), ui-serif, Georgia, serif;
+  font-family: var(--font-display), ui-rounded, "Segoe UI Rounded", system-ui,
+    sans-serif;
   font-optical-sizing: auto;
+}
+
+/* Fredoka has no italic axis — gruns DA is upright chunky type.
+   Neutralize the ~40 `font-display italic` usages + renderRich's <span class="italic">
+   so they render upright. Emphasis is carried by the .hl yellow highlighter instead.
+   Caveat (.handwritten) keeps its genuine slant. */
+.font-display.italic,
+.font-display .italic {
+  font-style: normal;
 }
 
 .font-handwritten,
@@ -231,6 +246,67 @@ html {
   font-size: clamp(120px, 28vw, 420px);
   line-height: 0.8;
   letter-spacing: -0.04em;
+}
+
+/* ---- gruns DA primitives ---- */
+
+/* Chunky "gummy" card with hard drop shadow */
+.card-pop {
+  border-radius: 28px;
+  box-shadow: 0 8px 0 rgba(59, 10, 94, 0.12);
+}
+
+.card-pop-yellow {
+  border-radius: 28px;
+  box-shadow: 0 8px 0 rgba(242, 232, 92, 0.5);
+}
+
+/* Giant stacked stat typography */
+.stat-giant {
+  font-size: clamp(56px, 12vw, 200px);
+  line-height: 0.82;
+  letter-spacing: -0.03em;
+}
+
+/* Pill chip (Tastes Like / Packed With rows) */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  padding: 0.5rem 1rem;
+  border: 1.5px solid rgba(59, 10, 94, 0.18);
+  background: var(--color-gomu-paper);
+  font-size: 0.9375rem;
+  white-space: nowrap;
+}
+
+.chip-on-dark {
+  border-color: rgba(255, 249, 214, 0.25);
+  background: rgba(101, 40, 215, 0.25);
+  color: var(--color-gomu-cream);
+}
+
+/* Floating sticker drift */
+@keyframes floatY {
+  0%,
+  100% {
+    transform: translateY(0) rotate(var(--rot, 0deg));
+  }
+  50% {
+    transform: translateY(-9px) rotate(var(--rot, 0deg));
+  }
+}
+
+.sticker-float {
+  animation: floatY 4.5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sticker-float,
+  .marquee-track {
+    animation: none;
+  }
 }
 
 /* Hide scrollbar on horizontal scroll */

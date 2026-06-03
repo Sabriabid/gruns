@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight, Check, X } from "lucide-react";
 import Eyebrow from "./Eyebrow";
 import { resolveSource, submitToBrevo } from "@/lib/brevo";
 
@@ -59,48 +59,104 @@ export default function Offre() {
         </div>
 
         <div className="mt-12 md:mt-16 reveal">
-          <div className="max-w-[560px] mx-auto rounded-[28px] bg-gomu-cream text-gomu-purple-deep border-[3px] border-gomu-yellow p-8 md:p-10">
-            <div className="text-[11px] uppercase tracking-cap text-gomu-purple-deep/70">
-              Le protocole tout-en-un
-            </div>
-            <div className="mt-1 text-[14px] text-gomu-purple-deep/80">
-              30 sachets · 1 mois · Abonnement mensuel
+          <div className="flex justify-center mb-8">
+            <span className="chip chip-on-dark text-[13px]">
+              Goût : Fruits rouges · 1 seule saveur, par choix
+            </span>
+          </div>
+
+          <div className="max-w-[760px] mx-auto grid md:grid-cols-2 gap-5 items-start">
+            {/* Abonnement — recommandé */}
+            <div className="relative card-pop-yellow bg-gomu-cream text-gomu-purple-deep border-[3px] border-gomu-yellow p-7 md:p-8">
+              <span className="absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-gomu-purple-deep text-gomu-cream text-[11px] uppercase tracking-cap font-semibold px-3 py-1">
+                Le plus choisi
+              </span>
+              <div className="mt-2 text-[11px] uppercase tracking-cap text-gomu-purple-deep/70">
+                Abonnement mensuel
+              </div>
+              <div className="mt-1 text-[13px] text-gomu-purple-deep/80">
+                30 sachets · 1 mois
+              </div>
+              <div className="mt-5 flex items-baseline gap-2">
+                <span className="font-display font-bold text-[56px] md:text-[64px] leading-none tracking-display">
+                  20€
+                </span>
+                <span className="text-[13px] text-gomu-purple-deep/70">1er mois</span>
+              </div>
+              <div className="mt-1 text-[14px] text-gomu-purple-deep/80">
+                puis 29€/mois · annulable en 2 clics
+              </div>
+              <div className="mt-5 h-px bg-gomu-purple-deep/15"></div>
+              <ul className="mt-5 space-y-2 text-[14px] leading-[1.5]">
+                {BENEFITS.map((t, i) => (
+                  <li key={i} className="flex items-start gap-2.5">
+                    <Check
+                      size={17}
+                      className="text-gomu-purple-1 mt-0.5 shrink-0"
+                      strokeWidth={2.25}
+                    />
+                    <span>{t}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
 
-            <div className="mt-6 h-px bg-gomu-purple-deep/20"></div>
-
-            <div className="mt-6 grid grid-cols-[1fr_auto] gap-x-4 gap-y-2 items-baseline">
-              <div className="text-[13px] uppercase tracking-cap text-gomu-purple-deep/70">
-                Prix de lancement · 1er mois
+            {/* Achat unique */}
+            <div className="card-pop bg-gomu-paper text-gomu-purple-deep border border-gomu-purple-deep/15 p-7 md:p-8">
+              <div className="text-[11px] uppercase tracking-cap text-gomu-purple-deep/70">
+                Achat unique
               </div>
-              <div className="font-display italic text-[56px] md:text-[72px] leading-none tracking-display text-gomu-purple-deep">
-                20€
+              <div className="mt-1 text-[13px] text-gomu-purple-deep/80">
+                30 sachets · sans engagement
               </div>
-              <div className="text-[13px] uppercase tracking-cap text-gomu-purple-deep/70">
-                Puis · annulable en 2 clics
-              </div>
-              <div className="font-display italic text-[26px] md:text-[32px] leading-none text-gomu-purple-deep/80">
-                29€
-                <span className="text-[14px] text-gomu-purple-deep/60 not-italic font-sans">
-                  /mois
+              <div className="mt-5 flex items-baseline gap-2">
+                <span className="font-display font-bold text-[52px] md:text-[60px] leading-none tracking-display text-gomu-purple-deep/80">
+                  [PRIX]
                 </span>
               </div>
-            </div>
-
-            <div className="mt-6 h-px bg-gomu-purple-deep/20"></div>
-
-            <ul className="mt-6 space-y-2.5 text-[14.5px] leading-[1.5]">
-              {BENEFITS.map((t, i) => (
-                <li key={i} className="flex items-start gap-2.5">
+              <div className="mt-1 text-[14px] text-gomu-purple-deep/70">
+                tarif unique fixé au lancement
+              </div>
+              <div className="mt-5 h-px bg-gomu-purple-deep/15"></div>
+              <ul className="mt-5 space-y-2 text-[14px] leading-[1.5]">
+                <li className="flex items-start gap-2.5">
                   <Check
-                    size={18}
-                    className="text-gomu-purple-1 mt-0.5 shrink-0"
+                    size={17}
+                    className="text-gomu-purple-deep/40 mt-0.5 shrink-0"
                     strokeWidth={2.25}
                   />
-                  <span>{t}</span>
+                  <span>15-20 actifs à dosages cliniques</span>
                 </li>
-              ))}
-            </ul>
+                <li className="flex items-start gap-2.5">
+                  <Check
+                    size={17}
+                    className="text-gomu-purple-deep/40 mt-0.5 shrink-0"
+                    strokeWidth={2.25}
+                  />
+                  <span>Halal &amp; vegan natif</span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <X
+                    size={17}
+                    className="text-gomu-purple-deep/30 mt-0.5 shrink-0"
+                    strokeWidth={2.25}
+                  />
+                  <span className="text-gomu-purple-deep/55">
+                    Pas de tarif de lancement bloqué
+                  </span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <X
+                    size={17}
+                    className="text-gomu-purple-deep/30 mt-0.5 shrink-0"
+                    strokeWidth={2.25}
+                  />
+                  <span className="text-gomu-purple-deep/55">
+                    Pas de livraison offerte
+                  </span>
+                </li>
+              </ul>
+            </div>
           </div>
 
           <div className="max-w-[560px] mx-auto mt-8">

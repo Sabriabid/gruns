@@ -19,7 +19,7 @@ export default function Footer() {
     <footer className="bg-gomu-ink text-gomu-cream pt-16 md:pt-24 pb-10">
       <div className="max-w-7xl mx-auto px-4 md:px-8 grid md:grid-cols-4 gap-10 md:gap-12">
         <div>
-          <div className="font-display italic font-semibold text-[40px] leading-none text-gomu-cream">
+          <div className="font-display font-bold text-[40px] leading-none text-gomu-cream">
             Gomu<span className="text-gomu-chartreuse">.</span>
           </div>
           <p className="mt-5 text-[14px] leading-[1.6] text-gomu-cream/60 max-w-[260px]">

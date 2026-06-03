@@ -36,17 +36,20 @@ export default function Transparence({
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="reveal max-w-[1100px]">
           <Eyebrow>Transparence radicale</Eyebrow>
-          <h2 className="font-display tracking-display mt-4 text-[40px] md:text-[64px] lg:text-[80px] leading-[0.98] text-gomu-purple-deep">
+          <h2 className="font-display font-bold tracking-display mt-4 text-[40px] md:text-[64px] lg:text-[80px] leading-[0.98] text-gomu-purple-deep">
             Ce qui est sur l&apos;étiquette
             <br />
-            <span className="italic">
-              <span className="hl">est dans</span>
-            </span>{" "}
-            le produit.
+            <span className="hl">est dans</span> le produit.
           </h2>
           <p className="mt-7 text-[17px] md:text-[18px] leading-[1.6] text-gomu-ink/80 max-w-[680px]">
             {renderRich(framingLine, { onDark: false })}
           </p>
+          <a
+            href="#ingredients"
+            className="mt-5 inline-flex items-center gap-1.5 text-[15px] font-medium text-gomu-purple-deep underline underline-offset-4 decoration-gomu-purple-deep/30 hover:decoration-gomu-purple-deep"
+          >
+            Voir l&apos;étiquette nutritionnelle →
+          </a>
         </div>
 
         <div className="mt-14 md:mt-20 grid md:grid-cols-[1.05fr_0.95fr] gap-10 md:gap-16 items-center">
@@ -55,7 +58,7 @@ export default function Transparence({
               <span className="w-1.5 h-1.5 rounded-full bg-gomu-purple-deep/40"></span>
               Exemple illustratif
             </div>
-            <div className="rounded-3xl bg-gomu-paper text-gomu-ink overflow-hidden border border-gomu-purple-deep/10 shadow-[0_30px_60px_-30px_rgba(59,10,94,0.25)]">
+            <div className="card-pop bg-gomu-paper text-gomu-ink overflow-hidden border border-gomu-purple-deep/10">
             <div className="flex items-center justify-between px-6 py-4 border-b border-gomu-purple-deep/15 bg-gomu-cream">
               <div className="flex items-center gap-3">
                 <div className="w-9 h-9 rounded-full bg-gomu-purple-deep text-gomu-cream flex items-center justify-center font-display italic text-[14px]">

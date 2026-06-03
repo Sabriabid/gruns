@@ -187,8 +187,8 @@ export default function Ingredients() {
         <div className="reveal max-w-[1100px] flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <div>
             <Eyebrow>La formule, sans langue de bois</Eyebrow>
-            <h2 className="font-display tracking-display mt-4 text-[40px] md:text-[64px] lg:text-[80px] leading-[0.98] text-gomu-purple-deep">
-              Chaque actif. Chaque <span className="italic">forme</span>.
+            <h2 className="font-display font-bold tracking-display mt-4 text-[40px] md:text-[64px] lg:text-[80px] leading-[0.98] text-gomu-purple-deep">
+              Chaque actif. Chaque <span className="hl">forme</span>.
               <br />
               Chaque dose.
             </h2>
@@ -199,7 +199,7 @@ export default function Ingredients() {
           </p>
         </div>
 
-        <div className="mt-12 reveal rounded-3xl bg-gomu-paper border border-black/5 overflow-hidden">
+        <div className="mt-12 reveal card-pop bg-gomu-paper border border-black/5 overflow-hidden">
           <div className="hidden md:grid grid-cols-[1.4fr_1.4fr_1.2fr_0.8fr_0.6fr] gap-4 px-8 py-5 border-b border-gomu-purple-deep/15 text-[11px] uppercase tracking-cap text-gomu-purple-deep/60">
             <span>Actif</span>
             <span>Forme</span>

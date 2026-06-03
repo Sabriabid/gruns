@@ -34,10 +34,10 @@ export default function Rituel() {
       <div className="max-w-7xl mx-auto px-4 md:px-8 relative">
         <div className="reveal max-w-[900px]">
           <Eyebrow tone="light">Un jour avec Gomu</Eyebrow>
-          <h2 className="font-display tracking-display mt-4 text-[40px] md:text-[64px] lg:text-[76px] leading-[0.98]">
+          <h2 className="font-display font-bold tracking-display mt-4 text-[40px] md:text-[64px] lg:text-[76px] leading-[0.98]">
             30 secondes. Une fois.
             <br />
-            <span className="italic">Tu es tranquille pour la journée.</span>
+            <span className="hl-on-dark">Tu es tranquille pour la journée.</span>
           </h2>
         </div>
 

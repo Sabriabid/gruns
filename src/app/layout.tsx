@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
-import { Fraunces, Inter, JetBrains_Mono, Caveat } from "next/font/google";
+import { Fredoka, Inter, JetBrains_Mono, Caveat } from "next/font/google";
 import "./globals.css";
 
-const fraunces = Fraunces({
+const fredoka = Fredoka({
   variable: "--font-display",
   subsets: ["latin"],
-  style: ["normal", "italic"],
-  axes: ["opsz"],
+  weight: ["400", "500", "600", "700"],
 });
 
 const inter = Inter({
@@ -48,7 +47,7 @@ export default function RootLayout({
   return (
     <html
       lang="fr"
-      className={`${fraunces.variable} ${inter.variable} ${jetbrainsMono.variable} ${caveat.variable}`}
+      className={`${fredoka.variable} ${inter.variable} ${jetbrainsMono.variable} ${caveat.variable}`}
       suppressHydrationWarning
     >
       <body className="antialiased" suppressHydrationWarning>
