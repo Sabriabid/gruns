@@ -2,6 +2,7 @@
 
 import { Fragment, useState } from "react";
 import { ArrowRight } from "lucide-react";
+import PaymentBadges from "./PaymentBadges";
 
 // Live landing pages (config: src/lib/lp-angles.ts). Keep in sync with the
 // slugs served by app/lp/[slug]/page.tsx — any other slug 404s under export.
@@ -12,13 +13,29 @@ const LP_LINKS: Array<[string, string]> = [
   ["Le rituel", "/lp/le-rituel"],
 ];
 
+// Footer appears on both the homepage and the standalone content pages, so
+// homepage-section links are root-relative (/#…) to work from any route.
+const DISCOVER: Array<[string, string]> = [
+  ["La science", "/#science"],
+  ["Ingrédients", "/#ingredients"],
+  ["Le rituel", "/#rituel"],
+  ["FAQ", "/#faq"],
+];
+
+const COMPANY: Array<[string, string]> = [
+  ["Carrières", "/carrieres"],
+  ["Certifications", "/certifications"],
+  ["Presse", "/presse"],
+  ["Blog", "/blog"],
+];
+
 export default function Footer() {
   const [nlEmail, setNlEmail] = useState("");
 
   return (
     <footer className="bg-gomu-ink text-gomu-cream pt-16 md:pt-24 pb-10">
-      <div className="max-w-7xl mx-auto px-4 md:px-8 grid md:grid-cols-4 gap-10 md:gap-12">
-        <div>
+      <div className="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10 md:gap-12">
+        <div className="col-span-2 md:col-span-1">
           <div className="font-display font-bold text-[40px] leading-none text-gomu-cream">
             Gomu<span className="text-gomu-chartreuse">.</span>
           </div>
@@ -26,40 +43,49 @@ export default function Footer() {
             Nutrition quotidienne. Testée par Eurofins. Pensée pour toi.
           </p>
         </div>
+
         <div>
           <div className="text-[12px] uppercase tracking-cap text-gomu-cream/50 mb-4">
             Découvrir
           </div>
           <ul className="space-y-2.5 text-[14.5px] text-gomu-cream/85">
-            <li>
-              <a href="#" className="hover:text-gomu-yellow">
-                Notre histoire
-              </a>
-            </li>
-            <li>
-              <a href="#science" className="hover:text-gomu-yellow">
-                La science
-              </a>
-            </li>
-            <li>
-              <a href="#produit" className="hover:text-gomu-yellow">
-                Ingrédients
-              </a>
-            </li>
-            <li>
-              <a href="#faq" className="hover:text-gomu-yellow">
-                FAQ
-              </a>
-            </li>
+            {DISCOVER.map(([label, href]) => (
+              <li key={href}>
+                <a href={href} className="hover:text-gomu-yellow">
+                  {label}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
+
+        <div>
+          <div className="text-[12px] uppercase tracking-cap text-gomu-cream/50 mb-4">
+            Entreprise
+          </div>
+          <ul className="space-y-2.5 text-[14.5px] text-gomu-cream/85">
+            {COMPANY.map(([label, href]) => (
+              <li key={href}>
+                <a href={href} className="hover:text-gomu-yellow">
+                  {label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
         <div>
           <div className="text-[12px] uppercase tracking-cap text-gomu-cream/50 mb-4">
             Contact
           </div>
           <ul className="space-y-2.5 text-[14.5px] text-gomu-cream/85">
             <li>
-              <a href="#" className="hover:text-gomu-yellow">
+              <a href="/contact" className="hover:text-gomu-yellow">
+                Nous contacter
+              </a>
+            </li>
+            <li>
+              <a href="/contact" className="hover:text-gomu-yellow">
                 Service client
               </a>
             </li>
@@ -83,14 +109,15 @@ export default function Footer() {
             </li>
           </ul>
         </div>
-        <div>
+
+        <div className="col-span-2 md:col-span-3 lg:col-span-1">
           <div className="text-[12px] uppercase tracking-cap text-gomu-cream/50 mb-4">
             Newsletter
           </div>
           <p className="text-[14.5px] text-gomu-cream/85 mb-4">
             Reste informé du lancement
           </p>
-          <div className="flex items-center gap-2 border-b border-gomu-cream/30 focus-within:border-gomu-yellow transition-colors pb-2">
+          <div className="flex items-center gap-2 border-b border-gomu-cream/30 focus-within:border-gomu-yellow transition-colors pb-2 max-w-[320px]">
             <input
               type="email"
               value={nlEmail}
@@ -129,13 +156,22 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 md:px-8 mt-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-[13px] text-gomu-cream/60">
-        <div>© 2026 Gomu. Tous droits réservés.</div>
-        <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 mt-10 pt-8 border-t border-gomu-cream/15 flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
+        <div className="flex items-center gap-3">
+          <span className="text-[12px] uppercase tracking-cap text-gomu-cream/40">
+            Paiement sécurisé
+          </span>
+          <PaymentBadges />
+        </div>
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[13px] text-gomu-cream/60">
           <span>Halal &amp; Vegan</span>
           <span className="text-gomu-cream/25">·</span>
           <span>Tests Eurofins</span>
         </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 md:px-8 mt-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-[13px] text-gomu-cream/60">
+        <div>© 2026 Gomu. Tous droits réservés.</div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 md:px-8 mt-8 text-[11px] leading-[1.6] text-gomu-cream/45 italic">
