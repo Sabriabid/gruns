@@ -1,10 +1,30 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { ArrowRight, Menu, X } from "lucide-react";
 import { scrollToOffer } from "./scrollToOffer";
 
-export default function Header() {
+const NAV: Array<[string, string]> = [
+  ["produit", "Le sachet"],
+  ["ingredients", "Ingrédients"],
+  ["rituel", "Le rituel"],
+  ["faq", "FAQ"],
+];
+
+/**
+ * Site header. Two variants:
+ *  - "home" (default): in-page anchors (#produit…) + scroll-to-offer button.
+ *    Behaviour identical to the original homepage header.
+ *  - "page": used by standalone content pages (Carrières, Presse…). Anchors and
+ *    the CTA become root-relative (/#produit, /#offre) so they navigate back to
+ *    the homepage, and the logo links to `/`.
+ */
+export default function Header({
+  variant = "home",
+}: {
+  variant?: "home" | "page";
+} = {}) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -14,6 +34,16 @@ export default function Header() {
     window.addEventListener("scroll", on, { passive: true });
     return () => window.removeEventListener("scroll", on);
   }, []);
+
+  const isPage = variant === "page";
+  const base = isPage ? "/" : "";
+  const logoHref = isPage ? "/" : "#";
+
+  const ctaDesktopCls = `hidden md:inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[14px] font-semibold transition-all duration-200 ${
+    scrolled
+      ? "bg-gomu-purple-deep text-gomu-cream shadow-[0_4px_0_rgba(59,10,94,0.25)] hover:-translate-y-0.5 hover:bg-gomu-purple-1"
+      : "bg-gomu-yellow text-gomu-purple-deep shadow-[0_4px_0_rgba(59,10,94,0.3)] hover:-translate-y-0.5 hover:bg-gomu-chartreuse"
+  }`;
 
   return (
     <>
@@ -30,15 +60,10 @@ export default function Header() {
               scrolled ? "text-gomu-purple-deep" : "text-gomu-cream"
             }`}
           >
-            {[
-              ["#produit", "Le sachet"],
-              ["#ingredients", "Ingrédients"],
-              ["#rituel", "Le rituel"],
-              ["#faq", "FAQ"],
-            ].map(([href, label]) => (
+            {NAV.map(([id, label]) => (
               <a
-                key={href}
-                href={href}
+                key={id}
+                href={`${base}#${id}`}
                 className={`rounded-full px-3.5 py-1.5 transition-colors ${
                   scrolled
                     ? "hover:bg-gomu-purple-deep/8"
@@ -52,7 +77,7 @@ export default function Header() {
           <span className="md:hidden" aria-hidden />
 
           <a
-            href="#"
+            href={logoHref}
             className={`justify-self-center font-display font-bold text-[30px] leading-none tracking-tight transition-colors ${
               scrolled ? "text-gomu-purple-deep" : "text-gomu-cream"
             }`}
@@ -61,16 +86,15 @@ export default function Header() {
           </a>
 
           <div className="justify-self-end flex items-center gap-3">
-            <button
-              onClick={scrollToOffer}
-              className={`hidden md:inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[14px] font-semibold transition-all duration-200 ${
-                scrolled
-                  ? "bg-gomu-purple-deep text-gomu-cream shadow-[0_4px_0_rgba(59,10,94,0.25)] hover:-translate-y-0.5 hover:bg-gomu-purple-1"
-                  : "bg-gomu-yellow text-gomu-purple-deep shadow-[0_4px_0_rgba(59,10,94,0.3)] hover:-translate-y-0.5 hover:bg-gomu-chartreuse"
-              }`}
-            >
-              Rejoindre la liste <ArrowRight size={16} />
-            </button>
+            {isPage ? (
+              <Link href="/#offre" className={ctaDesktopCls}>
+                Rejoindre la liste <ArrowRight size={16} />
+              </Link>
+            ) : (
+              <button onClick={scrollToOffer} className={ctaDesktopCls}>
+                Rejoindre la liste <ArrowRight size={16} />
+              </button>
+            )}
             <button
               className={`md:hidden transition-colors ${
                 scrolled ? "text-gomu-purple-deep" : "text-gomu-cream"
@@ -109,28 +133,35 @@ export default function Header() {
             </button>
           </div>
           <nav className="mt-10 flex flex-col gap-6 text-[22px] font-display text-gomu-purple-deep">
-            <a onClick={() => setOpen(false)} href="#produit">
-              Le sachet
-            </a>
-            <a onClick={() => setOpen(false)} href="#ingredients">
-              Ingrédients
-            </a>
-            <a onClick={() => setOpen(false)} href="#rituel">
-              Le rituel
-            </a>
-            <a onClick={() => setOpen(false)} href="#faq">
-              FAQ
-            </a>
+            {NAV.map(([id, label]) => (
+              <a
+                key={id}
+                onClick={() => setOpen(false)}
+                href={`${base}#${id}`}
+              >
+                {label}
+              </a>
+            ))}
           </nav>
-          <button
-            onClick={() => {
-              setOpen(false);
-              scrollToOffer();
-            }}
-            className="mt-10 w-full inline-flex items-center justify-center gap-2 rounded-full bg-gomu-purple-deep text-gomu-cream px-6 py-4 text-[15px] font-medium"
-          >
-            Rejoindre la liste <ArrowRight size={16} />
-          </button>
+          {isPage ? (
+            <Link
+              href="/#offre"
+              onClick={() => setOpen(false)}
+              className="mt-10 w-full inline-flex items-center justify-center gap-2 rounded-full bg-gomu-purple-deep text-gomu-cream px-6 py-4 text-[15px] font-medium"
+            >
+              Rejoindre la liste <ArrowRight size={16} />
+            </Link>
+          ) : (
+            <button
+              onClick={() => {
+                setOpen(false);
+                scrollToOffer();
+              }}
+              className="mt-10 w-full inline-flex items-center justify-center gap-2 rounded-full bg-gomu-purple-deep text-gomu-cream px-6 py-4 text-[15px] font-medium"
+            >
+              Rejoindre la liste <ArrowRight size={16} />
+            </button>
+          )}
         </aside>
       </div>
     </>
