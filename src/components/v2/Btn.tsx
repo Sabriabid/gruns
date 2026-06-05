@@ -27,7 +27,7 @@ export default function Btn({
   ...rest
 }: Props) {
   const base =
-    "inline-flex items-center justify-center gap-2 rounded-full px-7 md:px-8 py-3.5 md:py-4 text-[15px] font-semibold transition-all duration-200 active:scale-[0.98]";
+    "inline-flex items-center justify-center gap-2 rounded-full px-8 md:px-9 py-4 md:py-[17px] text-[15px] md:text-[16px] font-semibold transition-all duration-200 active:scale-[0.98]";
 
   const styles =
     variant === "primary"
