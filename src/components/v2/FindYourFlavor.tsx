@@ -6,12 +6,14 @@ import Eyebrow from "./Eyebrow";
 
 // gruns "Find Your Flavor" 4-product grid — but Gomu has ONE SKU. We map the 4
 // cards to the 4 real angle entry-points (same as Footer LP_LINKS); each leads
-// to the same sachet. No invented products.
-const CARDS: { name: string; badge: string; href: string }[] = [
-  { name: "Le sachet quotidien", badge: "Populaire", href: "/lp/un-sachet" },
-  { name: "Halal natif", badge: "Halal & Vegan", href: "/lp/halal" },
-  { name: "Tout-en-un", badge: "5 pots → 1", href: "/lp/tout-en-un" },
-  { name: "Le rituel", badge: "Format gummy", href: "/lp/le-rituel" },
+// to the same sachet. No invented products. Each card gets a distinct gradient
+// so the grid reads colourful like gruns' multi-flavour lineup (kept in-brand
+// with purple tints rather than inventing new product colours).
+const CARDS: { name: string; badge: string; href: string; grad: string }[] = [
+  { name: "Le sachet quotidien", badge: "Populaire", href: "/lp/un-sachet", grad: "bg-gradient-to-br from-gomu-purple-deep to-gomu-purple-2" },
+  { name: "Halal natif", badge: "Halal & Vegan", href: "/lp/halal", grad: "bg-gradient-to-br from-gomu-purple-1 to-gomu-purple-4" },
+  { name: "Tout-en-un", badge: "5 pots → 1", href: "/lp/tout-en-un", grad: "bg-gradient-to-br from-gomu-purple-3 to-gomu-purple-deep" },
+  { name: "Le rituel", badge: "Format gummy", href: "/lp/le-rituel", grad: "bg-gradient-to-br from-gomu-purple-2 to-gomu-purple-1" },
 ];
 
 export default function FindYourFlavor() {
@@ -37,7 +39,7 @@ export default function FindYourFlavor() {
               key={i}
               className="reveal card-pop bg-gomu-paper border border-gomu-purple-deep/10 overflow-hidden flex flex-col"
             >
-              <div className="relative aspect-square bg-gomu-purple-deep ph-stripes-cream flex items-center justify-center">
+              <div className={`relative aspect-square ${c.grad} flex items-center justify-center`}>
                 <span className="absolute top-3 left-3 rounded-full bg-gomu-yellow text-gomu-purple-deep text-[11px] uppercase tracking-cap font-semibold px-2.5 py-1">
                   {c.badge}
                 </span>

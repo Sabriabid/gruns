@@ -21,16 +21,13 @@ import Offre from "@/components/v2/Offre";
 import FAQ from "@/components/v2/FAQ";
 import Footer from "@/components/v2/Footer";
 import BigWordmark from "@/components/v2/BigWordmark";
+import StickyCTA from "@/components/v2/StickyCTA";
 import Btn from "@/components/v2/Btn";
 
 /**
- * Full homepage composition, shared by the default landing (`/`) and the
- * color-variant route (`/bordeaux`, which wraps this in `.theme-bordeaux`).
- *
- * `source` is the attribution param appended to the closing CTA so each
- * colorway can be tracked separately.
+ * Full homepage composition for the default landing (`/`).
  */
-export default function SiteHome({ source = "homepage" }: { source?: string } = {}) {
+export default function SiteHome() {
   return (
     <RevealBoundary>
       <AnnouncementBar />
@@ -55,7 +52,7 @@ export default function SiteHome({ source = "homepage" }: { source?: string } = 
         <FAQ />
         <section className="bg-gomu-cream pb-20 md:pb-28 text-center">
           <div className="max-w-4xl mx-auto px-6 md:px-8">
-            <Btn href={`/lp/un-sachet?source=${source}`} className="w-full sm:w-auto">
+            <Btn href="/lp/un-sachet?source=homepage" className="w-full sm:w-auto">
               Voir le produit <ArrowRight size={18} />
             </Btn>
           </div>
@@ -63,6 +60,7 @@ export default function SiteHome({ source = "homepage" }: { source?: string } = 
       </main>
       <Footer />
       <BigWordmark />
+      <StickyCTA />
     </RevealBoundary>
   );
 }
