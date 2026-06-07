@@ -3,7 +3,7 @@
 import { ArrowRight, Check } from "lucide-react";
 import Btn from "./Btn";
 import Eyebrow from "./Eyebrow";
-import { scrollToOffer } from "./scrollToOffer";
+import { openWaitlist } from "./waitlistStore";
 
 const PERKS = [
   "Premier mois à 20€ au lieu de 29€",
@@ -53,7 +53,7 @@ export default function Waitlist() {
             </ul>
 
             <div className="mt-10 text-center">
-              <Btn onClick={scrollToOffer} onDark>
+              <Btn onClick={openWaitlist} onDark>
                 Bloquer ma place à 20€ <ArrowRight size={18} />
               </Btn>
             </div>

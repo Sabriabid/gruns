@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { ArrowRight, ArrowDown, Check } from "lucide-react";
 import Btn from "./Btn";
+import { openWaitlist } from "./waitlistStore";
 import Sticker from "./Sticker";
 import StarRating from "@/components/ui/StarRating";
 import { renderRich, type RichText } from "@/components/lp-v2/richText";
@@ -90,13 +91,23 @@ export default function Hero({
         )}
 
         <div className="mt-9 flex flex-col items-center gap-5 px-4 sm:px-0">
-          <Btn
-            href={ctaHref}
-            onDark
-            className="w-full sm:w-auto sm:min-w-[360px]"
-          >
-            Rejoindre la liste d&apos;attente <ArrowRight size={18} />
-          </Btn>
+          {ctaHref.startsWith("#") ? (
+            <Btn
+              onClick={openWaitlist}
+              onDark
+              className="w-full sm:w-auto sm:min-w-[360px]"
+            >
+              Rejoindre la liste d&apos;attente <ArrowRight size={18} />
+            </Btn>
+          ) : (
+            <Btn
+              href={ctaHref}
+              onDark
+              className="w-full sm:w-auto sm:min-w-[360px]"
+            >
+              Rejoindre la liste d&apos;attente <ArrowRight size={18} />
+            </Btn>
+          )}
 
           <div className="flex items-center gap-2.5 text-[14px] text-gomu-cream/85">
             <StarRating size={18} />

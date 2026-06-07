@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
-import { scrollToOffer } from "@/components/v2/scrollToOffer";
+import { openWaitlist } from "@/components/v2/waitlistStore";
 
 /**
  * Mobile-only sticky CTA for the landing pages. Appears after a short scroll
@@ -26,7 +26,7 @@ export default function StickyCTA() {
       }`}
     >
       <button
-        onClick={scrollToOffer}
+        onClick={openWaitlist}
         className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-gomu-purple-deep text-gomu-cream py-3.5 text-[15px] font-medium hover:bg-gomu-purple-1 transition-colors"
       >
         Rejoindre la liste d&apos;attente <ArrowRight size={16} />

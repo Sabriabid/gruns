@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Fredoka, Inter, JetBrains_Mono, Caveat } from "next/font/google";
 import "./globals.css";
+import WaitlistModal from "@/components/v2/WaitlistModal";
 
 const fredoka = Fredoka({
   variable: "--font-display",
@@ -52,6 +53,7 @@ export default function RootLayout({
     >
       <body className="antialiased" suppressHydrationWarning>
         {children}
+        <WaitlistModal />
       </body>
     </html>
   );

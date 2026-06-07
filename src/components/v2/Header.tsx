@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Menu, X } from "lucide-react";
-import { scrollToOffer } from "./scrollToOffer";
+import { openWaitlist } from "./waitlistStore";
 
 const NAV: Array<[string, string]> = [
   ["produit", "Le sachet"],
@@ -91,7 +91,7 @@ export default function Header({
                 Rejoindre la liste <ArrowRight size={16} />
               </Link>
             ) : (
-              <button onClick={scrollToOffer} className={ctaDesktopCls}>
+              <button onClick={openWaitlist} className={ctaDesktopCls}>
                 Rejoindre la liste <ArrowRight size={16} />
               </button>
             )}
@@ -155,7 +155,7 @@ export default function Header({
             <button
               onClick={() => {
                 setOpen(false);
-                scrollToOffer();
+                openWaitlist();
               }}
               className="mt-10 w-full inline-flex items-center justify-center gap-2 rounded-full bg-gomu-purple-deep text-gomu-cream px-6 py-4 text-[15px] font-medium"
             >

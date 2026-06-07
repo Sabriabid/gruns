@@ -1,9 +1,8 @@
 "use client";
 
-import { useState } from "react";
 import { ArrowRight, Check, X } from "lucide-react";
 import Eyebrow from "./Eyebrow";
-import { resolveSource, submitToBrevo } from "@/lib/brevo";
+import { useWaitlistForm } from "./useWaitlistForm";
 
 const BENEFITS = [
   "15-20 actifs à dosages cliniques",
@@ -14,29 +13,20 @@ const BENEFITS = [
   "Garantie satisfait ou remboursé 30 jours",
 ];
 
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
 export default function Offre() {
-  const [email, setEmail] = useState("");
-  const [submitted, setSubmitted] = useState(false);
-  const [submitting, setSubmitting] = useState(false);
-  const [error, setError] = useState("");
-
-  const submit = async () => {
-    if (!EMAIL_RE.test(email)) {
-      setError("Adresse email invalide.");
-      return;
-    }
-    setError("");
-    setSubmitting(true);
-    const result = await submitToBrevo(email, resolveSource());
-    setSubmitting(false);
-    if (!result.ok) {
-      setError("Une erreur est survenue. Réessaie dans un instant.");
-      return;
-    }
-    setSubmitted(true);
-  };
+  const {
+    prenom,
+    setPrenom,
+    email,
+    setEmail,
+    hp,
+    setHp,
+    submitting,
+    submitted,
+    error,
+    setError,
+    submit,
+  } = useWaitlistForm();
 
   return (
     <section
@@ -162,6 +152,37 @@ export default function Offre() {
           <div className="max-w-[560px] mx-auto mt-8">
             {!submitted ? (
               <>
+                {/* Honeypot: off-screen, invisible to humans; bots fill it and get dropped. */}
+                <div
+                  aria-hidden="true"
+                  className="absolute -left-[9999px] top-0 h-0 w-0 overflow-hidden"
+                >
+                  <input
+                    type="text"
+                    name="hp"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={hp}
+                    onChange={(e) => setHp(e.target.value)}
+                  />
+                </div>
+                <div className="bg-gomu-cream rounded-full sm:p-1.5 p-3 mb-3">
+                  <input
+                    type="text"
+                    autoComplete="given-name"
+                    value={prenom}
+                    onChange={(e) => {
+                      setPrenom(e.target.value);
+                      setError("");
+                    }}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") submit();
+                    }}
+                    placeholder="Ton prénom"
+                    aria-label="Prénom"
+                    className="w-full bg-transparent text-gomu-purple-deep placeholder-gomu-purple-deep/40 px-5 py-3 outline-none text-[15px]"
+                  />
+                </div>
                 <div className="flex flex-col sm:flex-row gap-3 bg-gomu-cream rounded-full sm:p-1.5 p-3">
                   <input
                     type="email"

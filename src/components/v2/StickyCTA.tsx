@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
-import { scrollToOffer } from "./scrollToOffer";
+import { openWaitlist } from "./waitlistStore";
 
 /**
  * Homepage sticky CTA (gruns DA — gruns keeps a persistent "Try Grüns" pill on
@@ -29,7 +29,7 @@ export default function StickyCTA() {
         }`}
       >
         <button
-          onClick={scrollToOffer}
+          onClick={openWaitlist}
           className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-gomu-purple-deep text-gomu-cream py-3.5 text-[15px] font-semibold shadow-[0_4px_0_rgba(59,10,94,0.25)]"
         >
           Rejoindre la liste · 20€ <ArrowRight size={16} />
@@ -38,7 +38,7 @@ export default function StickyCTA() {
 
       {/* Desktop — floating pill bottom-right */}
       <button
-        onClick={scrollToOffer}
+        onClick={openWaitlist}
         className={`hidden md:inline-flex fixed bottom-6 right-6 z-50 items-center gap-2 rounded-full bg-gomu-purple-deep text-gomu-cream pl-6 pr-5 py-4 text-[15px] font-semibold shadow-[0_10px_30px_-8px_rgba(59,10,94,0.6)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-gomu-purple-1 ${
           visible
             ? "opacity-100 translate-y-0 pointer-events-auto"

@@ -1,7 +1,7 @@
 "use client";
 
 import { ArrowRight } from "lucide-react";
-import { scrollToOffer } from "./scrollToOffer";
+import { openWaitlist } from "./waitlistStore";
 import Eyebrow from "./Eyebrow";
 
 // gruns "Find Your Flavor" 4-product grid — but Gomu has ONE SKU. We map the 4
@@ -57,7 +57,7 @@ export default function FindYourFlavor() {
                 </div>
                 <div className="mt-auto pt-5 flex flex-col gap-2">
                   <button
-                    onClick={scrollToOffer}
+                    onClick={openWaitlist}
                     className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-gomu-purple-deep text-gomu-cream px-4 py-2.5 text-[14px] font-semibold transition-all duration-200 hover:-translate-y-0.5 hover:bg-gomu-purple-1"
                   >
                     Rejoindre la liste <ArrowRight size={15} />
