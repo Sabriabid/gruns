@@ -1,0 +1,238 @@
+{%- comment -%}
+  LP Héro — port de src/components/lp/LPHero.tsx
+  Image = LCP : préchargée (preload_tag → header Link), eager + fetchpriority=high.
+{%- endcomment -%}
+
+<style>
+  .lp-hero {
+    background: var(--lp-cream);
+    padding-block: 4rem;
+  }
+
+  @media (min-width: 640px) {
+    .lp-hero { padding-block: 5rem; }
+  }
+
+  @media (min-width: 1024px) {
+    .lp-hero { padding-block: 7rem; }
+  }
+
+  .lp-hero__grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+  }
+
+  @media (min-width: 1024px) {
+    .lp-hero__grid {
+      flex-direction: row;
+      gap: 4rem;
+    }
+  }
+
+  .lp-hero__text {
+    flex: 1;
+    max-width: 36rem;
+    text-align: center;
+  }
+
+  @media (min-width: 1024px) {
+    .lp-hero__text { text-align: left; }
+  }
+
+  .lp-hero__badge { margin-bottom: 1.25rem; }
+
+  .lp-hero__title {
+    font-size: 1.875rem;
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--lp-dark);
+    margin-bottom: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .lp-hero__title { font-size: 2.25rem; }
+  }
+
+  @media (min-width: 1024px) {
+    .lp-hero__title { font-size: 3rem; }
+  }
+
+  .lp-hero__subtitle {
+    font-size: 1rem;
+    line-height: 1.625;
+    color: rgba(26, 10, 46, 0.7);
+    margin-bottom: 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .lp-hero__subtitle { font-size: 1.125rem; }
+  }
+
+  .lp-hero__trust {
+    margin-top: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: rgba(26, 10, 46, 0.6);
+  }
+
+  @media (min-width: 1024px) {
+    .lp-hero__trust { justify-content: flex-start; }
+  }
+
+  .lp-hero__media {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  .lp-hero__img {
+    border-radius: var(--lp-radius-card-lg);
+    box-shadow: 0 20px 60px -12px rgba(124, 58, 237, 0.25);
+    width: 100%;
+    max-width: 320px;
+  }
+
+  @media (min-width: 640px) {
+    .lp-hero__img { max-width: 400px; }
+  }
+
+  @media (min-width: 1024px) {
+    .lp-hero__img { max-width: 500px; }
+  }
+</style>
+
+{%- liquid
+  assign img = section.settings.image
+-%}
+
+{%- if img != blank -%}
+  {{ img | image_url: width: 800 | preload_tag: as: 'image' }}
+{%- endif -%}
+
+<section class="lp-hero">
+  <div class="lp-container">
+    <div class="lp-hero__grid">
+      <div class="lp-hero__text" data-lp-reveal="left">
+        {%- if section.settings.badge != blank -%}
+          <span class="lp-badge lp-hero__badge">{{ section.settings.badge }}</span>
+        {%- endif -%}
+
+        <h1 class="lp-hero__title">{{ section.settings.headline }}</h1>
+
+        {%- if section.settings.subtitle != blank -%}
+          <p class="lp-hero__subtitle">{{ section.settings.subtitle }}</p>
+        {%- endif -%}
+
+        <a href="{{ section.settings.cta_link | default: '#buy-box' }}" class="lp-btn">
+          {{- section.settings.cta_label -}}
+        </a>
+
+        {%- if section.settings.trust_text != blank -%}
+          <div class="lp-hero__trust">
+            {%- if section.settings.show_stars -%}
+              {% render 'lp-stars', size: 16 %}
+            {%- endif -%}
+            <span>{{ section.settings.trust_text }}</span>
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="lp-hero__media" data-lp-reveal="right">
+        <div class="lp-float">
+          {%- if img != blank -%}
+            <img
+              src="{{ img | image_url: width: 800 }}"
+              srcset="{{ img | image_url: width: 400 }} 400w, {{ img | image_url: width: 600 }} 600w, {{ img | image_url: width: 800 }} 800w, {{ img | image_url: width: 1000 }} 1000w"
+              sizes="(min-width: 1024px) 500px, (min-width: 640px) 400px, 90vw"
+              width="800"
+              height="{{ 800 | divided_by: img.aspect_ratio | round }}"
+              alt="{{ img.alt | default: section.settings.headline | escape }}"
+              class="lp-hero__img"
+              loading="eager"
+              fetchpriority="high"
+            >
+          {%- else -%}
+            <img
+              src="{{ 'lp-product-hero.jpeg' | asset_img_url: '800x' }}"
+              width="800"
+              height="800"
+              alt="{{ section.settings.headline | escape }}"
+              class="lp-hero__img"
+              loading="eager"
+              fetchpriority="high"
+            >
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "LP — Héro",
+  "settings": [
+    {
+      "type": "text",
+      "id": "badge",
+      "label": "Badge",
+      "default": "Offre de lancement — Jusqu’à -30%"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Titre (H1)",
+      "default": "6 raisons d’adopter Gomu"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Sous-titre"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Texte du CTA",
+      "default": "Profiter de l’offre -30%"
+    },
+    {
+      "type": "text",
+      "id": "cta_link",
+      "label": "Lien du CTA",
+      "default": "#buy-box",
+      "info": "Ancre (#buy-box) ou URL"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_stars",
+      "label": "Afficher les étoiles",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "trust_text",
+      "label": "Texte de réassurance",
+      "default": "⭐ 4.8 | [X] avis | Fabriqué en France 🇫🇷"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image produit",
+      "info": "Carrée, min. 1000×1000 px. À défaut : visuel de démo du kit."
+    }
+  ],
+  "presets": [
+    {
+      "name": "LP — Héro"
+    }
+  ],
+  "enabled_on": {
+    "templates": ["page", "product"]
+  }
+}
+{% endschema %}

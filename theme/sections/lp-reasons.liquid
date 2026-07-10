@@ -1,0 +1,215 @@
+{%- comment -%}
+  LP Raisons — port de src/components/lp/LPReason.tsx (rendu 6× dans la page).
+  Chaque block "reason" = une bande pleine largeur : index pair fond blanc
+  (texte à gauche, image à droite), index impair fond cream et ordre inversé,
+  reveals inversés. Numéro fantôme auto ("01".."12") dérivé de forloop.index.
+  Image vide → fallback cyclique sur les 6 visuels de démo du kit.
+{%- endcomment -%}
+
+<style>
+  .lp-reasons__band {
+    background: var(--lp-white);
+  }
+
+  .lp-reasons__band--alt {
+    background: var(--lp-cream);
+  }
+
+  .lp-reasons__row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .lp-reasons__row { gap: 3rem; }
+  }
+
+  @media (min-width: 1024px) {
+    .lp-reasons__row {
+      flex-direction: row;
+      gap: 4rem;
+    }
+
+    .lp-reasons__band--alt .lp-reasons__row {
+      flex-direction: row-reverse;
+    }
+  }
+
+  .lp-reasons__text {
+    flex: 1;
+  }
+
+  .lp-reasons__number {
+    display: block;
+    font-size: 3.75rem;
+    font-weight: 700;
+    line-height: 1;
+    color: rgba(124, 58, 237, 0.1);
+  }
+
+  @media (min-width: 1024px) {
+    .lp-reasons__number { font-size: 4.5rem; }
+  }
+
+  .lp-reasons__eyebrow {
+    margin-top: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .lp-reasons__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--lp-dark);
+    margin-bottom: 1rem;
+  }
+
+  @media (min-width: 1024px) {
+    .lp-reasons__title { font-size: 1.875rem; }
+  }
+
+  .lp-reasons__content {
+    font-size: 1rem;
+    line-height: 1.625;
+    color: rgba(26, 10, 46, 0.6);
+  }
+
+  @media (min-width: 1024px) {
+    .lp-reasons__content { font-size: 1.125rem; }
+  }
+
+  .lp-reasons__content p + p {
+    margin-top: 1rem;
+  }
+
+  .lp-reasons__media {
+    flex: 1;
+    width: 100%;
+  }
+
+  .lp-reasons__img {
+    width: 100%;
+    border-radius: var(--lp-radius-card);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  }
+</style>
+
+{%- liquid
+  assign fallback_images = 'lp-benefits-lifestyle.jpeg lp-lifestyle-sachet.jpeg lp-clinical-stats.jpeg lp-timeline-expectations.jpeg lp-social-proof.jpeg lp-comparison-table.jpeg' | split: ' '
+-%}
+
+{%- for block in section.blocks -%}
+  {%- liquid
+    assign parity = forloop.index0 | modulo: 2
+    assign num = forloop.index
+    if num < 10
+      assign num = num | prepend: '0'
+    endif
+    assign fallback_index = forloop.index0 | modulo: 6
+    assign fallback = fallback_images[fallback_index]
+
+    if parity == 0
+      assign band_class = 'lp-reasons__band'
+      assign text_reveal = 'left'
+      assign img_reveal = 'right'
+    else
+      assign band_class = 'lp-reasons__band lp-reasons__band--alt'
+      assign text_reveal = 'right'
+      assign img_reveal = 'left'
+    endif
+  -%}
+  <section class="{{ band_class }} lp-section" {{ block.shopify_attributes }}>
+    <div class="lp-container">
+      <div class="lp-reasons__row">
+        <div class="lp-reasons__text" data-lp-reveal="{{ text_reveal }}">
+          <span class="lp-reasons__number" aria-hidden="true">{{ num }}</span>
+
+          {%- if block.settings.category != blank -%}
+            <span class="lp-eyebrow lp-reasons__eyebrow">{{ block.settings.category }}</span>
+          {%- endif -%}
+
+          <h2 class="lp-reasons__title">{{ block.settings.title }}</h2>
+
+          {%- if block.settings.content != blank -%}
+            <div class="lp-reasons__content">{{ block.settings.content }}</div>
+          {%- endif -%}
+        </div>
+
+        <div class="lp-reasons__media" data-lp-reveal="{{ img_reveal }}">
+          {%- if block.settings.image != blank -%}
+            {{
+              block.settings.image
+              | image_url: width: 1200
+              | image_tag:
+                widths: '400, 600, 800, 1200',
+                sizes: '(min-width: 1024px) 600px, 90vw',
+                loading: 'lazy',
+                class: 'lp-reasons__img'
+            }}
+          {%- else -%}
+            <img
+              src="{{ fallback | asset_img_url: '800x' }}"
+              width="800"
+              height="800"
+              alt="{{ block.settings.title | escape }}"
+              class="lp-reasons__img"
+              loading="lazy"
+            >
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </section>
+{%- endfor -%}
+
+{% schema %}
+{
+  "name": "LP — Raisons",
+  "max_blocks": 12,
+  "blocks": [
+    {
+      "type": "reason",
+      "name": "Raison",
+      "settings": [
+        {
+          "type": "text",
+          "id": "category",
+          "label": "Catégorie (eyebrow)",
+          "default": "Simplicité"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titre",
+          "default": "Toute ta nutrition quotidienne dans un seul sachet"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Texte",
+          "default": "<p>Vitamines, minéraux, prébiotiques : Gomu remplace ton armoire à compléments par un geste unique de 30 secondes, sans eau ni shaker.</p>"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+          "info": "Carrée, min. 1000×1000 px. À défaut : visuel de démo du kit (rotation selon la position)."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "LP — Raisons",
+      "blocks": [
+        { "type": "reason" }
+      ]
+    }
+  ],
+  "enabled_on": {
+    "templates": ["page", "product"]
+  }
+}
+{% endschema %}

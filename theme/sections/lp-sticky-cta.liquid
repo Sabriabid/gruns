@@ -1,0 +1,90 @@
+{%- comment -%}
+  LP CTA sticky — port de src/components/lp/LPStickyCTA.tsx
+  Barre fixe mobile (masquée ≥1024px). L'apparition au scroll est gérée par
+  lp.js via [data-lp-sticky="<seuil px>"] qui ajoute .lp-sticky--visible ;
+  sans JS (html.no-js), la barre reste visible en permanence (fallback).
+{%- endcomment -%}
+
+<style>
+  .lp-sticky {
+    position: fixed;
+    bottom: 0;
+    inset-inline: 0;
+    z-index: 50;
+    background: rgba(248, 245, 255, 0.95);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    border-top: 1px solid rgba(124, 58, 237, 0.1);
+    padding: 0.75rem;
+    transform: translateY(110%);
+    transition: transform 0.3s var(--lp-ease-out);
+  }
+
+  .lp-sticky--visible {
+    transform: none;
+  }
+
+  html.no-js .lp-sticky {
+    transform: none;
+  }
+
+  @media (min-width: 1024px) {
+    .lp-sticky { display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .lp-sticky { transition: none; }
+  }
+
+  .lp-sticky__btn {
+    font-size: 1rem;
+    padding-block: 0.875rem;
+  }
+</style>
+
+<div class="lp-sticky" data-lp-sticky="{{ section.settings.threshold }}">
+  <a
+    href="{{ section.settings.link | default: '#buy-box' }}"
+    class="lp-btn lp-btn--block lp-sticky__btn"
+  >
+    {{- section.settings.label -}}
+  </a>
+</div>
+
+{% schema %}
+{
+  "name": "LP — CTA sticky",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Texte du bouton",
+      "default": "Profiter de l’offre -30%"
+    },
+    {
+      "type": "text",
+      "id": "link",
+      "label": "Lien",
+      "default": "#buy-box",
+      "info": "Ancre (#buy-box) ou URL"
+    },
+    {
+      "type": "range",
+      "id": "threshold",
+      "label": "Seuil d’apparition (px)",
+      "min": 200,
+      "max": 1200,
+      "step": 100,
+      "default": 600
+    }
+  ],
+  "presets": [
+    {
+      "name": "LP — CTA sticky"
+    }
+  ],
+  "enabled_on": {
+    "templates": ["page", "product"]
+  }
+}
+{% endschema %}

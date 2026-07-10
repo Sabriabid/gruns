@@ -1,0 +1,167 @@
+{%- comment -%}
+  LP Stats — port de src/components/lp/LPSocialProofStats.tsx
+  Carte jaune pâle sur fond cream : grille de stats (stagger au scroll)
+  puis visuel centré dessous.
+{%- endcomment -%}
+
+<style>
+  .lp-stats {
+    background: var(--lp-cream);
+  }
+
+  .lp-stats__card {
+    background: var(--lp-light-yellow);
+    border-radius: var(--lp-radius-card-lg);
+    padding: 1.25rem;
+  }
+
+  @media (min-width: 640px) {
+    .lp-stats__card { padding: 2rem; }
+  }
+
+  @media (min-width: 1024px) {
+    .lp-stats__card { padding: 3rem; }
+  }
+
+  .lp-stats__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  @media (min-width: 640px) {
+    .lp-stats__grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .lp-stats__stat {
+    text-align: center;
+  }
+
+  .lp-stats__value {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: var(--lp-purple);
+    margin-bottom: 0.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .lp-stats__value { font-size: 3rem; }
+  }
+
+  @media (min-width: 1024px) {
+    .lp-stats__value { font-size: 3.75rem; }
+  }
+
+  .lp-stats__label {
+    font-size: 0.875rem;
+    color: rgba(26, 10, 46, 0.6);
+  }
+
+  .lp-stats__media {
+    display: flex;
+    justify-content: center;
+  }
+
+  .lp-stats__img {
+    border-radius: var(--lp-radius-card);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 42rem;
+  }
+</style>
+
+{%- assign img = section.settings.image -%}
+
+<section class="lp-stats lp-section">
+  <div class="lp-container lp-container--narrow">
+    <div class="lp-stats__card">
+      {%- if section.blocks.size > 0 -%}
+        <div class="lp-stats__grid">
+          {%- for block in section.blocks -%}
+            <div
+              class="lp-stats__stat"
+              data-lp-reveal="up"
+              {% if forloop.index0 > 0 %}data-lp-delay="{{ forloop.index0 }}"{% endif %}
+              {{ block.shopify_attributes }}
+            >
+              <p class="lp-stats__value">{{ block.settings.value }}</p>
+              <p class="lp-stats__label">{{ block.settings.label }}</p>
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      <div class="lp-stats__media">
+        {%- if img != blank -%}
+          {{
+            img
+            | image_url: width: 1200
+            | image_tag:
+              widths: '400, 600, 800, 1200',
+              sizes: '(min-width: 768px) 672px, 90vw',
+              loading: 'lazy',
+              class: 'lp-stats__img'
+          }}
+        {%- else -%}
+          <img
+            src="{{ 'lp-clinical-stats.jpeg' | asset_img_url: '800x' }}"
+            width="800"
+            height="800"
+            alt="Statistiques cliniques Gomu"
+            class="lp-stats__img"
+            loading="lazy"
+          >
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "LP — Statistiques",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image statistiques",
+      "info": "Carrée, min. 1000×1000 px. À défaut : visuel de démo du kit."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Statistique",
+      "settings": [
+        {
+          "type": "text",
+          "id": "value",
+          "label": "Valeur",
+          "default": "[X]%"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Libellé",
+          "default": "disent avoir plus d’énergie au quotidien"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "LP — Statistiques",
+      "blocks": [
+        { "type": "stat", "settings": { "value": "[X]%", "label": "disent avoir plus d’énergie au quotidien" } },
+        { "type": "stat", "settings": { "value": "[X]%", "label": "constatent une meilleure digestion" } },
+        { "type": "stat", "settings": { "value": "[X]%", "label": "recommandent Gomu à leur entourage" } }
+      ]
+    }
+  ],
+  "enabled_on": {
+    "templates": ["page", "product"]
+  }
+}
+{% endschema %}

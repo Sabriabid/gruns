@@ -1,0 +1,288 @@
+{%- comment -%}
+  LP Pied de page — port de src/components/lp/LPFooter.tsx
+  Nav des LP (blocks lp_link), liens légaux (legal_link), réseaux (social_link),
+  copyright avec année dynamique. Zéro JS.
+{%- endcomment -%}
+
+<style>
+  .lp-footer {
+    background: var(--lp-dark);
+    color: var(--lp-white);
+    padding-block: 4rem;
+  }
+
+  .lp-footer__brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--lp-yellow);
+    text-align: center;
+    margin-bottom: 0.25rem;
+  }
+
+  .lp-footer__tagline {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.6);
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .lp-footer__nav {
+    margin-bottom: 2rem;
+  }
+
+  .lp-footer__nav-heading {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+    text-align: center;
+    margin-bottom: 0.75rem;
+  }
+
+  .lp-footer__nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 1rem;
+    row-gap: 0.5rem;
+    font-size: 0.875rem;
+  }
+
+  .lp-footer__link {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .lp-footer__link:hover {
+    color: var(--lp-white);
+  }
+
+  .lp-footer__bottom {
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .lp-footer__legal {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    font-size: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .lp-footer__legal-link {
+    color: rgba(255, 255, 255, 0.4);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .lp-footer__legal-link:hover {
+    color: var(--lp-white);
+  }
+
+  .lp-footer__socials {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    font-size: 0.875rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .lp-footer__social-link {
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .lp-footer__social-link:hover {
+    color: var(--lp-white);
+  }
+
+  .lp-footer__copyright {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.4);
+    text-align: center;
+  }
+</style>
+
+{%- liquid
+  assign lp_links = section.blocks | where: 'type', 'lp_link'
+  assign legal_links = section.blocks | where: 'type', 'legal_link'
+  assign social_links = section.blocks | where: 'type', 'social_link'
+-%}
+
+<footer class="lp-footer">
+  <div class="lp-container">
+    <p class="lp-footer__brand">{{ section.settings.brand }}</p>
+
+    {%- if section.settings.tagline != blank -%}
+      <p class="lp-footer__tagline">{{ section.settings.tagline }}</p>
+    {%- endif -%}
+
+    {%- if lp_links.size > 0 -%}
+      <nav class="lp-footer__nav" aria-label="{{ section.settings.nav_heading | escape }}">
+        {%- if section.settings.nav_heading != blank -%}
+          <p class="lp-footer__nav-heading">{{ section.settings.nav_heading }}</p>
+        {%- endif -%}
+        <div class="lp-footer__nav-links">
+          {%- for block in lp_links -%}
+            <a
+              href="{{ block.settings.url | default: '#' }}"
+              class="lp-footer__link"
+              {{ block.shopify_attributes }}
+            >
+              {{- block.settings.label -}}
+            </a>
+          {%- endfor -%}
+        </div>
+      </nav>
+    {%- endif -%}
+
+    <div class="lp-footer__bottom">
+      {%- if legal_links.size > 0 -%}
+        <div class="lp-footer__legal">
+          {%- for block in legal_links -%}
+            <a
+              href="{{ block.settings.url | default: '#' }}"
+              class="lp-footer__legal-link"
+              {{ block.shopify_attributes }}
+            >
+              {{- block.settings.label -}}
+            </a>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      {%- if social_links.size > 0 -%}
+        <div class="lp-footer__socials">
+          {%- for block in social_links -%}
+            <a
+              href="{{ block.settings.url | default: '#' }}"
+              class="lp-footer__social-link"
+              {{ block.shopify_attributes }}
+            >
+              {{- block.settings.label -}}
+            </a>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      <p class="lp-footer__copyright">
+        &copy; {{ 'now' | date: '%Y' }} {{ section.settings.brand }}. Tous droits réservés.
+      </p>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "LP — Pied de page",
+  "settings": [
+    {
+      "type": "text",
+      "id": "brand",
+      "label": "Marque",
+      "default": "Gomu"
+    },
+    {
+      "type": "text",
+      "id": "tagline",
+      "label": "Tagline",
+      "default": "Nutrition quotidienne complète, fabriquée en France."
+    },
+    {
+      "type": "text",
+      "id": "nav_heading",
+      "label": "Titre de la navigation",
+      "default": "Toutes les pages"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "lp_link",
+      "name": "Lien LP",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Libellé",
+          "default": "Digestion"
+        },
+        {
+          "type": "text",
+          "id": "url",
+          "label": "URL",
+          "default": "/pages/lp-digestion"
+        }
+      ]
+    },
+    {
+      "type": "legal_link",
+      "name": "Lien légal",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Libellé",
+          "default": "Mentions légales"
+        },
+        {
+          "type": "text",
+          "id": "url",
+          "label": "URL",
+          "default": "#"
+        }
+      ]
+    },
+    {
+      "type": "social_link",
+      "name": "Réseau social",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Libellé",
+          "default": "Instagram"
+        },
+        {
+          "type": "text",
+          "id": "url",
+          "label": "URL",
+          "default": "#"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 20,
+  "presets": [
+    {
+      "name": "LP — Pied de page",
+      "blocks": [
+        { "type": "lp_link", "settings": { "label": "Digestion", "url": "/pages/lp-digestion" } },
+        { "type": "lp_link", "settings": { "label": "Stress & Sommeil", "url": "/pages/lp-stress-sommeil" } },
+        { "type": "lp_link", "settings": { "label": "Halal", "url": "/pages/lp-halal" } },
+        { "type": "lp_link", "settings": { "label": "Pilules", "url": "/pages/lp-pilules" } },
+        { "type": "lp_link", "settings": { "label": "Énergie", "url": "/pages/lp-energie" } },
+        { "type": "lp_link", "settings": { "label": "Made in France", "url": "/pages/lp-made-in-france" } },
+        { "type": "lp_link", "settings": { "label": "Multi-pots", "url": "/pages/lp-multi-pots" } },
+        { "type": "lp_link", "settings": { "label": "Immunité", "url": "/pages/lp-immunite" } },
+        { "type": "lp_link", "settings": { "label": "Arnaque ?", "url": "/pages/lp-arnaque" } },
+        { "type": "lp_link", "settings": { "label": "Parents", "url": "/pages/lp-parents" } },
+        { "type": "legal_link", "settings": { "label": "Mentions légales", "url": "#" } },
+        { "type": "legal_link", "settings": { "label": "CGV", "url": "#" } },
+        { "type": "legal_link", "settings": { "label": "Politique de confidentialité", "url": "#" } },
+        { "type": "legal_link", "settings": { "label": "Contact", "url": "#" } },
+        { "type": "social_link", "settings": { "label": "Instagram", "url": "#" } },
+        { "type": "social_link", "settings": { "label": "TikTok", "url": "#" } }
+      ]
+    }
+  ],
+  "enabled_on": {
+    "templates": ["page", "product"]
+  }
+}
+{% endschema %}
