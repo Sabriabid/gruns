@@ -11,10 +11,20 @@
     padding-block: 4rem;
   }
 
+  /* La barre sticky mobile recouvre le bas de page : on lui laisse la place. */
+  @media (max-width: 1023.98px) {
+    .lp-footer {
+      padding-bottom: calc(6rem + env(safe-area-inset-bottom));
+    }
+  }
+
+  /* Logotype : Fraunces italique crème, comme le logo du site. */
   .lp-footer__brand {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--lp-yellow);
+    font-family: var(--lp-font-display);
+    font-style: italic;
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--lp-cream);
     text-align: center;
     margin-bottom: 0.25rem;
   }
@@ -33,7 +43,7 @@
   .lp-footer__nav-heading {
     font-size: 0.75rem;
     font-weight: 700;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.65);
     text-align: center;
@@ -61,7 +71,7 @@
 
   .lp-footer__bottom {
     padding-top: 2rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(101, 40, 215, 0.35);
   }
 
   .lp-footer__legal {

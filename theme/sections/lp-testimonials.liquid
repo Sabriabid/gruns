@@ -6,7 +6,7 @@
 
 <style>
   .lp-testimonials {
-    background: var(--lp-white);
+    background: var(--lp-cream);
   }
 
   .lp-testimonials__header {
@@ -15,20 +15,15 @@
   }
 
   .lp-testimonials__title {
-    font-size: 1.875rem;
-    font-weight: 700;
-    line-height: 1.2;
-    color: var(--lp-dark);
+    font-size: clamp(2.25rem, 1.5rem + 2.8vw, 3.75rem);
+    font-weight: 600;
+    color: var(--lp-purple-deep);
     margin-bottom: 0.75rem;
-  }
-
-  @media (min-width: 1024px) {
-    .lp-testimonials__title { font-size: 2.25rem; }
   }
 
   .lp-testimonials__subtitle {
     font-size: 1rem;
-    color: rgba(26, 10, 46, 0.6);
+    color: var(--lp-text-muted);
   }
 
   @media (min-width: 640px) {
@@ -52,8 +47,10 @@
   .lp-testimonials__card {
     display: flex;
     flex-direction: column;
-    background: var(--lp-cream);
-    border-radius: 1rem;
+    background: var(--lp-paper);
+    border: 1px solid rgba(26, 10, 46, 0.05);
+    border-radius: var(--lp-radius-card-lg);
+    box-shadow: var(--lp-shadow-soft);
     padding: 2rem;
     margin: 0;
   }

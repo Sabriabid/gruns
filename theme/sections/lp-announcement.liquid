@@ -7,24 +7,24 @@
   .lp-announcement {
     position: relative;
     overflow: hidden;
-    background: linear-gradient(to right, var(--lp-orange), #ffa04d);
-    color: var(--lp-dark);
+    background: var(--lp-yellow);
+    color: var(--lp-ink);
     text-align: center;
     font-size: 0.875rem;
-    font-weight: 700;
+    font-weight: 600;
     padding: 0.625rem 2.5rem;
   }
 
   .lp-announcement__dismiss {
     position: absolute;
-    right: 0.25rem;
+    right: 0;
     top: 50%;
     transform: translateY(-50%);
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0.5rem;
-    color: rgba(26, 10, 46, 0.7);
+    padding: 0.875rem;
+    color: rgba(26, 10, 46, 0.6);
     transition: color 0.2s;
   }
 
@@ -33,7 +33,7 @@
   }
 
   .lp-announcement__dismiss:hover {
-    color: var(--lp-dark);
+    color: var(--lp-ink);
   }
 </style>
 
@@ -65,8 +65,8 @@
     {
       "type": "text",
       "id": "emoji",
-      "label": "Emoji",
-      "default": "🚀"
+      "label": "Emoji (déconseillé — le brief interdit les emoji)",
+      "default": ""
     },
     {
       "type": "checkbox",

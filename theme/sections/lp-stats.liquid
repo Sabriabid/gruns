@@ -10,8 +10,10 @@
   }
 
   .lp-stats__card {
-    background: var(--lp-light-yellow);
+    background: var(--lp-paper);
+    border: 1px solid rgba(26, 10, 46, 0.05);
     border-radius: var(--lp-radius-card-lg);
+    box-shadow: var(--lp-shadow-soft);
     padding: 1.25rem;
   }
 
@@ -38,25 +40,24 @@
     text-align: center;
   }
 
+  /* Stats géantes du brief : Fraunces italique violet profond. */
   .lp-stats__value {
-    font-size: 1.875rem;
-    font-weight: 700;
+    font-family: var(--lp-font-display);
+    font-style: italic;
+    font-size: clamp(3.5rem, 2.2rem + 5vw, 7rem);
+    font-weight: 600;
     line-height: 1;
-    color: var(--lp-purple);
-    margin-bottom: 0.5rem;
-  }
-
-  @media (min-width: 640px) {
-    .lp-stats__value { font-size: 3rem; }
-  }
-
-  @media (min-width: 1024px) {
-    .lp-stats__value { font-size: 3.75rem; }
+    letter-spacing: -0.02em;
+    color: var(--lp-purple-deep);
+    margin-bottom: 0.75rem;
   }
 
   .lp-stats__label {
-    font-size: 0.875rem;
-    color: rgba(26, 10, 46, 0.6);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--lp-text-muted);
   }
 
   .lp-stats__media {
@@ -65,10 +66,12 @@
   }
 
   .lp-stats__img {
-    border-radius: var(--lp-radius-card);
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    border-radius: var(--lp-radius-card-lg);
+    box-shadow: var(--lp-shadow-soft);
     width: 100%;
     max-width: 42rem;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
   }
 </style>
 
@@ -93,8 +96,12 @@
         </div>
       {%- endif -%}
 
-      <div class="lp-stats__media">
-        {%- if img != blank -%}
+      {%- comment -%}
+        Pas de fallback ici : le visuel de démo embarquait de faux claims
+        (« 1M+ clients », « 85 000 avis ») — sans image choisie, pas de media.
+      {%- endcomment -%}
+      {%- if img != blank -%}
+        <div class="lp-stats__media">
           {{
             img
             | image_url: width: 1200
@@ -104,17 +111,8 @@
               loading: 'lazy',
               class: 'lp-stats__img'
           }}
-        {%- else -%}
-          <img
-            src="{{ 'lp-clinical-stats.jpeg' | asset_img_url: '800x' }}"
-            width="800"
-            height="800"
-            alt="Statistiques cliniques Gomu"
-            class="lp-stats__img"
-            loading="lazy"
-          >
-        {%- endif -%}
-      </div>
+        </div>
+      {%- endif -%}
     </div>
   </div>
 </section>
@@ -139,13 +137,13 @@
           "type": "text",
           "id": "value",
           "label": "Valeur",
-          "default": "[X]%"
+          "default": "80%"
         },
         {
           "type": "text",
           "id": "label",
           "label": "Libellé",
-          "default": "disent avoir plus d’énergie au quotidien"
+          "default": "des Français carencés en vitamine D en hiver — ANSES"
         }
       ]
     }
@@ -155,9 +153,9 @@
     {
       "name": "LP — Statistiques",
       "blocks": [
-        { "type": "stat", "settings": { "value": "[X]%", "label": "disent avoir plus d’énergie au quotidien" } },
-        { "type": "stat", "settings": { "value": "[X]%", "label": "constatent une meilleure digestion" } },
-        { "type": "stat", "settings": { "value": "[X]%", "label": "recommandent Gomu à leur entourage" } }
+        { "type": "stat", "settings": { "value": "80%", "label": "des Français carencés en vitamine D en hiver — ANSES" } },
+        { "type": "stat", "settings": { "value": "1/2", "label": "abandonne sa cure de compléments avant la fin — Alcimed" } },
+        { "type": "stat", "settings": { "value": "60-100€", "label": "par mois en compléments fragmentés en pharmacie" } }
       ]
     }
   ],

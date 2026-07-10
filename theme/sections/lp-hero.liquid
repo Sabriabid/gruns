@@ -4,8 +4,10 @@
 {%- endcomment -%}
 
 <style>
+  /* Section « 30% violet profond » du brief : héro sombre, texte crème. */
   .lp-hero {
-    background: var(--lp-cream);
+    background: var(--lp-purple-deep);
+    color: var(--lp-cream);
     padding-block: 4rem;
   }
 
@@ -47,31 +49,29 @@
 
   .lp-hero__badge { margin-bottom: 1.25rem; }
 
+  /* Échelle brief : H1 44px mobile → 88px desktop, lh ~1. */
   .lp-hero__title {
-    font-size: 1.875rem;
-    font-weight: 700;
-    line-height: 1.25;
-    color: var(--lp-dark);
-    margin-bottom: 1rem;
+    font-size: clamp(2.75rem, 1.9rem + 3.6vw, 5.5rem);
+    font-weight: 600;
+    line-height: 1.02;
+    color: var(--lp-cream);
+    margin-bottom: 1.25rem;
   }
 
-  @media (min-width: 640px) {
-    .lp-hero__title { font-size: 2.25rem; }
-  }
-
-  @media (min-width: 1024px) {
-    .lp-hero__title { font-size: 3rem; }
+  /* Surligneur jaune dans un titre sur fond violet : le mot passe en encre. */
+  .lp-hero__title .lp-hl {
+    color: var(--lp-ink);
   }
 
   .lp-hero__subtitle {
-    font-size: 1rem;
+    font-size: 1.0625rem;
     line-height: 1.625;
-    color: rgba(26, 10, 46, 0.7);
-    margin-bottom: 1.5rem;
+    color: rgba(255, 249, 214, 0.85);
+    margin-bottom: 1.75rem;
   }
 
   @media (min-width: 640px) {
-    .lp-hero__subtitle { font-size: 1.125rem; }
+    .lp-hero__subtitle { font-size: 1.1875rem; }
   }
 
   .lp-hero__trust {
@@ -81,7 +81,7 @@
     justify-content: center;
     gap: 0.5rem;
     font-size: 0.875rem;
-    color: rgba(26, 10, 46, 0.6);
+    color: rgba(255, 249, 214, 0.75);
   }
 
   @media (min-width: 1024px) {
@@ -96,7 +96,7 @@
 
   .lp-hero__img {
     border-radius: var(--lp-radius-card-lg);
-    box-shadow: 0 20px 60px -12px rgba(124, 58, 237, 0.25);
+    box-shadow: var(--lp-shadow-lift);
     width: 100%;
     max-width: 320px;
   }
@@ -151,7 +151,7 @@
           <p class="lp-hero__subtitle">{{ section.settings.subtitle }}</p>
         {%- endif -%}
 
-        <a href="{{ section.settings.cta_link | default: '#buy-box' }}" class="lp-btn">
+        <a href="{{ section.settings.cta_link | default: '#buy-box' }}" class="lp-btn lp-btn--inverse">
           {{- section.settings.cta_label -}}
         </a>
 
@@ -204,12 +204,14 @@
       "type": "text",
       "id": "badge",
       "label": "Badge",
-      "default": "Offre de lancement — Jusqu’à -30%"
+      "info": "Propre à l’angle de la LP — l’offre vit dans la barre d’annonce.",
+      "default": "Fabriqué en France · Testé par Eurofins"
     },
     {
-      "type": "text",
+      "type": "inline_richtext",
       "id": "headline",
       "label": "Titre (H1)",
+      "info": "Italique = Fraunces expressive. <span class=\"lp-hl\"> = surligneur jaune (1 max par page).",
       "default": "6 raisons d’adopter Gomu"
     },
     {
@@ -240,7 +242,8 @@
       "type": "text",
       "id": "trust_text",
       "label": "Texte de réassurance",
-      "default": "⭐ 4.8 | [X] avis | Fabriqué en France 🇫🇷"
+      "info": "Pas d’emoji (brief). Pas de note/avis tant qu’il n’y a pas d’avis réels.",
+      "default": "Fabriqué en France · Testé par Eurofins · Halal & vegan"
     },
     {
       "type": "image_picker",

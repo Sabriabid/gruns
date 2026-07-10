@@ -8,11 +8,11 @@
 
 <style>
   .lp-reasons__band {
-    background: var(--lp-white);
+    background: var(--lp-cream);
   }
 
   .lp-reasons__band--alt {
-    background: var(--lp-cream);
+    background: var(--lp-paper);
   }
 
   .lp-reasons__row {
@@ -43,14 +43,12 @@
 
   .lp-reasons__number {
     display: block;
-    font-size: 3.75rem;
-    font-weight: 700;
+    font-family: var(--lp-font-display);
+    font-style: italic;
+    font-size: clamp(3.75rem, 2.8rem + 3vw, 6rem);
+    font-weight: 600;
     line-height: 1;
-    color: rgba(124, 58, 237, 0.1);
-  }
-
-  @media (min-width: 1024px) {
-    .lp-reasons__number { font-size: 4.5rem; }
+    color: rgba(59, 10, 94, 0.12);
   }
 
   .lp-reasons__eyebrow {
@@ -59,21 +57,16 @@
   }
 
   .lp-reasons__title {
-    font-size: 1.5rem;
-    font-weight: 700;
-    line-height: 1.25;
-    color: var(--lp-dark);
+    font-size: clamp(2rem, 1.4rem + 2.2vw, 3.25rem);
+    font-weight: 600;
+    color: var(--lp-purple-deep);
     margin-bottom: 1rem;
   }
 
-  @media (min-width: 1024px) {
-    .lp-reasons__title { font-size: 1.875rem; }
-  }
-
   .lp-reasons__content {
-    font-size: 1rem;
+    font-size: 1.0625rem;
     line-height: 1.625;
-    color: rgba(26, 10, 46, 0.6);
+    color: var(--lp-text-muted);
   }
 
   @media (min-width: 1024px) {
@@ -91,13 +84,17 @@
 
   .lp-reasons__img {
     width: 100%;
-    border-radius: var(--lp-radius-card);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    border-radius: var(--lp-radius-card-lg);
+    box-shadow: var(--lp-shadow-soft);
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
   }
 </style>
 
 {%- liquid
-  assign fallback_images = 'lp-benefits-lifestyle.jpeg lp-lifestyle-sachet.jpeg lp-clinical-stats.jpeg lp-timeline-expectations.jpeg lp-social-proof.jpeg lp-comparison-table.jpeg' | split: ' '
+  # Rotation limitée aux visuels SANS texte/claims incrustés (les visuels
+  # « social proof / clinical / comparison » embarquaient de fausses stats).
+  assign fallback_images = 'lp-benefits-lifestyle.jpeg lp-lifestyle-sachet.jpeg lp-product-hero.jpeg' | split: ' '
 -%}
 
 {%- for block in section.blocks -%}
@@ -107,7 +104,7 @@
     if num < 10
       assign num = num | prepend: '0'
     endif
-    assign fallback_index = forloop.index0 | modulo: 6
+    assign fallback_index = forloop.index0 | modulo: 3
     assign fallback = fallback_images[fallback_index]
 
     if parity == 0
@@ -180,7 +177,7 @@
           "default": "Simplicité"
         },
         {
-          "type": "text",
+          "type": "inline_richtext",
           "id": "title",
           "label": "Titre",
           "default": "Toute ta nutrition quotidienne dans un seul sachet"

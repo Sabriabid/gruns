@@ -10,16 +10,11 @@
   }
 
   .lp-comparison__heading {
-    font-size: 1.875rem;
-    font-weight: 700;
-    color: var(--lp-purple);
+    font-size: clamp(2.25rem, 1.5rem + 2.8vw, 3.75rem);
+    font-weight: 600;
+    color: var(--lp-purple-deep);
     text-align: center;
-    line-height: 1.2;
     margin-bottom: 3rem;
-  }
-
-  @media (min-width: 1024px) {
-    .lp-comparison__heading { font-size: 2.25rem; }
   }
 
   .lp-comparison__head {
@@ -37,7 +32,7 @@
       font-weight: 700;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: rgba(26, 10, 46, 0.5);
+      color: var(--lp-text-muted);
     }
 
     .lp-comparison__head-cell--us {
@@ -50,9 +45,10 @@
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
-    background: var(--lp-white);
-    border-radius: 1rem;
-    box-shadow: 0 1px 2px 0 rgba(26, 10, 46, 0.05);
+    background: var(--lp-paper);
+    border: 1px solid rgba(26, 10, 46, 0.05);
+    border-radius: var(--lp-radius-card-lg);
+    box-shadow: var(--lp-shadow-soft);
     padding: 1.25rem;
     margin-bottom: 0.75rem;
   }
@@ -72,8 +68,8 @@
 
   .lp-comparison__label {
     font-size: 1rem;
-    font-weight: 700;
-    color: var(--lp-dark);
+    font-weight: 600;
+    color: var(--lp-purple-deep);
   }
 
   @media (min-width: 1024px) {
@@ -87,8 +83,8 @@
   }
 
   .lp-comparison__cell--us {
-    background: rgba(124, 58, 237, 0.06);
-    border-radius: 0.5rem;
+    background: rgba(101, 40, 215, 0.06);
+    border-radius: 0.75rem;
     padding: 0.625rem 0.75rem;
   }
 
@@ -147,7 +143,7 @@
   }
 
   .lp-comparison__icon--them {
-    color: rgba(26, 10, 46, 0.55);
+    color: var(--lp-text-muted);
   }
 </style>
 

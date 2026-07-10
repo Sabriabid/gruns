@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#f8f5ff">
+    <meta name="theme-color" content="#fff9d6">
     <meta name="robots" content="noindex, nofollow">
 
     <title>{{ page_title }}</title>
@@ -28,6 +28,14 @@
       Le préchargement de l'image héro (LCP) est fait par la section lp-hero
       via preload_tag (émet un header Link, position indifférente).
     {%- endcomment -%}
+    {%- comment -%}
+      Fraunces 600 (display, brief designer) : auto-hébergée dans les assets,
+      déclarée par @font-face dans lp-base.css. On précharge les 2 fichiers
+      latin (roman + italique) : ce sont eux qui rendent les headlines.
+    {%- endcomment -%}
+    <link rel="preload" href="{{ 'lp-fraunces-600-latin.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ 'lp-fraunces-600i-latin.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
+
     {%- if settings.type_body_font -%}
       {{ settings.type_body_font | font_url | preload_tag: as: 'font', type: 'font/woff2', crossorigin: 'anonymous' }}
       <style>

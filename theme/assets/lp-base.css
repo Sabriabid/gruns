@@ -2,29 +2,95 @@
    Gomu LP kit — base : tokens, reset minimal, utilitaires partagés.
    Chargé uniquement par layout/lp.liquid. Le CSS propre à chaque section
    vit dans un bloc <style> en tête de sa section (autonome, pas de doublon).
+
+   Système = brief designer (data/lp_new/uploads/PROMPT_LP_GOMU_DESIGN.md) :
+   violet profond #3B0A5E, crème #FFF9D6 dominante, jaune surligneur #F2E85C,
+   Fraunces italique en display, boutons pilule, ombres douces, zéro emoji.
    ========================================================================== */
 
+/* Fraunces 600 (display) — auto-hébergée : pas de requête Google au runtime.
+   Le sous-ensemble latin couvre le français courant (dont œ U+0152-0153). */
+@font-face {
+  font-family: 'Fraunces';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('lp-fraunces-600-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Fraunces';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('lp-fraunces-600-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Fraunces';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url('lp-fraunces-600i-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Fraunces';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url('lp-fraunces-600i-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
 :root {
-  --lp-purple: #7c3aed;
-  --lp-dark: #1a0a2e;
-  --lp-cream: #f8f5ff;
-  --lp-yellow: #ffcc2d;
-  --lp-orange: #ff8e2c;
-  --lp-light-yellow: #fdf6e3;
-  --lp-charcoal: #0f0520;
+  /* Palette brief — identique à la homepage (« gruns ») et au packaging. */
+  --lp-purple-deep: #3b0a5e;   /* primaire : CTA, headlines, fonds de section */
+  --lp-purple-accent: #6528d7; /* violet packaging : hovers, icônes, liens */
+  --lp-purple-bright: #9b30ff; /* états hover clairs, soulignés */
+  --lp-ink: #1a0a2e;
+
+  /* Alias legacy — les <style> des sections référencent ces noms. */
+  --lp-purple: var(--lp-purple-deep);
+  --lp-dark: var(--lp-ink);
+  --lp-cream: #fff9d6;         /* fond dominant (~65% de la page) */
+  --lp-paper: #fdfbef;         /* cards blanc cassé (~5%) */
+  --lp-yellow: #f2e85c;        /* surligneur inline + badges, avec parcimonie */
+  --lp-orange: #f2e85c;        /* orange retiré du système → rabattu sur jaune */
+  --lp-light-yellow: #fdfbef;  /* → paper */
+  --lp-charcoal: #3b0a5e;      /* sections sombres → violet profond du brief */
   --lp-white: #ffffff;
-  /* Texte secondaire : 0.62 = ~4.7:1 sur blanc (AA) ; ne pas redescendre à 0.5. */
-  --lp-text-muted: rgba(26, 10, 46, 0.62);
+  /* Texte secondaire : 0.68 ≈ 4.8:1 sur crème #FFF9D6 (AA). */
+  --lp-text-muted: rgba(26, 10, 46, 0.68);
 
   --lp-font-sans: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     'Helvetica Neue', Arial, sans-serif;
+  --lp-font-display: 'Fraunces', 'Iowan Old Style', Georgia, 'Times New Roman',
+    serif;
 
   --lp-radius-card: 1rem;      /* rounded-2xl */
-  --lp-radius-card-lg: 1.5rem; /* rounded-3xl */
-  --lp-radius-btn: 10px;
+  --lp-radius-card-lg: 1.5rem; /* rounded-3xl — cards du brief */
+  --lp-radius-btn: 9999px;     /* boutons pilule */
 
-  --lp-shadow-brutal: 5px 5px 0 0 #000;
-  --lp-shadow-brutal-active: 1px 1px 0 0 #000;
+  /* Ombres douces (le brief interdit néon et brutalisme). L'alias -brutal
+     reste défini pour les sections pas encore migrées. */
+  --lp-shadow-soft: 0 1px 2px rgba(26, 10, 46, 0.06),
+    0 12px 32px -12px rgba(59, 10, 94, 0.22);
+  --lp-shadow-lift: 0 2px 4px rgba(26, 10, 46, 0.08),
+    0 20px 48px -16px rgba(59, 10, 94, 0.3);
+  --lp-shadow-brutal: var(--lp-shadow-soft);
+  --lp-shadow-brutal-active: var(--lp-shadow-soft);
 
   --lp-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -40,9 +106,10 @@
 body.lp-body {
   margin: 0;
   font-family: var(--lp-font-sans);
-  color: var(--lp-dark);
-  background: var(--lp-white);
-  line-height: 1.5;
+  color: var(--lp-ink);
+  background: var(--lp-cream);
+  font-size: 1.0625rem; /* body 17px (brief) */
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   /* Les reveals left/right partent de translateX(±40px) : sans clip, la page
      a un débordement horizontal de 40px sur mobile avant révélation. */
@@ -63,6 +130,23 @@ body.lp-body {
   margin: 0;
 }
 
+/* Le display porte la personnalité : Fraunces 600, tracking serré.
+   Les tailles restent définies section par section. */
+.lp-body h1,
+.lp-body h2,
+.lp-body h3 {
+  font-family: var(--lp-font-display);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.lp-body h1 em,
+.lp-body h2 em,
+.lp-body h3 em {
+  font-style: italic; /* italiques expressifs Fraunces sur les mots-clés */
+}
+
 .lp-body a {
   color: inherit;
 }
@@ -80,7 +164,7 @@ html {
 }
 
 .lp-body :focus-visible {
-  outline: 2px solid var(--lp-purple);
+  outline: 2px solid var(--lp-purple-accent);
   outline-offset: 2px;
 }
 
@@ -89,7 +173,7 @@ html {
 .lp-container {
   max-width: 80rem; /* max-w-7xl */
   margin-inline: auto;
-  padding-inline: 1rem;
+  padding-inline: 1.25rem;
 }
 
 .lp-container--narrow {
@@ -101,12 +185,12 @@ html {
 }
 
 .lp-section {
-  padding-block: 6rem; /* py-24 */
+  padding-block: 4.5rem;
 }
 
 @media (min-width: 1024px) {
   .lp-section {
-    padding-block: 7rem; /* lg:py-28 */
+    padding-block: 7rem;
   }
 }
 
@@ -114,22 +198,29 @@ html {
 
 .lp-btn {
   display: inline-block;
-  background: var(--lp-purple);
-  color: var(--lp-white);
-  font-weight: 700;
-  font-size: 1.125rem;
+  background: var(--lp-purple-deep);
+  color: var(--lp-cream);
+  font-weight: 600;
+  font-size: 1.0625rem;
   line-height: 1.4;
   text-align: center;
   text-decoration: none;
   padding: 1rem 2rem;
   border-radius: var(--lp-radius-btn);
-  box-shadow: var(--lp-shadow-brutal);
-  transition: all 0.3s;
+  box-shadow: var(--lp-shadow-soft);
+  transition: background-color 0.2s ease, transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .lp-btn:hover {
-  box-shadow: var(--lp-shadow-brutal-active);
-  transform: translate(4px, 4px);
+  background: var(--lp-purple-accent);
+  transform: scale(1.02);
+  box-shadow: var(--lp-shadow-lift);
+}
+
+.lp-btn:active {
+  transform: scale(0.99);
+  box-shadow: var(--lp-shadow-soft);
 }
 
 .lp-btn--block {
@@ -137,12 +228,32 @@ html {
   width: 100%;
 }
 
+/* Sur fond violet profond, le bouton s'inverse : crème plein, texte violet. */
+.lp-btn--inverse {
+  background: var(--lp-cream);
+  color: var(--lp-purple-deep);
+}
+
+.lp-btn--inverse:hover {
+  background: var(--lp-white);
+}
+
+/* Les CTA sont des <a> : sans ces sélecteurs, « .lp-body a { color: inherit } »
+   (0-1-1) bat « .lp-btn » (0-1-0) et le libellé prend la couleur du parent
+   (crème sur crème dans le héro violet → bouton illisible). */
+.lp-body a.lp-btn {
+  color: var(--lp-cream);
+}
+
+.lp-body a.lp-btn--inverse {
+  color: var(--lp-purple-deep);
+}
+
 .lp-badge {
   display: inline-block;
-  background: var(--lp-orange);
-  /* Texte sombre : blanc sur orange = 2.29:1 (échec AA), dark = 8.13:1. */
-  color: var(--lp-dark);
-  font-weight: 700;
+  background: var(--lp-yellow);
+  color: var(--lp-ink); /* encre sur jaune : 12.5:1 */
+  font-weight: 600;
   font-size: 0.875rem;
   padding: 0.375rem 1.25rem;
   border-radius: 9999px;
@@ -152,27 +263,34 @@ html {
   display: inline-block;
   font-size: 0.75rem;
   font-weight: 700;
-  padding: 0.125rem 0.5rem;
+  padding: 0.125rem 0.625rem;
   border-radius: 9999px;
 }
 
 .lp-pill--yellow {
   background: var(--lp-yellow);
-  color: var(--lp-dark);
+  color: var(--lp-ink);
 }
 
 .lp-pill--purple {
-  background: var(--lp-purple);
-  color: var(--lp-white);
+  background: var(--lp-purple-deep);
+  color: var(--lp-cream);
 }
 
 .lp-eyebrow {
   display: block;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
+  font-family: var(--lp-font-sans);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--lp-purple);
+  color: var(--lp-purple-accent);
+}
+
+/* Surligneur jaune « feutre fluo » — 3-4 mots max par page (brief). */
+.lp-hl {
+  background: linear-gradient(transparent 55%, var(--lp-yellow) 55%, var(--lp-yellow) 92%, transparent 92%);
+  padding-inline: 0.08em;
 }
 
 .lp-stars {
@@ -181,8 +299,19 @@ html {
   color: var(--lp-yellow);
 }
 
+/* Sur fond clair, les étoiles jaune pâle manquent de relief : liseré encre. */
 .lp-stars svg {
   fill: currentColor;
+  stroke: var(--lp-ink);
+  stroke-width: 1;
+}
+
+/* Cards du brief : paper, rounded-3xl, bordure hairline, ombre douce. */
+.lp-card {
+  background: var(--lp-paper);
+  border: 1px solid rgba(26, 10, 46, 0.05);
+  border-radius: var(--lp-radius-card-lg);
+  box-shadow: var(--lp-shadow-soft);
 }
 
 /* --- Reveal (apparition au scroll) --------------------------------------
@@ -198,15 +327,15 @@ html.lp-js [data-lp-reveal] {
 }
 
 html.lp-js [data-lp-reveal='up'] {
-  transform: translateY(30px);
+  transform: translateY(12px); /* subtil (brief : 12px → 0) */
 }
 
 html.lp-js [data-lp-reveal='left'] {
-  transform: translateX(-40px);
+  transform: translateX(-24px);
 }
 
 html.lp-js [data-lp-reveal='right'] {
-  transform: translateX(40px);
+  transform: translateX(24px);
 }
 
 html.lp-js [data-lp-reveal].in {
@@ -234,6 +363,12 @@ html.lp-js [data-lp-reveal].in {
 
   .lp-float {
     animation: none;
+  }
+
+  .lp-btn,
+  .lp-btn:hover,
+  .lp-btn:active {
+    transform: none;
   }
 }
 
