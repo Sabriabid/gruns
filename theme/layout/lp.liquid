@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ request.locale.iso_code }}" class="no-js">
+<html lang="{{ request.locale.iso_code }}">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,19 +22,34 @@
     {%- endif -%}
 
     {%- comment -%}
+      Typographie : si le kit vit dans Dawn et que le marchand a choisi une
+      police (ex. Inter) dans les réglages du thème, on la charge ici (2 familles
+      max, font-display swap). Sinon : stack système, zéro téléchargement.
       Le préchargement de l'image héro (LCP) est fait par la section lp-hero
-      elle-même via le filtre preload_tag (émet un header Link, position indifférente).
+      via preload_tag (émet un header Link, position indifférente).
     {%- endcomment -%}
+    {%- if settings.type_body_font -%}
+      {{ settings.type_body_font | font_url | preload_tag: as: 'font', type: 'font/woff2', crossorigin: 'anonymous' }}
+      <style>
+        {{ settings.type_body_font | font_face: font_display: 'swap' }}
+        {%- if settings.type_header_font -%}
+          {{ settings.type_header_font | font_face: font_display: 'swap' }}
+        {%- endif -%}
+        :root {
+          --lp-font-sans: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
+        }
+      </style>
+    {%- endif -%}
 
     {{ 'lp-base.css' | asset_url | stylesheet_tag }}
-
-    <script>document.documentElement.classList.remove('no-js');</script>
 
     {{ content_for_header }}
   </head>
 
   <body class="lp-body">
-    {{ content_for_layout }}
+    <main id="MainContent">
+      {{ content_for_layout }}
+    </main>
 
     <script src="{{ 'lp.js' | asset_url }}" defer></script>
   </body>

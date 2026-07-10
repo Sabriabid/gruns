@@ -17,14 +17,19 @@
 
   .lp-announcement__dismiss {
     position: absolute;
-    right: 0.75rem;
+    right: 0.25rem;
     top: 50%;
     transform: translateY(-50%);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: rgba(26, 10, 46, 0.5);
+    padding: 0.5rem;
+    color: rgba(26, 10, 46, 0.7);
     transition: color 0.2s;
+  }
+
+  html:not(.lp-js) .lp-announcement__dismiss {
+    display: none;
   }
 
   .lp-announcement__dismiss:hover {
@@ -67,7 +72,7 @@
       "type": "checkbox",
       "id": "dismissible",
       "label": "Fermable par le visiteur",
-      "default": false
+      "default": true
     }
   ],
   "presets": [

@@ -24,6 +24,10 @@
     gap: 2.5rem;
   }
 
+  @media (min-width: 640px) {
+    .lp-hero__grid { gap: 3rem; }
+  }
+
   @media (min-width: 1024px) {
     .lp-hero__grid {
       flex-direction: row;
@@ -108,16 +112,35 @@
 
 {%- liquid
   assign img = section.settings.image
+
+  # LCP : le preload doit proposer les MÊMES candidats que le srcset de l'<img>,
+  # sinon le navigateur précharge une variante et en télécharge une autre.
+  assign hero_sizes = '(min-width: 1024px) 500px, (min-width: 640px) 400px, 90vw'
+  if img != blank
+    capture hero_srcset
+      echo img | image_url: width: 400 | append: ' 400w, '
+      echo img | image_url: width: 600 | append: ' 600w, '
+      echo img | image_url: width: 800 | append: ' 800w, '
+      echo img | image_url: width: 1000 | append: ' 1000w'
+    endcapture
+  endif
 -%}
 
 {%- if img != blank -%}
-  {{ img | image_url: width: 800 | preload_tag: as: 'image' }}
+  {{ img | image_url: width: 800 | preload_tag: as: 'image', imagesrcset: hero_srcset, imagesizes: hero_sizes }}
+{%- else -%}
+  {{ 'lp-product-hero.jpeg' | asset_img_url: '800x' | preload_tag: as: 'image' }}
 {%- endif -%}
 
+{%- comment -%}
+  Pas de data-lp-reveal dans le héro : un LCP à opacity:0 tant que le JS
+  n'a pas tourné ruinerait le preload/fetchpriority. Le reveal est réservé
+  aux sections sous la ligne de flottaison.
+{%- endcomment -%}
 <section class="lp-hero">
   <div class="lp-container">
     <div class="lp-hero__grid">
-      <div class="lp-hero__text" data-lp-reveal="left">
+      <div class="lp-hero__text">
         {%- if section.settings.badge != blank -%}
           <span class="lp-badge lp-hero__badge">{{ section.settings.badge }}</span>
         {%- endif -%}
@@ -142,13 +165,13 @@
         {%- endif -%}
       </div>
 
-      <div class="lp-hero__media" data-lp-reveal="right">
+      <div class="lp-hero__media">
         <div class="lp-float">
           {%- if img != blank -%}
             <img
               src="{{ img | image_url: width: 800 }}"
-              srcset="{{ img | image_url: width: 400 }} 400w, {{ img | image_url: width: 600 }} 600w, {{ img | image_url: width: 800 }} 800w, {{ img | image_url: width: 1000 }} 1000w"
-              sizes="(min-width: 1024px) 500px, (min-width: 640px) 400px, 90vw"
+              srcset="{{ hero_srcset }}"
+              sizes="{{ hero_sizes }}"
               width="800"
               height="{{ 800 | divided_by: img.aspect_ratio | round }}"
               alt="{{ img.alt | default: section.settings.headline | escape }}"

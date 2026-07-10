@@ -13,6 +13,8 @@
   --lp-light-yellow: #fdf6e3;
   --lp-charcoal: #0f0520;
   --lp-white: #ffffff;
+  /* Texte secondaire : 0.62 = ~4.7:1 sur blanc (AA) ; ne pas redescendre à 0.5. */
+  --lp-text-muted: rgba(26, 10, 46, 0.62);
 
   --lp-font-sans: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     'Helvetica Neue', Arial, sans-serif;
@@ -42,6 +44,10 @@ body.lp-body {
   background: var(--lp-white);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  /* Les reveals left/right partent de translateX(±40px) : sans clip, la page
+     a un débordement horizontal de 40px sur mobile avant révélation. */
+  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 .lp-body img {
@@ -134,7 +140,8 @@ html {
 .lp-badge {
   display: inline-block;
   background: var(--lp-orange);
-  color: var(--lp-white);
+  /* Texte sombre : blanc sur orange = 2.29:1 (échec AA), dark = 8.13:1. */
+  color: var(--lp-dark);
   font-weight: 700;
   font-size: 0.875rem;
   padding: 0.375rem 1.25rem;
@@ -180,31 +187,29 @@ html {
 
 /* --- Reveal (apparition au scroll) --------------------------------------
    data-lp-reveal="up|left|right" ; lp.js ajoute .in à l'entrée du viewport.
-   Sans JS (html.no-js) ou en reduced-motion : tout est visible d'emblée. */
+   L'état caché n'est armé que sous html.lp-js (classe posée par lp.js en
+   première ligne) : si le script ne charge pas — JS désactivé, adblock,
+   404 — rien n'est jamais masqué. Ne PAS poser data-lp-reveal sur du
+   contenu above-the-fold (héro) : cela retarderait le LCP. */
 
-[data-lp-reveal] {
+html.lp-js [data-lp-reveal] {
   opacity: 0;
   transition: opacity 0.6s var(--lp-ease-out), transform 0.6s var(--lp-ease-out);
 }
 
-[data-lp-reveal='up'] {
+html.lp-js [data-lp-reveal='up'] {
   transform: translateY(30px);
 }
 
-[data-lp-reveal='left'] {
+html.lp-js [data-lp-reveal='left'] {
   transform: translateX(-40px);
 }
 
-[data-lp-reveal='right'] {
+html.lp-js [data-lp-reveal='right'] {
   transform: translateX(40px);
 }
 
-[data-lp-reveal].in {
-  opacity: 1;
-  transform: none;
-}
-
-html.no-js [data-lp-reveal] {
+html.lp-js [data-lp-reveal].in {
   opacity: 1;
   transform: none;
 }
@@ -221,7 +226,7 @@ html.no-js [data-lp-reveal] {
     scroll-behavior: auto;
   }
 
-  [data-lp-reveal] {
+  html.lp-js [data-lp-reveal] {
     opacity: 1;
     transform: none;
     transition: none;

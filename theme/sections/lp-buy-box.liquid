@@ -22,6 +22,7 @@
 
   .lp-buy-box__title {
     font-size: 1.875rem;
+    line-height: 1.2;
     font-weight: 700;
     color: var(--lp-purple);
     margin-bottom: 0.75rem;
@@ -105,6 +106,13 @@
     margin-bottom: 1.25rem;
   }
 
+  .lp-buy-box__fieldset {
+    border: 0;
+    padding: 0;
+    margin: 0;
+    min-width: 0;
+  }
+
   .lp-buy-box__plans {
     display: flex;
     flex-direction: column;
@@ -169,6 +177,7 @@
 
   .lp-plan__price {
     font-size: 1.875rem;
+    line-height: 1.2;
     font-weight: 700;
     color: var(--lp-purple);
   }
@@ -180,7 +189,7 @@
 
   .lp-plan__meta {
     font-size: 0.875rem;
-    color: rgba(26, 10, 46, 0.5);
+    color: var(--lp-text-muted);
   }
 
   .lp-plan__compare {
@@ -210,7 +219,7 @@
     text-align: center;
     font-size: 0.75rem;
     line-height: 1.625;
-    color: rgba(26, 10, 46, 0.5);
+    color: var(--lp-text-muted);
     margin-top: 1rem;
   }
 
@@ -236,12 +245,31 @@
 
   if product != blank
     assign variant = product.selected_or_first_available_variant
-    assign alloc = variant.selling_plan_allocations | first
+    # Ne pas prendre aveuglément la première allocation : si la boutique a
+    # plusieurs selling plans, on matche d'abord sur le nom configuré.
+    if section.settings.sub_plan_name != blank
+      for a in variant.selling_plan_allocations
+        if a.selling_plan.name contains section.settings.sub_plan_name
+          assign alloc = a
+          break
+        endif
+      endfor
+    endif
+    if alloc == blank
+      assign alloc = variant.selling_plan_allocations | first
+    endif
   endif
 
   if alloc != blank
     assign sub_price = alloc.price | money
-    assign sub_compare = alloc.compare_at_price | default: variant.price | money
+    # Prix barré uniquement s'il est strictement supérieur (sinon rendu
+    # trompeur : « 24,90€ 24,90€ » — et prix de référence non justifié).
+    assign compare_raw = alloc.compare_at_price | default: variant.price
+    if compare_raw > alloc.price
+      assign sub_compare = compare_raw | money
+    else
+      assign sub_compare = blank
+    endif
     assign saved = variant.price | minus: alloc.price
     if saved > 0
       assign pct = saved | times: 100.0 | divided_by: variant.price | round
@@ -259,6 +287,16 @@
     assign onetime_price = variant.price | money
   else
     assign onetime_price = section.settings.fallback_one_time_price
+  endif
+
+  # Produit vendu uniquement en abonnement mais sans plan disponible
+  # (app désinstallée, plans supprimés) : tout ajout panier échouerait en 422.
+  assign purchasable = false
+  if variant != blank and variant.available
+    assign purchasable = true
+  endif
+  if product.requires_selling_plan and alloc == blank
+    assign purchasable = false
   endif
 
   assign title = section.settings.title_override
@@ -339,7 +377,9 @@
               <input type="hidden" name="id" value="{{ variant.id }}">
               <input type="hidden" name="quantity" value="1">
 
-              <div class="lp-buy-box__plans">
+              <fieldset class="lp-buy-box__fieldset">
+                <legend class="lp-visually-hidden">Choix de la formule</legend>
+                <div class="lp-buy-box__plans">
                 {%- if alloc != blank -%}
                   <label class="lp-plan">
                     <input
@@ -363,7 +403,7 @@
                       </span>
                       <span class="lp-plan__prices">
                         <span class="lp-plan__price">{{ sub_price }}</span>
-                        <span class="lp-plan__meta">/mois</span>
+                        <span class="lp-plan__meta">{{ section.settings.sub_price_suffix }}</span>
                         {%- if sub_compare != blank -%}
                           <span class="lp-plan__meta lp-plan__compare">{{ sub_compare }}</span>
                         {%- endif -%}
@@ -383,49 +423,66 @@
                   </label>
                 {%- endif -%}
 
-                <label class="lp-plan">
-                  <input
-                    type="radio"
-                    name="selling_plan"
-                    value=""
-                    class="lp-plan__input lp-visually-hidden"
-                    {% if alloc == blank %}checked{% endif %}
-                  >
-                  <span class="lp-plan__card">
-                    <span class="lp-plan__label">{{ section.settings.one_time_label }}</span>
-                    <span class="lp-plan__prices" style="margin-top: 0.25rem; margin-bottom: 0;">
-                      <span class="lp-plan__price lp-plan__price--onetime">{{ onetime_price }}</span>
-                      {%- if section.settings.one_time_shipping != blank -%}
-                        <span class="lp-plan__meta">({{ section.settings.one_time_shipping }})</span>
-                      {%- endif -%}
+                {%- comment -%}
+                  Produit à abonnement obligatoire : pas d'option « achat
+                  ponctuel » (un POST selling_plan vide serait rejeté en 422).
+                {%- endcomment -%}
+                {%- unless product.requires_selling_plan -%}
+                  <label class="lp-plan">
+                    <input
+                      type="radio"
+                      name="selling_plan"
+                      value=""
+                      class="lp-plan__input lp-visually-hidden"
+                      {% if alloc == blank %}checked{% endif %}
+                    >
+                    <span class="lp-plan__card">
+                      <span class="lp-plan__label">{{ section.settings.one_time_label }}</span>
+                      <span class="lp-plan__prices" style="margin-top: 0.25rem; margin-bottom: 0;">
+                        <span class="lp-plan__price lp-plan__price--onetime">{{ onetime_price }}</span>
+                        {%- if section.settings.one_time_shipping != blank -%}
+                          <span class="lp-plan__meta">({{ section.settings.one_time_shipping }})</span>
+                        {%- endif -%}
+                      </span>
                     </span>
-                  </span>
-                </label>
-              </div>
+                  </label>
+                {%- endunless -%}
+                </div>
+              </fieldset>
 
               <button
                 type="submit"
                 class="lp-btn lp-btn--block lp-buy-box__cta"
-                {% unless variant.available %}disabled{% endunless %}
+                {% unless purchasable %}disabled{% endunless %}
               >
-                {%- if variant.available -%}
+                {%- if purchasable -%}
                   {{ section.settings.cta_label }}
-                {%- else -%}
+                {%- elsif variant.available == false -%}
                   Épuisé
+                {%- else -%}
+                  Indisponible
                 {%- endif -%}
               </button>
             {%- endform -%}
 
-            {%- if alloc == blank and request.design_mode -%}
+            {%- if request.design_mode and alloc == blank -%}
               <p class="lp-buy-box__hint">
-                Ce produit n’a pas de selling plan : seule l’option « achat ponctuel »
-                est affichée. Installe une app d’abonnements (Shopify Subscriptions,
-                Skio…) et crée un plan pour activer la carte abonnement.
+                {%- if product.requires_selling_plan -%}
+                  Ce produit exige un abonnement mais n’a AUCUN selling plan
+                  disponible (app désinstallée ou plans supprimés) : l’ajout au
+                  panier est désactivé. Recrée un plan dans ton app d’abonnements.
+                {%- else -%}
+                  Ce produit n’a pas de selling plan : seule l’option « achat ponctuel »
+                  est affichée. Installe une app d’abonnements (Shopify Subscriptions,
+                  Skio…) et crée un plan pour activer la carte abonnement.
+                {%- endif -%}
               </p>
             {%- endif -%}
           {%- else -%}
             {%- comment -%} Aperçu sans produit : carte statique de démo. {%- endcomment -%}
-            <div class="lp-buy-box__plans">
+            <fieldset class="lp-buy-box__fieldset">
+              <legend class="lp-visually-hidden">Choix de la formule</legend>
+              <div class="lp-buy-box__plans">
               <label class="lp-plan">
                 <input type="radio" name="lp-plan-demo" class="lp-plan__input lp-visually-hidden" checked>
                 <span class="lp-plan__card">
@@ -442,7 +499,7 @@
                   </span>
                   <span class="lp-plan__prices">
                     <span class="lp-plan__price">{{ sub_price }}</span>
-                    <span class="lp-plan__meta">/mois</span>
+                    <span class="lp-plan__meta">{{ section.settings.sub_price_suffix }}</span>
                     {%- if sub_compare != blank -%}
                       <span class="lp-plan__meta lp-plan__compare">{{ sub_compare }}</span>
                     {%- endif -%}
@@ -474,6 +531,7 @@
                 </span>
               </label>
             </div>
+            </fieldset>
 
             <button type="button" class="lp-btn lp-btn--block lp-buy-box__cta" disabled>
               {{ section.settings.cta_label }}
@@ -555,6 +613,18 @@
       "id": "sub_badge",
       "label": "Badge",
       "default": "POPULAIRE"
+    },
+    {
+      "type": "text",
+      "id": "sub_plan_name",
+      "label": "Nom du selling plan à utiliser",
+      "info": "Laisser vide pour prendre le premier plan du produit. Si la boutique a plusieurs plans (bimensuel, trimestriel…), renseigner ici le nom du plan mensuel."
+    },
+    {
+      "type": "text",
+      "id": "sub_price_suffix",
+      "label": "Suffixe du prix",
+      "default": "/mois"
     },
     {
       "type": "header",

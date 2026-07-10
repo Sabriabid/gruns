@@ -33,6 +33,7 @@
   .lp-faq__title {
     font-size: 1.875rem;
     font-weight: 700;
+    line-height: 1.2;
     color: var(--lp-dark);
   }
 
@@ -135,7 +136,7 @@
 
       <div class="lp-faq__list" data-lp-reveal="up" data-lp-delay="1">
         {%- for block in section.blocks -%}
-          <details class="lp-faq__item" name="lp-faq" {{ block.shopify_attributes }}>
+          <details class="lp-faq__item" name="lp-faq-{{ section.id }}" {{ block.shopify_attributes }}>
             <summary class="lp-faq__summary">
               <span class="lp-faq__question">{{ block.settings.question }}</span>
               <span class="lp-faq__icon" aria-hidden="true">

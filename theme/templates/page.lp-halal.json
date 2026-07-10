@@ -6,7 +6,7 @@
       "settings": {
         "text": "Offre de lancement — -30% sur ta première commande + livraison offerte",
         "emoji": "🚀",
-        "dismissible": false
+        "dismissible": true
       }
     },
     "hero": {
