@@ -287,8 +287,14 @@ html {
   color: var(--lp-purple-accent);
 }
 
-/* Surligneur jaune « feutre fluo » — 3-4 mots max par page (brief). */
-.lp-hl {
+/* Surligneur jaune « feutre fluo » — 3-4 mots max par page (brief).
+   Dans les titres, <strong> EST le surligneur : c'est le seul balisage
+   qu'accepte la validation inline_richtext de Shopify (pas de span+classe). */
+.lp-hl,
+.lp-body h1 strong,
+.lp-body h2 strong,
+.lp-body h3 strong {
+  font-weight: inherit;
   background: linear-gradient(transparent 55%, var(--lp-yellow) 55%, var(--lp-yellow) 92%, transparent 92%);
   padding-inline: 0.08em;
 }
