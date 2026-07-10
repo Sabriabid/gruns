@@ -239,11 +239,13 @@
 </style>
 
 {%- liquid
+  # États explicites (pas d'assign = blank : fragile selon les moteurs Liquid).
   assign product = section.settings.product
-  assign variant = blank
-  assign alloc = blank
+  assign has_product = false
+  assign has_alloc = false
 
   if product != blank
+    assign has_product = true
     assign variant = product.selected_or_first_available_variant
     # Ne pas prendre aveuglément la première allocation : si la boutique a
     # plusieurs selling plans, on matche d'abord sur le nom configuré.
@@ -251,39 +253,47 @@
       for a in variant.selling_plan_allocations
         if a.selling_plan.name contains section.settings.sub_plan_name
           assign alloc = a
+          assign has_alloc = true
           break
         endif
       endfor
     endif
-    if alloc == blank
-      assign alloc = variant.selling_plan_allocations | first
-    endif
+    unless has_alloc
+      assign alloc_count = variant.selling_plan_allocations | size
+      if alloc_count > 0
+        assign alloc = variant.selling_plan_allocations | first
+        assign has_alloc = true
+      endif
+    endunless
   endif
 
-  if alloc != blank
+  assign show_compare = false
+  if has_alloc
     assign sub_price = alloc.price | money
     # Prix barré uniquement s'il est strictement supérieur (sinon rendu
     # trompeur : « 24,90€ 24,90€ » — et prix de référence non justifié).
     assign compare_raw = alloc.compare_at_price | default: variant.price
     if compare_raw > alloc.price
       assign sub_compare = compare_raw | money
-    else
-      assign sub_compare = blank
+      assign show_compare = true
     endif
     assign saved = variant.price | minus: alloc.price
     if saved > 0
       assign pct = saved | times: 100.0 | divided_by: variant.price | round
       assign sub_discount = pct | prepend: '-' | append: '%'
     else
-      assign sub_discount = blank
+      assign sub_discount = ''
     endif
   else
     assign sub_price = section.settings.fallback_sub_price
     assign sub_compare = section.settings.fallback_sub_original
     assign sub_discount = section.settings.fallback_sub_discount
+    if sub_compare != blank
+      assign show_compare = true
+    endif
   endif
 
-  if variant != blank
+  if has_product
     assign onetime_price = variant.price | money
   else
     assign onetime_price = section.settings.fallback_one_time_price
@@ -292,15 +302,15 @@
   # Produit vendu uniquement en abonnement mais sans plan disponible
   # (app désinstallée, plans supprimés) : tout ajout panier échouerait en 422.
   assign purchasable = false
-  if variant != blank and variant.available
+  if has_product and variant.available
     assign purchasable = true
   endif
-  if product.requires_selling_plan and alloc == blank
+  if has_product and product.requires_selling_plan and has_alloc == false
     assign purchasable = false
   endif
 
   assign title = section.settings.title_override
-  if title == blank and product != blank
+  if title == blank and has_product
     assign title = product.title
   endif
   if title == blank
@@ -372,7 +382,7 @@
             <p class="lp-buy-box__variant">{{ section.settings.variant_line }}</p>
           {%- endif -%}
 
-          {%- if product != blank -%}
+          {%- if has_product -%}
             {%- form 'product', product -%}
               <input type="hidden" name="id" value="{{ variant.id }}">
               <input type="hidden" name="quantity" value="1">
@@ -380,7 +390,7 @@
               <fieldset class="lp-buy-box__fieldset">
                 <legend class="lp-visually-hidden">Choix de la formule</legend>
                 <div class="lp-buy-box__plans">
-                {%- if alloc != blank -%}
+                {%- if has_alloc -%}
                   <label class="lp-plan">
                     <input
                       type="radio"
@@ -404,7 +414,7 @@
                       <span class="lp-plan__prices">
                         <span class="lp-plan__price">{{ sub_price }}</span>
                         <span class="lp-plan__meta">{{ section.settings.sub_price_suffix }}</span>
-                        {%- if sub_compare != blank -%}
+                        {%- if show_compare -%}
                           <span class="lp-plan__meta lp-plan__compare">{{ sub_compare }}</span>
                         {%- endif -%}
                       </span>
@@ -434,7 +444,7 @@
                       name="selling_plan"
                       value=""
                       class="lp-plan__input lp-visually-hidden"
-                      {% if alloc == blank %}checked{% endif %}
+                      {% unless has_alloc %}checked{% endunless %}
                     >
                     <span class="lp-plan__card">
                       <span class="lp-plan__label">{{ section.settings.one_time_label }}</span>
@@ -465,7 +475,7 @@
               </button>
             {%- endform -%}
 
-            {%- if request.design_mode and alloc == blank -%}
+            {%- if request.design_mode and has_alloc == false -%}
               <p class="lp-buy-box__hint">
                 {%- if product.requires_selling_plan -%}
                   Ce produit exige un abonnement mais n’a AUCUN selling plan
@@ -500,7 +510,7 @@
                   <span class="lp-plan__prices">
                     <span class="lp-plan__price">{{ sub_price }}</span>
                     <span class="lp-plan__meta">{{ section.settings.sub_price_suffix }}</span>
-                    {%- if sub_compare != blank -%}
+                    {%- if show_compare -%}
                       <span class="lp-plan__meta lp-plan__compare">{{ sub_compare }}</span>
                     {%- endif -%}
                   </span>

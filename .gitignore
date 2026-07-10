@@ -46,3 +46,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# LP preview harness
+tools/lp-preview/node_modules/
+tools/lp-preview/out/
