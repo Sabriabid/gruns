@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#fff9d6">
+    <meta name="theme-color" content="#fff7df">
     <meta name="robots" content="noindex, nofollow">
 
     <title>{{ page_title }}</title>
@@ -29,12 +29,12 @@
       via preload_tag (émet un header Link, position indifférente).
     {%- endcomment -%}
     {%- comment -%}
-      Fraunces 600 (display, brief designer) : auto-hébergée dans les assets,
-      déclarée par @font-face dans lp-base.css. On précharge les 2 fichiers
-      latin (roman + italique) : ce sont eux qui rendent les headlines.
+      Baloo 2 (display) + Work Sans (body) : auto-hébergées dans les assets,
+      déclarées par @font-face dans lp-base.css. On précharge les 2 fichiers
+      latin : ce sont eux qui rendent headlines et texte.
     {%- endcomment -%}
-    <link rel="preload" href="{{ 'lp-fraunces-600-latin.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="{{ 'lp-fraunces-600i-latin.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ 'lp-baloo2-700-latin.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ 'lp-worksans-var-latin.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
 
     {%- if settings.type_body_font -%}
       {{ settings.type_body_font | font_url | preload_tag: as: 'font', type: 'font/woff2', crossorigin: 'anonymous' }}

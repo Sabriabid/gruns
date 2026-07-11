@@ -4,7 +4,7 @@
 {%- endcomment -%}
 
 <style>
-  /* Section « 30% violet profond » du brief : héro sombre, texte crème. */
+  /* Héro sombre façon gruns.co : vert profond, texte crème. */
   .lp-hero {
     background: var(--lp-purple-deep);
     color: var(--lp-cream);
@@ -58,16 +58,27 @@
     margin-bottom: 1.25rem;
   }
 
-  /* Surligneur jaune dans un titre sur fond violet : le mot passe en encre. */
-  .lp-hero__title .lp-hl,
-  .lp-hero__title strong {
+  /* Sur fond vert profond — préfixe .lp-body pour battre les règles de base
+     (.lp-body h1 strong/em, 0-1-2) : surligneur plein « marqueur » lisible,
+     emphase en jaune. */
+  .lp-body .lp-hero__title strong,
+  .lp-body .lp-hero__title .lp-hl {
+    background: var(--lp-yellow);
     color: var(--lp-ink);
+    border-radius: 0.12em;
+    padding-inline: 0.14em;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+
+  .lp-body .lp-hero__title em {
+    color: var(--lp-yellow);
   }
 
   .lp-hero__subtitle {
     font-size: 1.0625rem;
     line-height: 1.625;
-    color: rgba(255, 249, 214, 0.85);
+    color: rgba(255, 247, 223, 0.85);
     margin-bottom: 1.75rem;
   }
 
@@ -82,7 +93,7 @@
     justify-content: center;
     gap: 0.5rem;
     font-size: 0.875rem;
-    color: rgba(255, 249, 214, 0.75);
+    color: rgba(255, 247, 223, 0.75);
   }
 
   @media (min-width: 1024px) {
