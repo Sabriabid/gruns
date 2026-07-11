@@ -332,8 +332,8 @@
         <div class="lp-buy-box__rating">
           {% render 'lp-stars', size: 18 %}
           <span>
-            <strong>{{ section.settings.rating }}</strong> étoiles |
-            <strong>{{ section.settings.review_count }}</strong> avis
+            <strong>{{ section.settings.rating }}</strong> stars |
+            <strong>{{ section.settings.review_count }}</strong> reviews
           </span>
         </div>
       {%- endif -%}
@@ -473,9 +473,9 @@
                 {%- if purchasable -%}
                   {{ section.settings.cta_label }}
                 {%- elsif variant.available == false -%}
-                  Épuisé
+                  Sold out
                 {%- else -%}
-                  Indisponible
+                  Unavailable
                 {%- endif -%}
               </button>
             {%- endform -%}
