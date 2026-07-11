@@ -1,0 +1,1295 @@
+{
+  "sections": {
+    "hero_main": {
+      "type": "hero",
+      "blocks": {
+        "hero_content": {
+          "type": "group",
+          "settings": {
+            "content_direction": "column",
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 18,
+            "width": "custom",
+            "custom_width": 46,
+            "width_mobile": "fill",
+            "height": "fit",
+            "background_media": "none",
+            "border": "none"
+          },
+          "blocks": {
+            "text_eyebrow": {
+              "type": "text",
+              "settings": {
+                "text": "<p>NOW DELIVERING ACROSS THE UAE</p>",
+                "text_color": "#4C9E16",
+                "width": "fit-content",
+                "alignment": "left",
+                "type_preset": "h6",
+                "letter_spacing": "loose",
+                "case": "uppercase"
+              },
+              "blocks": {}
+            },
+            "text_heading": {
+              "type": "text",
+              "settings": {
+                "text": "<h1>Daily nutrition never tasted this juicy.</h1>",
+                "text_color": "#1C2A12",
+                "width": "100%",
+                "alignment": "left",
+                "type_preset": "h1"
+              },
+              "blocks": {}
+            },
+            "text_sub": {
+              "type": "text",
+              "settings": {
+                "text": "<p>All-in-one multivitamin gummies — vitamins, minerals and prebiotic fiber in one Strawberry Raspberry sachet a day. Tear, chew, go.</p>",
+                "text_color": "#1C2A12",
+                "width": "100%",
+                "alignment": "left",
+                "type_preset": "rte"
+              },
+              "blocks": {}
+            },
+            "buttons_row": {
+              "type": "group",
+              "settings": {
+                "content_direction": "row",
+                "vertical_on_mobile": false,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "gap": 12,
+                "width": "fit",
+                "width_mobile": "fit",
+                "height": "fit",
+                "background_media": "none",
+                "border": "none"
+              },
+              "blocks": {
+                "button_daily": {
+                  "type": "button",
+                  "settings": {
+                    "label": "Shop Gomu Daily",
+                    "link": "shopify://products/gomu-daily-complete-nutrition-gummies",
+                    "style_class": "button-custom",
+                    "custom_button_background": "#5CB01F",
+                    "custom_button_text": "#FFF6E3",
+                    "custom_button_border": "#5CB01F",
+                    "width": "fit-content"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "button_daily"
+              ]
+            },
+            "text_trust": {
+              "type": "text",
+              "settings": {
+                "text": "<p><strong>✓</strong> Free UAE shipping&nbsp;&nbsp;<strong>✓</strong> 30-day guarantee&nbsp;&nbsp;<strong>✓</strong> Vegan &amp; Halal</p>",
+                "text_color": "#1C2A12",
+                "width": "fit-content",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font_size": "0.875rem"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_eyebrow",
+            "text_heading",
+            "text_sub",
+            "buttons_row",
+            "text_trust"
+          ]
+        }
+      },
+      "block_order": [
+        "hero_content"
+      ],
+      "name": "Hero",
+      "settings": {
+        "media_type_1": "image",
+        "image_1": "shopify://shop_images/gomu-hero-juicy.png",
+        "media_type_2": "image",
+        "stack_media_on_mobile": false,
+        "custom_mobile_media": false,
+        "content_direction": "column",
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 16,
+        "section_width": "page-width",
+        "section_height": "large",
+        "background_color": "#FFFBF2",
+        "toggle_overlay": false,
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
+    "marquee_promo": {
+      "type": "marquee",
+      "blocks": {
+        "mtext_1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>FREE SHIPPING ACROSS THE UAE ✦</p>",
+            "text_color": "#FFF6E3",
+            "type_preset": "h6",
+            "wrap": "nowrap",
+            "width": "fit-content"
+          },
+          "blocks": {}
+        },
+        "mtext_2": {
+          "type": "text",
+          "settings": {
+            "text": "<p>30-DAY MONEY-BACK GUARANTEE ✦</p>",
+            "text_color": "#FFF6E3",
+            "type_preset": "h6",
+            "wrap": "nowrap",
+            "width": "fit-content"
+          },
+          "blocks": {}
+        },
+        "mtext_3": {
+          "type": "text",
+          "settings": {
+            "text": "<p>VEGAN · HALAL · GLUTEN-FREE · NUT-FREE ✦</p>",
+            "text_color": "#FFF6E3",
+            "type_preset": "h6",
+            "wrap": "nowrap",
+            "width": "fit-content"
+          },
+          "blocks": {}
+        },
+        "mtext_4": {
+          "type": "text",
+          "settings": {
+            "text": "<p>NO ARTIFICIAL COLORS · FLAVORS · SWEETENERS ✦</p>",
+            "text_color": "#FFF6E3",
+            "type_preset": "h6",
+            "wrap": "nowrap",
+            "width": "fit-content"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "mtext_1",
+        "mtext_2",
+        "mtext_3",
+        "mtext_4"
+      ],
+      "name": "Promo marquee",
+      "settings": {
+        "movement_direction": "normal",
+        "background_color": "#5CB01F",
+        "padding-block-start": 14,
+        "padding-block-end": 14,
+        "gap_between_elements": 48
+      }
+    },
+    "section_certs": {
+      "type": "section",
+      "blocks": {
+        "certs_row": {
+          "type": "group",
+          "settings": {
+            "content_direction": "row",
+            "vertical_on_mobile": false,
+            "horizontal_alignment": "center",
+            "vertical_alignment": "flex-start",
+            "gap": 40,
+            "width": "fill",
+            "width_mobile": "fill",
+            "height": "fit",
+            "background_media": "none",
+            "border": "none"
+          },
+          "blocks": {
+            "cert_1": {
+              "type": "group",
+              "settings": {
+                "content_direction": "column",
+                "horizontal_alignment_flex_direction_column": "center",
+                "gap": 8,
+                "width": "fill",
+                "width_mobile": "fill",
+                "height": "fit",
+                "background_media": "none",
+                "border": "none"
+              },
+              "blocks": {
+                "cert_1_icon": {
+                  "type": "icon",
+                  "settings": {
+                    "icon": "plant",
+                    "width": 36
+                  },
+                  "blocks": {}
+                },
+                "cert_1_label": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>VEGAN</p>",
+                    "text_color": "#1C2A12",
+                    "width": "100%",
+                    "alignment": "center",
+                    "type_preset": "h6",
+                    "case": "uppercase",
+                    "letter_spacing": "loose"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "cert_1_icon",
+                "cert_1_label"
+              ]
+            },
+            "cert_2": {
+              "type": "group",
+              "settings": {
+                "content_direction": "column",
+                "horizontal_alignment_flex_direction_column": "center",
+                "gap": 8,
+                "width": "fill",
+                "width_mobile": "fill",
+                "height": "fit",
+                "background_media": "none",
+                "border": "none"
+              },
+              "blocks": {
+                "cert_2_icon": {
+                  "type": "icon",
+                  "settings": {
+                    "icon": "star",
+                    "width": 36
+                  },
+                  "blocks": {}
+                },
+                "cert_2_label": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>HALAL</p>",
+                    "text_color": "#1C2A12",
+                    "width": "100%",
+                    "alignment": "center",
+                    "type_preset": "h6",
+                    "case": "uppercase",
+                    "letter_spacing": "loose"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "cert_2_icon",
+                "cert_2_label"
+              ]
+            },
+            "cert_3": {
+              "type": "group",
+              "settings": {
+                "content_direction": "column",
+                "horizontal_alignment_flex_direction_column": "center",
+                "gap": 8,
+                "width": "fill",
+                "width_mobile": "fill",
+                "height": "fit",
+                "background_media": "none",
+                "border": "none"
+              },
+              "blocks": {
+                "cert_3_icon": {
+                  "type": "icon",
+                  "settings": {
+                    "icon": "gluten_free",
+                    "width": 36
+                  },
+                  "blocks": {}
+                },
+                "cert_3_label": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>GLUTEN FREE</p>",
+                    "text_color": "#1C2A12",
+                    "width": "100%",
+                    "alignment": "center",
+                    "type_preset": "h6",
+                    "case": "uppercase",
+                    "letter_spacing": "loose"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "cert_3_icon",
+                "cert_3_label"
+              ]
+            },
+            "cert_4": {
+              "type": "group",
+              "settings": {
+                "content_direction": "column",
+                "horizontal_alignment_flex_direction_column": "center",
+                "gap": 8,
+                "width": "fill",
+                "width_mobile": "fill",
+                "height": "fit",
+                "background_media": "none",
+                "border": "none"
+              },
+              "blocks": {
+                "cert_4_icon": {
+                  "type": "icon",
+                  "settings": {
+                    "icon": "nut_free",
+                    "width": 36
+                  },
+                  "blocks": {}
+                },
+                "cert_4_label": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>NUT FREE</p>",
+                    "text_color": "#1C2A12",
+                    "width": "100%",
+                    "alignment": "center",
+                    "type_preset": "h6",
+                    "case": "uppercase",
+                    "letter_spacing": "loose"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "cert_4_icon",
+                "cert_4_label"
+              ]
+            },
+            "cert_5": {
+              "type": "group",
+              "settings": {
+                "content_direction": "column",
+                "horizontal_alignment_flex_direction_column": "center",
+                "gap": 8,
+                "width": "fill",
+                "width_mobile": "fill",
+                "height": "fit",
+                "background_media": "none",
+                "border": "none"
+              },
+              "blocks": {
+                "cert_5_icon": {
+                  "type": "icon",
+                  "settings": {
+                    "icon": "dairy_free",
+                    "width": 36
+                  },
+                  "blocks": {}
+                },
+                "cert_5_label": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>DAIRY FREE</p>",
+                    "text_color": "#1C2A12",
+                    "width": "100%",
+                    "alignment": "center",
+                    "type_preset": "h6",
+                    "case": "uppercase",
+                    "letter_spacing": "loose"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "cert_5_icon",
+                "cert_5_label"
+              ]
+            },
+            "cert_6": {
+              "type": "group",
+              "settings": {
+                "content_direction": "column",
+                "horizontal_alignment_flex_direction_column": "center",
+                "gap": 8,
+                "width": "fill",
+                "width_mobile": "fill",
+                "height": "fit",
+                "background_media": "none",
+                "border": "none"
+              },
+              "blocks": {
+                "cert_6_icon": {
+                  "type": "icon",
+                  "settings": {
+                    "icon": "check_box",
+                    "width": 36
+                  },
+                  "blocks": {}
+                },
+                "cert_6_label": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>NO ARTIFICIALS</p>",
+                    "text_color": "#1C2A12",
+                    "width": "100%",
+                    "alignment": "center",
+                    "type_preset": "h6",
+                    "case": "uppercase",
+                    "letter_spacing": "loose"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "cert_6_icon",
+                "cert_6_label"
+              ]
+            }
+          },
+          "block_order": [
+            "cert_1",
+            "cert_2",
+            "cert_3",
+            "cert_4",
+            "cert_5",
+            "cert_6"
+          ]
+        }
+      },
+      "block_order": [
+        "certs_row"
+      ],
+      "name": "Certifications",
+      "settings": {
+        "content_direction": "column",
+        "horizontal_alignment_flex_direction_column": "center",
+        "gap": 24,
+        "section_width": "page-width",
+        "padding-block-start": 40,
+        "padding-block-end": 40
+      }
+    },
+    "featured_daily": {
+      "type": "featured-product",
+      "blocks": {
+        "media": {
+          "type": "_media-without-appearance",
+          "static": true,
+          "name": "Product media",
+          "settings": {
+            "media_type": "image",
+            "image": "shopify://shop_images/gomu-sachet-open.png",
+            "image_position": "cover"
+          },
+          "blocks": {}
+        },
+        "featured-product": {
+          "type": "_featured-product",
+          "static": true,
+          "name": "Product",
+          "settings": {},
+          "blocks": {
+            "featured-product-title": {
+              "type": "product-title",
+              "name": "Title",
+              "static": true,
+              "settings": {
+                "type_preset": "h3",
+                "width": "100%"
+              },
+              "blocks": {}
+            },
+            "featured-product-price": {
+              "type": "_featured-product-price",
+              "name": "Price",
+              "static": true,
+              "settings": {},
+              "blocks": {}
+            },
+            "featured-product-gallery": {
+              "type": "_featured-product-gallery",
+              "name": "Image",
+              "static": true,
+              "settings": {},
+              "blocks": {}
+            },
+            "featured-product-swatches": {
+              "type": "swatches",
+              "name": "Swatches",
+              "static": true,
+              "settings": {
+                "hide_padding": true
+              },
+              "blocks": {}
+            }
+          }
+        }
+      },
+      "name": "Featured product",
+      "settings": {
+        "product": "gomu-daily-complete-nutrition-gummies",
+        "layout": "media-left",
+        "background_color": "#FFFFFF",
+        "padding-block-start": 56,
+        "padding-block-end": 56
+      }
+    },
+    "section_stats": {
+      "type": "section",
+      "blocks": {
+        "stats_row": {
+          "type": "group",
+          "settings": {
+            "content_direction": "row",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "center",
+            "vertical_alignment": "center",
+            "gap": 48,
+            "width": "fill",
+            "width_mobile": "fill",
+            "height": "fit",
+            "background_media": "none",
+            "border": "none"
+          },
+          "blocks": {
+            "stats_image": {
+              "type": "image",
+              "settings": {
+                "image": "shopify://shop_images/gomu-flatlay.png",
+                "border_radius": 24,
+                "width": "fill",
+                "width_mobile": "fill"
+              },
+              "blocks": {}
+            },
+            "stats_col": {
+              "type": "group",
+              "settings": {
+                "content_direction": "column",
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "gap": 24,
+                "width": "fill",
+                "width_mobile": "fill",
+                "height": "fit",
+                "background_media": "none",
+                "border": "none"
+              },
+              "blocks": {
+                "stats_heading": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<h2>Everything. In one pack.</h2>",
+                    "text_color": "#1C2A12",
+                    "width": "100%",
+                    "alignment": "left",
+                    "type_preset": "h2"
+                  },
+                  "blocks": {}
+                },
+                "stat_1": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<h3>28</h3><p>single-serve daily sachets in every pouch — a full four-week supply</p>",
+                    "text_color": "#1C2A12",
+                    "width": "100%",
+                    "alignment": "left",
+                    "type_preset": "rte"
+                  },
+                  "blocks": {}
+                },
+                "stat_2": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<h3>8</h3><p>juicy Strawberry Raspberry gummies per sachet — 224 gummies per pouch</p>",
+                    "text_color": "#1C2A12",
+                    "width": "100%",
+                    "alignment": "left",
+                    "type_preset": "rte"
+                  },
+                  "blocks": {}
+                },
+                "stat_3": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<h3>20+</h3><p>vitamins and minerals plus prebiotic fiber — supporting immunity, energy, antioxidant defenses and mental performance*</p>",
+                    "text_color": "#1C2A12",
+                    "width": "100%",
+                    "alignment": "left",
+                    "type_preset": "rte"
+                  },
+                  "blocks": {}
+                },
+                "stat_4": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<h3>0</h3><p>artificial colors, flavors or sweeteners. Ever.</p>",
+                    "text_color": "#1C2A12",
+                    "width": "100%",
+                    "alignment": "left",
+                    "type_preset": "rte"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "stats_heading",
+                "stat_1",
+                "stat_2",
+                "stat_3",
+                "stat_4"
+              ]
+            }
+          },
+          "block_order": [
+            "stats_image",
+            "stats_col"
+          ]
+        }
+      },
+      "block_order": [
+        "stats_row"
+      ],
+      "name": "Stats",
+      "settings": {
+        "content_direction": "column",
+        "horizontal_alignment_flex_direction_column": "center",
+        "gap": 32,
+        "section_width": "page-width",
+        "background_color": "#FFF6E3",
+        "padding-block-start": 72,
+        "padding-block-end": 72
+      }
+    },
+    "section_compare": {
+      "type": "custom-liquid",
+      "name": "Comparison",
+      "settings": {
+        "custom_liquid": "<div class=\"gomu-cmp\">\n  <div class=\"gomu-cmp__head\">\n    <p class=\"gomu-cmp__eyebrow\">THE JUICY TRUTH</p>\n    <h2 class=\"gomu-cmp__title\">Gummies &gt; pills &gt; powders</h2>\n  </div>\n  <div class=\"gomu-cmp__scroll\">\n    <table class=\"gomu-cmp__table\">\n      <thead>\n        <tr>\n          <th></th>\n          <th class=\"gomu-cmp__gomu-col gomu-cmp__gomu-top\">GOMU</th>\n          <th>Pills</th>\n          <th>Powders</th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr><td>Actually tastes amazing</td><td class=\"gomu-cmp__gomu-col\"><span class=\"gomu-cmp__yes\">✓</span></td><td><span class=\"gomu-cmp__no\">✕</span></td><td><span class=\"gomu-cmp__no\">✕</span></td></tr>\n        <tr><td>All-in-one formula (vitamins + minerals + fiber)</td><td class=\"gomu-cmp__gomu-col\"><span class=\"gomu-cmp__yes\">✓</span></td><td><span class=\"gomu-cmp__no\">✕</span></td><td><span class=\"gomu-cmp__yes gomu-cmp__yes--muted\">✓</span></td></tr>\n        <tr><td>No water, no prep, no mess</td><td class=\"gomu-cmp__gomu-col\"><span class=\"gomu-cmp__yes\">✓</span></td><td><span class=\"gomu-cmp__no\">✕</span></td><td><span class=\"gomu-cmp__no\">✕</span></td></tr>\n        <tr><td>One grab-and-go daily sachet</td><td class=\"gomu-cmp__gomu-col\"><span class=\"gomu-cmp__yes\">✓</span></td><td><span class=\"gomu-cmp__no\">✕</span></td><td><span class=\"gomu-cmp__no\">✕</span></td></tr>\n        <tr><td>Vegan &amp; Halal</td><td class=\"gomu-cmp__gomu-col\"><span class=\"gomu-cmp__yes\">✓</span></td><td><span class=\"gomu-cmp__maybe\">varies</span></td><td><span class=\"gomu-cmp__maybe\">varies</span></td></tr>\n        <tr><td>You actually look forward to it</td><td class=\"gomu-cmp__gomu-col gomu-cmp__gomu-bottom\"><span class=\"gomu-cmp__yes\">✓</span></td><td><span class=\"gomu-cmp__no\">✕</span></td><td><span class=\"gomu-cmp__no\">✕</span></td></tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n<style>\n.gomu-cmp{max-width:920px;margin:0 auto;padding:72px 20px}\n.gomu-cmp__head{text-align:center;margin-bottom:36px}\n.gomu-cmp__eyebrow{font-family:var(--font-subheading--family);font-size:.75rem;letter-spacing:.14em;color:#4C9E16;margin:0 0 10px;font-weight:600}\n.gomu-cmp__title{font-family:var(--font-heading--family);font-weight:700;color:#1C2A12;margin:0;font-size:clamp(1.8rem,4vw,2.75rem);line-height:1.1}\n.gomu-cmp__scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}\n.gomu-cmp__table{width:100%;min-width:560px;border-collapse:separate;border-spacing:0;font-family:var(--font-body--family);color:#1C2A12}\n.gomu-cmp__table th{font-family:var(--font-subheading--family);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;padding:14px 12px;text-align:center}\n.gomu-cmp__table td{padding:16px 12px;border-bottom:1px solid #E7E0CC;font-size:.95rem;text-align:center}\n.gomu-cmp__table td:first-child{text-align:left;font-weight:500}\n.gomu-cmp__table tr:last-child td{border-bottom:none}\n.gomu-cmp__gomu-col{background:#5CB01F;color:#FFF6E3 !important;font-weight:700}\nth.gomu-cmp__gomu-col{font-size:.95rem;letter-spacing:.12em}\n.gomu-cmp__gomu-top{border-radius:20px 20px 0 0}\n.gomu-cmp__gomu-bottom{border-radius:0 0 20px 20px}\ntd.gomu-cmp__gomu-col{border-bottom:1px solid rgba(255,246,227,.25)}\n.gomu-cmp__yes{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:#FFF6E3;color:#4C9E16;font-weight:800;font-size:.85rem}\ntd:not(.gomu-cmp__gomu-col) .gomu-cmp__yes{background:#E8F5DC;color:#4C9E16}\n.gomu-cmp__no{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:#F0EDE3;color:#A8A395;font-weight:700;font-size:.75rem}\n.gomu-cmp__maybe{font-size:.8rem;color:#FFF6E3;opacity:.85;font-style:italic}\ntd:not(.gomu-cmp__gomu-col) .gomu-cmp__maybe{color:#A8A395}\n</style>"
+      }
+    },
+    "product_list_main": {
+      "type": "product-list",
+      "blocks": {
+        "static-header": {
+          "type": "_product-list-content",
+          "name": "Header",
+          "static": true,
+          "settings": {
+            "content_direction": "row",
+            "horizontal_alignment": "space-between",
+            "vertical_alignment": "flex-end",
+            "align_baseline": true,
+            "gap": 12,
+            "width": "fill",
+            "height": "fit",
+            "background_media": "none",
+            "border": "none"
+          },
+          "blocks": {
+            "pl_title": {
+              "type": "_product-list-text",
+              "settings": {
+                "text": "<h2>Shop the range</h2>",
+                "width": "fit-content",
+                "alignment": "left",
+                "type_preset": "h3"
+              },
+              "blocks": {}
+            },
+            "pl_button": {
+              "type": "_product-list-button",
+              "settings": {
+                "label": "View all",
+                "style_class": "link",
+                "width": "fit-content"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "pl_title",
+            "pl_button"
+          ]
+        },
+        "static-product-card": {
+          "type": "_product-card",
+          "name": "Product card",
+          "static": true,
+          "settings": {
+            "product_card_gap": 8,
+            "border": "none"
+          },
+          "blocks": {
+            "pc_gallery": {
+              "type": "_product-card-gallery",
+              "settings": {
+                "image_ratio": "square",
+                "border": "none",
+                "border_radius": 20
+              },
+              "blocks": {}
+            },
+            "pc_title": {
+              "type": "product-title",
+              "settings": {
+                "width": "100%",
+                "alignment": "left",
+                "type_preset": "h6",
+                "padding-block-start": 8
+              },
+              "blocks": {}
+            },
+            "pc_price": {
+              "type": "price",
+              "settings": {
+                "show_sale_price_first": true,
+                "type_preset": "paragraph",
+                "width": "100%",
+                "alignment": "left"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "pc_gallery",
+            "pc_title",
+            "pc_price"
+          ]
+        }
+      },
+      "name": "Shop the range",
+      "settings": {
+        "collection": "shop-all",
+        "layout_type": "grid",
+        "carousel_on_mobile": false,
+        "max_products": 4,
+        "columns": 2,
+        "mobile_columns": "1",
+        "columns_gap": 20,
+        "rows_gap": 24,
+        "section_width": "page-width",
+        "gap": 32,
+        "padding-block-start": 64,
+        "padding-block-end": 64
+      }
+    },
+    "section_expect": {
+      "type": "section",
+      "blocks": {
+        "expect_heading": {
+          "type": "text",
+          "settings": {
+            "text": "<h2>Your first month with Gomu</h2>",
+            "text_color": "#1C2A12",
+            "width": "100%",
+            "alignment": "center",
+            "type_preset": "h2"
+          },
+          "blocks": {}
+        },
+        "expect_row": {
+          "type": "group",
+          "settings": {
+            "content_direction": "row",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "center",
+            "vertical_alignment": "flex-start",
+            "gap": 24,
+            "width": "fill",
+            "width_mobile": "fill",
+            "height": "fit",
+            "background_media": "none",
+            "border": "none"
+          },
+          "blocks": {
+            "week_1": {
+              "type": "group",
+              "settings": {
+                "content_direction": "column",
+                "gap": 10,
+                "width": "fill",
+                "width_mobile": "fill",
+                "height": "fit",
+                "background_media": "none",
+                "background_color": "#FFFFFF",
+                "border": "none",
+                "border_radius": 20,
+                "padding-block-start": 28,
+                "padding-block-end": 28,
+                "padding-inline-start": 24,
+                "padding-inline-end": 24
+              },
+              "blocks": {
+                "w1_title": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<h5>WEEK 1</h5>",
+                    "text_color": "#FB7A1E",
+                    "width": "100%",
+                    "alignment": "center",
+                    "type_preset": "h5",
+                    "letter_spacing": "loose"
+                  },
+                  "blocks": {}
+                },
+                "w1_text": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Your daily sachet becomes the easiest habit you own — one tear, done.</p>",
+                    "text_color": "#1C2A12",
+                    "width": "100%",
+                    "alignment": "center",
+                    "type_preset": "rte"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "w1_title",
+                "w1_text"
+              ]
+            },
+            "week_2": {
+              "type": "group",
+              "settings": {
+                "content_direction": "column",
+                "gap": 10,
+                "width": "fill",
+                "width_mobile": "fill",
+                "height": "fit",
+                "background_media": "none",
+                "background_color": "#FFFFFF",
+                "border": "none",
+                "border_radius": 20,
+                "padding-block-start": 28,
+                "padding-block-end": 28,
+                "padding-inline-start": 24,
+                "padding-inline-end": 24
+              },
+              "blocks": {
+                "w2_title": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<h5>WEEKS 2–3</h5>",
+                    "text_color": "#FB7A1E",
+                    "width": "100%",
+                    "alignment": "center",
+                    "type_preset": "h5",
+                    "letter_spacing": "loose"
+                  },
+                  "blocks": {}
+                },
+                "w2_text": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Consistency kicks in. No more forgotten vitamins at the back of the cupboard.</p>",
+                    "text_color": "#1C2A12",
+                    "width": "100%",
+                    "alignment": "center",
+                    "type_preset": "rte"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "w2_title",
+                "w2_text"
+              ]
+            },
+            "week_4": {
+              "type": "group",
+              "settings": {
+                "content_direction": "column",
+                "gap": 10,
+                "width": "fill",
+                "width_mobile": "fill",
+                "height": "fit",
+                "background_media": "none",
+                "background_color": "#FFFFFF",
+                "border": "none",
+                "border_radius": 20,
+                "padding-block-start": 28,
+                "padding-block-end": 28,
+                "padding-inline-start": 24,
+                "padding-inline-end": 24
+              },
+              "blocks": {
+                "w4_title": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<h5>WEEK 4</h5>",
+                    "text_color": "#FB7A1E",
+                    "width": "100%",
+                    "alignment": "center",
+                    "type_preset": "h5",
+                    "letter_spacing": "loose"
+                  },
+                  "blocks": {}
+                },
+                "w4_text": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>28 sachets done, pouch finished. Restock and keep the streak alive.</p>",
+                    "text_color": "#1C2A12",
+                    "width": "100%",
+                    "alignment": "center",
+                    "type_preset": "rte"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "w4_title",
+                "w4_text"
+              ]
+            }
+          },
+          "block_order": [
+            "week_1",
+            "week_2",
+            "week_4"
+          ]
+        },
+        "expect_disclaimer": {
+          "type": "text",
+          "settings": {
+            "text": "<p><em>*Food supplements complement, not replace, a varied and balanced diet.</em></p>",
+            "text_color": "#8A8574",
+            "width": "100%",
+            "alignment": "center",
+            "type_preset": "rte",
+            "font_size": "0.8125rem"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "expect_heading",
+        "expect_row",
+        "expect_disclaimer"
+      ],
+      "name": "First month",
+      "settings": {
+        "content_direction": "column",
+        "horizontal_alignment_flex_direction_column": "center",
+        "gap": 40,
+        "section_width": "page-width",
+        "background_color": "#FFF6E3",
+        "padding-block-start": 72,
+        "padding-block-end": 72
+      }
+    },
+    "section_faq": {
+      "type": "section",
+      "blocks": {
+        "faq_heading": {
+          "type": "text",
+          "settings": {
+            "text": "<h2>Frequently asked questions</h2>",
+            "text_color": "#1C2A12",
+            "width": "100%",
+            "alignment": "center",
+            "type_preset": "h2"
+          },
+          "blocks": {}
+        },
+        "faq_accordion": {
+          "type": "accordion",
+          "settings": {
+            "icon": "plus",
+            "dividers": true,
+            "type_preset": "h6"
+          },
+          "blocks": {
+            "faq_1": {
+              "type": "_accordion-row",
+              "settings": {
+                "heading": "What exactly is Gomu?",
+                "open_by_default": true
+              },
+              "blocks": {
+                "faq_1_text": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Gomu Daily is an all-in-one multivitamin in Strawberry Raspberry gummies — vitamins, minerals and prebiotic fiber in 28 single-serve daily sachets per pouch (8 gummies each), a full four-week supply.</p>",
+                    "width": "100%"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "faq_1_text"
+              ]
+            },
+            "faq_2": {
+              "type": "_accordion-row",
+              "settings": {
+                "heading": "How do I take it?"
+              },
+              "blocks": {
+                "faq_2_text": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>One sachet of 8 gummies per day, any time. No water, no mixing — most members keep it with breakfast or in their bag.</p>",
+                    "width": "100%"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "faq_2_text"
+              ]
+            },
+            "faq_3": {
+              "type": "_accordion-row",
+              "settings": {
+                "heading": "Is Gomu Halal and vegan?"
+              },
+              "blocks": {
+                "faq_3_text": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Yes — Gomu is Vegan, Halal, Gluten Free, Nut Free and Dairy Free, with no artificial colors, flavors or sweeteners.</p>",
+                    "width": "100%"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "faq_3_text"
+              ]
+            },
+            "faq_4": {
+              "type": "_accordion-row",
+              "settings": {
+                "heading": "Do you deliver across the UAE?"
+              },
+              "blocks": {
+                "faq_4_text": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Yes — free delivery to all seven Emirates, typically within 3 to 5 business days.</p>",
+                    "width": "100%"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "faq_4_text"
+              ]
+            },
+            "faq_5": {
+              "type": "_accordion-row",
+              "settings": {
+                "heading": "What is your money-back guarantee?"
+              },
+              "blocks": {
+                "faq_5_text": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>If you're not happy with your first order, email us within 30 days of delivery and we'll refund it in full. No returns needed.</p>",
+                    "width": "100%"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "faq_5_text"
+              ]
+            }
+          },
+          "block_order": [
+            "faq_1",
+            "faq_2",
+            "faq_3",
+            "faq_4",
+            "faq_5"
+          ]
+        }
+      },
+      "block_order": [
+        "faq_heading",
+        "faq_accordion"
+      ],
+      "name": "FAQ",
+      "settings": {
+        "content_direction": "column",
+        "horizontal_alignment_flex_direction_column": "center",
+        "gap": 32,
+        "section_width": "page-width",
+        "padding-block-start": 64,
+        "padding-block-end": 64
+      }
+    },
+    "hero_cta": {
+      "type": "hero",
+      "blocks": {
+        "cta_content": {
+          "type": "group",
+          "settings": {
+            "content_direction": "column",
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 18,
+            "width": "custom",
+            "custom_width": 44,
+            "width_mobile": "fill",
+            "height": "fit",
+            "background_media": "none",
+            "border": "none"
+          },
+          "blocks": {
+            "cta_heading": {
+              "type": "text",
+              "settings": {
+                "text": "<h2>Ready for your juiciest month yet?</h2>",
+                "text_color": "#FFF6E3",
+                "width": "100%",
+                "alignment": "left",
+                "type_preset": "h2"
+              },
+              "blocks": {}
+            },
+            "cta_text": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Free UAE delivery. 30-day money-back guarantee. Zero risk, all juice.</p>",
+                "text_color": "#FFF6E3",
+                "width": "100%",
+                "alignment": "left",
+                "type_preset": "rte"
+              },
+              "blocks": {}
+            },
+            "cta_buttons": {
+              "type": "group",
+              "settings": {
+                "content_direction": "row",
+                "vertical_on_mobile": false,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "gap": 12,
+                "width": "fit",
+                "width_mobile": "fit",
+                "height": "fit",
+                "background_media": "none",
+                "border": "none"
+              },
+              "blocks": {
+                "cta_daily": {
+                  "type": "button",
+                  "settings": {
+                    "label": "Shop Gomu Daily",
+                    "link": "shopify://products/gomu-daily-complete-nutrition-gummies",
+                    "style_class": "button-custom",
+                    "custom_button_background": "#FFF6E3",
+                    "custom_button_text": "#1C2A12",
+                    "custom_button_border": "#FFF6E3",
+                    "width": "fit-content"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "cta_daily"
+              ]
+            }
+          },
+          "block_order": [
+            "cta_heading",
+            "cta_text",
+            "cta_buttons"
+          ]
+        }
+      },
+      "block_order": [
+        "cta_content"
+      ],
+      "name": "Final CTA",
+      "settings": {
+        "media_type_1": "image",
+        "image_1": "shopify://shop_images/gomu-duo-banner.png",
+        "media_type_2": "image",
+        "stack_media_on_mobile": false,
+        "custom_mobile_media": false,
+        "content_direction": "column",
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 16,
+        "section_width": "page-width",
+        "section_height": "medium",
+        "toggle_overlay": true,
+        "overlay_color": "#1C2A1226",
+        "overlay_style": "solid",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
+    "section_newsletter": {
+      "type": "section",
+      "blocks": {
+        "nl_heading": {
+          "type": "text",
+          "settings": {
+            "text": "<h3>Join the Gomu club</h3>",
+            "text_color": "#1C2A12",
+            "width": "100%",
+            "alignment": "center",
+            "type_preset": "h3"
+          },
+          "blocks": {}
+        },
+        "nl_text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Launch offers, restock alerts and honest nutrition tips. No spam, ever.</p>",
+            "text_color": "#1C2A12",
+            "width": "100%",
+            "alignment": "center",
+            "type_preset": "rte"
+          },
+          "blocks": {}
+        },
+        "nl_signup": {
+          "type": "email-signup",
+          "settings": {},
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "nl_heading",
+        "nl_text",
+        "nl_signup"
+      ],
+      "name": "Newsletter",
+      "settings": {
+        "content_direction": "column",
+        "horizontal_alignment_flex_direction_column": "center",
+        "gap": 20,
+        "section_width": "page-width",
+        "background_color": "#FFF6E3",
+        "padding-block-start": 64,
+        "padding-block-end": 64
+      }
+    }
+  },
+  "order": [
+    "hero_main",
+    "marquee_promo",
+    "section_certs",
+    "featured_daily",
+    "section_stats",
+    "section_compare",
+    "product_list_main",
+    "section_expect",
+    "section_faq",
+    "hero_cta",
+    "section_newsletter"
+  ]
+}
