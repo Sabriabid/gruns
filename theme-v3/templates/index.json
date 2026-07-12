@@ -22,7 +22,7 @@
               "type": "text",
               "settings": {
                 "text": "<p>NOW DELIVERING ACROSS THE UAE</p>",
-                "text_color": "#4C9E16",
+                "text_color": "#FFCC2F",
                 "width": "fit-content",
                 "alignment": "left",
                 "type_preset": "h6",
@@ -35,7 +35,7 @@
               "type": "text",
               "settings": {
                 "text": "<h1>Daily nutrition never tasted this juicy.</h1>",
-                "text_color": "#1C2A12",
+                "text_color": "#FFF7DF",
                 "width": "100%",
                 "alignment": "left",
                 "type_preset": "h1"
@@ -46,7 +46,7 @@
               "type": "text",
               "settings": {
                 "text": "<p>All-in-one multivitamin gummies — vitamins, minerals and prebiotic fiber in one Strawberry Raspberry sachet a day. Tear, chew, go.</p>",
-                "text_color": "#1C2A12",
+                "text_color": "#FFF7DF",
                 "width": "100%",
                 "alignment": "left",
                 "type_preset": "rte"
@@ -74,9 +74,9 @@
                     "label": "Shop Gomu Daily",
                     "link": "shopify://products/gomu-daily-complete-nutrition-gummies",
                     "style_class": "button-custom",
-                    "custom_button_background": "#5CB01F",
-                    "custom_button_text": "#FFF6E3",
-                    "custom_button_border": "#5CB01F",
+                    "custom_button_background": "#FFF7DF",
+                    "custom_button_text": "#002613",
+                    "custom_button_border": "#FFF7DF",
                     "width": "fit-content"
                   },
                   "blocks": {}
@@ -90,7 +90,7 @@
               "type": "text",
               "settings": {
                 "text": "<p><strong>✓</strong> Free UAE shipping&nbsp;&nbsp;<strong>✓</strong> 30-day guarantee&nbsp;&nbsp;<strong>✓</strong> Vegan &amp; Halal</p>",
-                "text_color": "#1C2A12",
+                "text_color": "#FFF7DF",
                 "width": "fit-content",
                 "alignment": "left",
                 "type_preset": "rte",
@@ -114,7 +114,7 @@
       "name": "Hero",
       "settings": {
         "media_type_1": "image",
-        "image_1": "shopify://shop_images/gomu-hero-juicy.png",
+        "image_1": "shopify://shop_images/gomu-hero-forest.png",
         "media_type_2": "image",
         "stack_media_on_mobile": false,
         "custom_mobile_media": false,
@@ -124,7 +124,7 @@
         "gap": 16,
         "section_width": "page-width",
         "section_height": "large",
-        "background_color": "#FFFBF2",
+        "background_color": "#002613",
         "toggle_overlay": false,
         "padding-block-start": 48,
         "padding-block-end": 48
@@ -137,7 +137,7 @@
           "type": "text",
           "settings": {
             "text": "<p>FREE SHIPPING ACROSS THE UAE ✦</p>",
-            "text_color": "#FFF6E3",
+            "text_color": "#FFF7DF",
             "type_preset": "h6",
             "wrap": "nowrap",
             "width": "fit-content"
@@ -148,7 +148,7 @@
           "type": "text",
           "settings": {
             "text": "<p>30-DAY MONEY-BACK GUARANTEE ✦</p>",
-            "text_color": "#FFF6E3",
+            "text_color": "#FFF7DF",
             "type_preset": "h6",
             "wrap": "nowrap",
             "width": "fit-content"
@@ -159,7 +159,7 @@
           "type": "text",
           "settings": {
             "text": "<p>VEGAN · HALAL · GLUTEN-FREE · NUT-FREE ✦</p>",
-            "text_color": "#FFF6E3",
+            "text_color": "#FFF7DF",
             "type_preset": "h6",
             "wrap": "nowrap",
             "width": "fit-content"
@@ -170,7 +170,7 @@
           "type": "text",
           "settings": {
             "text": "<p>NO ARTIFICIAL COLORS · FLAVORS · SWEETENERS ✦</p>",
-            "text_color": "#FFF6E3",
+            "text_color": "#FFF7DF",
             "type_preset": "h6",
             "wrap": "nowrap",
             "width": "fit-content"
@@ -187,7 +187,7 @@
       "name": "Promo marquee",
       "settings": {
         "movement_direction": "normal",
-        "background_color": "#5CB01F",
+        "background_color": "#007E40",
         "padding-block-start": 14,
         "padding-block-end": 14,
         "gap_between_elements": 48
@@ -236,7 +236,7 @@
                   "type": "text",
                   "settings": {
                     "text": "<p>VEGAN</p>",
-                    "text_color": "#1C2A12",
+                    "text_color": "#002613",
                     "width": "100%",
                     "alignment": "center",
                     "type_preset": "h6",
@@ -276,7 +276,7 @@
                   "type": "text",
                   "settings": {
                     "text": "<p>HALAL</p>",
-                    "text_color": "#1C2A12",
+                    "text_color": "#002613",
                     "width": "100%",
                     "alignment": "center",
                     "type_preset": "h6",
@@ -316,7 +316,7 @@
                   "type": "text",
                   "settings": {
                     "text": "<p>GLUTEN FREE</p>",
-                    "text_color": "#1C2A12",
+                    "text_color": "#002613",
                     "width": "100%",
                     "alignment": "center",
                     "type_preset": "h6",
@@ -356,7 +356,7 @@
                   "type": "text",
                   "settings": {
                     "text": "<p>NUT FREE</p>",
-                    "text_color": "#1C2A12",
+                    "text_color": "#002613",
                     "width": "100%",
                     "alignment": "center",
                     "type_preset": "h6",
@@ -396,7 +396,7 @@
                   "type": "text",
                   "settings": {
                     "text": "<p>DAIRY FREE</p>",
-                    "text_color": "#1C2A12",
+                    "text_color": "#002613",
                     "width": "100%",
                     "alignment": "center",
                     "type_preset": "h6",
@@ -436,7 +436,7 @@
                   "type": "text",
                   "settings": {
                     "text": "<p>NO ARTIFICIALS</p>",
-                    "text_color": "#1C2A12",
+                    "text_color": "#002613",
                     "width": "100%",
                     "alignment": "center",
                     "type_preset": "h6",
@@ -535,7 +535,7 @@
       "settings": {
         "product": "gomu-daily-complete-nutrition-gummies",
         "layout": "media-left",
-        "background_color": "#FFFFFF",
+        "background_color": "#FFF7DF",
         "padding-block-start": 56,
         "padding-block-end": 56
       }
@@ -585,7 +585,7 @@
                   "type": "text",
                   "settings": {
                     "text": "<h2>Everything. In one pack.</h2>",
-                    "text_color": "#1C2A12",
+                    "text_color": "#002613",
                     "width": "100%",
                     "alignment": "left",
                     "type_preset": "h2"
@@ -596,7 +596,7 @@
                   "type": "text",
                   "settings": {
                     "text": "<h3>28</h3><p>single-serve daily sachets in every pouch — a full four-week supply</p>",
-                    "text_color": "#1C2A12",
+                    "text_color": "#002613",
                     "width": "100%",
                     "alignment": "left",
                     "type_preset": "rte"
@@ -607,7 +607,7 @@
                   "type": "text",
                   "settings": {
                     "text": "<h3>8</h3><p>juicy Strawberry Raspberry gummies per sachet — 224 gummies per pouch</p>",
-                    "text_color": "#1C2A12",
+                    "text_color": "#002613",
                     "width": "100%",
                     "alignment": "left",
                     "type_preset": "rte"
@@ -618,7 +618,7 @@
                   "type": "text",
                   "settings": {
                     "text": "<h3>20+</h3><p>vitamins and minerals plus prebiotic fiber — supporting immunity, energy, antioxidant defenses and mental performance*</p>",
-                    "text_color": "#1C2A12",
+                    "text_color": "#002613",
                     "width": "100%",
                     "alignment": "left",
                     "type_preset": "rte"
@@ -629,7 +629,7 @@
                   "type": "text",
                   "settings": {
                     "text": "<h3>0</h3><p>artificial colors, flavors or sweeteners. Ever.</p>",
-                    "text_color": "#1C2A12",
+                    "text_color": "#002613",
                     "width": "100%",
                     "alignment": "left",
                     "type_preset": "rte"
@@ -661,7 +661,7 @@
         "horizontal_alignment_flex_direction_column": "center",
         "gap": 32,
         "section_width": "page-width",
-        "background_color": "#FFF6E3",
+        "background_color": "#FFF7DF",
         "padding-block-start": 72,
         "padding-block-end": 72
       }
@@ -670,7 +670,7 @@
       "type": "custom-liquid",
       "name": "Comparison",
       "settings": {
-        "custom_liquid": "<div class=\"gomu-cmp\">\n  <div class=\"gomu-cmp__head\">\n    <p class=\"gomu-cmp__eyebrow\">THE JUICY TRUTH</p>\n    <h2 class=\"gomu-cmp__title\">Gummies &gt; pills &gt; powders</h2>\n  </div>\n  <div class=\"gomu-cmp__scroll\">\n    <table class=\"gomu-cmp__table\">\n      <thead>\n        <tr>\n          <th></th>\n          <th class=\"gomu-cmp__gomu-col gomu-cmp__gomu-top\">GOMU</th>\n          <th>Pills</th>\n          <th>Powders</th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr><td>Actually tastes amazing</td><td class=\"gomu-cmp__gomu-col\"><span class=\"gomu-cmp__yes\">✓</span></td><td><span class=\"gomu-cmp__no\">✕</span></td><td><span class=\"gomu-cmp__no\">✕</span></td></tr>\n        <tr><td>All-in-one formula (vitamins + minerals + fiber)</td><td class=\"gomu-cmp__gomu-col\"><span class=\"gomu-cmp__yes\">✓</span></td><td><span class=\"gomu-cmp__no\">✕</span></td><td><span class=\"gomu-cmp__yes gomu-cmp__yes--muted\">✓</span></td></tr>\n        <tr><td>No water, no prep, no mess</td><td class=\"gomu-cmp__gomu-col\"><span class=\"gomu-cmp__yes\">✓</span></td><td><span class=\"gomu-cmp__no\">✕</span></td><td><span class=\"gomu-cmp__no\">✕</span></td></tr>\n        <tr><td>One grab-and-go daily sachet</td><td class=\"gomu-cmp__gomu-col\"><span class=\"gomu-cmp__yes\">✓</span></td><td><span class=\"gomu-cmp__no\">✕</span></td><td><span class=\"gomu-cmp__no\">✕</span></td></tr>\n        <tr><td>Vegan &amp; Halal</td><td class=\"gomu-cmp__gomu-col\"><span class=\"gomu-cmp__yes\">✓</span></td><td><span class=\"gomu-cmp__maybe\">varies</span></td><td><span class=\"gomu-cmp__maybe\">varies</span></td></tr>\n        <tr><td>You actually look forward to it</td><td class=\"gomu-cmp__gomu-col gomu-cmp__gomu-bottom\"><span class=\"gomu-cmp__yes\">✓</span></td><td><span class=\"gomu-cmp__no\">✕</span></td><td><span class=\"gomu-cmp__no\">✕</span></td></tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n<style>\n.gomu-cmp{max-width:920px;margin:0 auto;padding:72px 20px}\n.gomu-cmp__head{text-align:center;margin-bottom:36px}\n.gomu-cmp__eyebrow{font-family:var(--font-subheading--family);font-size:.75rem;letter-spacing:.14em;color:#4C9E16;margin:0 0 10px;font-weight:600}\n.gomu-cmp__title{font-family:var(--font-heading--family);font-weight:700;color:#1C2A12;margin:0;font-size:clamp(1.8rem,4vw,2.75rem);line-height:1.1}\n.gomu-cmp__scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}\n.gomu-cmp__table{width:100%;min-width:560px;border-collapse:separate;border-spacing:0;font-family:var(--font-body--family);color:#1C2A12}\n.gomu-cmp__table th{font-family:var(--font-subheading--family);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;padding:14px 12px;text-align:center}\n.gomu-cmp__table td{padding:16px 12px;border-bottom:1px solid #E7E0CC;font-size:.95rem;text-align:center}\n.gomu-cmp__table td:first-child{text-align:left;font-weight:500}\n.gomu-cmp__table tr:last-child td{border-bottom:none}\n.gomu-cmp__gomu-col{background:#5CB01F;color:#FFF6E3 !important;font-weight:700}\nth.gomu-cmp__gomu-col{font-size:.95rem;letter-spacing:.12em}\n.gomu-cmp__gomu-top{border-radius:20px 20px 0 0}\n.gomu-cmp__gomu-bottom{border-radius:0 0 20px 20px}\ntd.gomu-cmp__gomu-col{border-bottom:1px solid rgba(255,246,227,.25)}\n.gomu-cmp__yes{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:#FFF6E3;color:#4C9E16;font-weight:800;font-size:.85rem}\ntd:not(.gomu-cmp__gomu-col) .gomu-cmp__yes{background:#E8F5DC;color:#4C9E16}\n.gomu-cmp__no{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:#F0EDE3;color:#A8A395;font-weight:700;font-size:.75rem}\n.gomu-cmp__maybe{font-size:.8rem;color:#FFF6E3;opacity:.85;font-style:italic}\ntd:not(.gomu-cmp__gomu-col) .gomu-cmp__maybe{color:#A8A395}\n</style>"
+        "custom_liquid": "<div class=\"gomu-cmp\">\n  <div class=\"gomu-cmp__head\">\n    <p class=\"gomu-cmp__eyebrow\">THE JUICY TRUTH</p>\n    <h2 class=\"gomu-cmp__title\">Gummies &gt; pills &gt; powders</h2>\n  </div>\n  <div class=\"gomu-cmp__scroll\">\n    <table class=\"gomu-cmp__table\">\n      <thead>\n        <tr>\n          <th></th>\n          <th class=\"gomu-cmp__gomu-col gomu-cmp__gomu-top\">GOMU</th>\n          <th>Pills</th>\n          <th>Powders</th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr><td>Actually tastes amazing</td><td class=\"gomu-cmp__gomu-col\"><span class=\"gomu-cmp__yes\">✓</span></td><td><span class=\"gomu-cmp__no\">✕</span></td><td><span class=\"gomu-cmp__no\">✕</span></td></tr>\n        <tr><td>All-in-one formula (vitamins + minerals + fiber)</td><td class=\"gomu-cmp__gomu-col\"><span class=\"gomu-cmp__yes\">✓</span></td><td><span class=\"gomu-cmp__no\">✕</span></td><td><span class=\"gomu-cmp__yes gomu-cmp__yes--muted\">✓</span></td></tr>\n        <tr><td>No water, no prep, no mess</td><td class=\"gomu-cmp__gomu-col\"><span class=\"gomu-cmp__yes\">✓</span></td><td><span class=\"gomu-cmp__no\">✕</span></td><td><span class=\"gomu-cmp__no\">✕</span></td></tr>\n        <tr><td>One grab-and-go daily sachet</td><td class=\"gomu-cmp__gomu-col\"><span class=\"gomu-cmp__yes\">✓</span></td><td><span class=\"gomu-cmp__no\">✕</span></td><td><span class=\"gomu-cmp__no\">✕</span></td></tr>\n        <tr><td>Vegan &amp; Halal</td><td class=\"gomu-cmp__gomu-col\"><span class=\"gomu-cmp__yes\">✓</span></td><td><span class=\"gomu-cmp__maybe\">varies</span></td><td><span class=\"gomu-cmp__maybe\">varies</span></td></tr>\n        <tr><td>You actually look forward to it</td><td class=\"gomu-cmp__gomu-col gomu-cmp__gomu-bottom\"><span class=\"gomu-cmp__yes\">✓</span></td><td><span class=\"gomu-cmp__no\">✕</span></td><td><span class=\"gomu-cmp__no\">✕</span></td></tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n<style>\n.gomu-cmp{max-width:920px;margin:0 auto;padding:72px 20px}\n.gomu-cmp__head{text-align:center;margin-bottom:36px}\n.gomu-cmp__eyebrow{font-family:var(--font-subheading--family);font-size:.75rem;letter-spacing:.14em;color:#007E40;margin:0 0 10px;font-weight:600}\n.gomu-cmp__title{font-family:var(--font-heading--family);font-weight:700;color:#002613;margin:0;font-size:clamp(1.8rem,4vw,2.75rem);line-height:1.1}\n.gomu-cmp__scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}\n.gomu-cmp__table{width:100%;min-width:560px;border-collapse:separate;border-spacing:0;font-family:var(--font-body--family);color:#002613}\n.gomu-cmp__table th{font-family:var(--font-subheading--family);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;padding:14px 12px;text-align:center}\n.gomu-cmp__table td{padding:16px 12px;border-bottom:1px solid #DAECE3;font-size:.95rem;text-align:center}\n.gomu-cmp__table td:first-child{text-align:left;font-weight:500}\n.gomu-cmp__table tr:last-child td{border-bottom:none}\n.gomu-cmp__gomu-col{background:#007E40;color:#FFF7DF !important;font-weight:700}\nth.gomu-cmp__gomu-col{font-size:.95rem;letter-spacing:.12em}\n.gomu-cmp__gomu-top{border-radius:20px 20px 0 0}\n.gomu-cmp__gomu-bottom{border-radius:0 0 20px 20px}\ntd.gomu-cmp__gomu-col{border-bottom:1px solid rgba(255,246,227,.25)}\n.gomu-cmp__yes{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:#FFF7DF;color:#007E40;font-weight:800;font-size:.85rem}\ntd:not(.gomu-cmp__gomu-col) .gomu-cmp__yes{background:#DAECE3;color:#007E40}\n.gomu-cmp__no{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:#FFF9ED;color:#A8A395;font-weight:700;font-size:.75rem}\n.gomu-cmp__maybe{font-size:.8rem;color:#FFF7DF;opacity:.85;font-style:italic}\ntd:not(.gomu-cmp__gomu-col) .gomu-cmp__maybe{color:#A8A395}\n</style>"
       }
     },
     "product_list_main": {
@@ -786,7 +786,7 @@
           "type": "text",
           "settings": {
             "text": "<h2>Your first month with Gomu</h2>",
-            "text_color": "#1C2A12",
+            "text_color": "#002613",
             "width": "100%",
             "alignment": "center",
             "type_preset": "h2"
@@ -830,7 +830,7 @@
                   "type": "text",
                   "settings": {
                     "text": "<h5>WEEK 1</h5>",
-                    "text_color": "#FB7A1E",
+                    "text_color": "#A91B23",
                     "width": "100%",
                     "alignment": "center",
                     "type_preset": "h5",
@@ -842,7 +842,7 @@
                   "type": "text",
                   "settings": {
                     "text": "<p>Your daily sachet becomes the easiest habit you own — one tear, done.</p>",
-                    "text_color": "#1C2A12",
+                    "text_color": "#002613",
                     "width": "100%",
                     "alignment": "center",
                     "type_preset": "rte"
@@ -877,7 +877,7 @@
                   "type": "text",
                   "settings": {
                     "text": "<h5>WEEKS 2–3</h5>",
-                    "text_color": "#FB7A1E",
+                    "text_color": "#A91B23",
                     "width": "100%",
                     "alignment": "center",
                     "type_preset": "h5",
@@ -889,7 +889,7 @@
                   "type": "text",
                   "settings": {
                     "text": "<p>Consistency kicks in. No more forgotten vitamins at the back of the cupboard.</p>",
-                    "text_color": "#1C2A12",
+                    "text_color": "#002613",
                     "width": "100%",
                     "alignment": "center",
                     "type_preset": "rte"
@@ -924,7 +924,7 @@
                   "type": "text",
                   "settings": {
                     "text": "<h5>WEEK 4</h5>",
-                    "text_color": "#FB7A1E",
+                    "text_color": "#A91B23",
                     "width": "100%",
                     "alignment": "center",
                     "type_preset": "h5",
@@ -936,7 +936,7 @@
                   "type": "text",
                   "settings": {
                     "text": "<p>28 sachets done, pouch finished. Restock and keep the streak alive.</p>",
-                    "text_color": "#1C2A12",
+                    "text_color": "#002613",
                     "width": "100%",
                     "alignment": "center",
                     "type_preset": "rte"
@@ -980,7 +980,7 @@
         "horizontal_alignment_flex_direction_column": "center",
         "gap": 40,
         "section_width": "page-width",
-        "background_color": "#FFF6E3",
+        "background_color": "#FFF7DF",
         "padding-block-start": 72,
         "padding-block-end": 72
       }
@@ -992,7 +992,7 @@
           "type": "text",
           "settings": {
             "text": "<h2>Frequently asked questions</h2>",
-            "text_color": "#1C2A12",
+            "text_color": "#002613",
             "width": "100%",
             "alignment": "center",
             "type_preset": "h2"
@@ -1149,7 +1149,7 @@
               "type": "text",
               "settings": {
                 "text": "<h2>Ready for your juiciest month yet?</h2>",
-                "text_color": "#FFF6E3",
+                "text_color": "#FFF7DF",
                 "width": "100%",
                 "alignment": "left",
                 "type_preset": "h2"
@@ -1160,7 +1160,7 @@
               "type": "text",
               "settings": {
                 "text": "<p>Free UAE delivery. 30-day money-back guarantee. Zero risk, all juice.</p>",
-                "text_color": "#FFF6E3",
+                "text_color": "#FFF7DF",
                 "width": "100%",
                 "alignment": "left",
                 "type_preset": "rte"
@@ -1188,9 +1188,9 @@
                     "label": "Shop Gomu Daily",
                     "link": "shopify://products/gomu-daily-complete-nutrition-gummies",
                     "style_class": "button-custom",
-                    "custom_button_background": "#FFF6E3",
-                    "custom_button_text": "#1C2A12",
-                    "custom_button_border": "#FFF6E3",
+                    "custom_button_background": "#FFF7DF",
+                    "custom_button_text": "#002613",
+                    "custom_button_border": "#FFF7DF",
                     "width": "fit-content"
                   },
                   "blocks": {}
@@ -1214,7 +1214,7 @@
       "name": "Final CTA",
       "settings": {
         "media_type_1": "image",
-        "image_1": "shopify://shop_images/gomu-duo-banner.png",
+        "image_1": "shopify://shop_images/gomu-cta-forest.png",
         "media_type_2": "image",
         "stack_media_on_mobile": false,
         "custom_mobile_media": false,
@@ -1225,57 +1225,11 @@
         "section_width": "page-width",
         "section_height": "medium",
         "toggle_overlay": true,
-        "overlay_color": "#1C2A1226",
+        "overlay_color": "#00261326",
         "overlay_style": "solid",
         "padding-block-start": 48,
-        "padding-block-end": 48
-      }
-    },
-    "section_newsletter": {
-      "type": "section",
-      "blocks": {
-        "nl_heading": {
-          "type": "text",
-          "settings": {
-            "text": "<h3>Join the Gomu club</h3>",
-            "text_color": "#1C2A12",
-            "width": "100%",
-            "alignment": "center",
-            "type_preset": "h3"
-          },
-          "blocks": {}
-        },
-        "nl_text": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Launch offers, restock alerts and honest nutrition tips. No spam, ever.</p>",
-            "text_color": "#1C2A12",
-            "width": "100%",
-            "alignment": "center",
-            "type_preset": "rte"
-          },
-          "blocks": {}
-        },
-        "nl_signup": {
-          "type": "email-signup",
-          "settings": {},
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "nl_heading",
-        "nl_text",
-        "nl_signup"
-      ],
-      "name": "Newsletter",
-      "settings": {
-        "content_direction": "column",
-        "horizontal_alignment_flex_direction_column": "center",
-        "gap": 20,
-        "section_width": "page-width",
-        "background_color": "#FFF6E3",
-        "padding-block-start": 64,
-        "padding-block-end": 64
+        "padding-block-end": 48,
+        "background_color": "#002613"
       }
     }
   },
@@ -1289,7 +1243,6 @@
     "product_list_main",
     "section_expect",
     "section_faq",
-    "hero_cta",
-    "section_newsletter"
+    "hero_cta"
   ]
 }
