@@ -1,0 +1,760 @@
+{%- comment -%}
+  LP Buy Box — port de src/components/lp/LPBuyBox.tsx
+  Conversion : vrai {% form 'product' %} natif (POST /cart/add, zéro JS).
+  Le choix abonnement / achat ponctuel est un radio name="selling_plan" :
+  la valeur du radio EST l'input du formulaire (valeur vide = achat ponctuel),
+  le style de carte sélectionnée est du CSS pur (:checked).
+  Prix, prix barré et remise dérivés du produit + selling plan quand un produit
+  est sélectionné ; sinon valeurs de démo (settings fallback_*) pour la preview.
+{%- endcomment -%}
+
+<style>
+  /* Section « offre » du brief : fond violet profond, carte crème dedans. */
+  .lp-buy-box {
+    background: var(--lp-purple-deep);
+    color: var(--lp-cream);
+  }
+
+  .lp-buy-box__header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .lp-buy-box__badge { margin-bottom: 1rem; }
+
+  .lp-buy-box__title {
+    font-size: clamp(2.25rem, 1.5rem + 2.8vw, 3.75rem);
+    font-weight: 600;
+    color: var(--lp-cream);
+    margin-bottom: 0.75rem;
+  }
+
+  .lp-buy-box__rating {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: rgba(255, 247, 223, 0.8);
+  }
+
+  .lp-buy-box__grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: flex-start;
+  }
+
+  @media (min-width: 1024px) {
+    .lp-buy-box__grid {
+      flex-direction: row;
+      gap: 2.5rem;
+    }
+  }
+
+  .lp-buy-box__media,
+  .lp-buy-box__panel {
+    flex: 1;
+    width: 100%;
+  }
+
+  .lp-buy-box__img {
+    border-radius: var(--lp-radius-card);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+  }
+
+  .lp-buy-box__chips {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    font-size: 0.75rem;
+    color: rgba(255, 247, 223, 0.8);
+  }
+
+  @media (min-width: 640px) {
+    .lp-buy-box__chips {
+      flex-direction: row;
+      gap: 2rem;
+      font-size: 0.875rem;
+    }
+  }
+
+  .lp-buy-box__chip {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .lp-buy-box__card {
+    background: var(--lp-cream);
+    border: 3px solid var(--lp-yellow);
+    border-radius: var(--lp-radius-card-lg);
+    box-shadow: var(--lp-shadow-soft);
+    padding: 1.5rem;
+  }
+
+  .lp-buy-box__variant {
+    font-size: 0.875rem;
+    color: var(--lp-text-muted);
+    margin-bottom: 1.25rem;
+  }
+
+  .lp-buy-box__fieldset {
+    border: 0;
+    padding: 0;
+    margin: 0;
+    min-width: 0;
+  }
+
+  .lp-buy-box__plans {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .lp-plan {
+    display: block;
+    cursor: pointer;
+  }
+
+  .lp-plan__card {
+    display: block;
+    border: 2px solid rgba(0, 44, 23, 0.12);
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 0.75rem;
+    padding: 1rem;
+    transition: all 0.3s;
+  }
+
+  .lp-plan:hover .lp-plan__card {
+    border-color: rgba(0, 44, 23, 0.35);
+  }
+
+  .lp-plan__input:checked + .lp-plan__card {
+    border-color: var(--lp-purple);
+    background: var(--lp-white);
+  }
+
+  .lp-plan__input:focus-visible + .lp-plan__card {
+    outline: 2px solid var(--lp-purple);
+    outline-offset: 2px;
+  }
+
+  .lp-plan__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .lp-plan__labelwrap {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .lp-plan__label {
+    font-weight: 700;
+    color: var(--lp-dark);
+  }
+
+  .lp-plan__prices {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .lp-plan__price {
+    font-family: var(--lp-font-display);
+    font-size: 2.25rem;
+    line-height: 1.1;
+    font-weight: 700;
+    color: var(--lp-green);
+  }
+
+  .lp-plan__price--onetime {
+    font-size: 1.25rem;
+    color: var(--lp-dark);
+  }
+
+  .lp-plan__meta {
+    font-size: 0.875rem;
+    color: var(--lp-text-muted);
+  }
+
+  .lp-plan__compare {
+    text-decoration: line-through;
+  }
+
+  .lp-plan__perks {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .lp-plan__perk {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--lp-text-muted);
+  }
+
+  .lp-plan__perk svg {
+    color: var(--lp-purple);
+    flex-shrink: 0;
+  }
+
+  .lp-buy-box__note {
+    text-align: center;
+    font-size: 0.75rem;
+    line-height: 1.625;
+    color: var(--lp-text-muted);
+    margin-top: 1rem;
+  }
+
+  .lp-buy-box__cta[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .lp-plan__prices--onetime {
+    margin-top: 0.25rem;
+    margin-bottom: 0;
+  }
+
+  .lp-buy-box__hint {
+    margin-top: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    background: var(--lp-light-yellow);
+    font-size: 0.8125rem;
+    color: var(--lp-dark);
+  }
+</style>
+
+{%- liquid
+  # États explicites (pas d'assign = blank : fragile selon les moteurs Liquid).
+  assign product = section.settings.product
+  assign has_product = false
+  assign has_alloc = false
+
+  if product != blank
+    assign has_product = true
+    assign variant = product.selected_or_first_available_variant
+    # Ne pas prendre aveuglément la première allocation : si la boutique a
+    # plusieurs selling plans, on matche d'abord sur le nom configuré.
+    if section.settings.sub_plan_name != blank
+      for a in variant.selling_plan_allocations
+        if a.selling_plan.name contains section.settings.sub_plan_name
+          assign alloc = a
+          assign has_alloc = true
+          break
+        endif
+      endfor
+    endif
+    unless has_alloc
+      assign alloc_count = variant.selling_plan_allocations | size
+      if alloc_count > 0
+        assign alloc = variant.selling_plan_allocations | first
+        assign has_alloc = true
+      endif
+    endunless
+  endif
+
+  assign show_compare = false
+  if has_alloc
+    assign sub_price = alloc.price | money
+    # Prix barré uniquement s'il est strictement supérieur (sinon rendu
+    # trompeur : « 24,90€ 24,90€ » — et prix de référence non justifié).
+    assign compare_raw = alloc.compare_at_price | default: variant.price
+    if compare_raw > alloc.price
+      assign sub_compare = compare_raw | money
+      assign show_compare = true
+    endif
+    assign saved = variant.price | minus: alloc.price
+    if saved > 0
+      assign pct = saved | times: 100.0 | divided_by: variant.price | round
+      assign sub_discount = pct | prepend: '-' | append: '%'
+    else
+      assign sub_discount = ''
+    endif
+  else
+    assign sub_price = section.settings.fallback_sub_price
+    assign sub_compare = section.settings.fallback_sub_original
+    assign sub_discount = section.settings.fallback_sub_discount
+    if sub_compare != blank
+      assign show_compare = true
+    endif
+  endif
+
+  if has_product
+    assign onetime_price = variant.price | money
+  else
+    assign onetime_price = section.settings.fallback_one_time_price
+  endif
+
+  # Produit vendu uniquement en abonnement mais sans plan disponible
+  # (app désinstallée, plans supprimés) : tout ajout panier échouerait en 422.
+  assign purchasable = false
+  if has_product and variant.available
+    assign purchasable = true
+  endif
+  if has_product and product.requires_selling_plan and has_alloc == false
+    assign purchasable = false
+  endif
+
+  assign title = section.settings.title_override
+  if title == blank and has_product
+    assign title = product.title
+  endif
+  if title == blank
+    assign title = 'GOMU — Nutrition quotidienne complète'
+  endif
+-%}
+
+<section class="lp-buy-box lp-section" id="buy-box">
+  <div class="lp-container">
+    <div class="lp-buy-box__header" data-lp-reveal="up">
+      {%- if section.settings.badge != blank -%}
+        <span class="lp-badge lp-buy-box__badge">{{ section.settings.badge }}</span>
+      {%- endif -%}
+      <h2 class="lp-buy-box__title">{{ title }}</h2>
+      {%- if section.settings.review_count != blank -%}
+        <div class="lp-buy-box__rating">
+          {% render 'lp-stars', size: 18 %}
+          <span>
+            <strong>{{ section.settings.rating }}</strong> stars |
+            <strong>{{ section.settings.review_count }}</strong> reviews
+          </span>
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="lp-buy-box__grid">
+      <div class="lp-buy-box__media" data-lp-reveal="left">
+        {%- liquid
+          assign img = section.settings.image
+          if img == blank and product != blank
+            assign img = product.featured_image
+          endif
+        -%}
+        {%- if img != blank -%}
+          {{
+            img
+            | image_url: width: 1200
+            | image_tag:
+              widths: '400, 600, 800, 1200',
+              sizes: '(min-width: 1024px) 600px, 90vw',
+              loading: 'lazy',
+              class: 'lp-buy-box__img'
+          }}
+        {%- else -%}
+          <img
+            src="{{ 'lp-product-buybox.jpeg' | asset_img_url: '800x' }}"
+            width="800"
+            height="800"
+            alt="{{ title | escape }}"
+            class="lp-buy-box__img"
+            loading="lazy"
+          >
+        {%- endif -%}
+
+        {%- assign chip_blocks = section.blocks | where: 'type', 'chip' -%}
+        {%- if chip_blocks.size > 0 -%}
+          <div class="lp-buy-box__chips">
+            {%- for block in chip_blocks -%}
+              <div class="lp-buy-box__chip" {{ block.shopify_attributes }}>
+                {% render 'lp-icon', icon: block.settings.icon, size: 16 %}
+                {{ block.settings.label }}
+              </div>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="lp-buy-box__panel" data-lp-reveal="right">
+        <div class="lp-buy-box__card">
+          {%- if section.settings.variant_line != blank -%}
+            <p class="lp-buy-box__variant">{{ section.settings.variant_line }}</p>
+          {%- endif -%}
+
+          {%- if has_product -%}
+            {%- form 'product', product -%}
+              <input type="hidden" name="id" value="{{ variant.id }}">
+              <input type="hidden" name="quantity" value="1">
+
+              <fieldset class="lp-buy-box__fieldset">
+                <legend class="lp-visually-hidden">Choix de la formule</legend>
+                <div class="lp-buy-box__plans">
+                {%- if has_alloc -%}
+                  <label class="lp-plan">
+                    <input
+                      type="radio"
+                      name="selling_plan"
+                      value="{{ alloc.selling_plan.id }}"
+                      class="lp-plan__input lp-visually-hidden"
+                      checked
+                    >
+                    <span class="lp-plan__card">
+                      <span class="lp-plan__row">
+                        <span class="lp-plan__labelwrap">
+                          <span class="lp-plan__label">{{ section.settings.sub_label }}</span>
+                          {%- if section.settings.sub_badge != blank -%}
+                            <span class="lp-pill lp-pill--yellow">{{ section.settings.sub_badge }}</span>
+                          {%- endif -%}
+                        </span>
+                        {%- if sub_discount != blank -%}
+                          <span class="lp-pill lp-pill--purple">{{ sub_discount }}</span>
+                        {%- endif -%}
+                      </span>
+                      <span class="lp-plan__prices">
+                        <span class="lp-plan__price">{{ sub_price }}</span>
+                        <span class="lp-plan__meta">{{ section.settings.sub_price_suffix }}</span>
+                        {%- if show_compare -%}
+                          <span class="lp-plan__meta lp-plan__compare">{{ sub_compare }}</span>
+                        {%- endif -%}
+                      </span>
+                      {%- assign perk_blocks = section.blocks | where: 'type', 'perk' -%}
+                      {%- if perk_blocks.size > 0 -%}
+                        <span class="lp-plan__perks">
+                          {%- for block in perk_blocks -%}
+                            <span class="lp-plan__perk" {{ block.shopify_attributes }}>
+                              {% render 'lp-icon', icon: 'check', size: 16 %}
+                              {{ block.settings.text }}
+                            </span>
+                          {%- endfor -%}
+                        </span>
+                      {%- endif -%}
+                    </span>
+                  </label>
+                {%- endif -%}
+
+                {%- comment -%}
+                  Produit à abonnement obligatoire : pas d'option « achat
+                  ponctuel » (un POST selling_plan vide serait rejeté en 422).
+                {%- endcomment -%}
+                {%- unless product.requires_selling_plan -%}
+                  <label class="lp-plan">
+                    <input
+                      type="radio"
+                      name="selling_plan"
+                      value=""
+                      class="lp-plan__input lp-visually-hidden"
+                      {% unless has_alloc %}checked{% endunless %}
+                    >
+                    <span class="lp-plan__card">
+                      <span class="lp-plan__label">{{ section.settings.one_time_label }}</span>
+                      <span class="lp-plan__prices lp-plan__prices--onetime">
+                        <span class="lp-plan__price lp-plan__price--onetime">{{ onetime_price }}</span>
+                        {%- if section.settings.one_time_shipping != blank -%}
+                          <span class="lp-plan__meta">({{ section.settings.one_time_shipping }})</span>
+                        {%- endif -%}
+                      </span>
+                    </span>
+                  </label>
+                {%- endunless -%}
+                </div>
+              </fieldset>
+
+              <button
+                type="submit"
+                class="lp-btn lp-btn--block lp-buy-box__cta"
+                {% unless purchasable %}disabled{% endunless %}
+              >
+                {%- if purchasable -%}
+                  {{ section.settings.cta_label }}
+                {%- elsif variant.available == false -%}
+                  Sold out
+                {%- else -%}
+                  Unavailable
+                {%- endif -%}
+              </button>
+            {%- endform -%}
+
+            {%- if request.design_mode and has_alloc == false -%}
+              <p class="lp-buy-box__hint">
+                {%- if product.requires_selling_plan -%}
+                  Ce produit exige un abonnement mais n’a AUCUN selling plan
+                  disponible (app désinstallée ou plans supprimés) : l’ajout au
+                  panier est désactivé. Recrée un plan dans ton app d’abonnements.
+                {%- else -%}
+                  Ce produit n’a pas de selling plan : seule l’option « achat ponctuel »
+                  est affichée. Installe une app d’abonnements (Shopify Subscriptions,
+                  Skio…) et crée un plan pour activer la carte abonnement.
+                {%- endif -%}
+              </p>
+            {%- endif -%}
+          {%- else -%}
+            {%- comment -%} Aperçu sans produit : carte statique de démo. {%- endcomment -%}
+            <fieldset class="lp-buy-box__fieldset">
+              <legend class="lp-visually-hidden">Choix de la formule</legend>
+              <div class="lp-buy-box__plans">
+              <label class="lp-plan">
+                <input type="radio" name="lp-plan-demo" class="lp-plan__input lp-visually-hidden" checked>
+                <span class="lp-plan__card">
+                  <span class="lp-plan__row">
+                    <span class="lp-plan__labelwrap">
+                      <span class="lp-plan__label">{{ section.settings.sub_label }}</span>
+                      {%- if section.settings.sub_badge != blank -%}
+                        <span class="lp-pill lp-pill--yellow">{{ section.settings.sub_badge }}</span>
+                      {%- endif -%}
+                    </span>
+                    {%- if sub_discount != blank -%}
+                      <span class="lp-pill lp-pill--purple">{{ sub_discount }}</span>
+                    {%- endif -%}
+                  </span>
+                  <span class="lp-plan__prices">
+                    <span class="lp-plan__price">{{ sub_price }}</span>
+                    <span class="lp-plan__meta">{{ section.settings.sub_price_suffix }}</span>
+                    {%- if show_compare -%}
+                      <span class="lp-plan__meta lp-plan__compare">{{ sub_compare }}</span>
+                    {%- endif -%}
+                  </span>
+                  {%- assign perk_blocks = section.blocks | where: 'type', 'perk' -%}
+                  {%- if perk_blocks.size > 0 -%}
+                    <span class="lp-plan__perks">
+                      {%- for block in perk_blocks -%}
+                        <span class="lp-plan__perk" {{ block.shopify_attributes }}>
+                          {% render 'lp-icon', icon: 'check', size: 16 %}
+                          {{ block.settings.text }}
+                        </span>
+                      {%- endfor -%}
+                    </span>
+                  {%- endif -%}
+                </span>
+              </label>
+
+              <label class="lp-plan">
+                <input type="radio" name="lp-plan-demo" class="lp-plan__input lp-visually-hidden">
+                <span class="lp-plan__card">
+                  <span class="lp-plan__label">{{ section.settings.one_time_label }}</span>
+                  <span class="lp-plan__prices lp-plan__prices--onetime">
+                    <span class="lp-plan__price lp-plan__price--onetime">{{ onetime_price }}</span>
+                    {%- if section.settings.one_time_shipping != blank -%}
+                      <span class="lp-plan__meta">({{ section.settings.one_time_shipping }})</span>
+                    {%- endif -%}
+                  </span>
+                </span>
+              </label>
+            </div>
+            </fieldset>
+
+            <button type="button" class="lp-btn lp-btn--block lp-buy-box__cta" disabled>
+              {{ section.settings.cta_label }}
+            </button>
+
+            {%- if request.design_mode -%}
+              <p class="lp-buy-box__hint">
+                Sélectionne un produit dans les réglages de la section pour activer
+                l’ajout au panier (les prix affichés sont des valeurs de démo).
+              </p>
+            {%- endif -%}
+          {%- endif -%}
+
+          {%- if section.settings.anti_piege != blank -%}
+            <p class="lp-buy-box__note">{{ section.settings.anti_piege }}</p>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "LP — Buy box",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Produit"
+    },
+    {
+      "type": "text",
+      "id": "badge",
+      "label": "Badge",
+      "default": "Offre de lancement"
+    },
+    {
+      "type": "text",
+      "id": "title_override",
+      "label": "Titre (laisser vide pour utiliser le nom du produit)",
+      "default": "GOMU — Nutrition quotidienne complète"
+    },
+    {
+      "type": "text",
+      "id": "rating",
+      "label": "Note affichée",
+      "info": "Laisser vide tant qu\u2019il n\u2019y a pas d\u2019avis réels."
+    },
+    {
+      "type": "text",
+      "id": "review_count",
+      "label": "Nombre d’avis",
+      "info": "Vide = ligne note/avis masquée."
+    },
+    {
+      "type": "text",
+      "id": "variant_line",
+      "label": "Ligne saveur / format",
+      "default": "Saveur : Fruits rouges · Sachet journalier (30 sachets/boîte)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image (à défaut : image produit, puis visuel de démo)"
+    },
+    {
+      "type": "header",
+      "content": "Carte abonnement"
+    },
+    {
+      "type": "text",
+      "id": "sub_label",
+      "label": "Label",
+      "default": "Abonnement mensuel"
+    },
+    {
+      "type": "text",
+      "id": "sub_badge",
+      "label": "Badge",
+      "default": "POPULAIRE"
+    },
+    {
+      "type": "text",
+      "id": "sub_plan_name",
+      "label": "Nom du selling plan à utiliser",
+      "info": "Laisser vide pour prendre le premier plan du produit. Si la boutique a plusieurs plans (bimensuel, trimestriel…), renseigner ici le nom du plan mensuel."
+    },
+    {
+      "type": "text",
+      "id": "sub_price_suffix",
+      "label": "Suffixe du prix",
+      "default": "/mois"
+    },
+    {
+      "type": "header",
+      "content": "Carte achat ponctuel"
+    },
+    {
+      "type": "text",
+      "id": "one_time_label",
+      "label": "Label",
+      "default": "Achat ponctuel"
+    },
+    {
+      "type": "text",
+      "id": "one_time_shipping",
+      "label": "Mention livraison",
+      "default": "Livraison 4,90€"
+    },
+    {
+      "type": "header",
+      "content": "CTA et réassurance"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Texte du bouton",
+      "default": "Je commande"
+    },
+    {
+      "type": "textarea",
+      "id": "anti_piege",
+      "label": "Microcopy anti-piège",
+      "default": "Sans engagement — modifiable ou annulable en 2 clics, sans justification. On n’est pas SFR."
+    },
+    {
+      "type": "header",
+      "content": "Valeurs de démo (si aucun produit)"
+    },
+    {
+      "type": "text",
+      "id": "fallback_sub_price",
+      "label": "Prix abonnement (démo)",
+      "default": "24,90€"
+    },
+    {
+      "type": "text",
+      "id": "fallback_sub_original",
+      "label": "Prix barré (démo)",
+      "default": "35€"
+    },
+    {
+      "type": "text",
+      "id": "fallback_sub_discount",
+      "label": "Remise (démo)",
+      "default": "-30%"
+    },
+    {
+      "type": "text",
+      "id": "fallback_one_time_price",
+      "label": "Prix achat ponctuel (démo)",
+      "default": "39€"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "chip",
+      "name": "Réassurance image",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icône",
+          "options": [
+            { "value": "truck", "label": "Camion" },
+            { "value": "clock", "label": "Horloge" },
+            { "value": "shield", "label": "Bouclier" }
+          ],
+          "default": "truck"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Texte",
+          "default": "Livraison Gratuite"
+        }
+      ]
+    },
+    {
+      "type": "perk",
+      "name": "Avantage abonnement",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Texte",
+          "default": "Livraison offerte"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    {
+      "name": "LP — Buy box",
+      "blocks": [
+        { "type": "chip", "settings": { "icon": "truck", "label": "Livraison Gratuite" } },
+        { "type": "chip", "settings": { "icon": "clock", "label": "Expédition 24h" } },
+        { "type": "chip", "settings": { "icon": "shield", "label": "Garantie 30j" } },
+        { "type": "perk", "settings": { "text": "Livraison offerte" } },
+        { "type": "perk", "settings": { "text": "Modifiable ou annulable en 2 clics" } },
+        { "type": "perk", "settings": { "text": "Garantie satisfait ou remboursé" } }
+      ]
+    }
+  ],
+  "enabled_on": {
+    "templates": ["page", "product"]
+  }
+}
+{% endschema %}

@@ -1,0 +1,185 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "promo": {
+      "type": "gomu-marquee",
+      "blocks": {
+        "a": { "type": "item", "settings": { "text": "Free shipping across all 7 emirates" } },
+        "b": { "type": "item", "settings": { "text": "30-day money-back guarantee" } },
+        "c": { "type": "item", "settings": { "text": "Vegan · Halal · No artificial anything" } }
+      },
+      "block_order": ["a", "b", "c"],
+      "settings": { "bg": "#861B25", "color": "#F9E3D3", "sep_color": "#F2BE9C", "border": false, "speed": 40, "gap": 52, "pad": 11 }
+    },
+    "hero": {
+      "type": "gomu-hero",
+      "blocks": {
+        "s1": { "type": "stat", "settings": { "value": "20+", "label": "Vitamins & minerals" } },
+        "s2": { "type": "stat", "settings": { "value": "28", "label": "Daily sachets per pouch" } },
+        "s3": { "type": "stat", "settings": { "value": "8", "label": "Gummies a day" } },
+        "s4": { "type": "stat", "settings": { "value": "0", "label": "Artificial anything" } }
+      },
+      "block_order": ["s1", "s2", "s3", "s4"],
+      "settings": {
+        "image": "shopify://shop_images/gomu-bordeaux-hero.jpg",
+        "focal": 66,
+        "eyebrow": "Now delivering across the UAE",
+        "heading": "Your whole day's nutrition. In eight gummies.",
+        "body": "20+ vitamins, minerals and prebiotic fiber in one grab-and-go sachet. No pills, no powders, no water.",
+        "cta_label": "Shop Gomu Daily",
+        "cta_link": "#gomu-buy-buybox",
+        "cta2_label": "How it works",
+        "cta2_link": "#gomu-vc-value"
+      }
+    },
+    "trust": {
+      "type": "gomu-marquee",
+      "blocks": {
+        "a": { "type": "item", "settings": { "text": "Vegan" } },
+        "b": { "type": "item", "settings": { "text": "Halal" } },
+        "c": { "type": "item", "settings": { "text": "Gluten free" } },
+        "d": { "type": "item", "settings": { "text": "Nut free" } },
+        "e": { "type": "item", "settings": { "text": "Dairy free" } },
+        "f": { "type": "item", "settings": { "text": "No artificial colors, flavors or sweeteners" } }
+      },
+      "block_order": ["a", "b", "c", "d", "e", "f"],
+      "settings": { "bg": "#F2BE9C", "color": "#861B25", "sep_color": "#A32836", "border": true, "speed": 32, "gap": 40, "pad": 15 }
+    },
+    "value": {
+      "type": "gomu-value-cards",
+      "blocks": {
+        "c1": { "type": "card", "settings": { "image": "shopify://shop_images/gomu-green-macro.png", "title": "It tastes like a treat", "text": "Strawberry Raspberry, no chalk, no aftertaste. You'll look forward to it — which is the whole point." } },
+        "c2": { "type": "card", "settings": { "image": "shopify://shop_images/gomu-v2-sachet.png", "title": "Tear, chew, go", "text": "Toss a sachet in your bag. Open it at your desk. No shaker, no water, no counter to clean." } },
+        "c3": { "type": "card", "settings": { "image": "shopify://shop_images/gomu-v2-lifestyle.png", "title": "One pack replaces the shelf", "text": "20+ vitamins and minerals plus prebiotic fiber, instead of five bottles you keep forgetting." } }
+      },
+      "block_order": ["c1", "c2", "c3"],
+      "settings": {
+        "heading": "We made daily nutrition ridiculously easy.",
+        "body": "Three things had to be true, or nobody keeps the habit."
+      }
+    },
+    "buybox": {
+      "type": "gomu-buybox",
+      "blocks": {
+        "d1": { "type": "detail", "settings": { "title": "Why Gomu", "text": "<p><strong>Complete.</strong> 20+ vitamins and minerals plus prebiotic fiber in one pack, instead of a shelf of separate bottles.</p><p><strong>Delicious.</strong> A habit that tastes good enough that you keep it past week two.</p><p><strong>Portable.</strong> Single-serve sachets sized for a bag, a desk drawer or a carry-on.</p><p><strong>No mess.</strong> No pills to swallow, no chalky powder, no shaker to wash.</p>" } },
+        "d2": { "type": "detail", "settings": { "title": "Directions", "text": "<p>Each pouch holds 28 individual sachets. Tear one open a day and eat the eight gummies inside — any time, with or without food. No water needed.</p>" } },
+        "d3": { "type": "detail", "settings": { "title": "Ingredients &amp; allergens", "text": "<p>Gomu Daily delivers 20+ vitamins and minerals plus prebiotic fiber in a fruit-pectin gummy base — no gelatin.</p><p>Vegan, Halal, gluten free, nut free and dairy free. No artificial colors, flavors or sweeteners.</p><p><em>Add the full ingredient deck and per-serving amounts from the product label here.</em></p>" } }
+      },
+      "block_order": ["d1", "d2", "d3"],
+      "settings": {
+        "product": "gomu-daily-complete-nutrition-gummies",
+        "badge": "Best seller",
+        "eyebrow": "Strawberry Raspberry · 28 sachets",
+        "lede": "One single-serve sachet a day, eight gummies inside, four weeks per pouch.",
+        "benefits": "Supports immunity, energy and antioxidant defenses*\nPrebiotic fiber for digestion and gut health*\nSupports normal mental performance and focus*\nVegan, Halal, gluten free, nut free, dairy free",
+        "qty_label": "How much do you want?",
+        "weeks_word": "weeks",
+        "popular_tag": "Popular",
+        "days_per_pouch": 28,
+        "plan_label": "How often?",
+        "sub_title": "Subscribe & save",
+        "sub_tag": "Best value",
+        "sub_perk1": "Free UAE delivery, always",
+        "sub_perk2": "Pause or cancel any time",
+        "sub_perk3": "30-day money-back guarantee",
+        "once_title": "One-time purchase",
+        "once_perk1": "Free UAE delivery",
+        "once_perk2": "No recurring discount",
+        "once_perk3": "You reorder manually",
+        "cta_label": "Add to cart",
+        "sub_cta_label": "Subscribe & save",
+        "per_day_word": "/ day",
+        "trust": "Free delivery 3–5 days, 30-day money back, Vegan & Halal",
+        "legal": "*Food supplements complement, not replace, a varied and balanced diet and a healthy lifestyle.",
+        "sticky": true,
+        "sticky_cta": "Add"
+      }
+    },
+    "inside": {
+      "type": "gomu-inside",
+      "blocks": {
+        "r1": { "type": "row", "settings": { "label": "Vitamins & minerals", "value": "20+" } },
+        "r2": { "type": "row", "settings": { "label": "Prebiotic fiber", "value": "Yes" } },
+        "r3": { "type": "row", "settings": { "label": "Gummies per sachet", "value": "8" } },
+        "r4": { "type": "row", "settings": { "label": "Gummies per pouch", "value": "224" } },
+        "r5": { "type": "row", "settings": { "label": "Artificial colors, flavors, sweeteners", "value": "0" } }
+      },
+      "block_order": ["r1", "r2", "r3", "r4", "r5"],
+      "settings": {
+        "heading": "What's actually in the pack.",
+        "body": "The gummies are deep red because of what goes into them, not what's painted on them.",
+        "image": "shopify://shop_images/gomu-bordeaux-inside.jpg",
+        "chip1_label": "Tastes like",
+        "chip1_value": "Strawberry Raspberry",
+        "chip2_label": "Base",
+        "chip2_value": "Fruit pectin, no gelatin"
+      }
+    },
+    "compare": {
+      "type": "gomu-compare",
+      "blocks": {
+        "r1": { "type": "row", "settings": { "label": "Actually tastes good", "v1": "no", "v2": "no" } },
+        "r2": { "type": "row", "settings": { "label": "All-in-one: vitamins, minerals, fiber", "v1": "no", "v2": "yes" } },
+        "r3": { "type": "row", "settings": { "label": "No water, no prep, no mess", "v1": "no", "v2": "no" } },
+        "r4": { "type": "row", "settings": { "label": "One grab-and-go daily sachet", "v1": "no", "v2": "no" } },
+        "r5": { "type": "row", "settings": { "label": "Vegan & Halal", "v1": "varies", "v2": "varies" } },
+        "r6": { "type": "row", "settings": { "label": "You actually look forward to it", "v1": "no", "v2": "no" } }
+      },
+      "block_order": ["r1", "r2", "r3", "r4", "r5", "r6"],
+      "settings": { "eyebrow": "Honest comparison", "heading": "Gummies beat pills and powders.", "us": "GOMU", "them1": "Pills", "them2": "Powders" }
+    },
+    "timeline": {
+      "type": "gomu-timeline",
+      "blocks": {
+        "s1": { "type": "step", "settings": { "step": "Week 1", "text": "One tear and you're done. The easiest habit you own." } },
+        "s2": { "type": "step", "settings": { "step": "Week 2–3", "text": "Consistency kicks in. No more forgotten bottles at the back of the cupboard." } },
+        "s3": { "type": "step", "settings": { "step": "Week 4", "text": "28 sachets done, pouch finished. A subscription restocks it before you notice." } }
+      },
+      "block_order": ["s1", "s2", "s3"],
+      "settings": {
+        "image": "shopify://shop_images/gomu-v2-lifestyle.png",
+        "eyebrow": "Your first month",
+        "heading": "Four weeks to a habit that sticks.",
+        "cta_label": "Start your first month",
+        "cta_link": "#gomu-buy-buybox"
+      }
+    },
+    "faq": {
+      "type": "gomu-faq",
+      "blocks": {
+        "q1": { "type": "qa", "settings": { "q": "What exactly is Gomu?", "a": "<p>Gomu Daily is an all-in-one multivitamin in deep red Strawberry Raspberry gummies — 20+ vitamins and minerals plus prebiotic fiber, in 28 single-serve sachets per pouch, eight gummies each. One pouch is a four-week supply.</p>" } },
+        "q2": { "type": "qa", "settings": { "q": "Why are the gummies deep red?", "a": "<p>Because we don't dye them. The colour comes from what's inside — there are no artificial colors in Gomu. The taste is Strawberry Raspberry regardless.</p>" } },
+        "q3": { "type": "qa", "settings": { "q": "How do I take it?", "a": "<p>One sachet of eight gummies per day, any time. No water, no mixing — most members keep it with breakfast or in their bag.</p>" } },
+        "q4": { "type": "qa", "settings": { "q": "Is Gomu Halal and vegan?", "a": "<p>Yes — Gomu is Vegan, Halal, Gluten Free, Nut Free and Dairy Free, with no artificial colors, flavors or sweeteners. The gummy base is fruit pectin, not gelatin.</p>" } },
+        "q5": { "type": "qa", "settings": { "q": "Do you deliver across the UAE?", "a": "<p>Yes — free delivery to all seven Emirates, typically within 3 to 5 business days.</p>" } },
+        "q6": { "type": "qa", "settings": { "q": "What is your money-back guarantee?", "a": "<p>If you're not happy with your first order, email us within 30 days of delivery and we'll refund it in full. No returns needed.</p>" } }
+      },
+      "block_order": ["q1", "q2", "q3", "q4", "q5", "q6"],
+      "settings": {
+        "eyebrow": "Good questions",
+        "heading": "Everything you're wondering.",
+        "body": "<p>Still stuck? Write to <a href=\"mailto:gomudaily@gmail.com\">gomudaily@gmail.com</a> and a human answers.</p>"
+      }
+    },
+    "closing": {
+      "type": "gomu-cta",
+      "settings": {
+        "image": "shopify://shop_images/gomu-bordeaux-cta.jpg",
+        "focal": 62,
+        "heading": "Eight gummies. Every morning. That's it.",
+        "body": "Free UAE delivery, 30-day money-back guarantee, cancel whenever.",
+        "cta_label": "Shop Gomu Daily",
+        "cta_link": "#gomu-buy-buybox"
+      }
+    }
+  },
+  "order": ["promo", "hero", "trust", "value", "buybox", "inside", "compare", "timeline", "faq", "closing"]
+}

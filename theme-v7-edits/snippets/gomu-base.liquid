@@ -1,0 +1,23 @@
+{% comment %} GOMU — shared type. Browser de-dupes repeated links. {% endcomment %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  .gomu { --ink:#3B0F14; --ink2:#6B4046; --mute:#8F6E63; --cream:#FBF4ED; --cream2:#FDF9F4; --line:#EAD5C2; --mint:#F8E3D5; --deep:#861B25; --dark:#4A0D14; --lime:#F2BE9C;
+    font-family:'Instrument Sans',system-ui,sans-serif; color:var(--ink); -webkit-font-smoothing:antialiased; }
+  .gomu *, .gomu *::before, .gomu *::after { box-sizing:border-box; }
+  .gomu h1, .gomu h2, .gomu h3 { font-family:'Bricolage Grotesque',system-ui,sans-serif; margin:0; text-wrap:balance; letter-spacing:-.03em; }
+  .gomu p { margin:0; text-wrap:pretty; }
+  .gomu a { text-decoration:none; }
+  .gomu button { font-family:inherit; cursor:pointer; }
+  .gomu-mono { font-family:'DM Mono',monospace; letter-spacing:.18em; text-transform:uppercase; font-size:11px; }
+  .gomu-wrap { max-width:1280px; margin:0 auto; padding-left:clamp(18px,4vw,44px); padding-right:clamp(18px,4vw,44px); }
+  .gomu-btn { display:inline-flex; align-items:center; justify-content:center; gap:10px; border:0; border-radius:100px; font-weight:600; letter-spacing:-.01em; transition:background .18s,color .18s; }
+  .gomu-btn--lime { background:var(--lime); color:var(--deep); }
+  .gomu-btn--lime:hover { background:#E8A87C; }
+  .gomu-btn--deep { background:var(--deep); color:#fff; }
+  .gomu-btn--deep:hover { background:var(--ink); color:var(--lime); }
+  .gomu-btn--ghost { border:1px solid rgba(249,227,211,.36); color:var(--cream); background:transparent; }
+  .gomu-btn--ghost:hover { border-color:var(--cream); background:rgba(249,227,211,.08); }
+  @keyframes gomu-marquee { from { transform:translateX(0) } to { transform:translateX(-50%) } }
+</style>

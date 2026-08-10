@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#FBF4ED">
+    <meta name="robots" content="noindex, nofollow">
+
+    <title>{{ page_title }}</title>
+    {%- if page_description -%}
+      <meta name="description" content="{{ page_description | escape }}">
+    {%- endif -%}
+    <meta property="og:title" content="{{ page_title | escape }}">
+    {%- if page_description -%}
+      <meta property="og:description" content="{{ page_description | escape }}">
+    {%- endif -%}
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="en_US">
+
+    {%- if settings.favicon != blank -%}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+    {%- endif -%}
+
+    {%- comment -%}
+      Typographie : si le kit vit dans Dawn et que le marchand a choisi une
+      police (ex. Inter) dans les réglages du thème, on la charge ici (2 familles
+      max, font-display swap). Sinon : stack système, zéro téléchargement.
+      Le préchargement de l'image héro (LCP) est fait par la section lp-hero
+      via preload_tag (émet un header Link, position indifférente).
+    {%- endcomment -%}
+    {%- comment -%}
+      Baloo 2 (display) + Work Sans (body) : auto-hébergées dans les assets,
+      déclarées par @font-face dans lp-base.css. On précharge les 2 fichiers
+      latin : ce sont eux qui rendent headlines et texte.
+    {%- endcomment -%}
+    <link rel="preload" href="{{ 'lp-baloo2-700-latin.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ 'lp-worksans-var-latin.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
+
+    {%- if settings.type_body_font -%}
+      {{ settings.type_body_font | font_url | preload_tag: as: 'font', type: 'font/woff2', crossorigin: 'anonymous' }}
+      <style>
+        {{ settings.type_body_font | font_face: font_display: 'swap' }}
+        {%- if settings.type_header_font -%}
+          {{ settings.type_header_font | font_face: font_display: 'swap' }}
+        {%- endif -%}
+        :root {
+          --lp-font-sans: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
+        }
+      </style>
+    {%- endif -%}
+
+    {{ 'lp-base.css' | asset_url | stylesheet_tag }}
+
+    {{ content_for_header }}
+  </head>
+
+  <body class="lp-body">
+    <main id="MainContent">
+      {{ content_for_layout }}
+    </main>
+
+    <script src="{{ 'lp.js' | asset_url }}" defer></script>
+  </body>
+</html>

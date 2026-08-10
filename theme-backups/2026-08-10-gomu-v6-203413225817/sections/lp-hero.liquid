@@ -1,0 +1,276 @@
+{%- comment -%}
+  LP Héro — port de src/components/lp/LPHero.tsx
+  Image = LCP : préchargée (preload_tag → header Link), eager + fetchpriority=high.
+{%- endcomment -%}
+
+<style>
+  /* Héro sombre façon gruns.co : vert profond, texte crème. */
+  .lp-hero {
+    background: var(--lp-purple-deep);
+    color: var(--lp-cream);
+    padding-block: 4rem;
+  }
+
+  @media (min-width: 640px) {
+    .lp-hero { padding-block: 5rem; }
+  }
+
+  @media (min-width: 1024px) {
+    .lp-hero { padding-block: 7rem; }
+  }
+
+  .lp-hero__grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .lp-hero__grid { gap: 3rem; }
+  }
+
+  @media (min-width: 1024px) {
+    .lp-hero__grid {
+      flex-direction: row;
+      gap: 4rem;
+    }
+  }
+
+  .lp-hero__text {
+    flex: 1;
+    max-width: 36rem;
+    text-align: center;
+  }
+
+  @media (min-width: 1024px) {
+    .lp-hero__text { text-align: left; }
+  }
+
+  .lp-hero__badge { margin-bottom: 1.25rem; }
+
+  /* Échelle brief : H1 44px mobile → 88px desktop, lh ~1. */
+  .lp-hero__title {
+    font-size: clamp(2.75rem, 1.9rem + 3.6vw, 5.5rem);
+    font-weight: 600;
+    line-height: 1.02;
+    color: var(--lp-cream);
+    margin-bottom: 1.25rem;
+  }
+
+  /* Sur fond vert profond — préfixe .lp-body pour battre les règles de base
+     (.lp-body h1 strong/em, 0-1-2) : surligneur plein « marqueur » lisible,
+     emphase en jaune. */
+  .lp-body .lp-hero__title strong,
+  .lp-body .lp-hero__title .lp-hl {
+    background: var(--lp-yellow);
+    color: var(--lp-ink);
+    border-radius: 0.12em;
+    padding-inline: 0.14em;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+
+  .lp-body .lp-hero__title em {
+    color: var(--lp-yellow);
+  }
+
+  .lp-hero__subtitle {
+    font-size: 1.0625rem;
+    line-height: 1.625;
+    color: rgba(255, 247, 223, 0.85);
+    margin-bottom: 1.75rem;
+  }
+
+  @media (min-width: 640px) {
+    .lp-hero__subtitle { font-size: 1.1875rem; }
+  }
+
+  .lp-hero__trust {
+    margin-top: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: rgba(255, 247, 223, 0.75);
+  }
+
+  @media (min-width: 1024px) {
+    .lp-hero__trust { justify-content: flex-start; }
+  }
+
+  .lp-hero__media {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  .lp-hero__img {
+    border-radius: var(--lp-radius-card-lg);
+    box-shadow: var(--lp-shadow-lift);
+    width: 100%;
+    max-width: 320px;
+  }
+
+  @media (min-width: 640px) {
+    .lp-hero__img { max-width: 400px; }
+  }
+
+  @media (min-width: 1024px) {
+    .lp-hero__img { max-width: 500px; }
+  }
+</style>
+
+{%- liquid
+  assign img = section.settings.image
+
+  # LCP : le preload doit proposer les MÊMES candidats que le srcset de l'<img>,
+  # sinon le navigateur précharge une variante et en télécharge une autre.
+  assign hero_sizes = '(min-width: 1024px) 500px, (min-width: 640px) 400px, 90vw'
+  if img != blank
+    capture hero_srcset
+      echo img | image_url: width: 400 | append: ' 400w, '
+      echo img | image_url: width: 600 | append: ' 600w, '
+      echo img | image_url: width: 800 | append: ' 800w, '
+      echo img | image_url: width: 1000 | append: ' 1000w'
+    endcapture
+  endif
+-%}
+
+{%- if img != blank -%}
+  {{ img | image_url: width: 800 | preload_tag: as: 'image', imagesrcset: hero_srcset, imagesizes: hero_sizes }}
+{%- else -%}
+  {{ 'lp-product-hero.jpeg' | asset_img_url: '800x' | preload_tag: as: 'image' }}
+{%- endif -%}
+
+{%- comment -%}
+  Pas de data-lp-reveal dans le héro : un LCP à opacity:0 tant que le JS
+  n'a pas tourné ruinerait le preload/fetchpriority. Le reveal est réservé
+  aux sections sous la ligne de flottaison.
+{%- endcomment -%}
+<section class="lp-hero">
+  <div class="lp-container">
+    <div class="lp-hero__grid">
+      <div class="lp-hero__text">
+        {%- if section.settings.badge != blank -%}
+          <span class="lp-badge lp-hero__badge">{{ section.settings.badge }}</span>
+        {%- endif -%}
+
+        <h1 class="lp-hero__title">{{ section.settings.headline }}</h1>
+
+        {%- if section.settings.subtitle != blank -%}
+          <p class="lp-hero__subtitle">{{ section.settings.subtitle }}</p>
+        {%- endif -%}
+
+        <a href="{{ section.settings.cta_link | default: '#buy-box' }}" class="lp-btn lp-btn--inverse">
+          {{- section.settings.cta_label -}}
+        </a>
+
+        {%- if section.settings.trust_text != blank -%}
+          <div class="lp-hero__trust">
+            {%- if section.settings.show_stars -%}
+              {% render 'lp-stars', size: 16 %}
+            {%- endif -%}
+            <span>{{ section.settings.trust_text }}</span>
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="lp-hero__media">
+        <div class="lp-float">
+          {%- if img != blank -%}
+            <img
+              src="{{ img | image_url: width: 800 }}"
+              srcset="{{ hero_srcset }}"
+              sizes="{{ hero_sizes }}"
+              width="800"
+              height="{{ 800 | divided_by: img.aspect_ratio | round }}"
+              alt="{{ img.alt | default: section.settings.headline | escape }}"
+              class="lp-hero__img"
+              loading="eager"
+              fetchpriority="high"
+            >
+          {%- else -%}
+            <img
+              src="{{ 'lp-product-hero.jpeg' | asset_img_url: '800x' }}"
+              width="800"
+              height="800"
+              alt="{{ section.settings.headline | escape }}"
+              class="lp-hero__img"
+              loading="eager"
+              fetchpriority="high"
+            >
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "LP — Héro",
+  "settings": [
+    {
+      "type": "text",
+      "id": "badge",
+      "label": "Badge",
+      "info": "Propre à l’angle de la LP — l’offre vit dans la barre d’annonce.",
+      "default": "Fabriqué en France · Testé par Eurofins"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "headline",
+      "label": "Titre (H1)",
+      "info": "Italique (em) = Fraunces expressive. Gras (strong) = surligneur jaune (1 max par page).",
+      "default": "6 raisons d’adopter Gomu"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Sous-titre"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Texte du CTA",
+      "default": "Profiter de l’offre -30%"
+    },
+    {
+      "type": "text",
+      "id": "cta_link",
+      "label": "Lien du CTA",
+      "default": "#buy-box",
+      "info": "Ancre (#buy-box) ou URL"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_stars",
+      "label": "Afficher les étoiles",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "trust_text",
+      "label": "Texte de réassurance",
+      "info": "Pas d’emoji (brief). Pas de note/avis tant qu’il n’y a pas d’avis réels.",
+      "default": "Fabriqué en France · Testé par Eurofins · Halal & vegan"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image produit",
+      "info": "Carrée, min. 1000×1000 px. À défaut : visuel de démo du kit."
+    }
+  ],
+  "presets": [
+    {
+      "name": "LP — Héro"
+    }
+  ],
+  "enabled_on": {
+    "templates": ["page", "product"]
+  }
+}
+{% endschema %}

@@ -1,0 +1,191 @@
+{%- comment -%}
+  LP Grille de confiance — port de src/components/lp/LPTrustGrid.tsx
+  Cartes de réassurance (icône + titre + description) en grille 1 → 2 colonnes.
+{%- endcomment -%}
+
+<style>
+  .lp-trust-grid {
+    background: var(--lp-cream);
+  }
+
+  .lp-trust-grid__title {
+    font-size: clamp(2.25rem, 1.5rem + 2.8vw, 3.75rem);
+    font-weight: 600;
+    color: var(--lp-purple-deep);
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .lp-trust-grid__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .lp-trust-grid__grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (min-width: 1024px) {
+    .lp-trust-grid__grid { gap: 2rem; }
+  }
+
+  .lp-trust-grid__card {
+    display: flex;
+    gap: 1rem;
+    background: var(--lp-paper);
+    border: 1px solid rgba(59,15,20, 0.05);
+    border-radius: var(--lp-radius-card-lg);
+    padding: 2rem;
+    box-shadow: var(--lp-shadow-soft);
+    transition: box-shadow 0.3s;
+  }
+
+  .lp-trust-grid__card:hover {
+    box-shadow: var(--lp-shadow-lift);
+  }
+
+  .lp-trust-grid__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 9999px;
+    background: rgba(134,27,37, 0.1);
+    flex-shrink: 0;
+  }
+
+  .lp-trust-grid__icon svg {
+    color: var(--lp-purple-accent);
+  }
+
+  .lp-trust-grid__item-title {
+    font-size: 1.375rem;
+    font-weight: 600;
+    color: var(--lp-purple-deep);
+    margin-bottom: 0.25rem;
+  }
+
+  .lp-trust-grid__desc {
+    font-size: 0.875rem;
+    line-height: 1.625;
+    color: var(--lp-text-muted);
+  }
+</style>
+
+<section class="lp-trust-grid lp-section">
+  <div class="lp-container">
+    <h2 class="lp-trust-grid__title" data-lp-reveal="up">{{ section.settings.heading }}</h2>
+
+    <div class="lp-trust-grid__grid">
+      {%- for block in section.blocks -%}
+        <div
+          class="lp-trust-grid__card"
+          data-lp-reveal="up"
+          {% if forloop.index0 > 0 %}data-lp-delay="{{ forloop.index0 }}"{% endif %}
+          {{ block.shopify_attributes }}
+        >
+          <div class="lp-trust-grid__icon" aria-hidden="true">
+            {% render 'lp-icon', icon: block.settings.icon, size: 28 %}
+          </div>
+          <div>
+            <h3 class="lp-trust-grid__item-title">{{ block.settings.title }}</h3>
+            {%- if block.settings.description != blank -%}
+              <p class="lp-trust-grid__desc">{{ block.settings.description }}</p>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "LP — Grille de confiance",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Titre",
+      "default": "Pourquoi nous faire confiance"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Carte de confiance",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icône",
+          "options": [
+            { "value": "flask", "label": "Fiole (labo)" },
+            { "value": "flag", "label": "Drapeau" },
+            { "value": "leaf", "label": "Feuille" },
+            { "value": "check-circle", "label": "Coche" }
+          ],
+          "default": "flask"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titre",
+          "default": "Testé en labo indépendant"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description",
+          "default": "Analyses Eurofins publiées lot par lot"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "LP — Grille de confiance",
+      "blocks": [
+        {
+          "type": "item",
+          "settings": {
+            "icon": "flask",
+            "title": "Testé en labo indépendant",
+            "description": "Analyses Eurofins publiées lot par lot"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "icon": "flag",
+            "title": "Fabriqué en France",
+            "description": "Façonnier français, traçabilité complète"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "icon": "leaf",
+            "title": "Vegan & Halal natif",
+            "description": "Base pectine de fruit, pas gélatine"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "icon": "check-circle",
+            "title": "Dosages cliniques réels",
+            "description": "Chaque actif dosé à un niveau documenté"
+          }
+        }
+      ]
+    }
+  ],
+  "enabled_on": {
+    "templates": ["page", "product"]
+  }
+}
+{% endschema %}

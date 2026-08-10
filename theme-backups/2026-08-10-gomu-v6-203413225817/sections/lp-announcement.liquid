@@ -1,0 +1,86 @@
+{%- comment -%}
+  LP Barre d'annonce — port de src/components/lp/LPAnnouncementBar.tsx
+  Zéro JS si non dismissible ; sinon le bouton [data-lp-dismiss] est géré par lp.js.
+{%- endcomment -%}
+
+<style>
+  .lp-announcement {
+    position: relative;
+    overflow: hidden;
+    background: var(--lp-yellow);
+    color: var(--lp-ink);
+    text-align: center;
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding: 0.625rem 2.5rem;
+  }
+
+  .lp-announcement__dismiss {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.875rem;
+    color: rgba(38, 10, 0, 0.6);
+    transition: color 0.2s;
+  }
+
+  html:not(.lp-js) .lp-announcement__dismiss {
+    display: none;
+  }
+
+  .lp-announcement__dismiss:hover {
+    color: var(--lp-ink);
+  }
+</style>
+
+<div class="lp-announcement" data-lp-announcement>
+  <span>
+    {%- if section.settings.emoji != blank -%}
+      <span aria-hidden="true">{{ section.settings.emoji }}</span>
+    {%- endif %}
+    {{ section.settings.text -}}
+  </span>
+
+  {%- if section.settings.dismissible -%}
+    <button type="button" class="lp-announcement__dismiss" data-lp-dismiss aria-label="Close">
+      {% render 'lp-icon', icon: 'x', size: 16 %}
+    </button>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "LP — Barre d’annonce",
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Texte",
+      "default": "Offre de lancement — -30% sur ta première commande + livraison offerte"
+    },
+    {
+      "type": "text",
+      "id": "emoji",
+      "label": "Emoji (déconseillé)"
+    },
+    {
+      "type": "checkbox",
+      "id": "dismissible",
+      "label": "Fermable par le visiteur",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "LP — Barre d’annonce"
+    }
+  ],
+  "enabled_on": {
+    "templates": ["page", "product"]
+  }
+}
+{% endschema %}

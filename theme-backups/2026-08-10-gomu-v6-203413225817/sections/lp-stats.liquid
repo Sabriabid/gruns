@@ -1,0 +1,165 @@
+{%- comment -%}
+  LP Stats — port de src/components/lp/LPSocialProofStats.tsx
+  Carte jaune pâle sur fond cream : grille de stats (stagger au scroll)
+  puis visuel centré dessous.
+{%- endcomment -%}
+
+<style>
+  .lp-stats {
+    background: var(--lp-cream);
+  }
+
+  .lp-stats__card {
+    background: var(--lp-paper);
+    border: 1px solid rgba(38, 10, 0, 0.05);
+    border-radius: var(--lp-radius-card-lg);
+    box-shadow: var(--lp-shadow-soft);
+    padding: 1.25rem;
+  }
+
+  @media (min-width: 640px) {
+    .lp-stats__card { padding: 2rem; }
+  }
+
+  @media (min-width: 1024px) {
+    .lp-stats__card { padding: 3rem; }
+  }
+
+  .lp-stats__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  @media (min-width: 640px) {
+    .lp-stats__grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .lp-stats__stat {
+    text-align: center;
+  }
+
+  /* Stats géantes du brief : Fraunces italique violet profond. */
+  .lp-stats__value {
+    font-family: var(--lp-font-display);
+    font-size: clamp(3.5rem, 2.2rem + 5vw, 7rem);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--lp-green);
+    margin-bottom: 0.75rem;
+  }
+
+  .lp-stats__label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--lp-text-muted);
+  }
+
+  .lp-stats__media {
+    display: flex;
+    justify-content: center;
+  }
+
+  .lp-stats__img {
+    border-radius: var(--lp-radius-card-lg);
+    box-shadow: var(--lp-shadow-soft);
+    width: 100%;
+    max-width: 42rem;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+</style>
+
+{%- assign img = section.settings.image -%}
+
+<section class="lp-stats lp-section">
+  <div class="lp-container lp-container--narrow">
+    <div class="lp-stats__card">
+      {%- if section.blocks.size > 0 -%}
+        <div class="lp-stats__grid">
+          {%- for block in section.blocks -%}
+            <div
+              class="lp-stats__stat"
+              data-lp-reveal="up"
+              {% if forloop.index0 > 0 %}data-lp-delay="{{ forloop.index0 }}"{% endif %}
+              {{ block.shopify_attributes }}
+            >
+              <p class="lp-stats__value">{{ block.settings.value }}</p>
+              <p class="lp-stats__label">{{ block.settings.label }}</p>
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      {%- comment -%}
+        Pas de fallback ici : le visuel de démo embarquait de faux claims
+        (« 1M+ clients », « 85 000 avis ») — sans image choisie, pas de media.
+      {%- endcomment -%}
+      {%- if img != blank -%}
+        <div class="lp-stats__media">
+          {{
+            img
+            | image_url: width: 1200
+            | image_tag:
+              widths: '400, 600, 800, 1200',
+              sizes: '(min-width: 768px) 672px, 90vw',
+              loading: 'lazy',
+              class: 'lp-stats__img'
+          }}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "LP — Statistiques",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image statistiques",
+      "info": "Carrée, min. 1000×1000 px. À défaut : visuel de démo du kit."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Statistique",
+      "settings": [
+        {
+          "type": "text",
+          "id": "value",
+          "label": "Valeur",
+          "default": "80%"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Libellé",
+          "default": "des Français carencés en vitamine D en hiver — ANSES"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "LP — Statistiques",
+      "blocks": [
+        { "type": "stat", "settings": { "value": "80%", "label": "des Français carencés en vitamine D en hiver — ANSES" } },
+        { "type": "stat", "settings": { "value": "1/2", "label": "abandonne sa cure de compléments avant la fin — Alcimed" } },
+        { "type": "stat", "settings": { "value": "60-100€", "label": "par mois en compléments fragmentés en pharmacie" } }
+      ]
+    }
+  ],
+  "enabled_on": {
+    "templates": ["page", "product"]
+  }
+}
+{% endschema %}

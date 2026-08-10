@@ -1,0 +1,46 @@
+{% render 'gomu-base' %}
+<style>
+  #gomu-cta-{{ section.id }} { position:relative; display:flex; align-items:center; overflow:hidden; background:var(--dark); min-height:clamp(420px,56vh,580px); }
+  #gomu-cta-{{ section.id }} .gx-img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:{{ section.settings.focal }}% 50%; }
+  #gomu-cta-{{ section.id }} .gx-tint { position:absolute; inset:0; background:linear-gradient(94deg,rgba(74,13,20,.96) 0%,rgba(80,15,22,.9) 42%,rgba(88,17,24,.42) 72%,rgba(96,19,27,.06) 100%); }
+  #gomu-cta-{{ section.id }} .gx-copy { position:relative; max-width:min(560px,54%); display:flex; flex-direction:column; gap:22px; }
+  #gomu-cta-{{ section.id }} h2 { font-size:clamp(32px,4.2vw,60px); font-weight:800; line-height:.98; letter-spacing:-.035em; color:var(--cream); }
+  #gomu-cta-{{ section.id }} p { font-size:16.5px; line-height:1.6; color:rgba(249,227,211,.82); }
+  #gomu-cta-{{ section.id }} .gomu-btn { align-self:flex-start; padding:19px 34px; font-size:16px; }
+  @media (max-width:700px) {
+    #gomu-cta-{{ section.id }} { min-height:0; padding-top:40vh; padding-bottom:8px; align-items:flex-end; }
+    #gomu-cta-{{ section.id }} .gx-img { object-position:62% 50%; }
+    #gomu-cta-{{ section.id }} .gx-tint { background:linear-gradient(180deg,rgba(74,13,20,.1) 0%,rgba(74,13,20,.62) 38%,rgba(74,13,20,.97) 66%,rgba(74,13,20,.99) 100%); }
+    #gomu-cta-{{ section.id }} .gx-copy { max-width:100%; }
+  }
+</style>
+
+<section class="gomu" id="gomu-cta-{{ section.id }}">
+  {%- if section.settings.image -%}
+    <img class="gx-img" src="{{ section.settings.image | image_url: width: 2200 }}" alt="{{ section.settings.image.alt | escape }}" width="{{ section.settings.image.width }}" height="{{ section.settings.image.height }}" loading="lazy">
+  {%- endif -%}
+  <div class="gx-tint"></div>
+  <div class="gomu-wrap" style="position:relative;width:100%;padding-top:clamp(52px,7vw,92px);padding-bottom:clamp(52px,7vw,92px)">
+    <div class="gx-copy">
+      <h2>{{ section.settings.heading }}</h2>
+      {%- if section.settings.body != blank -%}<p>{{ section.settings.body }}</p>{%- endif -%}
+      <a class="gomu-btn gomu-btn--lime" href="{{ section.settings.cta_link | default: '#gomu-buy' }}">{{ section.settings.cta_label }}</a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "GOMU closing CTA",
+  "tag": "section",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Background image" },
+    { "type": "range", "id": "focal", "label": "Image focal point (horizontal)", "min": 0, "max": 100, "step": 2, "default": 86, "unit": "%" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Eight gummies. Every morning. That's it." },
+    { "type": "textarea", "id": "body", "label": "Body", "default": "Free UAE delivery, 30-day money-back guarantee, cancel whenever." },
+    { "type": "text", "id": "cta_label", "label": "Button", "default": "Shop Gomu Daily" },
+    { "type": "url", "id": "cta_link", "label": "Button link" }
+  ],
+  "presets": [ { "name": "GOMU closing CTA" } ]
+}
+{% endschema %}

@@ -1,0 +1,80 @@
+{% render 'gomu-base' %}
+<style>
+  #gomu-hero-{{ section.id }} { position:relative; display:flex; flex-direction:column; justify-content:flex-end; overflow:hidden; background:var(--dark); min-height:clamp(600px,86vh,860px); }
+  #gomu-hero-{{ section.id }} .gh-img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:{{ section.settings.focal }}% 50%; }
+  #gomu-hero-{{ section.id }} .gh-tint { position:absolute; inset:0; background:linear-gradient(96deg,rgba(74,13,20,.97) 0%,rgba(80,15,22,.93) 40%,rgba(88,17,24,.52) 70%,rgba(96,19,27,.05) 100%); }
+  #gomu-hero-{{ section.id }} .gh-copy { max-width:min(600px,54%); display:flex; flex-direction:column; gap:24px; }
+  #gomu-hero-{{ section.id }} h1 { font-size:clamp(44px,5.6vw,80px); font-weight:800; line-height:.94; letter-spacing:-.035em; color:var(--cream); }
+  #gomu-hero-{{ section.id }} .gh-sub { font-size:clamp(16px,1.25vw,19px); line-height:1.6; color:rgba(249,227,211,.84); max-width:490px; }
+  #gomu-hero-{{ section.id }} .gh-eyebrow { color:var(--lime); letter-spacing:.22em; }
+  #gomu-hero-{{ section.id }} .gh-stats { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:rgba(249,227,211,.16); border:1px solid rgba(249,227,211,.16); border-radius:18px; overflow:hidden; }
+  #gomu-hero-{{ section.id }} .gh-stat { background:rgba(58,10,16,.55); backdrop-filter:blur(8px); padding:20px 22px; display:flex; flex-direction:column; gap:5px; }
+  #gomu-hero-{{ section.id }} .gh-stat b { font-family:'Bricolage Grotesque',sans-serif; font-size:30px; font-weight:800; letter-spacing:-.04em; line-height:1; color:var(--lime); }
+  #gomu-hero-{{ section.id }} .gh-stat span { font-family:'DM Mono',monospace; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:rgba(249,227,211,.66); }
+  #gomu-hero-{{ section.id }} .gh-cta { display:flex; flex-wrap:wrap; gap:12px; align-items:center; margin-top:4px; }
+  #gomu-hero-{{ section.id }} .gomu-btn { padding:18px 32px; font-size:16px; }
+  @media (max-width:700px) {
+    #gomu-hero-{{ section.id }} { min-height:0; padding-top:44vh; }
+    #gomu-hero-{{ section.id }} .gh-img { object-position:52% 30%; }
+    #gomu-hero-{{ section.id }} .gh-tint { background:linear-gradient(180deg,rgba(74,13,20,.1) 0%,rgba(74,13,20,.6) 36%,rgba(74,13,20,.96) 64%,rgba(74,13,20,.99) 100%); }
+    #gomu-hero-{{ section.id }} .gh-copy { max-width:100%; }
+    #gomu-hero-{{ section.id }} .gh-stats { grid-template-columns:1fr 1fr; }
+  }
+</style>
+
+<section class="gomu" id="gomu-hero-{{ section.id }}">
+  {%- if section.settings.image -%}
+    <img class="gh-img" src="{{ section.settings.image | image_url: width: 2200 }}" alt="{{ section.settings.image.alt | escape }}" width="{{ section.settings.image.width }}" height="{{ section.settings.image.height }}" loading="eager" fetchpriority="high">
+  {%- endif -%}
+  <div class="gh-tint"></div>
+
+  <div class="gomu-wrap" style="position:relative;width:100%;padding-top:clamp(52px,8vw,96px)">
+    <div class="gh-copy">
+      {%- if section.settings.eyebrow != blank -%}<span class="gomu-mono gh-eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+      <h1>{{ section.settings.heading }}</h1>
+      {%- if section.settings.body != blank -%}<p class="gh-sub">{{ section.settings.body }}</p>{%- endif -%}
+      <div class="gh-cta">
+        <a class="gomu-btn gomu-btn--lime" href="{{ section.settings.cta_link | default: '#gomu-buy' }}">{{ section.settings.cta_label }}</a>
+        {%- if section.settings.cta2_label != blank -%}
+          <a class="gomu-btn gomu-btn--ghost" href="{{ section.settings.cta2_link | default: '#' }}" style="font-weight:500">{{ section.settings.cta2_label }}</a>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+
+  <div class="gomu-wrap" style="position:relative;width:100%;padding-top:clamp(38px,5vw,64px);padding-bottom:clamp(30px,4vw,48px)">
+    <div class="gh-stats">
+      {%- for block in section.blocks -%}
+        <div class="gh-stat" {{ block.shopify_attributes }}>
+          <b>{{ block.settings.value }}</b>
+          <span>{{ block.settings.label }}</span>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "GOMU hero",
+  "tag": "section",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Background image" },
+    { "type": "range", "id": "focal", "label": "Image focal point (horizontal)", "min": 0, "max": 100, "step": 2, "default": 86, "unit": "%" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Now delivering across the UAE" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Your whole day's nutrition. In eight gummies." },
+    { "type": "textarea", "id": "body", "label": "Body", "default": "20+ vitamins, minerals and prebiotic fiber in one grab-and-go sachet. No pills, no powders, no water." },
+    { "type": "text", "id": "cta_label", "label": "Primary button", "default": "Shop Gomu Daily" },
+    { "type": "url", "id": "cta_link", "label": "Primary button link" },
+    { "type": "text", "id": "cta2_label", "label": "Secondary button", "default": "How it works" },
+    { "type": "url", "id": "cta2_link", "label": "Secondary button link" }
+  ],
+  "blocks": [
+    { "type": "stat", "name": "Stat", "limit": 4, "settings": [
+      { "type": "text", "id": "value", "label": "Value", "default": "20+" },
+      { "type": "text", "id": "label", "label": "Label", "default": "Vitamins & minerals" }
+    ] }
+  ],
+  "presets": [ { "name": "GOMU hero", "blocks": [ { "type": "stat" }, { "type": "stat" }, { "type": "stat" }, { "type": "stat" } ] } ]
+}
+{% endschema %}

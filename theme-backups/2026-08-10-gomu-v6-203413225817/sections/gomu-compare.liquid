@@ -1,0 +1,64 @@
+{% render 'gomu-base' %}
+<style>
+  #gomu-cmp-{{ section.id }} { background:var(--cream); padding:clamp(64px,8vw,116px) 0; }
+  #gomu-cmp-{{ section.id }} .gc-head { display:flex; flex-direction:column; gap:16px; margin-bottom:clamp(30px,4vw,48px); max-width:620px; }
+  #gomu-cmp-{{ section.id }} .gc-head .gomu-mono { color:var(--mute); letter-spacing:.22em; }
+  #gomu-cmp-{{ section.id }} h2 { font-size:clamp(32px,4vw,54px); font-weight:800; line-height:1; }
+  #gomu-cmp-{{ section.id }} .gc-scroll { overflow-x:auto; }
+  #gomu-cmp-{{ section.id }} .gc-table { display:grid; grid-template-columns:1.7fr .75fr .75fr .75fr; font-size:15px; align-items:stretch; min-width:600px; }
+  #gomu-cmp-{{ section.id }} .gc-h0 { padding:14px 18px 14px 0; }
+  #gomu-cmp-{{ section.id }} .gc-hus { padding:16px 12px; background:var(--ink); border-radius:16px 16px 0 0; display:flex; justify-content:center; }
+  #gomu-cmp-{{ section.id }} .gc-hus b { font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:17px; letter-spacing:-.02em; color:var(--lime); }
+  #gomu-cmp-{{ section.id }} .gc-hthem { padding:16px 12px; text-align:center; font-family:'DM Mono',monospace; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--mute); }
+  #gomu-cmp-{{ section.id }} .gc-label { padding:19px 18px 19px 0; border-top:1px solid var(--line); }
+  #gomu-cmp-{{ section.id }} .gc-us { padding:19px 12px; background:var(--ink); color:var(--lime); text-align:center; font-size:17px; }
+  #gomu-cmp-{{ section.id }} .gc-them { padding:19px 12px; border-top:1px solid var(--line); text-align:center; color:#B3A98A; }
+  #gomu-cmp-{{ section.id }} .gc-them.yes { color:var(--ink2); }
+  #gomu-cmp-{{ section.id }} .gc-them.varies { font-family:'DM Mono',monospace; font-size:11px; }
+  #gomu-cmp-{{ section.id }} .gc-last { border-radius:0 0 16px 16px; }
+</style>
+
+<section class="gomu" id="gomu-cmp-{{ section.id }}">
+  <div class="gomu-wrap">
+    <div class="gc-head">
+      {%- if section.settings.eyebrow != blank -%}<span class="gomu-mono">{{ section.settings.eyebrow }}</span>{%- endif -%}
+      <h2>{{ section.settings.heading }}</h2>
+    </div>
+    <div class="gc-scroll">
+      <div class="gc-table">
+        <div class="gc-h0"></div>
+        <div class="gc-hus"><b>{{ section.settings.us }}</b></div>
+        <div class="gc-hthem">{{ section.settings.them1 }}</div>
+        <div class="gc-hthem">{{ section.settings.them2 }}</div>
+        {%- for block in section.blocks -%}
+          <div class="gc-label">{{ block.settings.label }}</div>
+          <div class="gc-us{% if forloop.last %} gc-last{% endif %}">✓</div>
+          <div class="gc-them{% if block.settings.v1 == 'yes' %} yes{% elsif block.settings.v1 == 'varies' %} varies{% endif %}">{% if block.settings.v1 == 'yes' %}✓{% elsif block.settings.v1 == 'varies' %}VARIES{% else %}✕{% endif %}</div>
+          <div class="gc-them{% if block.settings.v2 == 'yes' %} yes{% elsif block.settings.v2 == 'varies' %} varies{% endif %}">{% if block.settings.v2 == 'yes' %}✓{% elsif block.settings.v2 == 'varies' %}VARIES{% else %}✕{% endif %}</div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "GOMU comparison",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Honest comparison" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Gummies beat pills and powders." },
+    { "type": "text", "id": "us", "label": "Your column", "default": "GOMU" },
+    { "type": "text", "id": "them1", "label": "Column 2", "default": "Pills" },
+    { "type": "text", "id": "them2", "label": "Column 3", "default": "Powders" }
+  ],
+  "blocks": [
+    { "type": "row", "name": "Row", "settings": [
+      { "type": "text", "id": "label", "label": "Criterion", "default": "Actually tastes good" },
+      { "type": "select", "id": "v1", "label": "Column 2", "options": [ { "value": "no", "label": "No" }, { "value": "yes", "label": "Yes" }, { "value": "varies", "label": "Varies" } ], "default": "no" },
+      { "type": "select", "id": "v2", "label": "Column 3", "options": [ { "value": "no", "label": "No" }, { "value": "yes", "label": "Yes" }, { "value": "varies", "label": "Varies" } ], "default": "no" }
+    ] }
+  ],
+  "presets": [ { "name": "GOMU comparison", "blocks": [ { "type": "row" }, { "type": "row" }, { "type": "row" }, { "type": "row" }, { "type": "row" }, { "type": "row" } ] } ]
+}
+{% endschema %}

@@ -1,0 +1,412 @@
+/* ==========================================================================
+   Gomu LP kit — base : tokens, reset minimal, utilitaires partagés.
+   Chargé uniquement par layout/lp.liquid. Le CSS propre à chaque section
+   vit dans un bloc <style> en tête de sa section (autonome, pas de doublon).
+
+   DA = bordeaux/pêche, alignée sur le packaging Strawberry Raspberry :
+   bordeaux #861B25/#4A0D14, blanc cassé #FBF4ED, pêche #F2BE9C, texte
+   #3B0F14, boutons pilule bordeaux pleins texte clair (semibold, -0.03em).
+   Typo : Work Sans (body, comme gruns.co) + Baloo 2 (display — équivalent
+   libre du display propriétaire de gruns.co, raccord avec le logo GOMU).
+   ========================================================================== */
+
+/* Baloo 2 700 (display) & Work Sans variable (body) — auto-hébergées. */
+@font-face {
+  font-family: 'Baloo 2';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('lp-baloo2-700-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Baloo 2';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('lp-baloo2-700-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Work Sans';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('lp-worksans-var-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Work Sans';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('lp-worksans-var-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+:root {
+  /* Palette gruns.co (tokens mesurés sur leur CSS) */
+  --lp-green: #861B25;          /* vert marque : CTA, accents, chiffres */
+  --lp-green-strong: #6E1520;   /* hover boutons */
+  --lp-green-deep: #4A0D14;     /* vert très sombre : sections, headlines */
+  --lp-green-tint: #F8E3D5;     /* tint pâle : fonds d'icônes, lignes */
+  --lp-ink: #3B0F14;            /* texte (fg-primary gruns.co) */
+  --lp-red: #a91b23;            /* accent promo (avec parcimonie) */
+
+  /* Alias legacy — les <style> des sections référencent ces noms. */
+  --lp-purple-deep: var(--lp-green-deep);
+  --lp-purple-accent: var(--lp-green);
+  --lp-purple-bright: #C24856;
+  --lp-purple: var(--lp-green-deep);
+  --lp-dark: var(--lp-ink);
+  --lp-cream: #FBF4ED;          /* neutral-off-white gruns.co — fond dominant */
+  --lp-paper: #FDF9F4;          /* lt-yellow gruns.co — cards */
+  --lp-yellow: #F2BE9C;         /* jaune gruns.co : badges, surligneur, bordure offre */
+  --lp-orange: #F2BE9C;
+  --lp-light-yellow: #FDF9F4;
+  --lp-charcoal: var(--lp-green-deep);
+  --lp-white: #ffffff;
+  /* Texte secondaire : 0.7 ≈ 5.4:1 sur crème #FBF4ED (AA). */
+  --lp-text-muted: rgba(59,15,20, 0.7);
+
+  --lp-font-sans: 'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --lp-font-display: 'Baloo 2', 'Arial Rounded MT Bold', 'Hiragino Maru Gothic ProN',
+    Quicksand, sans-serif;
+
+  --lp-radius-card: 1rem;      /* rounded-2xl */
+  --lp-radius-card-lg: 1.5rem; /* rounded-3xl — cards */
+  --lp-radius-btn: 9999px;     /* boutons pilule (gruns.co : radius max) */
+
+  /* Ombres douces teintées encre verte. */
+  --lp-shadow-soft: 0 1px 2px rgba(74,13,20, 0.06),
+    0 12px 32px -12px rgba(74,13,20, 0.22);
+  --lp-shadow-lift: 0 2px 4px rgba(74,13,20, 0.08),
+    0 20px 48px -16px rgba(74,13,20, 0.3);
+  --lp-shadow-brutal: var(--lp-shadow-soft);
+  --lp-shadow-brutal-active: var(--lp-shadow-soft);
+
+  --lp-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* --- Reset minimal ------------------------------------------------------ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body.lp-body {
+  margin: 0;
+  font-family: var(--lp-font-sans);
+  color: var(--lp-ink);
+  background: var(--lp-cream);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  /* Les reveals left/right partent de translateX(±24px) : sans clip, la page
+     a un débordement horizontal sur mobile avant révélation. */
+  overflow-x: hidden;
+  overflow-x: clip;
+}
+
+.lp-body img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.lp-body h1,
+.lp-body h2,
+.lp-body h3,
+.lp-body p {
+  margin: 0;
+}
+
+/* Display : Baloo 2 700 (rond, généreux — raccord logo GOMU).
+   Les tailles restent définies section par section. */
+.lp-body h1,
+.lp-body h2,
+.lp-body h3 {
+  font-family: var(--lp-font-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+/* Baloo 2 n'a pas d'italique : l'emphase <em> devient une couleur (comme les
+   mots colorés des headlines gruns.co). Le héro sombre la passe en jaune. */
+.lp-body h1 em,
+.lp-body h2 em,
+.lp-body h3 em {
+  font-style: normal;
+  color: var(--lp-green);
+}
+
+.lp-body a {
+  color: inherit;
+}
+
+.lp-body button {
+  font: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.lp-body :focus-visible {
+  outline: 2px solid var(--lp-green);
+  outline-offset: 2px;
+}
+
+/* --- Layout ------------------------------------------------------------- */
+
+.lp-container {
+  max-width: 80rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+.lp-container--narrow {
+  max-width: 72rem;
+}
+
+.lp-container--tight {
+  max-width: 64rem;
+}
+
+.lp-section {
+  padding-block: 4.5rem;
+}
+
+@media (min-width: 1024px) {
+  .lp-section {
+    padding-block: 7rem;
+  }
+}
+
+/* --- Boutons / badges / eyebrows ---------------------------------------- */
+
+/* Bouton gruns.co : pilule verte pleine, texte blanc, semibold, -0.03em. */
+.lp-btn {
+  display: inline-block;
+  background: var(--lp-green);
+  color: var(--lp-white);
+  font-weight: 600;
+  font-size: 1.0625rem;
+  letter-spacing: -0.03em;
+  line-height: 1.4;
+  text-align: center;
+  text-decoration: none;
+  padding: 1rem 2rem;
+  border-radius: var(--lp-radius-btn);
+  box-shadow: var(--lp-shadow-soft);
+  transition: background-color 0.2s ease, transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.lp-btn:hover {
+  background: var(--lp-green-strong);
+  transform: scale(1.02);
+  box-shadow: var(--lp-shadow-lift);
+}
+
+.lp-btn:active {
+  transform: scale(0.99);
+  box-shadow: var(--lp-shadow-soft);
+}
+
+.lp-btn--block {
+  display: block;
+  width: 100%;
+}
+
+/* Sur fond vert profond, le bouton s'inverse : crème plein, texte vert sombre. */
+.lp-btn--inverse {
+  background: var(--lp-cream);
+  color: var(--lp-green-deep);
+}
+
+.lp-btn--inverse:hover {
+  background: var(--lp-white);
+}
+
+/* Les CTA sont des <a> : sans ces sélecteurs, « .lp-body a { color: inherit } »
+   (0-1-1) bat « .lp-btn » (0-1-0) et le libellé prend la couleur du parent. */
+.lp-body a.lp-btn {
+  color: var(--lp-white);
+}
+
+.lp-body a.lp-btn--inverse {
+  color: var(--lp-green-deep);
+}
+
+.lp-badge {
+  display: inline-block;
+  background: var(--lp-yellow);
+  color: var(--lp-ink); /* encre sur jaune #F2BE9C : ~10:1 */
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 0.375rem 1.25rem;
+  border-radius: 9999px;
+}
+
+.lp-pill {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.125rem 0.625rem;
+  border-radius: 9999px;
+}
+
+.lp-pill--yellow {
+  background: var(--lp-yellow);
+  color: var(--lp-ink);
+}
+
+.lp-pill--purple {
+  background: var(--lp-green-deep);
+  color: var(--lp-cream);
+}
+
+.lp-eyebrow {
+  display: block;
+  font-family: var(--lp-font-sans);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--lp-green);
+}
+
+/* Surligneur jaune « feutre fluo » — avec parcimonie.
+   Dans les titres, <strong> EST le surligneur : c'est le seul balisage
+   qu'accepte la validation inline_richtext de Shopify (pas de span+classe). */
+.lp-hl,
+.lp-body h1 strong,
+.lp-body h2 strong,
+.lp-body h3 strong {
+  font-weight: inherit;
+  background: linear-gradient(transparent 55%, var(--lp-yellow) 55%, var(--lp-yellow) 92%, transparent 92%);
+  padding-inline: 0.08em;
+  color: var(--lp-ink);
+}
+
+.lp-stars {
+  display: inline-flex;
+  gap: 0.125rem;
+  color: var(--lp-yellow);
+}
+
+.lp-stars svg {
+  fill: currentColor;
+  stroke: var(--lp-ink);
+  stroke-width: 1;
+}
+
+/* Cards : paper, rounded-3xl, bordure hairline, ombre douce. */
+.lp-card {
+  background: var(--lp-paper);
+  border: 1px solid rgba(59,15,20, 0.05);
+  border-radius: var(--lp-radius-card-lg);
+  box-shadow: var(--lp-shadow-soft);
+}
+
+/* --- Reveal (apparition au scroll) --------------------------------------
+   data-lp-reveal="up|left|right" ; lp.js ajoute .in à l'entrée du viewport.
+   L'état caché n'est armé que sous html.lp-js (classe posée par lp.js en
+   première ligne) : si le script ne charge pas — JS désactivé, adblock,
+   404 — rien n'est jamais masqué. Ne PAS poser data-lp-reveal sur du
+   contenu above-the-fold (héro) : cela retarderait le LCP. */
+
+html.lp-js [data-lp-reveal] {
+  opacity: 0;
+  transition: opacity 0.6s var(--lp-ease-out), transform 0.6s var(--lp-ease-out);
+}
+
+html.lp-js [data-lp-reveal='up'] {
+  transform: translateY(12px);
+}
+
+html.lp-js [data-lp-reveal='left'] {
+  transform: translateX(-24px);
+}
+
+html.lp-js [data-lp-reveal='right'] {
+  transform: translateX(24px);
+}
+
+html.lp-js [data-lp-reveal].in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Stagger simple pour les grilles/listes : décalage par enfant. */
+[data-lp-reveal][data-lp-delay='1'] { transition-delay: 0.1s; }
+[data-lp-reveal][data-lp-delay='2'] { transition-delay: 0.2s; }
+[data-lp-reveal][data-lp-delay='3'] { transition-delay: 0.3s; }
+[data-lp-reveal][data-lp-delay='4'] { transition-delay: 0.4s; }
+[data-lp-reveal][data-lp-delay='5'] { transition-delay: 0.5s; }
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  html.lp-js [data-lp-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .lp-float {
+    animation: none;
+  }
+
+  .lp-btn,
+  .lp-btn:hover,
+  .lp-btn:active {
+    transform: none;
+  }
+}
+
+/* Flottement du visuel héro */
+@keyframes lp-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.lp-float {
+  animation: lp-float 4s ease-in-out infinite;
+}
+
+/* --- Accessibilité ------------------------------------------------------- */
+
+.lp-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

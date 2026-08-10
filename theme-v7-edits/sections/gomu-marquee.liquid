@@ -1,0 +1,35 @@
+{% render 'gomu-base' %}
+<style>
+  #gomu-mq-{{ section.id }} { overflow:hidden; background:{{ section.settings.bg }}; {% if section.settings.border %}border-bottom:1px solid rgba(96,19,27,.1);{% endif %} }
+  #gomu-mq-{{ section.id }} .gm-track { display:flex; gap:{{ section.settings.gap }}px; width:max-content; white-space:nowrap; animation:gomu-marquee {{ section.settings.speed }}s linear infinite; padding:{{ section.settings.pad }}px 0; font-family:'DM Mono',monospace; font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:{{ section.settings.color }}; }
+  #gomu-mq-{{ section.id }} .gm-sep { color:{{ section.settings.sep_color }}; }
+  @media (prefers-reduced-motion:reduce) { #gomu-mq-{{ section.id }} .gm-track { animation:none; } }
+</style>
+
+<div class="gomu" id="gomu-mq-{{ section.id }}">
+  <div class="gm-track">
+    {%- for i in (1..2) -%}
+      {%- for block in section.blocks -%}
+        <span {{ block.shopify_attributes }}>{{ block.settings.text }}</span><span class="gm-sep">✦</span>
+      {%- endfor -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "GOMU marquee",
+  "tag": "section",
+  "settings": [
+    { "type": "color", "id": "bg", "label": "Background", "default": "#861B25" },
+    { "type": "color", "id": "color", "label": "Text", "default": "#F9E3D3" },
+    { "type": "color", "id": "sep_color", "label": "Separator", "default": "#F2BE9C" },
+    { "type": "checkbox", "id": "border", "label": "Bottom border", "default": false },
+    { "type": "range", "id": "speed", "label": "Duration", "min": 15, "max": 90, "step": 1, "default": 40, "unit": "s" },
+    { "type": "range", "id": "gap", "label": "Gap", "min": 20, "max": 90, "step": 2, "default": 52 },
+    { "type": "range", "id": "pad", "label": "Vertical padding", "min": 6, "max": 28, "step": 1, "default": 11 }
+  ],
+  "blocks": [ { "type": "item", "name": "Item", "settings": [ { "type": "text", "id": "text", "label": "Text", "default": "Free shipping across all 7 emirates" } ] } ],
+  "presets": [ { "name": "GOMU marquee", "blocks": [ { "type": "item" }, { "type": "item" }, { "type": "item" } ] } ]
+}
+{% endschema %}

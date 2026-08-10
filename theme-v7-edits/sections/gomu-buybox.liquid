@@ -1,0 +1,438 @@
+{% render 'gomu-base' %}
+{%- assign p = section.settings.product -%}
+{%- assign dpp = section.settings.days_per_pouch | default: 28 -%}
+{%- assign has_sub = false -%}
+{%- if p != blank and p.selling_plan_groups.size > 0 -%}{%- assign has_sub = true -%}{%- endif -%}
+
+<style>
+  #gomu-buy-{{ section.id }} { background:var(--cream2); border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:clamp(48px,6vw,88px) 0; scroll-margin-top:90px; }
+  #gomu-buy-{{ section.id }} .gb-grid { display:grid; grid-template-columns:1.05fr 1fr; gap:clamp(28px,4vw,64px); align-items:start; }
+  #gomu-buy-{{ section.id }} .gb-gallery { position:sticky; top:98px; display:flex; flex-direction:column; gap:12px; }
+  #gomu-buy-{{ section.id }} .gb-main { position:relative; aspect-ratio:1/1; border-radius:26px; overflow:hidden; background:var(--mint); }
+  #gomu-buy-{{ section.id }} .gb-main img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity .25s; }
+  #gomu-buy-{{ section.id }} .gb-main img[data-active] { opacity:1; }
+  #gomu-buy-{{ section.id }} .gb-badge { position:absolute; top:18px; left:18px; z-index:2; background:var(--ink); color:var(--lime); font-family:'DM Mono',monospace; font-size:10.5px; letter-spacing:.16em; text-transform:uppercase; padding:8px 14px; border-radius:100px; }
+  #gomu-buy-{{ section.id }} .gb-thumbs { display:grid; grid-template-columns:repeat(5,1fr); gap:10px; }
+  #gomu-buy-{{ section.id }} .gb-thumb { position:relative; aspect-ratio:1/1; border-radius:14px; overflow:hidden; border:0; padding:0; background:var(--mint); }
+  #gomu-buy-{{ section.id }} .gb-thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+  #gomu-buy-{{ section.id }} .gb-thumb::after { content:''; position:absolute; inset:0; border-radius:14px; border:2px solid transparent; transition:border-color .18s; }
+  #gomu-buy-{{ section.id }} .gb-thumb[aria-current=true]::after { border-color:var(--deep); }
+  #gomu-buy-{{ section.id }} .gb-col { display:flex; flex-direction:column; gap:26px; }
+  #gomu-buy-{{ section.id }} h2 { font-size:clamp(30px,3.2vw,44px); font-weight:800; line-height:1.02; }
+  #gomu-buy-{{ section.id }} .gb-lede { font-size:16.5px; line-height:1.6; color:var(--ink2); }
+  #gomu-buy-{{ section.id }} .gb-checks { display:flex; flex-direction:column; gap:11px; }
+  #gomu-buy-{{ section.id }} .gb-check { display:flex; gap:11px; align-items:flex-start; font-size:15.5px; line-height:1.5; }
+  #gomu-buy-{{ section.id }} .gb-check i { color:var(--deep); font-weight:600; font-style:normal; flex:none; }
+  #gomu-buy-{{ section.id }} .gb-rule { height:1px; background:var(--line); }
+  #gomu-buy-{{ section.id }} .gb-step { display:flex; flex-direction:column; gap:12px; }
+  #gomu-buy-{{ section.id }} .gb-step > .gomu-mono { color:var(--mute); }
+  #gomu-buy-{{ section.id }} .gb-qty { display:grid; grid-template-columns:repeat({{ p.variants.size | default: 3 }},1fr); gap:9px; }
+  #gomu-buy-{{ section.id }} .gb-opt { position:relative; background:#fff; border:1px solid #EAD0BA; border-radius:16px; padding:15px 12px; display:flex; flex-direction:column; gap:4px; align-items:flex-start; text-align:left; transition:border-color .18s,box-shadow .18s; }
+  #gomu-buy-{{ section.id }} .gb-opt:hover { border-color:var(--deep); }
+  #gomu-buy-{{ section.id }} .gb-opt[aria-checked=true] { border-color:var(--deep); box-shadow:inset 0 0 0 1px var(--deep); }
+  #gomu-buy-{{ section.id }} .gb-opt b { font-size:15px; font-weight:600; letter-spacing:-.01em; }
+  #gomu-buy-{{ section.id }} .gb-opt span { font-family:'DM Mono',monospace; font-size:10.5px; letter-spacing:.06em; color:var(--mute); }
+  #gomu-buy-{{ section.id }} .gb-tag { position:absolute; top:-9px; right:10px; background:var(--lime); color:var(--ink); font-family:'DM Mono',monospace; font-size:9.5px; letter-spacing:.1em; text-transform:uppercase; padding:3px 8px; border-radius:100px; }
+  #gomu-buy-{{ section.id }} .gb-plans { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  #gomu-buy-{{ section.id }} .gb-plan { position:relative; background:#fff; border:1px solid #EAD0BA; border-radius:20px; padding:20px 18px; display:flex; flex-direction:column; gap:13px; text-align:left; transition:border-color .18s,box-shadow .18s; }
+  #gomu-buy-{{ section.id }} .gb-plan:hover { border-color:var(--deep); }
+  #gomu-buy-{{ section.id }} .gb-plan[aria-checked=true] { border-color:var(--deep); box-shadow:inset 0 0 0 1px var(--deep); }
+  #gomu-buy-{{ section.id }} .gb-plan-tag { position:absolute; top:-10px; left:16px; background:var(--deep); color:#fff; font-family:'DM Mono',monospace; font-size:9.5px; letter-spacing:.12em; text-transform:uppercase; padding:4px 10px; border-radius:100px; }
+  #gomu-buy-{{ section.id }} .gb-plan-name { font-size:16px; font-weight:600; letter-spacing:-.015em; }
+  #gomu-buy-{{ section.id }} .gb-plan-cad { font-family:'DM Mono',monospace; font-size:10.5px; letter-spacing:.06em; color:var(--mute); }
+  #gomu-buy-{{ section.id }} .gb-price { font-family:'Bricolage Grotesque',sans-serif; font-size:26px; font-weight:800; letter-spacing:-.035em; line-height:1; }
+  #gomu-buy-{{ section.id }} .gb-was { font-size:14px; color:#A78D82; text-decoration:line-through; }
+  #gomu-buy-{{ section.id }} .gb-day { font-family:'DM Mono',monospace; font-size:11px; color:var(--deep); }
+  #gomu-buy-{{ section.id }} .gb-day--mute { color:var(--mute); }
+  #gomu-buy-{{ section.id }} .gb-perks { display:flex; flex-direction:column; gap:6px; font-size:13px; line-height:1.4; color:var(--ink2); }
+  #gomu-buy-{{ section.id }} .gb-perks span { display:flex; gap:8px; }
+  #gomu-buy-{{ section.id }} .gb-perks i { font-style:normal; flex:none; color:var(--deep); }
+  #gomu-buy-{{ section.id }} .gb-perks i.no { color:#D8B9A2; }
+  #gomu-buy-{{ section.id }} .gb-submit { width:100%; padding:21px 28px; font-size:17px; }
+  #gomu-buy-{{ section.id }} .gb-submit[disabled] { opacity:.55; cursor:not-allowed; }
+  #gomu-buy-{{ section.id }} .gb-trust { display:flex; flex-wrap:wrap; gap:8px 20px; font-family:'DM Mono',monospace; font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--mute); }
+  #gomu-buy-{{ section.id }} details { border-top:1px solid var(--line); }
+  #gomu-buy-{{ section.id }} details:last-child { border-bottom:1px solid var(--line); }
+  #gomu-buy-{{ section.id }} summary { display:flex; justify-content:space-between; align-items:center; gap:16px; padding:19px 0; font-size:16.5px; font-weight:600; letter-spacing:-.015em; cursor:pointer; list-style:none; }
+  #gomu-buy-{{ section.id }} summary::-webkit-details-marker { display:none; }
+  #gomu-buy-{{ section.id }} summary em { font-style:normal; color:#9B8177; font-weight:400; transition:transform .2s; }
+  #gomu-buy-{{ section.id }} details[open] summary em { transform:rotate(45deg); }
+  #gomu-buy-{{ section.id }} .gb-detail { padding:0 8px 20px 0; font-size:15.5px; line-height:1.6; color:var(--ink2); }
+  #gomu-buy-{{ section.id }} .gb-detail p { margin:0 0 10px; }
+  #gomu-buy-{{ section.id }} .gb-detail p:last-child { margin:0; }
+  #gomu-buy-{{ section.id }} .gb-note { font-family:'DM Mono',monospace; font-size:12.5px; line-height:1.75; padding:14px 16px; background:#F8E3D5; border-radius:14px; color:#6B4046; }
+  #gomu-buy-{{ section.id }} .gb-legal { font-family:'DM Mono',monospace; font-size:10.5px; line-height:1.7; color:#A78D82; }
+  .gomu-sticky-{{ section.id }} { display:none; position:fixed; left:0; right:0; bottom:0; z-index:70; background:rgba(253,249,244,.97); backdrop-filter:blur(14px); border-top:1px solid var(--line); padding:11px 16px; align-items:center; gap:12px; }
+  .gomu-sticky-{{ section.id }}[data-show] { display:flex; }
+  @media (min-width:701px) { .gomu-sticky-{{ section.id }} { display:none !important; } }
+  @media (max-width:1000px) {
+    #gomu-buy-{{ section.id }} .gb-grid { grid-template-columns:1fr; gap:32px; }
+    #gomu-buy-{{ section.id }} .gb-gallery { position:static; }
+  }
+  @media (max-width:700px) {
+    #gomu-buy-{{ section.id }} .gb-plans, #gomu-buy-{{ section.id }} .gb-qty { grid-template-columns:1fr; }
+  }
+</style>
+
+<section class="gomu" id="gomu-buy-{{ section.id }}" data-gomu-buybox>
+  <div class="gomu-wrap">
+  {%- if p == blank -%}
+    <p class="gb-note">PICK A PRODUCT FOR THIS SECTION IN THE THEME EDITOR.</p>
+  {%- else -%}
+
+    {%- comment -%} Build variant data for the client {%- endcomment -%}
+    {%- capture vjson -%}
+      [
+      {%- for v in p.variants -%}
+        {%- assign parsed = v.title | split: '(' | last | split: ' ' | first | plus: 0 -%}
+        {%- if parsed >= 7 -%}{%- assign days = parsed -%}{%- else -%}{%- assign days = forloop.index | times: dpp -%}{%- endif -%}
+        {%- assign perday = v.price | divided_by: days -%}
+        {%- assign unit_ref = p.variants.first.price | times: forloop.index -%}
+        {
+          "id": {{ v.id }},
+          "title": {{ v.title | json }},
+          "days": {{ days }},
+          "available": {{ v.available }},
+          "price": {{ v.price | money | json }},
+          "perDay": {{ perday | money | json }},
+          "was": {%- if unit_ref > v.price -%}{{ unit_ref | money | json }}{%- else -%}null{%- endif -%},
+          "media": {{ forloop.index0 }}
+          {%- if v.selling_plan_allocations.size > 0 -%}
+            {%- assign alloc = v.selling_plan_allocations | first -%}
+            {%- assign subday = alloc.price | divided_by: days -%}
+            , "sub": { "planId": {{ alloc.selling_plan.id }}, "name": {{ alloc.selling_plan.name | json }}, "price": {{ alloc.price | money | json }}, "perDay": {{ subday | money | json }}, "was": {{ v.price | money | json }} }
+          {%- endif -%}
+        }{%- unless forloop.last -%},{%- endunless -%}
+      {%- endfor -%}
+      ]
+    {%- endcapture -%}
+    <script type="application/json" data-gomu-variants>{{ vjson }}</script>
+
+    <div class="gb-grid">
+      <div class="gb-gallery">
+        <div class="gb-main">
+          {%- if section.settings.badge != blank -%}<span class="gb-badge">{{ section.settings.badge }}</span>{%- endif -%}
+          {%- for media in p.media limit: 6 -%}
+            <img src="{{ media | image_url: width: 1400 }}" alt="{{ media.alt | escape }}" width="1400" height="1400" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}" data-gomu-slide="{{ forloop.index0 }}"{% if forloop.first %} data-active{% endif %}>
+          {%- endfor -%}
+        </div>
+        {%- if p.media.size > 1 -%}
+        <div class="gb-thumbs">
+          {%- for media in p.media limit: 6 -%}
+            <button type="button" class="gb-thumb" data-gomu-thumb="{{ forloop.index0 }}" aria-current="{% if forloop.first %}true{% else %}false{% endif %}" aria-label="View image {{ forloop.index }}">
+              <img src="{{ media | image_url: width: 240 }}" alt="" width="240" height="240" loading="lazy">
+            </button>
+          {%- endfor -%}
+        </div>
+        {%- endif -%}
+      </div>
+
+      <div class="gb-col">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          {%- if section.settings.eyebrow != blank -%}<span class="gomu-mono" style="color:var(--mute);letter-spacing:.2em">{{ section.settings.eyebrow }}</span>{%- endif -%}
+          <h2>{{ p.title }}</h2>
+          {%- if section.settings.lede != blank -%}<p class="gb-lede">{{ section.settings.lede }}</p>{%- endif -%}
+        </div>
+
+        {%- if section.settings.benefits != blank -%}
+        <div class="gb-checks">
+          {%- assign lines = section.settings.benefits | newline_to_br | split: '<br />' -%}
+          {%- for line in lines -%}
+            {%- assign t = line | strip -%}
+            {%- if t != blank -%}<div class="gb-check"><i>✓</i><span>{{ t }}</span></div>{%- endif -%}
+          {%- endfor -%}
+        </div>
+        {%- endif -%}
+
+        <div class="gb-rule"></div>
+
+        <form data-gomu-form method="post" action="{{ routes.cart_add_url }}" accept-charset="UTF-8" enctype="multipart/form-data" style="display:flex;flex-direction:column;gap:26px">
+          <input type="hidden" name="form_type" value="product">
+          <input type="hidden" name="utf8" value="✓">
+          <input type="hidden" name="id" value="{{ p.selected_or_first_available_variant.id }}" data-gomu-id>
+          <input type="hidden" name="selling_plan" value="" data-gomu-selling-plan disabled>
+
+          {%- if p.variants.size > 1 -%}
+          <div class="gb-step">
+            <span class="gomu-mono">1 · {{ section.settings.qty_label }}</span>
+            <div class="gb-qty" role="radiogroup" aria-label="{{ section.settings.qty_label }}">
+              {%- for v in p.variants -%}
+                {%- assign parsed = v.title | split: '(' | last | split: ' ' | first | plus: 0 -%}
+                {%- if parsed >= 7 -%}{%- assign days = parsed -%}{%- else -%}{%- assign days = forloop.index | times: dpp -%}{%- endif -%}
+                {%- assign weeks = days | divided_by: 7 -%}
+                <button type="button" class="gb-opt" role="radio" data-gomu-variant="{{ v.id }}" aria-checked="{% if forloop.index == 2 or p.variants.size == 1 %}true{% else %}false{% endif %}"{% unless v.available %} disabled{% endunless %}>
+                  {%- if forloop.index == 2 and section.settings.popular_tag != blank -%}<span class="gb-tag">{{ section.settings.popular_tag }}</span>{%- endif -%}
+                  <b>{{ v.title | split: '(' | first | strip }}</b>
+                  <span>{{ weeks }} {{ section.settings.weeks_word }}{% unless v.available %} · {{ 'products.product.sold_out' | t }}{% endunless %}</span>
+                </button>
+              {%- endfor -%}
+            </div>
+          </div>
+          {%- endif -%}
+
+          <div class="gb-step">
+            {%- if has_sub -%}<span class="gomu-mono">2 · {{ section.settings.plan_label }}</span>{%- endif -%}
+            <div class="gb-plans" role="radiogroup" aria-label="{{ section.settings.plan_label }}" data-gomu-plans{% unless has_sub %} style="grid-template-columns:1fr"{% endunless %}>
+              {%- if has_sub -%}
+              <button type="button" class="gb-plan" role="radio" data-gomu-plan="sub" aria-checked="true">
+                <span class="gb-plan-tag" data-gomu-sub-tag>{{ section.settings.sub_tag }}</span>
+                <span style="display:flex;flex-direction:column;gap:3px">
+                  <span class="gb-plan-name">{{ section.settings.sub_title }}</span>
+                  <span class="gb-plan-cad" data-gomu-sub-name></span>
+                </span>
+                <span style="display:flex;flex-direction:column;gap:2px">
+                  <span style="display:flex;align-items:baseline;gap:8px;flex-wrap:wrap">
+                    <span class="gb-price" data-gomu-sub-price></span>
+                    <span class="gb-was" data-gomu-sub-was></span>
+                  </span>
+                  <span class="gb-day" data-gomu-sub-day></span>
+                </span>
+                <span class="gb-perks">
+                  <span><i>✓</i>{{ section.settings.sub_perk1 }}</span>
+                  <span><i>✓</i>{{ section.settings.sub_perk2 }}</span>
+                  <span><i>✓</i>{{ section.settings.sub_perk3 }}</span>
+                </span>
+              </button>
+              {%- endif -%}
+
+              <button type="button" class="gb-plan" role="radio" data-gomu-plan="once" aria-checked="{% unless has_sub %}true{% else %}false{% endunless %}">
+                <span style="display:flex;flex-direction:column;gap:3px">
+                  <span class="gb-plan-name">{{ section.settings.once_title }}</span>
+                  <span class="gb-plan-cad" data-gomu-once-cad></span>
+                </span>
+                <span style="display:flex;flex-direction:column;gap:2px">
+                  <span style="display:flex;align-items:baseline;gap:8px;flex-wrap:wrap">
+                    <span class="gb-price" data-gomu-once-price></span>
+                    <span class="gb-was" data-gomu-once-was></span>
+                  </span>
+                  <span class="gb-day gb-day--mute" data-gomu-once-day></span>
+                </span>
+                <span class="gb-perks">
+                  <span><i>✓</i>{{ section.settings.once_perk1 }}</span>
+                  {%- if has_sub -%}
+                  <span><i class="no">✕</i>{{ section.settings.once_perk2 }}</span>
+                  <span><i class="no">✕</i>{{ section.settings.once_perk3 }}</span>
+                  {%- endif -%}
+                </span>
+              </button>
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:13px">
+            <button type="submit" class="gomu-btn gomu-btn--deep gb-submit" data-gomu-submit>
+              <span data-gomu-cta-label>{{ section.settings.cta_label }}</span>
+              <span style="opacity:.6" data-gomu-cta-price></span>
+            </button>
+            {%- if section.settings.trust != blank -%}
+            <div class="gb-trust">
+              {%- assign tl = section.settings.trust | split: ',' -%}
+              {%- for t in tl -%}<span>✓ {{ t | strip }}</span>{%- endfor -%}
+            </div>
+            {%- endif -%}
+            {%- if has_sub == false and request.design_mode -%}
+              <p class="gb-note">NO SELLING PLANS FOUND ON THIS PRODUCT, SO THE SUBSCRIBE OPTION IS HIDDEN. INSTALL A SUBSCRIPTION APP AND ATTACH A PLAN TO SHOW IT. THIS NOTE IS ONLY VISIBLE IN THE THEME EDITOR.</p>
+            {%- endif -%}
+          </div>
+        </form>
+
+        {%- if section.blocks.size > 0 -%}
+        <div style="display:flex;flex-direction:column">
+          {%- for block in section.blocks -%}
+            <details {{ block.shopify_attributes }}>
+              <summary>{{ block.settings.title }}<em>+</em></summary>
+              <div class="gb-detail">{{ block.settings.text }}</div>
+            </details>
+          {%- endfor -%}
+        </div>
+        {%- endif -%}
+
+        {%- if section.settings.legal != blank -%}<p class="gb-legal">{{ section.settings.legal }}</p>{%- endif -%}
+      </div>
+    </div>
+  {%- endif -%}
+  </div>
+</section>
+
+{%- if p != blank and section.settings.sticky -%}
+<div class="gomu gomu-sticky-{{ section.id }}" data-gomu-sticky>
+  <div style="display:flex;flex-direction:column;gap:1px;min-width:0;flex:1">
+    <span style="font-size:13px;font-weight:600;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis" data-gomu-sticky-title></span>
+    <span style="font-family:'DM Mono',monospace;font-size:10.5px;color:var(--mute)" data-gomu-sticky-day></span>
+  </div>
+  <button type="button" class="gomu-btn gomu-btn--deep" style="flex:none;padding:14px 22px;font-size:14.5px" data-gomu-sticky-cta></button>
+</div>
+{%- endif -%}
+
+<script>
+(function(){
+  var root = document.getElementById('gomu-buy-{{ section.id }}');
+  if (!root) return;
+  var dataEl = root.querySelector('[data-gomu-variants]');
+  if (!dataEl) return;
+  var variants;
+  try { variants = JSON.parse(dataEl.textContent); } catch (e) { return; }
+  if (!variants || !variants.length) return;
+
+  var form = root.querySelector('[data-gomu-form]');
+  var idInput = root.querySelector('[data-gomu-id]');
+  var planInput = root.querySelector('[data-gomu-selling-plan]');
+  var sticky = document.querySelector('.gomu-sticky-{{ section.id }}');
+  var hasSub = variants.some(function(v){ return v.sub; });
+
+  var state = { i: variants.length > 1 ? 1 : 0, plan: hasSub ? 'sub' : 'once' };
+
+  function q(sel){ return root.querySelector(sel); }
+  function set(sel, txt){ var el = q(sel); if (el) el.textContent = txt || ''; }
+
+  function render(){
+    var v = variants[state.i];
+    var sub = v.sub;
+    if (!sub && state.plan === 'sub') state.plan = 'once';
+
+    root.querySelectorAll('[data-gomu-variant]').forEach(function(b){
+      b.setAttribute('aria-checked', String(Number(b.dataset.gomuVariant) === v.id));
+    });
+    root.querySelectorAll('[data-gomu-plan]').forEach(function(b){
+      b.setAttribute('aria-checked', String(b.dataset.gomuPlan === state.plan));
+    });
+
+    if (sub) {
+      set('[data-gomu-sub-name]', sub.name);
+      set('[data-gomu-sub-price]', sub.price);
+      set('[data-gomu-sub-was]', sub.was);
+      set('[data-gomu-sub-day]', sub.perDay + ' {{ section.settings.per_day_word }}');
+    }
+    set('[data-gomu-once-cad]', v.title);
+    set('[data-gomu-once-price]', v.price);
+    set('[data-gomu-once-was]', v.was || '');
+    set('[data-gomu-once-day]', v.perDay + ' {{ section.settings.per_day_word }}');
+
+    var active = state.plan === 'sub' && sub ? sub : v;
+    set('[data-gomu-cta-price]', '· ' + active.price);
+    set('[data-gomu-cta-label]', state.plan === 'sub' && sub ? {{ section.settings.sub_cta_label | json }} : {{ section.settings.cta_label | json }});
+
+    if (idInput) idInput.value = v.id;
+    if (planInput) {
+      if (state.plan === 'sub' && sub) { planInput.value = sub.planId; planInput.disabled = false; }
+      else { planInput.value = ''; planInput.disabled = true; }
+    }
+
+    var submit = q('[data-gomu-submit]');
+    if (submit) submit.disabled = !v.available;
+
+    if (sticky) {
+      var st = sticky.querySelector('[data-gomu-sticky-title]');
+      var sd = sticky.querySelector('[data-gomu-sticky-day]');
+      var sc = sticky.querySelector('[data-gomu-sticky-cta]');
+      if (st) st.textContent = v.title;
+      if (sd) sd.textContent = active.perDay + ' {{ section.settings.per_day_word }}';
+      if (sc) sc.textContent = {{ section.settings.sticky_cta | json }} + ' — ' + active.price;
+    }
+
+    var idx = v.media || 0;
+    root.querySelectorAll('[data-gomu-slide]').forEach(function(img){
+      if (Number(img.dataset.gomuSlide) === idx) img.setAttribute('data-active',''); else img.removeAttribute('data-active');
+    });
+    root.querySelectorAll('[data-gomu-thumb]').forEach(function(b){
+      b.setAttribute('aria-current', String(Number(b.dataset.gomuThumb) === idx));
+    });
+  }
+
+  root.addEventListener('click', function(e){
+    var vb = e.target.closest('[data-gomu-variant]');
+    if (vb) {
+      var id = Number(vb.dataset.gomuVariant);
+      var i = variants.findIndex(function(x){ return x.id === id; });
+      if (i > -1) { state.i = i; render(); }
+      return;
+    }
+    var pb = e.target.closest('[data-gomu-plan]');
+    if (pb) { state.plan = pb.dataset.gomuPlan; render(); return; }
+    var tb = e.target.closest('[data-gomu-thumb]');
+    if (tb) {
+      var ti = Number(tb.dataset.gomuThumb);
+      root.querySelectorAll('[data-gomu-slide]').forEach(function(img){
+        if (Number(img.dataset.gomuSlide) === ti) img.setAttribute('data-active',''); else img.removeAttribute('data-active');
+      });
+      root.querySelectorAll('[data-gomu-thumb]').forEach(function(b){
+        b.setAttribute('aria-current', String(Number(b.dataset.gomuThumb) === ti));
+      });
+    }
+  });
+
+  if (form) {
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var submit = q('[data-gomu-submit]');
+      if (submit) submit.disabled = true;
+      fetch('{{ routes.cart_add_url }}.js', { method:'POST', headers:{ 'Content-Type':'application/json', 'Accept':'application/json' },
+        body: JSON.stringify(Object.assign({ id: idInput.value, quantity: 1 }, planInput && !planInput.disabled ? { selling_plan: planInput.value } : {}))
+      }).then(function(r){ return r.json(); }).then(function(){
+        window.location.href = '{{ routes.cart_url }}';
+      }).catch(function(){ form.submit(); });
+    });
+  }
+
+  if (sticky) {
+    sticky.addEventListener('click', function(e){
+      if (e.target.closest('[data-gomu-sticky-cta]')) {
+        root.scrollIntoView ? window.scrollTo({ top: root.getBoundingClientRect().top + window.scrollY - 90, behavior:'smooth' }) : null;
+      }
+    });
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting) sticky.removeAttribute('data-show'); else sticky.setAttribute('data-show','');
+      });
+    }, { rootMargin: '-40% 0px -40% 0px' });
+    io.observe(root);
+  }
+
+  render();
+})();
+</script>
+
+{% schema %}
+{
+  "name": "GOMU buy box",
+  "tag": "section",
+  "settings": [
+    { "type": "product", "id": "product", "label": "Product" },
+    { "type": "text", "id": "badge", "label": "Image badge", "default": "Best seller" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Strawberry Raspberry · 28 sachets" },
+    { "type": "textarea", "id": "lede", "label": "Lede", "default": "One single-serve sachet a day, eight gummies inside, four weeks per pouch." },
+    { "type": "textarea", "id": "benefits", "label": "Benefit list (one per line)", "default": "Supports immunity, energy and antioxidant defenses*\nPrebiotic fiber for digestion and gut health*\nSupports normal mental performance and focus*\nVegan, Halal, gluten free, nut free, dairy free" },
+    { "type": "header", "content": "Quantity step" },
+    { "type": "text", "id": "qty_label", "label": "Step label", "default": "How much do you want?" },
+    { "type": "text", "id": "weeks_word", "label": "Weeks word", "default": "weeks" },
+    { "type": "text", "id": "popular_tag", "label": "Tag on 2nd option", "default": "Popular" },
+    { "type": "range", "id": "days_per_pouch", "label": "Days of supply per pouch", "min": 7, "max": 90, "step": 1, "default": 28 },
+    { "type": "header", "content": "Plan step" },
+    { "type": "text", "id": "plan_label", "label": "Step label", "default": "How often?" },
+    { "type": "text", "id": "sub_title", "label": "Subscription title", "default": "Subscribe & save" },
+    { "type": "text", "id": "sub_tag", "label": "Subscription tag", "default": "Best value" },
+    { "type": "text", "id": "sub_perk1", "label": "Subscription perk 1", "default": "Free UAE delivery, always" },
+    { "type": "text", "id": "sub_perk2", "label": "Subscription perk 2", "default": "Pause or cancel any time" },
+    { "type": "text", "id": "sub_perk3", "label": "Subscription perk 3", "default": "30-day money-back guarantee" },
+    { "type": "text", "id": "once_title", "label": "One-time title", "default": "One-time purchase" },
+    { "type": "text", "id": "once_perk1", "label": "One-time perk 1", "default": "Free UAE delivery" },
+    { "type": "text", "id": "once_perk2", "label": "One-time drawback 1", "default": "No recurring discount" },
+    { "type": "text", "id": "once_perk3", "label": "One-time drawback 2", "default": "You reorder manually" },
+    { "type": "header", "content": "Call to action" },
+    { "type": "text", "id": "cta_label", "label": "Add to cart label", "default": "Add to cart" },
+    { "type": "text", "id": "sub_cta_label", "label": "Subscribe label", "default": "Subscribe & save" },
+    { "type": "text", "id": "per_day_word", "label": "Per-day suffix", "default": "/ day" },
+    { "type": "text", "id": "trust", "label": "Trust row (comma separated)", "default": "Free delivery, 3–5 days, 30-day money back, Vegan & Halal" },
+    { "type": "textarea", "id": "legal", "label": "Legal line", "default": "*Food supplements complement, not replace, a varied and balanced diet and a healthy lifestyle." },
+    { "type": "header", "content": "Sticky bar" },
+    { "type": "checkbox", "id": "sticky", "label": "Show sticky mobile bar", "default": true },
+    { "type": "text", "id": "sticky_cta", "label": "Sticky button label", "default": "Add" }
+  ],
+  "blocks": [
+    { "type": "detail", "name": "Accordion row", "settings": [
+      { "type": "text", "id": "title", "label": "Title", "default": "Why Gomu" },
+      { "type": "richtext", "id": "text", "label": "Text", "default": "<p>20+ vitamins and minerals plus prebiotic fiber in one pack.</p>" }
+    ] }
+  ],
+  "presets": [ { "name": "GOMU buy box", "blocks": [ { "type": "detail" }, { "type": "detail" }, { "type": "detail" } ] } ]
+}
+{% endschema %}

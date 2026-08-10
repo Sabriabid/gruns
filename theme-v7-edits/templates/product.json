@@ -1,0 +1,429 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "product-information",
+      "blocks": {
+        "media-gallery": {
+          "type": "_product-media-gallery",
+          "static": true,
+          "settings": {
+            "media_presentation": "grid",
+            "media_columns": "two",
+            "image_gap": 8,
+            "large_first_image": true,
+            "icons_style": "none",
+            "slideshow_controls_style": "counter",
+            "slideshow_mobile_controls_style": "dots",
+            "thumbnail_position": "right",
+            "thumbnail_width": 44,
+            "thumbnail_radius": 8,
+            "aspect_ratio": "adapt",
+            "constrain_to_viewport": true,
+            "media_fit": "contain",
+            "media_radius": 16,
+            "extend_media": false,
+            "zoom": true,
+            "video_loop": false,
+            "hide_variants": true,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "product-details": {
+          "type": "_product-details",
+          "static": true,
+          "settings": {
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "details_position": "flex-start",
+            "gap": 24,
+            "sticky_details_desktop": true,
+            "background_media": "none",
+            "background_color": "",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "padding-block-start": 24,
+            "padding-block-end": 24,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "header_group": {
+              "type": "group",
+              "name": "Header",
+              "settings": {
+                "content_direction": "column",
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 10,
+                "width": "fill",
+                "width_mobile": "fill",
+                "height": "fit",
+                "background_media": "none",
+                "border": "none"
+              },
+              "blocks": {
+                "eyebrow_flavor": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>STRAWBERRY RASPBERRY</p>",
+                    "width": "fit-content",
+                    "alignment": "left",
+                    "type_preset": "h6",
+                    "letter_spacing": "loose",
+                    "case": "uppercase",
+                    "text_color": "#A32836"
+                  },
+                  "blocks": {}
+                },
+                "title_block": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<h1>{{ closest.product.title }}</h1>",
+                    "width": "100%",
+                    "alignment": "left",
+                    "type_preset": "h3"
+                  },
+                  "blocks": {}
+                },
+                "price_block": {
+                  "type": "price",
+                  "settings": {
+                    "show_sale_price_first": true,
+                    "show_installments": false,
+                    "show_tax_info": false,
+                    "type_preset": "h5",
+                    "width": "100%",
+                    "alignment": "left",
+                    "padding-block-start": 4
+                  },
+                  "blocks": {}
+                },
+                "trust_line": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>✓ Free UAE shipping&nbsp;&nbsp;✓ 30-day money-back guarantee</p>",
+                    "width": "fit-content",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font_size": "0.875rem",
+                    "text_color": "#6B4046"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "eyebrow_flavor",
+                "title_block",
+                "price_block",
+                "trust_line"
+              ]
+            },
+            "divider_top": {
+              "type": "_divider",
+              "name": "Divider",
+              "settings": {
+                "thickness": 1,
+                "corner_radius": "square",
+                "divider_color": "{{ settings.color_palette.color2 }}",
+                "width_percent": 100,
+                "padding-block-start": 0,
+                "padding-block-end": 0
+              },
+              "blocks": {}
+            },
+            "variant_picker_main": {
+              "type": "variant-picker",
+              "settings": {
+                "variant_style": "buttons",
+                "show_swatches": false,
+                "variant_style_class": "default",
+                "selected_variant_style_class": "default",
+                "alignment": "left",
+                "padding-block-start": 0,
+                "padding-block-end": 0
+              },
+              "blocks": {}
+            },
+            "buy_buttons_main": {
+              "type": "buy-buttons",
+              "settings": {
+                "stacking": true,
+                "show_pickup_availability": false,
+                "gift_card_form": true,
+                "recipient_button_style": "default",
+                "selected_recipient_button_style": "default",
+                "input_style": "default",
+                "border_width": 1,
+                "border_radius": 12,
+                "padding-block-start": 0,
+                "padding-block-end": 0
+              },
+              "blocks": {
+                "quantity": {
+                  "type": "quantity",
+                  "static": true,
+                  "settings": {
+                    "input_style": "default",
+                    "border_width": 1,
+                    "border_radius": 12
+                  },
+                  "blocks": {}
+                },
+                "add-to-cart": {
+                  "type": "add-to-cart",
+                  "static": true,
+                  "settings": {
+                    "style_class": "button-custom",
+                    "custom_button_background": "#861B25",
+                    "custom_button_text": "#F9E3D3",
+                    "custom_button_border": "#861B25"
+                  },
+                  "blocks": {}
+                },
+                "accelerated-checkout": {
+                  "type": "accelerated-checkout",
+                  "static": true,
+                  "settings": {},
+                  "blocks": {}
+                }
+              },
+              "block_order": []
+            },
+            "description_block": {
+              "type": "text",
+              "name": "Product description",
+              "settings": {
+                "text": "{{ closest.product.description }}",
+                "width": "100%",
+                "alignment": "left",
+                "type_preset": "rte"
+              },
+              "blocks": {}
+            },
+            "info_accordion": {
+              "type": "accordion",
+              "settings": {
+                "icon": "plus",
+                "dividers": true,
+                "type_preset": "h6"
+              },
+              "blocks": {
+                "acc_inside": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "heading": "What's inside",
+                    "icon": "apple"
+                  },
+                  "blocks": {
+                    "acc_inside_text": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>20+ vitamins and minerals plus prebiotic fiber, in juicy Strawberry Raspberry gummy bears. Each pouch contains 28 single-serve sachets of 8 gummies (224 gummies · 580 g) — a full four-week supply. Full nutrition label available on the pack.</p>",
+                        "width": "100%"
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "acc_inside_text"
+                  ]
+                },
+                "acc_use": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "heading": "How to use",
+                    "icon": "stopwatch"
+                  },
+                  "blocks": {
+                    "acc_use_text": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>Enjoy one sachet (8 gummies) daily, any time of day. Do not exceed the recommended daily dose. Store in a cool, dry place away from direct sunlight — especially during UAE summers.</p>",
+                        "width": "100%"
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "acc_use_text"
+                  ]
+                },
+                "acc_clean": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "heading": "Clean label",
+                    "icon": "leaf"
+                  },
+                  "blocks": {
+                    "acc_clean_text": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>Vegan · Halal · Gluten Free · Nut Free · Dairy Free. No artificial colors, no artificial flavors, no artificial sweeteners.</p>",
+                        "width": "100%"
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "acc_clean_text"
+                  ]
+                },
+                "acc_shipping": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "heading": "Shipping & guarantee",
+                    "icon": "truck"
+                  },
+                  "blocks": {
+                    "acc_shipping_text": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>Free delivery to all seven Emirates in 3–5 business days. Not happy with your first order? Email us within 30 days of delivery for a full refund — no returns needed.</p>",
+                        "width": "100%"
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "acc_shipping_text"
+                  ]
+                }
+              },
+              "block_order": [
+                "acc_inside",
+                "acc_use",
+                "acc_clean",
+                "acc_shipping"
+              ]
+            }
+          },
+          "block_order": [
+            "header_group",
+            "divider_top",
+            "variant_picker_main",
+            "buy_buttons_main",
+            "description_block",
+            "info_accordion"
+          ]
+        }
+      },
+      "settings": {
+        "content_width": "content-center-aligned",
+        "desktop_media_position": "left",
+        "equal_columns": false,
+        "limit_details_width": false,
+        "gap": 48,
+        "enable_sticky_add_to_cart": true,
+        "background_color": "{{ settings.color_palette.background }}",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "product_recommendations_qggXJq": {
+      "type": "product-recommendations",
+      "blocks": {
+        "text_cbcgyb": {
+          "type": "text",
+          "name": "Header",
+          "settings": {
+            "text": "<h3>You may also like</h3>",
+            "width": "fit-content",
+            "alignment": "left",
+            "type_preset": "h4"
+          },
+          "blocks": {}
+        },
+        "static-product-card": {
+          "type": "_product-card",
+          "name": "Product card",
+          "static": true,
+          "settings": {
+            "product_card_gap": 8,
+            "border": "none"
+          },
+          "blocks": {
+            "product_card_gallery_DNizbJ": {
+              "type": "_product-card-gallery",
+              "settings": {
+                "image_ratio": "square",
+                "border": "none",
+                "border_radius": 20
+              },
+              "blocks": {}
+            },
+            "product_title_M7MJkb": {
+              "type": "product-title",
+              "settings": {
+                "width": "100%",
+                "alignment": "left",
+                "type_preset": "h6",
+                "padding-block-start": 8
+              },
+              "blocks": {}
+            },
+            "price_gLWgA6": {
+              "type": "price",
+              "settings": {
+                "show_sale_price_first": true,
+                "type_preset": "paragraph",
+                "width": "100%",
+                "alignment": "left"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "product_card_gallery_DNizbJ",
+            "product_title_M7MJkb",
+            "price_gLWgA6"
+          ]
+        }
+      },
+      "block_order": [
+        "text_cbcgyb"
+      ],
+      "name": "Product recommendations",
+      "settings": {
+        "product": "{{ closest.product }}",
+        "recommendation_type": "related",
+        "layout_type": "grid",
+        "carousel_on_mobile": false,
+        "max_products": 4,
+        "columns": 4,
+        "mobile_columns": "2",
+        "columns_gap": 12,
+        "rows_gap": 24,
+        "section_width": "page-width",
+        "gap": 28,
+        "background_color": "{{ settings.color_palette.background }}",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    }
+  },
+  "order": [
+    "main",
+    "product_recommendations_qggXJq"
+  ]
+}

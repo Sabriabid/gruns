@@ -1,0 +1,241 @@
+{%- comment -%}
+  LP Timeline — port de src/components/lp/LPTimeline.tsx
+  Étapes de résultats (blocks "step") le long d'une ligne verticale, image en regard.
+{%- endcomment -%}
+
+<style>
+  .lp-timeline {
+    background: var(--lp-cream);
+  }
+
+  .lp-timeline__title {
+    font-size: clamp(2.25rem, 1.5rem + 2.8vw, 3.75rem);
+    font-weight: 600;
+    color: var(--lp-purple-deep);
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .lp-timeline__grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+  }
+
+  @media (min-width: 1024px) {
+    .lp-timeline__grid {
+      flex-direction: row;
+      gap: 4rem;
+    }
+  }
+
+  .lp-timeline__steps {
+    flex: 1;
+    width: 100%;
+    position: relative;
+  }
+
+  .lp-timeline__line {
+    position: absolute;
+    left: 1.5rem;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: rgba(74,13,20, 0.18);
+  }
+
+  .lp-timeline__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .lp-timeline__step {
+    position: relative;
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .lp-timeline__num {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 9999px;
+    background: var(--lp-purple-deep);
+    color: var(--lp-cream);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.875rem;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .lp-timeline__body {
+    padding-top: 0.375rem;
+  }
+
+  .lp-timeline__step-title {
+    font-size: 1.375rem;
+    font-weight: 600;
+    color: var(--lp-purple-deep);
+    margin-top: 0.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .lp-timeline__desc {
+    color: var(--lp-text-muted);
+    line-height: 1.625;
+  }
+
+  .lp-timeline__media {
+    flex: 1;
+    width: 100%;
+  }
+
+  .lp-timeline__img {
+    border-radius: var(--lp-radius-card-lg);
+    box-shadow: var(--lp-shadow-soft);
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+</style>
+
+{%- liquid
+  assign img = section.settings.image
+-%}
+
+<section class="lp-timeline lp-section">
+  <div class="lp-container lp-container--narrow">
+    <h2 class="lp-timeline__title" data-lp-reveal="up">{{ section.settings.heading }}</h2>
+
+    <div class="lp-timeline__grid">
+      <div class="lp-timeline__steps">
+        <div class="lp-timeline__line" aria-hidden="true"></div>
+
+        <ol class="lp-timeline__list">
+          {%- for block in section.blocks -%}
+            <li
+              class="lp-timeline__step"
+              data-lp-reveal="up"
+              data-lp-delay="{{ forloop.index }}"
+              {{ block.shopify_attributes }}
+            >
+              <span class="lp-timeline__num" aria-hidden="true">{{ forloop.index }}</span>
+              <div class="lp-timeline__body">
+                {%- if block.settings.period != blank -%}
+                  <span class="lp-eyebrow">{{ block.settings.period }}</span>
+                {%- endif -%}
+                <h3 class="lp-timeline__step-title">{{ block.settings.title }}</h3>
+                {%- if block.settings.description != blank -%}
+                  <p class="lp-timeline__desc">{{ block.settings.description }}</p>
+                {%- endif -%}
+              </div>
+            </li>
+          {%- endfor -%}
+        </ol>
+      </div>
+
+      {%- if img != blank -%}
+        <div class="lp-timeline__media" data-lp-reveal="up">
+          {{
+            img
+            | image_url: width: 1200
+            | image_tag:
+              widths: '400, 600, 800, 1200',
+              sizes: '(min-width: 1024px) 550px, 90vw',
+              loading: 'lazy',
+              class: 'lp-timeline__img'
+          }}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "LP — Timeline",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Titre",
+      "default": "Ce que tu peux attendre"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image",
+      "info": "Carrée, min. 1000×1000 px. À défaut : visuel de démo du kit."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Étape",
+      "settings": [
+        {
+          "type": "text",
+          "id": "period",
+          "label": "Période",
+          "default": "Semaine 1-2"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titre",
+          "default": "Énergie plus stable"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Énergie plus stable, digestion qui s’améliore. Les premiers effets se font sentir dès les premiers jours."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 5,
+  "presets": [
+    {
+      "name": "LP — Timeline",
+      "blocks": [
+        {
+          "type": "step",
+          "settings": {
+            "period": "Semaine 1-2",
+            "title": "Énergie plus stable",
+            "description": "Énergie plus stable, digestion qui s’améliore. Les premiers effets se font sentir dès les premiers jours."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "period": "Mois 1-2",
+            "title": "Résultats visibles",
+            "description": "Sommeil plus réparateur, stress mieux géré, vitalité générale en hausse. Tu sens la différence."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "period": "Mois 3+",
+            "title": "Transformation durable",
+            "description": "Résultats mesurables (bilan sanguin), peau/cheveux/ongles. Les bénéfices s’accumulent."
+          }
+        }
+      ]
+    }
+  ],
+  "enabled_on": {
+    "templates": ["page", "product"]
+  }
+}
+{% endschema %}
