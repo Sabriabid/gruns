@@ -30,6 +30,7 @@
       "block_order": ["s1", "s2", "s3", "s4"],
       "settings": {
         "image": "shopify://shop_images/gomu-bordeaux-hero.jpg",
+        "image_mobile": "shopify://shop_images/gomu-bordeaux-hero-mobile.jpg",
         "focal": 66,
         "eyebrow": "Now delivering across the UAE",
         "heading": "Your whole day's nutrition. In eight gummies.",
@@ -173,6 +174,7 @@
       "type": "gomu-cta",
       "settings": {
         "image": "shopify://shop_images/gomu-bordeaux-cta.jpg",
+        "image_mobile": "shopify://shop_images/gomu-bordeaux-cta-mobile.jpg",
         "focal": 62,
         "heading": "Eight gummies. Every morning. That's it.",
         "body": "Free UAE delivery, 30-day money-back guarantee, cancel whenever.",
