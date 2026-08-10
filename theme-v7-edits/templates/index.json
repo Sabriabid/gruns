@@ -56,9 +56,9 @@
     "value": {
       "type": "gomu-value-cards",
       "blocks": {
-        "c1": { "type": "card", "settings": { "image": "shopify://shop_images/gomu-green-macro.png", "title": "It tastes like a treat", "text": "Strawberry Raspberry, no chalk, no aftertaste. You'll look forward to it — which is the whole point." } },
-        "c2": { "type": "card", "settings": { "image": "shopify://shop_images/gomu-v2-sachet.png", "title": "Tear, chew, go", "text": "Toss a sachet in your bag. Open it at your desk. No shaker, no water, no counter to clean." } },
-        "c3": { "type": "card", "settings": { "image": "shopify://shop_images/gomu-v2-lifestyle.png", "title": "One pack replaces the shelf", "text": "20+ vitamins and minerals plus prebiotic fiber, instead of five bottles you keep forgetting." } }
+        "c1": { "type": "card", "settings": { "image": "shopify://shop_images/gomu-bd-macro.jpg", "title": "It tastes like a treat", "text": "Strawberry Raspberry, no chalk, no aftertaste. You'll look forward to it — which is the whole point." } },
+        "c2": { "type": "card", "settings": { "image": "shopify://shop_images/gomu-bd-sachet.jpg", "title": "Tear, chew, go", "text": "Toss a sachet in your bag. Open it at your desk. No shaker, no water, no counter to clean." } },
+        "c3": { "type": "card", "settings": { "image": "shopify://shop_images/gomu-bd-lifestyle.jpg", "title": "One pack replaces the shelf", "text": "20+ vitamins and minerals plus prebiotic fiber, instead of five bottles you keep forgetting." } }
       },
       "block_order": ["c1", "c2", "c3"],
       "settings": {
@@ -145,7 +145,7 @@
       },
       "block_order": ["s1", "s2", "s3"],
       "settings": {
-        "image": "shopify://shop_images/gomu-v2-lifestyle.png",
+        "image": "shopify://shop_images/gomu-bd-lifestyle.jpg",
         "eyebrow": "Your first month",
         "heading": "Four weeks to a habit that sticks.",
         "cta_label": "Start your first month",
