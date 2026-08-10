@@ -29,6 +29,12 @@
     @media (max-width:700px) {
       #gomu-hero-{{ section.id }} .gh-img { display:none; }
       #gomu-hero-{{ section.id }} .gh-img--mob { display:block; height:44vh; bottom:auto; object-fit:cover; object-position:50% 50%; }
+      {%- comment -%}
+        Le voile qui rend le titre lisible passerait ici sur le produit et le
+        délaverait : on le laisse transparent sur la hauteur du pack, et on ne
+        le fait monter qu'en dessous, où il fond l'image dans le fond de section.
+      {%- endcomment -%}
+      #gomu-hero-{{ section.id }} .gh-tint { background:linear-gradient(180deg,rgba(74,13,20,0) 0,rgba(74,13,20,0) 40vh,rgba(74,13,20,.85) 46vh,rgba(74,13,20,1) 52vh); }
     }
   {%- endif -%}
 </style>

@@ -94,3 +94,31 @@ for name, size, ph, cx, cy in jobs:
     out = OUT / f'gomu-bordeaux-{name}.jpg'
     img.save(out, 'JPEG', quality=84, optimize=True, progressive=True)
     print(f'  {out.name}: {size[0]}x{size[1]} — {out.stat().st_size // 1024} Ko')
+
+
+def compose_mobile(pack, size, pack_height_ratio, cy_ratio):
+    """Visuel pour la bande mobile.
+
+    Le fond descend du bordeaux de la bande marquee vers celui du fond de
+    section : le bas du visuel se confond alors avec la section, ce qui efface
+    la ligne de coupure là où l'image s'arrête. Le produit est remonté pour
+    laisser cette zone de raccord libre.
+    """
+    W, H = size
+    grad = Image.new('RGB', (1, H))
+    gp = grad.load()
+    for y in range(H):
+        t = y / max(1, H - 1)
+        gp[0, y] = tuple(int(BORDEAUX[i] + (BORDEAUX_DARK[i] - BORDEAUX[i]) * t) for i in range(3))
+    canvas = grad.resize((W, H))
+    ph = int(H * pack_height_ratio)
+    pw = int(pack.width * ph / pack.height)
+    p = pack.resize((pw, ph), Image.LANCZOS)
+    shadow = Image.new('RGBA', (pw + 80, ph + 80), (0, 0, 0, 0))
+    shadow.paste((0, 0, 0, 110), (40, 55, 40 + pw, 55 + ph), p)
+    shadow = shadow.filter(ImageFilter.GaussianBlur(28))
+    x = W // 2 - pw // 2
+    y = int(H * cy_ratio) - ph // 2
+    canvas.paste(shadow, (x - 40, y - 40), shadow)
+    canvas.paste(p, (x, y), p)
+    return canvas
