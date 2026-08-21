@@ -232,6 +232,7 @@
               <span data-gomu-cta-label>{{ section.settings.cta_label }}</span>
               <span style="opacity:.6" data-gomu-cta-price></span>
             </button>
+            <p class="gb-note" role="alert" data-gomu-error hidden></p>
             {%- if section.settings.trust != blank -%}
             <div class="gb-trust">
               {%- assign tl = section.settings.trust | split: ',' -%}
@@ -328,6 +329,7 @@
 
     var submit = q('[data-gomu-submit]');
     if (submit) submit.disabled = !v.available;
+    clearError();
 
     if (sticky) {
       var st = sticky.querySelector('[data-gomu-sticky-title]');
@@ -369,24 +371,54 @@
     }
   });
 
+  var errorEl = q('[data-gomu-error]');
+  function showError(msg){
+    if (!errorEl) return;
+    errorEl.textContent = msg || {{ 'products.product.add_to_cart_error' | t | json }};
+    errorEl.hidden = false;
+    errorEl.scrollIntoView({ behavior:'smooth', block:'nearest' }); // visible aussi depuis la barre sticky
+  }
+  function clearError(){ if (errorEl) { errorEl.hidden = true; errorEl.textContent = ''; } }
+
+  function addToCart(){
+    var submit = q('[data-gomu-submit]');
+    var v = variants[state.i];
+    if (!v || !v.available) { showError(); return; }
+    clearError();
+    if (submit) submit.disabled = true;
+    var payload = { id: idInput.value, quantity: 1 };
+    if (planInput && !planInput.disabled && planInput.value) payload.selling_plan = planInput.value;
+    fetch('{{ routes.cart_add_url }}.js', { method:'POST', headers:{ 'Content-Type':'application/json', 'Accept':'application/json' }, body: JSON.stringify(payload) })
+      .then(function(r){ return r.json().then(function(d){ return { ok: r.ok, data: d }; }); })
+      .then(function(res){
+        if (!res.ok) {
+          // 422 : rupture, variante invalide… Shopify renvoie description/message.
+          if (submit) submit.disabled = false;
+          showError(res.data && (res.data.description || res.data.message));
+          return;
+        }
+        window.location.href = '{{ routes.cart_url }}';
+      })
+      .catch(function(){
+        // Réseau HS ou JSON illisible : on retombe sur le POST natif du formulaire.
+        if (submit) submit.disabled = false;
+        form.submit();
+      });
+  }
+
   if (form) {
     form.addEventListener('submit', function(e){
       e.preventDefault();
-      var submit = q('[data-gomu-submit]');
-      if (submit) submit.disabled = true;
-      fetch('{{ routes.cart_add_url }}.js', { method:'POST', headers:{ 'Content-Type':'application/json', 'Accept':'application/json' },
-        body: JSON.stringify(Object.assign({ id: idInput.value, quantity: 1 }, planInput && !planInput.disabled ? { selling_plan: planInput.value } : {}))
-      }).then(function(r){ return r.json(); }).then(function(){
-        window.location.href = '{{ routes.cart_url }}';
-      }).catch(function(){ form.submit(); });
+      addToCart();
     });
   }
 
   if (sticky) {
     sticky.addEventListener('click', function(e){
-      if (e.target.closest('[data-gomu-sticky-cta]')) {
-        root.scrollIntoView ? window.scrollTo({ top: root.getBoundingClientRect().top + window.scrollY - 90, behavior:'smooth' }) : null;
-      }
+      if (!e.target.closest('[data-gomu-sticky-cta]')) return;
+      // Le libellé promet un achat : on soumet le même flux que le bouton principal.
+      if (form) { addToCart(); return; }
+      root.scrollIntoView({ behavior:'smooth', block:'start' });
     });
     var io = new IntersectionObserver(function(entries){
       entries.forEach(function(en){
