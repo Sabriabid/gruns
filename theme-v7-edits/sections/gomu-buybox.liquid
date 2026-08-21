@@ -2,7 +2,7 @@
 {%- assign p = section.settings.product -%}
 {%- assign dpp = section.settings.days_per_pouch | default: 28 -%}
 {%- assign has_sub = false -%}
-{%- if p != blank and p.selling_plan_groups.size > 0 -%}{%- assign has_sub = true -%}{%- endif -%}
+{%- comment -%} Pre-order selling plans (Essential Pre-Order) are NOT subscriptions: the plan step stays hidden and no selling_plan is attached. Re-enable the selling_plan_groups check only with a real subscription app. {%- endcomment -%}
 
 <style>
   #gomu-buy-{{ section.id }} { background:var(--cream2); border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:clamp(48px,6vw,88px) 0; scroll-margin-top:90px; }
@@ -170,8 +170,9 @@
           </div>
           {%- endif -%}
 
+          {%- if has_sub -%}
           <div class="gb-step">
-            {%- if has_sub -%}<span class="gomu-mono">2 · {{ section.settings.plan_label }}</span>{%- endif -%}
+            <span class="gomu-mono">2 · {{ section.settings.plan_label }}</span>
             <div class="gb-plans" role="radiogroup" aria-label="{{ section.settings.plan_label }}" data-gomu-plans{% unless has_sub %} style="grid-template-columns:1fr"{% endunless %}>
               {%- if has_sub -%}
               <button type="button" class="gb-plan" role="radio" data-gomu-plan="sub" aria-checked="true">
@@ -217,8 +218,16 @@
               </button>
             </div>
           </div>
+          {%- endif -%}
 
           <div style="display:flex;flex-direction:column;gap:13px">
+            {%- unless has_sub -%}
+            <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap">
+              <span class="gb-price" data-gomu-once-price></span>
+              <span class="gb-was" data-gomu-once-was></span>
+              <span class="gb-day gb-day--mute" data-gomu-once-day></span>
+            </div>
+            {%- endunless -%}
             <button type="submit" class="gomu-btn gomu-btn--deep gb-submit" data-gomu-submit>
               <span data-gomu-cta-label>{{ section.settings.cta_label }}</span>
               <span style="opacity:.6" data-gomu-cta-price></span>
@@ -277,7 +286,7 @@
   var idInput = root.querySelector('[data-gomu-id]');
   var planInput = root.querySelector('[data-gomu-selling-plan]');
   var sticky = document.querySelector('.gomu-sticky-{{ section.id }}');
-  var hasSub = variants.some(function(v){ return v.sub; });
+  var hasSub = false; // pre-order plans are not subscriptions — never pre-select or attach them
 
   var state = { i: variants.length > 1 ? 1 : 0, plan: hasSub ? 'sub' : 'once' };
 
