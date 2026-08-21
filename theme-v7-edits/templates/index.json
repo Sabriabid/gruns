@@ -92,9 +92,9 @@
         "heading": "Your whole day's nutrition. In eight gummies.",
         "body": "20+ vitamins, minerals and prebiotic fiber in one grab-and-go sachet. No pills, no powders, no water.",
         "cta_label": "Shop Gomu Daily",
-        "cta_link": "#gomu-buy-buybox",
+        "cta_link": "#gomu-buy",
         "cta2_label": "How it works",
-        "cta2_link": "#gomu-vc-value"
+        "cta2_link": "#gomu-value"
       }
     },
     "trust": {
@@ -411,7 +411,7 @@
         "eyebrow": "Your first month",
         "heading": "Four weeks to a habit that sticks.",
         "cta_label": "Start your first month",
-        "cta_link": "#gomu-buy-buybox"
+        "cta_link": "#gomu-buy"
       }
     },
     "faq": {
@@ -483,7 +483,7 @@
         "heading": "Eight gummies. Every morning. That's it.",
         "body": "Free UAE delivery, 30-day money-back guarantee.",
         "cta_label": "Shop Gomu Daily",
-        "cta_link": "#gomu-buy-buybox"
+        "cta_link": "#gomu-buy"
       }
     }
   },

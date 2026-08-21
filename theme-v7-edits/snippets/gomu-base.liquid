@@ -19,5 +19,43 @@
   .gomu-btn--deep:hover { background:var(--ink); color:var(--lime); }
   .gomu-btn--ghost { border:1px solid rgba(249,227,211,.36); color:var(--cream); background:transparent; }
   .gomu-btn--ghost:hover { border-color:var(--cream); background:rgba(249,227,211,.08); }
+  .gomu-anchor { scroll-margin-top:calc(var(--header-group-height, 90px) + 24px); }
   @keyframes gomu-marquee { from { transform:translateX(0) } to { transform:translateX(-50%) } }
 </style>
+{% comment %}
+  Ancres internes des sections gomu. Horizon fait défiler .page-wrapper
+  (html/body en overflow:hidden dès 990px) : on passe par scrollIntoView, qui
+  remonte les conteneurs défilants quel que soit celui qui scrolle, avec le
+  même décalage sous le header (.gomu-anchor) au clic comme à l'arrivée avec
+  un hash dans l'URL. Rendu par chaque section gomu, d'où le garde-fou
+  window.__gomuAnchors.
+{% endcomment %}
+<script>
+(function(){
+  if (window.__gomuAnchors) return;
+  window.__gomuAnchors = true;
+  function target(hash){
+    if (!hash || hash.length < 2) return null;
+    var el = null;
+    try { el = document.getElementById(decodeURIComponent(hash.slice(1))); } catch (e) { return null; }
+    return el && el.closest('.gomu') ? el : null;
+  }
+  function go(el, behavior){ el.scrollIntoView({ behavior: behavior || 'smooth', block: 'start' }); }
+  document.addEventListener('click', function(e){
+    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    var a = e.target.closest('a[href]');
+    if (!a || !a.hash || a.host !== location.host || a.pathname !== location.pathname) return;
+    var el = target(a.hash);
+    if (!el) return;
+    e.preventDefault();
+    go(el);
+    if (history.pushState && location.hash !== a.hash) history.pushState(null, '', a.hash);
+  });
+  function fromUrl(){
+    var el = target(location.hash);
+    if (el) requestAnimationFrame(function(){ go(el, 'auto'); });
+  }
+  if (document.readyState === 'complete') fromUrl(); else window.addEventListener('load', fromUrl);
+  window.addEventListener('hashchange', fromUrl);
+})();
+</script>
