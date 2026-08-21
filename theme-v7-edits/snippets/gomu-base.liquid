@@ -40,7 +40,10 @@
     try { el = document.getElementById(decodeURIComponent(hash.slice(1))); } catch (e) { return null; }
     return el && el.closest('.gomu') ? el : null;
   }
-  function go(el, behavior){ el.scrollIntoView({ behavior: behavior || 'smooth', block: 'start' }); }
+  var calm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)');
+  function go(el, behavior){
+    el.scrollIntoView({ behavior: behavior || (calm && calm.matches ? 'auto' : 'smooth'), block: 'start' });
+  }
   document.addEventListener('click', function(e){
     if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
     var a = e.target.closest('a[href]');
