@@ -24,17 +24,19 @@
   {%- if section.settings.image_mobile != blank -%}
     {%- comment -%}
       La bande d'image devient presque carrée sur mobile : le visuel large y
-      serait réduit à un mince bandeau. On lui substitue le visuel portrait.
+      serait réduit à un mince bandeau. On lui substitue le visuel carré.
+
+      Ce visuel court sous le texte au lieu de s'arrêter au-dessus : le titre se
+      lit donc sur le hero, comme sur desktop, et non dans un bloc détaché en
+      dessous. Le voile reste transparent sur la hauteur du pack pour ne pas le
+      délaver, puis devient opaque avant le bas de l'image — ce qui masque son
+      bord et supprime la ligne de raccord avec le fond de section.
     {%- endcomment -%}
     @media (max-width:700px) {
+      #gomu-hero-{{ section.id }} { padding-top:46vh; }
       #gomu-hero-{{ section.id }} .gh-img { display:none; }
-      #gomu-hero-{{ section.id }} .gh-img--mob { display:block; height:44vh; bottom:auto; object-fit:cover; object-position:50% 50%; }
-      {%- comment -%}
-        Le voile qui rend le titre lisible passerait ici sur le produit et le
-        délaverait : on le laisse transparent sur la hauteur du pack, et on ne
-        le fait monter qu'en dessous, où il fond l'image dans le fond de section.
-      {%- endcomment -%}
-      #gomu-hero-{{ section.id }} .gh-tint { background:linear-gradient(180deg,rgba(74,13,20,0) 0,rgba(74,13,20,0) 40vh,rgba(74,13,20,.85) 46vh,rgba(74,13,20,1) 52vh); }
+      #gomu-hero-{{ section.id }} .gh-img--mob { display:block; height:66vh; bottom:auto; object-fit:cover; object-position:50% 34%; }
+      #gomu-hero-{{ section.id }} .gh-tint { background:linear-gradient(180deg,rgba(74,13,20,0) 0,rgba(74,13,20,0) 30vh,rgba(74,13,20,.5) 40vh,rgba(74,13,20,.94) 52vh,rgba(74,13,20,1) 62vh); }
     }
   {%- endif -%}
 </style>

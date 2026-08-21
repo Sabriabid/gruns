@@ -16,13 +16,15 @@
   #gomu-cta-{{ section.id }} .gx-img--mob { display:none; }
   {%- if section.settings.image_mobile != blank -%}
     {%- comment -%}
-      Même bascule que le hero : sur mobile la bande devient presque carrée,
-      le visuel large y serait réduit à un mince bandeau.
+      Même bascule que le hero, et même composition : le visuel carré passe sous
+      le texte plutôt que de s'arrêter au-dessus, et le voile devient opaque
+      avant son bord pour effacer le raccord avec le fond de section.
     {%- endcomment -%}
     @media (max-width:700px) {
+      #gomu-cta-{{ section.id }} { padding-top:42vh; }
       #gomu-cta-{{ section.id }} .gx-img { display:none; }
-      #gomu-cta-{{ section.id }} .gx-img--mob { display:block; height:40vh; bottom:auto; object-fit:cover; object-position:50% 50%; }
-      #gomu-cta-{{ section.id }} .gx-tint { background:linear-gradient(180deg,rgba(74,13,20,0) 0,rgba(74,13,20,0) 34vh,rgba(74,13,20,.85) 40vh,rgba(74,13,20,1) 46vh); }
+      #gomu-cta-{{ section.id }} .gx-img--mob { display:block; height:62vh; bottom:auto; object-fit:cover; object-position:50% 42%; }
+      #gomu-cta-{{ section.id }} .gx-tint { background:linear-gradient(180deg,rgba(74,13,20,0) 0,rgba(74,13,20,0) 26vh,rgba(74,13,20,.5) 36vh,rgba(74,13,20,.94) 48vh,rgba(74,13,20,1) 58vh); }
     }
   {%- endif -%}
 </style>
