@@ -1,0 +1,464 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "layout": "lp",
+  "sections": {
+    "announcement": {
+      "type": "lp-announcement",
+      "settings": {
+        "text": "Pre-order — ships when stock lands. Free delivery + 30-day money-back guarantee",
+        "emoji": "",
+        "dismissible": true
+      }
+    },
+    "hero": {
+      "type": "lp-hero",
+      "settings": {
+        "badge": "The 3pm dip",
+        "headline": "6 reasons to switch to GOMU if the <strong>3pm crash</strong> keeps winning",
+        "subtitle": "Caffeine borrows energy. It doesn’t make any.",
+        "cta_label": "Pre-order now",
+        "cta_link": "#buy-box",
+        "show_stars": false,
+        "trust_text": "Fruit pectin base · Vegan & halal · No caffeine"
+      }
+    },
+    "reasons": {
+      "type": "lp-reasons",
+      "blocks": {
+        "reason-1": {
+          "type": "reason",
+          "settings": {
+            "category": "THE 3PM DIP",
+            "title": "The 3pm dip isn’t a willpower problem",
+            "content": "<p>You’re not lazy at 3pm. You’re three hours past lunch, running a body that has to turn what you ate into usable energy. That conversion runs on cofactors — B vitamins first among them. Pushing through doesn’t supply any. Neither does a fourth coffee.</p>"
+          }
+        },
+        "reason-2": {
+          "type": "reason",
+          "settings": {
+            "category": "CAFFEINE",
+            "title": "The tiredness doesn’t go away. It waits.",
+            "content": "<p>Caffeine adds nothing to your system. It blocks the signal that tells you you’re tired — the tiredness itself is still there, waiting. When the caffeine clears, the signal comes back with everything that piled up behind it. That’s the dip you keep answering with another cup, which is why it keeps coming back.</p>"
+          }
+        },
+        "reason-3": {
+          "type": "reason",
+          "settings": {
+            "category": "B COMPLEX",
+            "title": "A complete B complex, in the forms your body uses directly",
+            "content": "<p>B vitamins are the cofactors your metabolism draws on to convert food into energy. GOMU carries the full complex, including methylcobalamin and L-5-MTHF — the active forms, rather than the cheap ones your body has to convert first. A contribution to normal energy metabolism. Not a stimulant.</p>"
+          }
+        },
+        "reason-4": {
+          "type": "reason",
+          "settings": {
+            "category": "ADAPTOGENS",
+            "title": "Some of that tiredness is load, not sleep",
+            "content": "<p>Ashwagandha KSM-66 and rhodiola are adaptogens — plants traditionally used through demanding periods, mentally and physically, and included here at clinically documented doses. They won’t fix a schedule that doesn’t work. But a nervous system running hot from 9am is a real part of what 3pm feels like, and it isn’t a caffeine problem.</p>"
+          }
+        },
+        "reason-5": {
+          "type": "reason",
+          "settings": {
+            "category": "SUGAR",
+            "title": "About 2g of sugar. Not a spike.",
+            "content": "<p>A pastry or an energy drink at 3pm buys you a fast rise and a faster fall — you’ve felt both. A GOMU pack carries about 2g of sugar, the minimum the gummy format requires, with no artificial sweeteners. It isn’t built to spike you, so there’s nothing to come down from.</p>"
+          }
+        },
+        "reason-6": {
+          "type": "reason",
+          "settings": {
+            "category": "ONE PACK",
+            "title": "One pack instead of a shelf of jars",
+            "content": "<p>Energy in one bottle, B complex in another, magnesium in a third, adaptogens in a fourth — and by week two you take none of them. GOMU is 15–20 actives in a single daily pack: 8 gummies, 30 seconds, no water, 28 packs per pouch. The routine you keep beats the routine you optimise.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "reason-1",
+        "reason-2",
+        "reason-3",
+        "reason-4",
+        "reason-5",
+        "reason-6"
+      ],
+      "settings": {}
+    },
+    "stats": {
+      "type": "lp-stats",
+      "blocks": {
+        "stat-1": {
+          "type": "stat",
+          "settings": {
+            "value": "15-20",
+            "label": "actives at clinically documented doses, in every daily pack"
+          }
+        },
+        "stat-2": {
+          "type": "stat",
+          "settings": {
+            "value": "0 mg",
+            "label": "caffeine — nothing to come down from"
+          }
+        },
+        "stat-3": {
+          "type": "stat",
+          "settings": {
+            "value": "~2 g",
+            "label": "sugar per pack, no artificial sweeteners"
+          }
+        }
+      },
+      "block_order": [
+        "stat-1",
+        "stat-2",
+        "stat-3"
+      ],
+      "settings": {}
+    },
+    "timeline": {
+      "type": "lp-timeline",
+      "blocks": {
+        "step-1": {
+          "type": "step",
+          "settings": {
+            "period": "Days 1-7",
+            "title": "The routine takes hold",
+            "description": "One pack in the morning, chewed in 30 seconds. Nothing to feel yet — this is the week the habit forms, not the week anything changes."
+          }
+        },
+        "step-2": {
+          "type": "step",
+          "settings": {
+            "period": "Weeks 2-4",
+            "title": "Your daily intake stops being a lottery",
+            "description": "B complex, key minerals and adaptogens arrive every day, whatever your week looks like. Steady input rather than a spike."
+          }
+        },
+        "step-3": {
+          "type": "step",
+          "settings": {
+            "period": "Month 2+",
+            "title": "Covered by default",
+            "description": "Your nutritional foundation is handled without you thinking about it. No sugar spike, no comedown — that was the point from the start."
+          }
+        }
+      },
+      "block_order": [
+        "step-1",
+        "step-2",
+        "step-3"
+      ],
+      "settings": {
+        "heading": "What to expect"
+      }
+    },
+    "trust": {
+      "type": "lp-trust-grid",
+      "blocks": {
+        "item-1": {
+          "type": "item",
+          "settings": {
+            "icon": "flask",
+            "title": "Bioavailable forms",
+            "description": "Zinc bisglycinate, L-5-MTHF, methylcobalamin"
+          }
+        },
+        "item-2": {
+          "type": "item",
+          "settings": {
+            "icon": "leaf",
+            "title": "Vegan & halal by design",
+            "description": "Fruit pectin base — no gelatin, ever"
+          }
+        },
+        "item-3": {
+          "type": "item",
+          "settings": {
+            "icon": "check-circle",
+            "title": "Clinically documented doses",
+            "description": "15–20 actives, not a long list of traces"
+          }
+        },
+        "item-4": {
+          "type": "item",
+          "settings": {
+            "icon": "shield",
+            "title": "30-day money-back",
+            "description": "Full refund on your first order, no return needed"
+          }
+        }
+      },
+      "block_order": [
+        "item-1",
+        "item-2",
+        "item-3",
+        "item-4"
+      ],
+      "settings": {
+        "heading": "Why trust GOMU"
+      }
+    },
+    "buy_box": {
+      "type": "lp-buy-box",
+      "blocks": {
+        "chip-1": {
+          "type": "chip",
+          "settings": {
+            "icon": "truck",
+            "label": "Free delivery"
+          }
+        },
+        "chip-2": {
+          "type": "chip",
+          "settings": {
+            "icon": "clock",
+            "label": "30 seconds a day"
+          }
+        },
+        "chip-3": {
+          "type": "chip",
+          "settings": {
+            "icon": "shield",
+            "label": "30-day money-back"
+          }
+        },
+        "perk-1": {
+          "type": "perk",
+          "settings": {
+            "text": "Free shipping"
+          }
+        },
+        "perk-2": {
+          "type": "perk",
+          "settings": {
+            "text": "30 seconds a day, no water needed"
+          }
+        },
+        "perk-3": {
+          "type": "perk",
+          "settings": {
+            "text": "30-day money-back guarantee"
+          }
+        }
+      },
+      "block_order": [
+        "chip-1",
+        "chip-2",
+        "chip-3",
+        "perk-1",
+        "perk-2",
+        "perk-3"
+      ],
+      "settings": {
+        "badge": "Pre-order",
+        "title_override": "GOMU — Complete Daily Nutrition",
+        "rating": "",
+        "review_count": "",
+        "variant_line": "Flavor: Strawberry Raspberry · 28 daily packs per pouch",
+        "sub_label": "Monthly subscription",
+        "sub_badge": "",
+        "one_time_label": "Pre-order",
+        "one_time_shipping": "free delivery",
+        "cta_label": "Pre-order now",
+        "anti_piege": "Pre-order — we email you the dispatch date as soon as stock lands. 30-day money-back guarantee once it’s delivered: email us and we refund the order in full, no return needed.",
+        "fallback_sub_price": "",
+        "fallback_sub_original": "",
+        "fallback_sub_discount": "",
+        "fallback_one_time_price": "€50,00",
+        "product": "gomu-daily-complete-nutrition-gummies",
+        "sub_plan_name": "mensuel",
+        "sub_price_suffix": "/month"
+      }
+    },
+    "faq": {
+      "type": "lp-faq",
+      "blocks": {
+        "faq-1": {
+          "type": "faq",
+          "settings": {
+            "question": "Will I feel a kick, like with a coffee?",
+            "answer": "<p>No — and that’s deliberate. There’s no caffeine and no stimulant in GOMU, so there’s no rush and nothing to come down from afterwards. What it does is cover the daily intake your metabolism draws on. If what you want is a jolt in 20 minutes, this isn’t the product.</p>"
+          }
+        },
+        "faq-2": {
+          "type": "faq",
+          "settings": {
+            "question": "Can I keep drinking coffee?",
+            "answer": "<p>Yes. GOMU isn’t a coffee replacement and doesn’t ask you to give anything up. Take your pack in the morning, drink your coffee whenever you want it. The two aren’t in competition.</p>"
+          }
+        },
+        "faq-3": {
+          "type": "faq",
+          "settings": {
+            "question": "How much sugar is in it?",
+            "answer": "<p>About 2g per pack — the minimum the gummy format requires. No added sugar beyond that, no artificial sweeteners. The exact figures are printed on every pouch.</p>"
+          }
+        },
+        "faq-4": {
+          "type": "faq",
+          "settings": {
+            "question": "When should I take it — morning, or just before the dip?",
+            "answer": "<p>Morning is simplest, because it’s the moment you’ll remember. But nothing here is timed to a particular hour: it isn’t a stimulant you take right before you need it. One pack a day, whenever it fits, is the whole instruction.</p>"
+          }
+        },
+        "faq-5": {
+          "type": "faq",
+          "settings": {
+            "question": "There’s ashwagandha in it. Who should avoid it?",
+            "answer": "<p>Ashwagandha KSM-66 is not recommended during pregnancy or breastfeeding, for anyone under 18, or for people with a liver or thyroid condition (ANSES guidance). If any of that applies to you, or if you’re not sure, talk to your doctor before you start.</p>"
+          }
+        },
+        "faq-6": {
+          "type": "faq",
+          "settings": {
+            "question": "Do I have to subscribe?",
+            "answer": "<p>No. GOMU is a one-off pre-order: one pouch, 28 daily packs, about four weeks. There is no subscription to join and nothing to cancel. We email you the dispatch date as soon as stock lands.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq-1",
+        "faq-2",
+        "faq-3",
+        "faq-4",
+        "faq-5",
+        "faq-6"
+      ],
+      "settings": {
+        "heading": "Frequently asked questions",
+        "cta_label": "See the offer",
+        "cta_link": "#buy-box"
+      }
+    },
+    "footer": {
+      "type": "lp-footer",
+      "blocks": {
+        "lp-link-1": {
+          "type": "lp_link",
+          "settings": {
+            "label": "All-in-One",
+            "url": "/pages/lp-all-in-one"
+          }
+        },
+        "lp-link-2": {
+          "type": "lp_link",
+          "settings": {
+            "label": "Digestion",
+            "url": "/pages/lp-digestion"
+          }
+        },
+        "lp-link-3": {
+          "type": "lp_link",
+          "settings": {
+            "label": "Energy",
+            "url": "/pages/lp-energie"
+          }
+        },
+        "lp-link-4": {
+          "type": "lp_link",
+          "settings": {
+            "label": "GLP-1",
+            "url": "/pages/lp-glp1"
+          }
+        },
+        "lp-link-5": {
+          "type": "lp_link",
+          "settings": {
+            "label": "Pills",
+            "url": "/pages/lp-pills"
+          }
+        },
+        "legal-1": {
+          "type": "legal_link",
+          "settings": {
+            "label": "Privacy policy",
+            "url": "/policies/privacy-policy"
+          }
+        },
+        "legal-2": {
+          "type": "legal_link",
+          "settings": {
+            "label": "Contact",
+            "url": "/pages/contact"
+          }
+        },
+        "legal-3": {
+          "type": "legal_link",
+          "settings": {
+            "label": "Refund policy",
+            "url": "/policies/refund-policy"
+          }
+        },
+        "legal-4": {
+          "type": "legal_link",
+          "settings": {
+            "label": "Terms of sale",
+            "url": "/policies/terms-of-service"
+          }
+        },
+        "social-1": {
+          "type": "social_link",
+          "settings": {
+            "label": "Instagram",
+            "url": "#"
+          }
+        },
+        "social-2": {
+          "type": "social_link",
+          "settings": {
+            "label": "TikTok",
+            "url": "#"
+          }
+        }
+      },
+      "block_order": [
+        "lp-link-1",
+        "lp-link-2",
+        "lp-link-3",
+        "lp-link-4",
+        "lp-link-5",
+        "legal-1",
+        "legal-2",
+        "legal-3",
+        "legal-4",
+        "social-1",
+        "social-2"
+      ],
+      "settings": {
+        "brand": "Gomu",
+        "tagline": "Complete daily nutrition.",
+        "nav_heading": "Our pages"
+      }
+    },
+    "sticky": {
+      "type": "lp-sticky-cta",
+      "settings": {
+        "label": "Pre-order",
+        "link": "#buy-box",
+        "threshold": 900
+      }
+    }
+  },
+  "order": [
+    "announcement",
+    "hero",
+    "reasons",
+    "stats",
+    "timeline",
+    "trust",
+    "buy_box",
+    "faq",
+    "footer",
+    "sticky"
+  ]
+}
+
