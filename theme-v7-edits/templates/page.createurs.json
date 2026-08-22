@@ -1,0 +1,36 @@
+{
+  "sections": {
+    "creators": {
+      "type": "gomu-creators",
+      "blocks": {
+        "pack": {
+          "type": "benefit",
+          "settings": {
+            "icon": "🎁",
+            "title": "Un pack offert",
+            "text": "On t'envoie Gomu Daily pour que tu le testes vraiment avant d'en parler."
+          }
+        },
+        "code": {
+          "type": "benefit",
+          "settings": {
+            "icon": "💸",
+            "title": "Un code affilié",
+            "text": "Ton code perso, une remise pour ta communauté, une commission sur chaque commande."
+          }
+        },
+        "repost": {
+          "type": "benefit",
+          "settings": {
+            "icon": "📣",
+            "title": "On te repost",
+            "text": "Tes contenus sur nos réseaux et nos pubs, avec ton crédit. Ton travail circule."
+          }
+        }
+      },
+      "block_order": ["pack", "code", "repost"],
+      "settings": {}
+    }
+  },
+  "order": ["creators"]
+}
