@@ -7,24 +7,24 @@
           "type": "benefit",
           "settings": {
             "icon": "🎁",
-            "title": "Un pack offert",
-            "text": "On t'envoie Gomu Daily pour que tu le testes vraiment avant d'en parler."
+            "title": "A pack on us",
+            "text": "We send you Gomu Daily so you can actually try it before you talk about it."
           }
         },
         "code": {
           "type": "benefit",
           "settings": {
             "icon": "💸",
-            "title": "Un code affilié",
-            "text": "Ton code perso, une remise pour ta communauté, une commission sur chaque commande."
+            "title": "Your own code",
+            "text": "A personal code, a discount for your audience, a commission on every order."
           }
         },
         "repost": {
           "type": "benefit",
           "settings": {
             "icon": "📣",
-            "title": "On te repost",
-            "text": "Tes contenus sur nos réseaux et nos pubs, avec ton crédit. Ton travail circule."
+            "title": "We repost you",
+            "text": "Your content on our channels and our ads, credited. Your work travels."
           }
         }
       },
