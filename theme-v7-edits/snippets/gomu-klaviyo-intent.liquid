@@ -1,28 +1,30 @@
 {%- comment -%}
   Pont entre la popup « Intent quiz » et le profil Klaviyo.
 
-  La popup pose l'angle à l'étape 1, mais le profil n'est créé qu'à l'étape 2,
-  quand l'e-mail est saisi. Klaviyo ne reporte pas les champs masqués d'une
-  étape à l'autre, et son menu « Après l'envoi » ne permet pas d'envoyer chaque
-  angle vers son propre écran : gomu_intention était perdu, et le split du flow
-  Rzv8Mj renvoyait tout le monde vers la branche fallback « Basics ».
+  La popup pose l'angle à l'étape 1, l'e-mail à l'étape 2. Klaviyo ne reporte
+  pas les champs masqués d'une étape à l'autre, et son menu « Après l'envoi »
+  ne permet pas d'envoyer chaque angle vers son propre écran : gomu_intention
+  était perdu, et le split du flow Rzv8Mj renvoyait tout le monde vers la
+  branche fallback « Basics ».
 
-  On mémorise l'angle au clic, puis on l'écrit sur le profil juste après la
-  soumission. Mesuré en production le 2026-08-23 : klaviyo.identify() comme
-  _learnq.push(['identify', …]) échouent silencieusement (202 jamais suivi
-  d'écriture, propriété absente du profil). Seule l'API Client publique écrit
-  réellement — c'est donc elle qu'on utilise.
+  Mesuré en production le 2026-08-23 :
+  - klaviyo.identify() et _learnq.push(['identify', …]) n'écrivent PAS les
+    propriétés personnalisées (échec silencieux). Seule l'API Client publique
+    écrit réellement.
+  - Au moment de l'événement « submit », Klaviyo a déjà basculé sur l'écran de
+    succès : le champ e-mail n'est plus dans le DOM. Le lire à cet instant
+    renvoyait null et annulait l'écriture. On le capture donc à la saisie.
 
-  Le délai de 5 min posé avant le split laisse le temps à la propriété d'être
-  lisible ; en pratique Klaviyo traite ces délais par lots (~9 min observées).
+  On n'écrit qu'APRÈS la soumission : capturer l'e-mail tôt sert à l'avoir sous
+  la main, jamais à créer un profil que le visiteur n'a pas validé.
 {%- endcomment -%}
 <script>
   (function () {
     var FORM_ID = 'RmpRJE';
     var COMPANY_ID = 'SLn2Z2';
     var KEY = 'gomu_intention';
+    var DBG = 'gomu_debug';
 
-    /* Fragment du libellé du bouton -> valeur attendue par le split du flow. */
     var ANGLES = [
       ['GLP-1', 'glp1'],
       ['easy nutrition', 'all_in_one'],
@@ -32,74 +34,85 @@
     ];
 
     var chosen = null;
+    var email = null;
     try { chosen = sessionStorage.getItem(KEY) || null; } catch (e) {}
 
-    function remember(value) {
-      if (!value) return;
-      chosen = value;
-      try { sessionStorage.setItem(KEY, value); } catch (e) {}
+    /* Trace de diagnostic : permet de savoir après coup pourquoi une écriture
+       n'a pas eu lieu, sans avoir à observer la session en direct. */
+    function dbg(step, extra) {
+      try {
+        var log = JSON.parse(sessionStorage.getItem(DBG) || '[]');
+        log.push({ t: Date.now(), step: step, intent: chosen, email: !!email, x: extra || null });
+        sessionStorage.setItem(DBG, JSON.stringify(log.slice(-25)));
+      } catch (e) {}
     }
 
-    /* 1. Repérer l'angle au clic. Écoute en capture sur le document : le
-          formulaire est reconstruit à chaque ouverture. */
+    function inKlaviyoForm(el) {
+      return el && ((el.classList && el.classList.contains('klaviyo-form-button')) ||
+                    (el.closest && el.closest('[class*="kl-private"]')));
+    }
+
+    /* 1. L'angle, au clic — uniquement sur les boutons du formulaire Klaviyo.
+          Sans ce garde-fou, la question de FAQ « I'm on a GLP-1 treatment... »
+          de lp-glp1, qui est un bouton d'accordéon, taggerait à tort. */
     document.addEventListener('click', function (event) {
       var t = event.target;
       var btn = t && t.closest ? t.closest('button') : null;
-      if (!btn) return;
-      /* Ne réagir qu'aux boutons DU formulaire Klaviyo. Sans ce garde-fou, la
-         question de FAQ « I'm on a GLP-1 treatment... » de lp-glp1, qui est un
-         bouton d'accordéon, taggerait le visiteur à tort. */
-      var inForm = btn.classList.contains('klaviyo-form-button') ||
-                   (btn.closest && btn.closest('[class*="kl-private"]'));
-      if (!inForm) return;
+      if (!btn || !inKlaviyoForm(btn)) return;
       var label = (btn.textContent || '').trim();
       if (!label) return;
       for (var i = 0; i < ANGLES.length; i++) {
-        if (label.indexOf(ANGLES[i][0]) !== -1) { remember(ANGLES[i][1]); return; }
+        if (label.indexOf(ANGLES[i][0]) !== -1) {
+          chosen = ANGLES[i][1];
+          try { sessionStorage.setItem(KEY, chosen); } catch (e) {}
+          dbg('angle');
+          return;
+        }
       }
     }, true);
 
-    /* Récupérer l'e-mail : d'abord ce que Klaviyo expose, sinon le champ. */
-    function findEmail(meta) {
-      if (meta && (meta.$email || meta.email)) return meta.$email || meta.email;
-      var input = document.querySelector('[class*="kl-private"] input[type="email"]');
-      return input && input.value ? input.value.trim() : null;
+    /* 2. L'e-mail, pendant la saisie — au submit il a déjà quitté le DOM.
+          Gardé en mémoire seulement : rien n'est envoyé avant la soumission. */
+    function grabEmail(event) {
+      var el = event.target;
+      if (!el || el.tagName !== 'INPUT') return;
+      var isEmail = el.type === 'email' || /email/i.test(el.name || el.getAttribute('placeholder') || '');
+      if (!isEmail || !inKlaviyoForm(el)) return;
+      var v = (el.value || '').trim();
+      if (v.indexOf('@') !== -1) { email = v; }
     }
+    document.addEventListener('input', grabEmail, true);
+    document.addEventListener('change', grabEmail, true);
 
-    /* 2. Écrire la propriété via l'API Client publique. */
-    function write(email) {
-      if (!chosen || !email) return;
-      var payload = {
-        data: {
-          type: 'profile',
-          attributes: {
-            email: email,
-            properties: { gomu_intention: chosen, gomu_source: 'popup_sitewide' }
-          }
-        }
-      };
+    /* 3. Écriture via l'API Client publique, après soumission seulement. */
+    function write() {
+      if (!chosen || !email) { dbg('write-skipped'); return; }
+      var payload = { data: { type: 'profile', attributes: {
+        email: email,
+        properties: { gomu_intention: chosen, gomu_source: 'popup_sitewide' }
+      }}};
       fetch('https://a.klaviyo.com/client/profiles/?company_id=' + COMPANY_ID, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'revision': '2024-10-15' },
         body: JSON.stringify(payload),
         keepalive: true
-      }).then(function () {
-        try { sessionStorage.removeItem(KEY); } catch (e) {}
-        chosen = null;
-      }).catch(function () { /* on garde la valeur en session pour un retry */ });
+      }).then(function (r) {
+        dbg('write-done', r.status);
+        if (r.ok) {
+          try { sessionStorage.removeItem(KEY); } catch (e) {}
+          chosen = null;
+        }
+      }).catch(function (e) { dbg('write-error', String(e)); });
     }
 
     document.addEventListener('klaviyoForms', function (event) {
       var d = event.detail || {};
       if (d.formId !== FORM_ID) return;
-
       var meta = d.metaData || {};
-      if (meta.gomu_intention) remember(meta.gomu_intention);
-
-      if (d.type === 'submit') {
-        var email = findEmail(meta);
-        write(email);
-      }
+      if (meta.gomu_intention) { chosen = meta.gomu_intention; }
+      if (meta.$email || meta.email) { email = meta.$email || meta.email; }
+      dbg('evt:' + d.type);
+      if (d.type === 'submit') { write(); }
     });
   })();
 </script>
