@@ -3,22 +3,26 @@
 
   La popup pose l'angle à l'étape 1, mais le profil n'est créé qu'à l'étape 2,
   quand l'e-mail est saisi. Klaviyo ne reporte pas les champs masqués d'une
-  étape à l'autre et son menu « Après l'envoi » ne permet pas de cibler une
-  étape précise : gomu_intention était donc perdu, et le split du flow Rzv8Mj
-  renvoyait tout le monde vers la branche fallback « Basics ».
+  étape à l'autre, et son menu « Après l'envoi » ne permet pas d'envoyer chaque
+  angle vers son propre écran : gomu_intention était perdu, et le split du flow
+  Rzv8Mj renvoyait tout le monde vers la branche fallback « Basics ».
 
   On mémorise l'angle au clic, puis on l'écrit sur le profil juste après la
-  soumission, une fois que Klaviyo l'a identifié. Le délai de 5 minutes placé
-  avant le split laisse le temps à la propriété d'être lisible.
+  soumission. Mesuré en production le 2026-08-23 : klaviyo.identify() comme
+  _learnq.push(['identify', …]) échouent silencieusement (202 jamais suivi
+  d'écriture, propriété absente du profil). Seule l'API Client publique écrit
+  réellement — c'est donc elle qu'on utilise.
+
+  Le délai de 5 min posé avant le split laisse le temps à la propriété d'être
+  lisible ; en pratique Klaviyo traite ces délais par lots (~9 min observées).
 {%- endcomment -%}
 <script>
   (function () {
     var FORM_ID = 'RmpRJE';
+    var COMPANY_ID = 'SLn2Z2';
     var KEY = 'gomu_intention';
 
-    /* Fragment du libellé du bouton -> valeur attendue par le split du flow.
-       On matche sur un fragment stable plutôt que sur le libellé entier, pour
-       survivre à une reformulation mineure du copy. */
+    /* Fragment du libellé du bouton -> valeur attendue par le split du flow. */
     var ANGLES = [
       ['GLP-1', 'glp1'],
       ['easy nutrition', 'all_in_one'],
@@ -37,8 +41,7 @@
     }
 
     /* 1. Repérer l'angle au clic. Écoute en capture sur le document : le
-          formulaire est reconstruit à chaque ouverture, on ne peut pas
-          attacher le listener aux boutons eux-mêmes. */
+          formulaire est reconstruit à chaque ouverture. */
     document.addEventListener('click', function (event) {
       var t = event.target;
       var btn = t && t.closest ? t.closest('button') : null;
@@ -56,34 +59,46 @@
       }
     }, true);
 
-    /* 2. Écrire la propriété une fois le profil identifié. */
-    function write(email) {
-      if (!chosen) return;
-      var props = { gomu_intention: chosen, gomu_source: 'popup_sitewide' };
-      if (email) props.$email = email;
+    /* Récupérer l'e-mail : d'abord ce que Klaviyo expose, sinon le champ. */
+    function findEmail(meta) {
+      if (meta && (meta.$email || meta.email)) return meta.$email || meta.email;
+      var input = document.querySelector('[class*="kl-private"] input[type="email"]');
+      return input && input.value ? input.value.trim() : null;
+    }
 
-      if (window.klaviyo && typeof window.klaviyo.identify === 'function') {
-        window.klaviyo.identify(props);
-      } else {
-        window._learnq = window._learnq || [];
-        window._learnq.push(['identify', props]);
-      }
-      try { sessionStorage.removeItem(KEY); } catch (e) {}
-      chosen = null;
+    /* 2. Écrire la propriété via l'API Client publique. */
+    function write(email) {
+      if (!chosen || !email) return;
+      var payload = {
+        data: {
+          type: 'profile',
+          attributes: {
+            email: email,
+            properties: { gomu_intention: chosen, gomu_source: 'popup_sitewide' }
+          }
+        }
+      };
+      fetch('https://a.klaviyo.com/client/profiles/?company_id=' + COMPANY_ID, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'revision': '2024-10-15' },
+        body: JSON.stringify(payload),
+        keepalive: true
+      }).then(function () {
+        try { sessionStorage.removeItem(KEY); } catch (e) {}
+        chosen = null;
+      }).catch(function () { /* on garde la valeur en session pour un retry */ });
     }
 
     document.addEventListener('klaviyoForms', function (event) {
       var d = event.detail || {};
       if (d.formId !== FORM_ID) return;
 
-      /* Si Klaviyo expose lui-même les champs masqués, ils font foi. */
       var meta = d.metaData || {};
       if (meta.gomu_intention) remember(meta.gomu_intention);
 
       if (d.type === 'submit') {
-        var email = meta.$email || meta.email || null;
-        /* Laisser Klaviyo poser son cookie d'identification avant d'écrire. */
-        setTimeout(function () { write(email); }, 1200);
+        var email = findEmail(meta);
+        write(email);
       }
     });
   })();
