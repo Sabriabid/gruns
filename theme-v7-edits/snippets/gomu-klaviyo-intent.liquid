@@ -1,0 +1,90 @@
+{%- comment -%}
+  Pont entre la popup « Intent quiz » et le profil Klaviyo.
+
+  La popup pose l'angle à l'étape 1, mais le profil n'est créé qu'à l'étape 2,
+  quand l'e-mail est saisi. Klaviyo ne reporte pas les champs masqués d'une
+  étape à l'autre et son menu « Après l'envoi » ne permet pas de cibler une
+  étape précise : gomu_intention était donc perdu, et le split du flow Rzv8Mj
+  renvoyait tout le monde vers la branche fallback « Basics ».
+
+  On mémorise l'angle au clic, puis on l'écrit sur le profil juste après la
+  soumission, une fois que Klaviyo l'a identifié. Le délai de 5 minutes placé
+  avant le split laisse le temps à la propriété d'être lisible.
+{%- endcomment -%}
+<script>
+  (function () {
+    var FORM_ID = 'RmpRJE';
+    var KEY = 'gomu_intention';
+
+    /* Fragment du libellé du bouton -> valeur attendue par le split du flow.
+       On matche sur un fragment stable plutôt que sur le libellé entier, pour
+       survivre à une reformulation mineure du copy. */
+    var ANGLES = [
+      ['GLP-1', 'glp1'],
+      ['easy nutrition', 'all_in_one'],
+      ['gut health', 'digestion'],
+      ['afternoon slump', 'energy'],
+      ['show me the basics', 'not_said']
+    ];
+
+    var chosen = null;
+    try { chosen = sessionStorage.getItem(KEY) || null; } catch (e) {}
+
+    function remember(value) {
+      if (!value) return;
+      chosen = value;
+      try { sessionStorage.setItem(KEY, value); } catch (e) {}
+    }
+
+    /* 1. Repérer l'angle au clic. Écoute en capture sur le document : le
+          formulaire est reconstruit à chaque ouverture, on ne peut pas
+          attacher le listener aux boutons eux-mêmes. */
+    document.addEventListener('click', function (event) {
+      var t = event.target;
+      var btn = t && t.closest ? t.closest('button') : null;
+      if (!btn) return;
+      /* Ne réagir qu'aux boutons DU formulaire Klaviyo. Sans ce garde-fou, la
+         question de FAQ « I'm on a GLP-1 treatment... » de lp-glp1, qui est un
+         bouton d'accordéon, taggerait le visiteur à tort. */
+      var inForm = btn.classList.contains('klaviyo-form-button') ||
+                   (btn.closest && btn.closest('[class*="kl-private"]'));
+      if (!inForm) return;
+      var label = (btn.textContent || '').trim();
+      if (!label) return;
+      for (var i = 0; i < ANGLES.length; i++) {
+        if (label.indexOf(ANGLES[i][0]) !== -1) { remember(ANGLES[i][1]); return; }
+      }
+    }, true);
+
+    /* 2. Écrire la propriété une fois le profil identifié. */
+    function write(email) {
+      if (!chosen) return;
+      var props = { gomu_intention: chosen, gomu_source: 'popup_sitewide' };
+      if (email) props.$email = email;
+
+      if (window.klaviyo && typeof window.klaviyo.identify === 'function') {
+        window.klaviyo.identify(props);
+      } else {
+        window._learnq = window._learnq || [];
+        window._learnq.push(['identify', props]);
+      }
+      try { sessionStorage.removeItem(KEY); } catch (e) {}
+      chosen = null;
+    }
+
+    document.addEventListener('klaviyoForms', function (event) {
+      var d = event.detail || {};
+      if (d.formId !== FORM_ID) return;
+
+      /* Si Klaviyo expose lui-même les champs masqués, ils font foi. */
+      var meta = d.metaData || {};
+      if (meta.gomu_intention) remember(meta.gomu_intention);
+
+      if (d.type === 'submit') {
+        var email = meta.$email || meta.email || null;
+        /* Laisser Klaviyo poser son cookie d'identification avant d'écrire. */
+        setTimeout(function () { write(email); }, 1200);
+      }
+    });
+  })();
+</script>
